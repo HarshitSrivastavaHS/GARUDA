@@ -15,10 +15,8 @@ module.exports = {
         }
 
         if (num>0 && num<=50) {
-            const channelX = message.channel;
-            message.delete();
-            channelX.bulkDelete(num+1);
-            channelX.send(`Deleting ${num} messages`)
+            message.channel.bulkDelete(num+1);
+            message.channel.send(`Deleting ${num} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
             })
