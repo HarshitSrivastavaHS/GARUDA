@@ -57,4 +57,6 @@ bot.on("message", message => {
 
 })
 
+console.log("A-Bot started!");
+
 bot.login(process.env.TOKEN);
