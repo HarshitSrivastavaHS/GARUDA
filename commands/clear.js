@@ -3,7 +3,7 @@ module.exports = {
     description: 'deletes the given number of messages',
     execute(message, args) {
 
-        if (isNaN(args)) {
+        if (isNaN(args[0])) {
             message.channel.send("Invalid Syntax!\n```%clear <number of messsages to be deleted>```");
             return;
         }
@@ -12,9 +12,9 @@ module.exports = {
             message.channel.send("<@"+message.member+"> You don't have the required permissions.");
             return;
         }
-
-        if (parseInt(args[0])<=50) {
-            message.channel.bulkDelete(parseInt(args[0])+1, true);
+        var num = parseInt(args[0]);
+        if (num<=50) {
+            message.channel.bulkDelete(num+1, true);
             message.channel.send(`Deleting ${num} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
