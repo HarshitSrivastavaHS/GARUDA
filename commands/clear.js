@@ -14,7 +14,7 @@ module.exports = {
         }
 
         if (parseInt(args[0])<=50) {
-            message.channel.bulkDelete(num+1, true);
+            message.channel.bulkDelete(parseInt(args[0])+1, true);
             message.channel.send(`Deleting ${num} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
