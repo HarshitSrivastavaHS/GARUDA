@@ -2,9 +2,8 @@ module.exports = {
     name: 'clear',
     description: 'deletes the given number of messages',
     execute(message, args) {
-        const num = args.join("");
 
-        if (isNaN(num)) {
+        if (isNaN(args)) {
             message.channel.send("Invalid Syntax!\n```%clear <number of messsages to be deleted>```");
             return;
         }
@@ -14,14 +13,14 @@ module.exports = {
             return;
         }
 
-        if (num>0 && num<=50) {
-            message.channel.bulkDelete(num+1);
+        if (parseInt(args[0])<=50) {
+            message.channel.bulkDelete(num+1, true);
             message.channel.send(`Deleting ${num} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
             })
         }
-        else if(!(num>0)){
+        else if(!(parseInt(args[0])>0)){
             message.channel.send(`${message.member}, Please enter a number greater than 0.`)
         }
         else {
