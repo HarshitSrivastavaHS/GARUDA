@@ -16,6 +16,12 @@ module.exports = {
         const srole = message.member.roles.highest.position;
         const rrole = mentionMember.roles.highest.position;
         const brole = message.guild.me.roles.highest.position;
-        message.channel.send("Hello\n"+srole+"\n"+rrole+"\n"+brole);
+        
+        if (srole>rrole) {
+        
+        }
+        else {
+            message.reply(":broken_heart: You cannot kick someone with a higher or equal role as your.");
+        }
     }
 }
