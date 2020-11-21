@@ -12,7 +12,9 @@ module.exports = {
             message.channel.send("Ooof, how can i kick if you don't even mention the user?")
             return;
         }
-
-        message.channel.send("HEllo "+mentionMember);
+        
+        const srole = message.sender.roles.heighest;
+        const krole = mentionMember.roles.highest;
+        message.channel.send(srole+"\n"+krole);
     }
 }
