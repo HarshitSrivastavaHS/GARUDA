@@ -18,7 +18,7 @@ module.exports = {
         
         if (srole>rrole) {
             if (brole>rrole) {
-                //mentionMember.kick();
+                mentionMember.kick();
                 message.channel.send(`${mentionMember} was kicked by ${message.member}.`);
             }
             else {
