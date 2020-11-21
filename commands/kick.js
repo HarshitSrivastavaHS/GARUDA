@@ -13,7 +13,7 @@ module.exports = {
             return;
         }
         
-        const srole = message.sender.roles.highest;
+        const srole = message.member.roles.highest;
         const krole = mentionMember.tag.roles.highest;
         message.channel.send("Hello\n"+srole+"\n"+krole);
     }
