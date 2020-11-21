@@ -13,8 +13,8 @@ module.exports = {
             return;
         }
         
-        const srole = message.member.highestRole.Position;
-        const mrole = mentionMember.highestRole.Position;
+        const srole = message.member.roles.highest.position;
+        const mrole = mentionMember.roles.highest.position;
         message.channel.send("Hello\n"+srole+"\n"+mrole);
     }
 }
