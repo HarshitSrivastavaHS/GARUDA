@@ -13,7 +13,8 @@ module.exports = {
             return;
         }
         
-        const rolep = message.member.highestRole.comparePositionTo(mentionMember.highestRole);
-        message.channel.send("Hello\n"+rolep);
+        const srole = message.member.highestRole.calculatedPosition;
+        const mrole = mentionMember.highestRole.calculatedPosition;
+        message.channel.send("Hello\n"+srole+"\n"+mrole);
     }
 }
