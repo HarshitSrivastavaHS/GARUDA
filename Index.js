@@ -48,7 +48,7 @@ bot.on("message", message => {
     }
 
     else if (command === 'kick') {
-        bot.commands.get('kick').execute(message, args, bot);
+        bot.commands.get('kick').execute(message, args);
     }
 
     else if (command === 'clear') {
