@@ -14,7 +14,7 @@ module.exports = {
         }
         
         const srole = message.member.roles.highest;
-        const krole = mentionMember.tag.roles.highest;
+        const krole = mentionMember.roles.highest;
         message.channel.send("Hello\n"+srole+"\n"+krole);
     }
 }
