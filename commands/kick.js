@@ -1,7 +1,7 @@
 module.exports = {
     name: 'kick',
     desccription: 'Kicks a user out of the server',
-    execute(message, args) {
+    execute(message, args, bot) {
         if(!message.member.permissions.has("KICK_MEMBERS")) {
             message.channel.send("You don't have the required permissions.");
             return;
@@ -15,7 +15,7 @@ module.exports = {
         
         const srole = message.member.roles.highest.position;
         const rrole = mentionMember.roles.highest.position;
-        const brole = 0;
+        const brole = bot.roles.highest.position;
         message.channel.send("Hello\n"+srole+"\n"+rrole+"\n"+brole);
     }
 }
