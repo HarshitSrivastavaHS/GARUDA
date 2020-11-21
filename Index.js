@@ -48,11 +48,11 @@ bot.on("message", message => {
     }
 
     else if (command === 'kick') {
-        bot.commands.get('kick').execute(message, args)
+        bot.commands.get('kick').execute(message, args, bot);
     }
 
     else if (command === 'clear') {
-        bot.commands.get('clear').execute(message, args)
+        bot.commands.get('clear').execute(message, args);
     }
 
 })
