@@ -12,13 +12,17 @@ module.exports = {
             message.channel.send("Ooof, how can i kick if you don't even mention the user?")
             return;
         }
-        message.channel.send("Its working i guess");
         const srole = message.member.roles.highest.position;
         const rrole = mentionMember.roles.highest.position;
         const brole = message.guild.me.roles.highest.position;
         
         if (srole>rrole) {
-        
+            if (brole>rrole) {
+            
+            }
+            else {
+                message.reply(":cry: I cannot kick that user.");
+            }
         }
         else {
             message.reply(":broken_heart: You cannot kick someone with a higher or equal role as your.");
