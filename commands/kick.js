@@ -19,7 +19,7 @@ module.exports = {
         if (srole>rrole) {
             if (brole>rrole) {
                 //mentionMember.kick();
-                message.channel.send(`${mentionMember.tag} was kicked by ${message.member}.`);
+                message.channel.send(`${mentionMember} was kicked by ${message.member}.`);
             }
             else {
                 message.reply(":cry: I cannot kick that user.");
