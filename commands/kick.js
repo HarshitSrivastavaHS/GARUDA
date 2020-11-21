@@ -12,7 +12,7 @@ module.exports = {
             message.channel.send("Ooof, how can i kick if you don't even mention the user?")
             return;
         }
-        
+        message.channel.send("Its working i guess");
         const srole = message.member.roles.highest.position;
         const rrole = mentionMember.roles.highest.position;
         const brole = bot.member.roles.highest.position;
