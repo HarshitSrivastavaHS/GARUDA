@@ -29,6 +29,11 @@ bot.on("message", message => {
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
+    
+    if (message.channel.type === (`"dm"`)) {
+        message.user.send("Hello!"); 
+        return
+    }
 
     if (command === 'ping') {
         bot.commands.get('ping').execute(message, args);
