@@ -18,14 +18,9 @@ for (const file of commandFiles) {
 
 }
 
-bot.on("guildMemberAdd", member => {
-    const welchannel = guild.channels.cache.find(ch => ch.name==="general");
-    const welEmbed = new Discord.MessageEmbed()
-    .setColor("red")
-    .setTitle(`Welcome ${member} to ${guild.name}!`)
-    .setDescription("We hope that you will have fun here!") 
-    .setImage(member.displayAvatarURL())
-    welchannel.send(welEmbed);
+bot.on("ready", ()=>{
+    bot.user.setActivity("A-Bot");
+    console.log("I'm online now!");
 })
 
 bot.on("message", message => {
@@ -56,7 +51,5 @@ bot.on("message", message => {
     }
 
 })
-
-console.log("A-Bot started!");
 
 bot.login(process.env.TOKEN);
