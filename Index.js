@@ -24,16 +24,16 @@ bot.on("ready", ()=>{
 })
 
 bot.on("message", message => {
+    
+    if (message.channel.type === ("dm")) {
+        message.channel.send(`Hello! #{message.member}.\nI do not accept commands in DM\nTo know my prefix in a server, just ping me and i will tell the prefix.`); 
+        return;
+    }
 
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    
-    if (message.channel.type === ("dm")) {
-        message.channel.send("Hello!"); 
-        return;
-    }
 
     if (command === 'ping') {
         bot.commands.get('ping').execute(message, args);
