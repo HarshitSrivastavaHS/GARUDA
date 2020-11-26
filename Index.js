@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 
 bot.on("ready", ()=>{
     bot.user.setActivity("A-Bot");
-    console.log("I'm online now!");
+    bot.users.get("451693463742840842").send("I am Online!");
 })
 
 bot.on("message", message => {
