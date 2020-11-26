@@ -31,7 +31,7 @@ bot.on("message", message => {
     const command = args.shift().toLowerCase();
     
     if (message.channel.type === ("dm")) {
-        message.user.send("Hello!"); 
+        message.channel.send("Hello!"); 
         return;
     }
 
