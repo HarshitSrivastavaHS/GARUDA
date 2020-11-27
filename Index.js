@@ -19,7 +19,7 @@ for (const file of commandFiles) {
 }
 
 bot.on("ready", ()=>{
-    bot.user.setActivity(`${bot.guilds.size} server`);
+    bot.user.setActivity(`${bot.guilds.size} servers`, type: "WATCHING");
     bot.users.get("451693463742840842").send("I am Online!");
 })
 
