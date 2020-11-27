@@ -60,6 +60,10 @@ bot.on("message", message => {
     else if (command === 'kick') {
         bot.commands.get('kick').execute(message, args);
     }
+    
+    else if (command === 'ban') {
+        bot.commands.get('ban').execute(message, args);
+    }
 
     else if (command === 'clear') {
         bot.commands.get('clear').execute(message, args);
