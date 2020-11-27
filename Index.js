@@ -29,7 +29,9 @@ bot.on("ready", ()=>{
 
 bot.on("message", message => {
     
-    //if (message.mentions.members.has("777840690515279872"))
+    if (message.mentions.members.has("777840690515279872")) {
+        message.reply(`My prefix is \`${prefix}\``);
+    }
     
     if (message.author.bot) return;
     
@@ -44,7 +46,6 @@ bot.on("message", message => {
     const command = args.shift().toLowerCase();
 
     if (command === 'ping') {
-        message.channel.send(message.mentions.members.has("777840690515279872"));
         bot.commands.get('ping').execute(message, args);
     }
 
