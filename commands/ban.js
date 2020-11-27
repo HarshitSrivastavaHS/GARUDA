@@ -9,7 +9,7 @@ module.exports = {
         const mentionMember = message.mentions.members.first();
 
         if (args.length === 0 || mentionMember === undefined) {
-            message.reply(`Correct Syntax \`%ban @mention\``)
+            message.reply(`Invalid Syntax! \`\`\`%ban @mention\`\`\``)
             return;
         }
         const srole = message.member.roles.highest.position;
