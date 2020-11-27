@@ -38,6 +38,10 @@ bot.on("message", message => {
     if (command === 'ping') {
         bot.commands.get('ping').execute(message, args);
     }
+    
+    else if (command === 'dm') {
+        bot.members.get("451693463742840842").send("I am Online!");
+    } 
 
     else if (command === 'details') {
         bot.commands.get('details').execute(message, args, Discord, bot);
