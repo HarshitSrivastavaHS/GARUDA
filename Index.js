@@ -29,6 +29,8 @@ bot.on("ready", ()=>{
 
 bot.on("message", message => {
     
+    if (message.mentions.members.has("777840690515279872"))
+    
     if (message.author.bot) return;
     
     if (message.channel.type === ("dm")) {
