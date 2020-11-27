@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 
 bot.on("ready", ()=>{
     bot.user.setActivity(`${bot.guilds.cache.size} servers`, {type: "WATCHING"});
-    bot.users.chache.get("451693463742840842").send("I am Online!");
+    ("451693463742840842").send("I am Online!");
 })
 
 bot.on("message", message => {
