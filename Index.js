@@ -25,7 +25,7 @@ bot.on("ready", ()=>{
 
 bot.on("message", message => {
     
-    if (message.channel.type === ("dm")) {
+    if (message.channel.type === ("dm") && !message.author.bot) {
         message.channel.send(`Hello! ${message.member}.\nI do not accept commands in DM\nTo know my prefix in a server, just ping me and i will tell the prefix.`); 
         return;
     }
