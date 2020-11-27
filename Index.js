@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 
 bot.on("ready", ()=>{
     bot.user.setActivity(`${bot.guilds.cache.size} servers`, {type: "WATCHING"});
-    bot.members.get(451693463742840842).send("I am Online!");
+    bot.users.cache.get("451693463742840842").send("I am Online!");
 })
 
 bot.on("message", message => {
@@ -38,10 +38,6 @@ bot.on("message", message => {
     if (command === 'ping') {
         bot.commands.get('ping').execute(message, args);
     }
-    
-    else if (command === 'dm') {
-        bot.users.cache.get("451693463742840842").send("I am Online!");
-    } 
 
     else if (command === 'details') {
         bot.commands.get('details').execute(message, args, Discord, bot);
