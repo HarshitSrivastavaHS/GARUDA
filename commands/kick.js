@@ -9,7 +9,7 @@ module.exports = {
         const mentionMember = message.mentions.members.first();
 
         if (args.length === 0 || mentionMember === undefined) {
-            message.channel.send("Kindly mention the person.")
+            message.channel.send(`Correct Syntax\n\`%kick @mention\``)
             return;
         }
         const srole = message.member.roles.highest.position;
