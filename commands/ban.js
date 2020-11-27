@@ -9,7 +9,7 @@ module.exports = {
         const mentionMember = message.mentions.members.first();
 
         if (args.length === 0 || mentionMember === undefined) {
-            message.channel.send("Ooof, how can i ban if you don't even mention the user?")
+            message.channel.send("Kindly mention the person.")
             return;
         }
         const srole = message.member.roles.highest.position;
