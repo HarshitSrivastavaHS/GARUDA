@@ -18,7 +18,7 @@ for (const file of commandFiles) {
 
 }
 
-const ONLINE = function ONLINE {
+const ONLINE = function ONLINE() {
     bot.users.cache.get("451693463742840842").send("I am Online!");
 }
 
