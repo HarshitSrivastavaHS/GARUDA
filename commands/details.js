@@ -7,7 +7,7 @@ module.exports = {
         .setTitle("A-Bot")
         .setAuthor("Harshit Srivastava")
         .addFields(
-            { name: "Invite the bot", value: "NA" },
+            { name: "Invite the bot", value: "https://discord.com/oauth2/authorize?client_id=777840690515279872&scope=bot&permissions=8" },
             { name: "Join the support Server" , value: "NA"}
         )
         .setDescription("A-Bot is an advance yet simple bot made by TechAllByHarshit#3473 (<@451693463742840842>)")
