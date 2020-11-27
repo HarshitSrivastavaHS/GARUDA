@@ -40,7 +40,7 @@ bot.on("message", message => {
     }
     
     else if (command === 'dm') {
-        bot.members.cache.get("451693463742840842").send("I am Online!");
+        ("451693463742840842").send("I am Online!");
     } 
 
     else if (command === 'details') {
