@@ -10,7 +10,7 @@ module.exports = {
             bot.commands.set(command.name, command);
         }
         for (const command in command.name){
-            message.channel.send(bot.commands.get(command).name);
+            message.channel.send(command);
         }
     }
 }
