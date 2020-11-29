@@ -4,5 +4,11 @@ module.exports = {
     desccription: 'shows the help menu',
     execute(message, args) {
         message.channel.send("Coming Soon.");
+        const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+        for (const file of commandFiles) {  
+            const command = require(`./commands/${file}`);  
+            bot.commands.set(command.name, command, bot);
+        }
+        message.channel.send(bot.commands);
     }
 }
