@@ -3,7 +3,7 @@ module.exports = {
     description: 'repeats whatever the user wants it to repeat',
     execute(message, args, prefix) {
         if (message.content.indexOf(' ') === -1) {
-            message.reply("Invalid Syntax! ```%repeat <Text to be repeated by the bot>```");
+            message.reply("Invalid Syntax! ```\n%repeat <Text to be repeated by the bot>\n```");
             return;
         }
         message.delete();
