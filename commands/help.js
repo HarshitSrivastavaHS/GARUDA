@@ -1,7 +1,7 @@
 
 module.exports = {
-    name: 'ban',
-    desccription: 'kicks and bans a user out of the server',
+    name: 'help',
+    desccription: 'shows the help menu',
     execute(message, args) {
         message.channel.send("Coming Soon.");
     }
