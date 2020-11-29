@@ -2,15 +2,15 @@
 module.exports = {
     name: 'help',
     desccription: 'shows the help menu',
-    execute(message, args) {
+    execute(message, args, bot) {
         message.channel.send("Coming Soon.");
         const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
         for (const file of commandFiles) {  
             const command = require(`./commands/${file}`);  
-            bot.commands.set(command.name, command, bot);
+            bot.commands.set(command.name, command);
         }
-        for (const command in bot.commands){
-            message.channel.send(command);
-        }
+        //for (const command in bot.commands){
+            message.channel.send(bot.commands);
+        //}
     }
 }
