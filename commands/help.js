@@ -7,7 +7,7 @@ module.exports = {
         const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
         for (const file of commandFiles) {  
             const command = require(`./commands/${file}`);  
-            message.channel.send(command.name);
+            message.channel.send("Hi");
         }
     }
 }
