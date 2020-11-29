@@ -69,6 +69,10 @@ bot.on("message", message => {
         bot.commands.get('clear').execute(message, args);
     }
 
+    else if (command === 'help') {
+        bot.commands.get('help').execute(message, args);
+    }
+
 })
 
 bot.login(process.env.TOKEN);
