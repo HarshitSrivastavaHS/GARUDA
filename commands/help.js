@@ -9,8 +9,8 @@ module.exports = {
             const command = require(`./commands/${file}`);  
             bot.commands.set(command.name, command);
         }
-        //for (const command in bot.commands){
-            message.channel.send(bot.commands);
-        //}
+        for (const command in command.name){
+            message.channel.send(bot.commands.get(command));
+        }
     }
 }
