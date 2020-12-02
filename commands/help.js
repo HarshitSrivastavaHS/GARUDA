@@ -1,7 +1,7 @@
 
 module.exports = {
     name: 'help',
-    desccription: 'shows the help menu',
+    description: 'shows the help menu',
     execute(message, args, bot) {
         const fs = require('fs');
         message.channel.send("Coming Soon.");
