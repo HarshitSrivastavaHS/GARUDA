@@ -23,6 +23,7 @@ for (const file of commandFiles) {
 }*/
 
 bot.on("ready", ()=>{
+    console.log("I am Online!");
     bot.user.setActivity(`${bot.guilds.cache.size} servers`, {type: "WATCHING"});
     //iamonline();
 })
