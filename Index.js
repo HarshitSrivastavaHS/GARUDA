@@ -18,13 +18,13 @@ for (const file of commandFiles) {
 
 }
 
-const iamonline = function iamonline() {
+/*const iamonline = function iamonline() {
     bot.users.cache.get("451693463742840842").send("I am Online!");
-}
+}*/
 
 bot.on("ready", ()=>{
     bot.user.setActivity(`${bot.guilds.cache.size} servers`, {type: "WATCHING"});
-    iamonline();
+    //iamonline();
 })
 
 bot.on("message", message => {
