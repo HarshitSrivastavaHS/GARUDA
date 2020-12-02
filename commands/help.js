@@ -10,7 +10,7 @@ module.exports = {
         .setColor("#D441EE");
         for (const file of commandFiles) {  
             const command = require(`${__dirname}/${file}`).description;  
-            helpembed.addFiels(){name:`${file}`,value: `${command}`};
+            helpembed.addFiels({name:`${file}`,value: `${command}`});
         }
     }
 }
