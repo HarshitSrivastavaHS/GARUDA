@@ -70,7 +70,7 @@ bot.on("message", message => {
     }
 
     else if (command === 'help') {
-        bot.commands.get('help').execute(message, args, bot, fs);
+        bot.commands.get('help').execute(message, args, bot);
     }
 
 })
