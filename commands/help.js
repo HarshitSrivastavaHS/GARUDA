@@ -6,9 +6,9 @@ module.exports = {
         const fs = require('fs');
         message.channel.send("Coming Soon.");
         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
-        /*for (const file of commandFiles) {  
+        for (const file of commandFiles) {  
             const command = require(`./commands/${file}`);  
             message.channel.send("Hi");
-        }*/
+        }
     }
 }
