@@ -1,6 +1,6 @@
 module.exports = {
     name: 'country',
-    description: 'IN DEVELOPMENET',
+    description: 'tells some details of a country.',
     execute(message, args, bot, Discord) {
         const code = args[0];
         if (code===undefined) {
