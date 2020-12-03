@@ -21,7 +21,9 @@ module.exports = {
                     if (i==0) {
                        currency = data.currencies[i].name;
                     }
-                    currency += currency = currency + ", "+data.currencies[i].name;
+                    else{
+                        currency = currency + ", "+data.currencies[i].name;
+                    }
                 }
                 message.channel.send(`Name: ${data.name}\nCapital: ${data.capital}\nRegion: ${data.region}\nCurrencies: ${currency}`);
             })
