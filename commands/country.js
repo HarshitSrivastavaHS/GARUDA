@@ -23,7 +23,7 @@ module.exports = {
                     }
                     currency += currency = currency + ", "+data.currencies[i].name;
                 }
-                message.channel.send(`Name: ${data.name}\nCapital: ${data.capital}\nRegion: ${data.region}\nCurrencies: ${data.currencies[0]["name"]}`);
+                message.channel.send(`Name: ${data.name}\nCapital: ${data.capital}\nRegion: ${data.region}\nCurrencies: ${currency}`);
             })
         }
         catch (err){
