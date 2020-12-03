@@ -8,7 +8,7 @@ module.exports = {
             fetch(`https://restcountries.eu/rest/v2/alpha/${code}`).then((res)=>{
                 return res.json()
             }).then ((data)=>{
-                message.channel.send(`Name: ${data.name}\nCapital: ${data.capital}\nContinent: ${data.region}\nCurrencies: ${data.currencies}`);
+                message.channel.send(`Name: ${data.name}\nCapital: ${data.capital}\nContinent: ${data.region}\nCurrencies: ${[data.currencies].name}`);
             })
         }
         catch (err){
