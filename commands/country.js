@@ -16,6 +16,13 @@ module.exports = {
                     message.reply("Please enter a valid country code");
                     return;
                 }
+                let currency = "";
+                for (let i = 0; i<data.currencies.length; i++){
+                    if (i==0) {
+                       currency = data.currencies[i].name;
+                    }
+                    currency += currency = currency + ", "+data.currencies[i].name;
+                }
                 message.channel.send(`Name: ${data.name}\nCapital: ${data.capital}\nRegion: ${data.region}\nCurrencies: ${data.currencies[0]["name"]}`);
             })
         }
