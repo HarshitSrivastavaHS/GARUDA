@@ -74,8 +74,8 @@ bot.on("message", message => {
         bot.commands.get('help').execute(message, args, bot, Discord);
     }
     
-    else if (command === 'time') {
-        bot.commands.get('time').execute(message, args, bot);
+    else if (command === 'country') {
+        bot.commands.get('country').execute(message, args, bot);
     }
 
 })
