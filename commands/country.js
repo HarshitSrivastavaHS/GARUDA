@@ -5,9 +5,7 @@ module.exports = {
         const code = args[0];
         const fetch = require("node-fetch");
             fetch(`https://restcountries.eu/rest/v2/alpha/${code}`).then((res)=>{
-                return res.json;
-            }).then((data)=>{
-                message.channel.send(data);
+                message.channel.send(JSON.parse(res.json));
             })
         
     }
