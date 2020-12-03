@@ -26,7 +26,7 @@ module.exports = {
                         { name: "Population", value: data.population, inline: true},
                         { name: "Main Currency", value: `${data.currencies[0].name} (${data.currencies[0].symbol})`, inline: true},
                         { name: "Region", value: data.region, inline: true},
-                        { name: "Population", value: data.population, inline: true},
+                        { name: "Demonym", value: data.demonym, inline: true},
                         { name: "Area", value: `${data.area} km`, inline: true}
                     )
                 	.setTimestamp()
