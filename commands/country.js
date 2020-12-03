@@ -4,10 +4,11 @@ module.exports = {
     execute(message, args, bot, fs) {
         const code = args[0];
         try {
-        const country = fs.readFile(`https://restcountries.eu/rest/v2/alpha/${code}`)
-        message.channel.send("Still in development");
-        message.channel.send("Test messages below:::Please Ignore");
-        message.channel.send(JSON.parse(country));
+            fetch(`https://restcountries.eu/rest/v2/alpha/${code}`).then((res)=>{
+                return res.json;
+            }).then((data)=>{
+                message.channel.send(data);
+            })
         }
         catch {message.channel.send(":broken_heart: An error occured.");}
     }
