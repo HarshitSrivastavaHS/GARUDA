@@ -9,7 +9,6 @@ module.exports = {
             }).then((data)=>{
                 message.channel.send(data);
             })
-        }
         
     }
 }
