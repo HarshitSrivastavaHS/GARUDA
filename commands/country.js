@@ -12,6 +12,10 @@ module.exports = {
             fetch(`https://restcountries.eu/rest/v2/alpha/${code}`).then((res)=>{
                 return res.json()
             }).then ((data)=>{
+                if (data.name===undefined){
+                    message.reply("Please enter a valid country code");
+                    return;
+                }
                 message.channel.send(`Name: ${data.name}\nCapital: ${data.capital}\nRegion: ${data.region}\nCurrencies: ${data.currencies[0]["name"]}`);
             })
         }
