@@ -10,6 +10,10 @@ module.exports = {
                 message.channel.send(data);
             })
         }
-        catch {message.channel.send(":broken_heart: An error occured.");}
+        catch (err) {
+            message.channel.send(":broken_heart: An error occured.");
+            message.channel.send("Ignore the next message");
+            message.channel.send(err);
+        }
     }
 }
