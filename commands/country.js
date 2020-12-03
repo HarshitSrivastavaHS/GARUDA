@@ -19,7 +19,7 @@ module.exports = {
                 const country = new Discord.MessageEmbed()
                     .setColor("#D441EE")
                     .setTitle(data.name)
-                    .setAuthor(`%country ${code}`)
+                    .setAuthor(`%country ${code}`,`https://www.countryflags.io/${data.alpha2Code}/flat/64.png`)
                     .addFields(
                         { name: "Native Name", value: data.nativeName, inline: true},
                         { name: "Capital" , value: data.capital, inline: true},
@@ -29,6 +29,7 @@ module.exports = {
                         { name: "Population", value: data.population, inline: true},
                         { name: "Area", value: `${data.area} km`, inline: true}
                     )
+                	.setTimestamp()
                     .setFooter("via restcountries.eu")
                     .setThumbnail(`https://www.countryflags.io/${data.alpha2Code}/flat/64.png`);
                 message.channel.send(country);
