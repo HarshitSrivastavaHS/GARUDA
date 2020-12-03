@@ -6,7 +6,9 @@ module.exports = {
         const fetch = require("node-fetch");
         try {
             fetch(`https://restcountries.eu/rest/v2/alpha/${code}`).then((res)=>{
-                message.channel.send(res.name);
+                return res.json()
+            }).then ((data)=>{
+                message.channel.send("Hi there, is anything written after the colon? : "+data.name);
             })
         }
         catch (err){
