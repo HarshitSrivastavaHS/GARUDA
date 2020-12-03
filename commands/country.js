@@ -8,13 +8,11 @@ module.exports = {
             fetch(`https://restcountries.eu/rest/v2/alpha/${code}`).then((res)=>{
                 return res.json()
             }).then ((data)=>{
-                message.channel.send("Hi there, is anything written after the colon? : "+data.name);
+                message.channel.send("Name: "+data.name);
             })
         }
         catch (err){
                 message.channel.send(":broken-heart: Something went wrong");
-                message.channel.send("Ignore the next message");
-                message.channel.send(err);
         }
     }
 }
