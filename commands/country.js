@@ -30,7 +30,7 @@ module.exports = {
                         { name: "Area", value: `${data.area} km`, inline: true}
                     )
                     .setFooter("via restcountries.eu")
-                    .setThumbnail(data.flag);
+                    .setThumbnail(`https://www.countryflags.io/${data.alpha2Code}/flat/64.png`);
                 message.channel.send(country);
             })
         }
