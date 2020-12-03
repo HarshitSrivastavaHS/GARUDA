@@ -1,7 +1,7 @@
 module.exports = {
     name: 'country',
     description: 'IN DEVELOPMENET',
-    execute(message, args, bot, fs) {
+    execute(message, args, bot, discord) {
         const code = args[0];
         if (code===undefined) {
             message.channel.send("%country <country code>"); 
@@ -16,16 +16,22 @@ module.exports = {
                     message.reply("Please enter a valid country code");
                     return;
                 }
-                let currency = "";
-                for (let i = 0; i<data.currencies.length; i++){
-                    if (i==0) {
-                       currency = data.currencies[i].name;
-                    }
-                    else{
-                        currency = currency + ", "+data.currencies[i].name;
-                    }
-                }
-                message.channel.send(`Name: ${data.name}\nCapital: ${data.capital}\nRegion: ${data.region}\nCurrencies: ${currency}`);
+                const country = new Discord.MessageEmbed()
+                    .setColor("#D441EE")
+                    .setTitle(data.name)
+                    .setAuthor(`%country ${code}`)
+                    .addFields(
+                        { name: "Native Name", value: data.nativeName},
+                        { name: "Capital" , value: data.capital},
+                        { name: "Population", value: data.population},
+                        { name: "Main Currency", value: `${data.currencies[0].name} (${data.currencies[0].symbol})`},
+                        { name: "Region", value: data.region},
+                        { name: "Population", value: data.population },
+                        { name: "Area", value: `${data.area} km` }
+                    )
+                    .setFooter("via restcountries.eu")
+                    .setThumbnail(data.flag);
+                message.channel.send(country);
             })
         }
         catch (err){
