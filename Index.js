@@ -75,7 +75,7 @@ bot.on("message", message => {
     }
     
     else if (command === 'country') {
-        bot.commands.get('country').execute(message, args, bot);
+        bot.commands.get('country').execute(message, args, bot, Discord);
     }
 
 })
