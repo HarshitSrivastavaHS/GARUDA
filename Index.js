@@ -73,6 +73,10 @@ bot.on("message", message => {
     else if (command === 'help') {
         bot.commands.get('help').execute(message, args, bot, Discord);
     }
+    
+    else if (command === 'time') {
+        bot.commands.get('time').execute(message, args, bot);
+    }
 
 })
 
