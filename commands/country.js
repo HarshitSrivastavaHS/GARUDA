@@ -6,7 +6,7 @@ module.exports = {
         const fetch = require("node-fetch");
         try {
             fetch(`https://restcountries.eu/rest/v2/alpha/${code}`).then((res)=>{
-                message.channel.send(JSON.parse(res+".json"));
+                message.channel.send(res+".json"));
             })
         }
         catch (err){
