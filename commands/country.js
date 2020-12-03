@@ -21,13 +21,13 @@ module.exports = {
                     .setTitle(data.name)
                     .setAuthor(`%country ${code}`)
                     .addFields(
-                        { name: "Native Name", value: data.nativeName},
-                        { name: "Capital" , value: data.capital},
-                        { name: "Population", value: data.population},
-                        { name: "Main Currency", value: `${data.currencies[0].name} (${data.currencies[0].symbol})`},
-                        { name: "Region", value: data.region},
-                        { name: "Population", value: data.population },
-                        { name: "Area", value: `${data.area} km` }
+                        { name: "Native Name", value: data.nativeName, inline: true},
+                        { name: "Capital" , value: data.capital, inline: true},
+                        { name: "Population", value: data.population, inline: true},
+                        { name: "Main Currency", value: `${data.currencies[0].name} (${data.currencies[0].symbol})`, inline: true},
+                        { name: "Region", value: data.region, inline: true},
+                        { name: "Population", value: data.population, inline: true},
+                        { name: "Area", value: `${data.area} km`, inline: true}
                     )
                     .setFooter("via restcountries.eu")
                     .setThumbnail(data.flag);
