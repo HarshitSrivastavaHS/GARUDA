@@ -3,6 +3,10 @@ module.exports = {
     description: 'IN DEVELOPMENET',
     execute(message, args, bot, fs) {
         const code = args[0];
+        if (code===undefined) {
+            message.channel.send("%country <country code>"); 
+            return;
+        }
         const fetch = require("node-fetch");
         try {
             fetch(`https://restcountries.eu/rest/v2/alpha/${code}`).then((res)=>{
