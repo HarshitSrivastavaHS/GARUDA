@@ -9,6 +9,6 @@ module.exports = {
         message.channel.send("Test messages below:::Please Ignore");
         message.channel.send(JSON.parse(country));
         }
-        catch {message.channel.send("An error occured. :sad:");}
+        catch {message.channel.send(":broken_heart: An error occured.");}
     }
 }
