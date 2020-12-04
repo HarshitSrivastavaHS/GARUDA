@@ -5,12 +5,11 @@ module.exports = {
         if (args[0]==="add") {
             try {
                 const sum = parseFloat(args[1])+parseFloat(args[2]);
+                message.channel.send(`${args[1]}+${args[2]}=${sum}`);
             }
             catch {
                 message.channel.send("Please enter numbers only.");
-                return;
             }
-            message.channel.send(`${args[1]}+${args[2]}=${sum}`);
         }
         
         else if (args[0]==="sub") {
