@@ -3,9 +3,9 @@ module.exports = {
     description: 'does simple maths calculations',
     execute(message, args, bot, Discord) {
         if (args[0]==="add") {
-          if (!args[1]===undefined||!args[2]===undefined){
+          //if (!args[1]==undefined||!args[2]==undefined){
             message.channel.send(`hi${args[1]}+${args[2]}=${args[1]+args[2]}`);
-          }
+          //}
         }
         
         else if (args[0]==="sub") {
