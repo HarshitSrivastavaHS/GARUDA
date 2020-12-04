@@ -3,12 +3,12 @@ module.exports = {
     description: 'does simple maths calculations',
     execute(message, args, bot, Discord) {
         if (args[0]==="add") {
-            try {
+            if (args[1]!=undefined&&args[2]==undefined){
                 const sum = parseFloat(args[1])+parseFloat(args[2]);
                 message.channel.send(`${args[1]}+${args[2]}=${sum}`);
             }
-            catch {
-                message.channel.send("Please enter numbers only.");
+            else {
+                message.channel.send("Please enter numbers to be added.")
             }
         }
         
