@@ -19,7 +19,7 @@ module.exports = {
             if (args[1]!=undefined&&args[2]!=undefined){
                 const diff = parseFloat(args[1])-parseFloat(args[2]);
                 if (!isNaN(diff))
-                    message.channel.send(`${args[1]}+${args[2]}=${diff}`);
+                    message.channel.send(`${args[1]}-${args[2]}=${diff}`);
                 else 
                     message.channel.send("Please enter numbers only.")
             }
@@ -32,7 +32,7 @@ module.exports = {
             if (args[1]!=undefined&&args[2]!=undefined){
                 const pro = parseFloat(args[1])*parseFloat(args[2]);
                 if (!isNaN(pro))
-                    message.channel.send(`${args[1]}+${args[2]}=${pro}`);
+                    message.channel.send(`${args[1]}*${args[2]}=${pro}`);
                 else 
                     message.channel.send("Please enter numbers only.")
             }
@@ -43,9 +43,9 @@ module.exports = {
         
         else if (args[0]==="div") {
             if (args[1]!=undefined&&args[2]!=undefined){
-                const quo = parseFloat(args[1])+parseFloat(args[2]);
+                const quo = parseFloat(args[1])/parseFloat(args[2]);
                 if (!isNaN(quo) || quo==infinity)
-                    message.channel.send(`${args[1]}+${args[2]}=${quo}`);
+                    message.channel.send(`${args[1]}/${args[2]}=${quo}`);
                 else 
                     message.channel.send("Please enter numbers only.")
             }
