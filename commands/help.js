@@ -5,14 +5,17 @@ module.exports = {
     execute(message, args, bot, Discord) {
         const fs = require('fs');
         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
-        if (commandFiles.includes(args[0]+".js")) {
-           message.channel.send("Ok, so this works");
-        }
         const helpembed = new Discord.MessageEmbed()
         .setColor("#D441EE");
-        for (const file of commandFiles) {  
-            const command = require(`${__dirname}/${file}`).description;  
-            helpembed.addFields({name:`${file.slice(0, file.indexOf("."))}`,value: `${command}`});
+        if (commandFiles.includes(args[0]+".js")) {
+           const command = require(`${__dirname}/${args[0]}.js`).description; 
+           helpembed.addFields({name:`${args[0]}` value: ${command}`});
+        }
+        else {
+            for (const file of commandFiles) {  
+                const command = require(`${__dirname}/${file}`).description;  
+                helpembed.addFields({name:`${file.slice(0, file.indexOf("."))}`,value: `${command}`});
+            }
         }
         message.channel.send(helpembed);
     }
