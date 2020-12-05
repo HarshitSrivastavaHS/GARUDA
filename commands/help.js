@@ -9,7 +9,7 @@ module.exports = {
         .setColor("#D441EE");
         if (commandFiles.includes(args[0]+".js")) {
            const command = require(`${__dirname}/${args[0]}.js`).description; 
-           helpembed.addFields({name:`${args[0]}` value: `${command}`});
+           helpembed.addFields({name:`${args[0]}`, value: `${command}`});
         }
         else {
             for (const file of commandFiles) {  
