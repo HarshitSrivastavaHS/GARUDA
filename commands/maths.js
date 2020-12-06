@@ -15,7 +15,7 @@ module.exports = {
             }
         }
         
-        else if (args[0]==="sub") {
+        else if (args[0]==="subtract") {
             if (args[1]!=undefined&&args[2]!=undefined){
                 const diff = parseFloat(args[1])-parseFloat(args[2]);
                 if (!isNaN(diff))
@@ -28,7 +28,7 @@ module.exports = {
             }
         }
         
-        else if (args[0]==="mul") {
+        else if (args[0]==="muliply") {
             if (args[1]!=undefined&&args[2]!=undefined){
                 const pro = parseFloat(args[1])*parseFloat(args[2]);
                 if (!isNaN(pro))
@@ -41,7 +41,7 @@ module.exports = {
             }  
         }
         
-        else if (args[0]==="div") {
+        else if (args[0]==="divide") {
             if (args[1]!=undefined&&args[2]!=undefined){
                 const quo = parseFloat(args[1])/parseFloat(args[2]);
                 if (!isNaN(quo) || quo==infinity)
