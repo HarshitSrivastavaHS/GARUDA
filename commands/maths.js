@@ -1,6 +1,7 @@
 module.exports = {
     name: 'maths',
     description: 'does simple maths calculations',
+    usage: [{'add','adds two numbers','%maths add <num1> <num2>'},{'',''}],
     execute(message, args, bot, Discord) {
         if (args[0]==="add") {
             if (args[1]!=undefined&&args[2]!=undefined){
