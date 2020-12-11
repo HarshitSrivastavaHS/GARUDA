@@ -20,7 +20,7 @@ module.exports = {
         .setFooter("Powered by Google")
         .setTimestamp();
         
-        message.channel.send(href.link);
+        message.channel.send(searchemb);
         
         async function search(query) {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
