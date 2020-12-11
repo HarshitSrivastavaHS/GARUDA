@@ -8,7 +8,7 @@ module.exports = {
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL()}`)
         .setFooter('Avatar Command');
         if (mentionUser){
-          avataremb.setImage(`${mentionUser.displayAvatarURL()}`,dynamic: true)
+          avataremb.setImage(`${mentionUser.displayAvatarURL()}`)
           .setTitle(`${mentionUser.tag}'s Avatar`);
         }
         else {
