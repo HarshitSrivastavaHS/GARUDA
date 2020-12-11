@@ -11,7 +11,7 @@ module.exports = {
                 const covid = new Discord.MessageEmbed()
                     .setColor("#D441EE")
                     .setTitle('COVID-19 Stats')
-                    .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL}`)
+                    .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL()}`)
                     .addFields(
                         { name: "Total Cases", value: data.cases, inline: true},
                         { name: "Active Cases", value: data.active, inline: true},
