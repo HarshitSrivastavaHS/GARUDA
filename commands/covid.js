@@ -1,6 +1,6 @@
 module.exports = {
     name: 'covid',
-    description: 'tells some details of a country.',
+    description: 'shows covid 19 stats',
     execute(message, args, bot, Discord) {
         const code = args[0];
         const fetch = require("node-fetch");
@@ -11,7 +11,7 @@ module.exports = {
                 const covid = new Discord.MessageEmbed()
                     .setColor("#D441EE")
                     .setTitle('COVID-19 Stats')
-                    .setAuthor(`${message.author}`,``)
+                    .setAuthor(`${message.author.username}`,`${message.author.avatarURL}`)
                     .addFields(
                         { name: "Total Cases", value: data.cases, inline: true},
                         { name: "Active Cases", value: data.active, inline: true},
@@ -19,7 +19,7 @@ module.exports = {
                         { name: "No. of People Recovered", value: data.recovered, inline: true}
                         )
                     .setTimestamp()
-                    .setFooter('')
+                    .setFooter('via disease.sh')
                     .setThumbnail(`https://cdn.pixabay.com/photo/2020/04/29/07/54/coronavirus-5107715_1280.png`);
                 message.channel.send(covid);
             })
