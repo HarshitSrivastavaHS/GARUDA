@@ -11,6 +11,15 @@ module.exports = {
         
         href = await search(query);
         
+        let searchemb = new Discord.MessageEmbed()
+        .setAuthor(message.author.tag,message.author.displayAvatarURL)
+        .setColor("RANDOM")
+        .setTitle(query.title)
+        .setDescription(href.snippet)
+        .setImage(href.pagemap ? href.pagemap.cse_thumbnail[0].src : null)
+        .setFooter("Powered by Google")
+        .setTimestamp();
+        
         message.channel.send(href.link);
         
         async function search(query) {
