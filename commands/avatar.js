@@ -8,11 +8,11 @@ module.exports = {
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL()}`)
         .setFooter('Avatar Command');
         if (mentionUser){
-          avataremb.setImage(`${mentionUser.displayAvatarURL()}`)
-          .setTitle(`${mentionUser.tag}'s Avatar`);
+          avataremb.attachFiles(`${mentionUser.displayAvatarURL()}`)
+          .setTitle(`${mentionUser.tag}'s Avatar`, dynamic: true);
         }
         else {
-          avataremb.setImage(`${message.author.displayAvatarURL()}`)
+          avataremb.attachFiles(`${message.author.displayAvatarURL()}`)
           .setTitle('Your Avatar');
         }  
         message.channel.send(avataremb);
