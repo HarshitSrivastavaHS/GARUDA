@@ -93,6 +93,10 @@ bot.on("message", message => {
     else if (command === 'google') {
         bot.commands.get('google').execute(message, args, bot, Discord);
     } 
+    
+    else if (command === 'flip') {
+        bot.commands.get('flip').execute(message, args, bot, Discord);
+    }
 
 })
 
