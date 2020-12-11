@@ -85,6 +85,10 @@ bot.on("message", message => {
     else if (command === 'covid') {
         bot.commands.get('covid').execute(message, args, bot, Discord);
     }
+    
+    else if (command === 'avatar') {
+        bot.command.get('avatar').execute(message, args, bot, Discord);
+    } 
 
 })
 
