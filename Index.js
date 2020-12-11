@@ -89,6 +89,10 @@ bot.on("message", message => {
     else if (command === 'avatar') {
         bot.commands.get('avatar').execute(message, args, bot, Discord);
     } 
+    
+    else if (command === 'google') {
+        bot.commands.get('google').execute(message, args, bot, Discord);
+    } 
 
 })
 
