@@ -1,7 +1,7 @@
 module.exports = {
     name: 'google',
     description: 'searches the internet',
-    execute = async (message, args, bot, Discord) => {
+    execute: async (message, args, bot, Discord) => {
         const request = require("node-superfetch");
         let googleKey = process.env.GoogleAPI;
         let csx = process.env.GoogleCSX;
