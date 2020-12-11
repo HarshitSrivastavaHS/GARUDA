@@ -9,5 +9,7 @@ module.exports = {
         .setTitle(msg.author)
         .setDescription(msg.content)
         .setImags(msg.image?msg.image:null)
+        .setTimestamp();
+        message.channel.send(snipEMbed);
     }
 }
