@@ -82,6 +82,10 @@ bot.on("message", message => {
         bot.commands.get('maths').execute(message, args, bot, Discord);
     }
 
+    else if (command === 'covid') {
+        bot.commands.get('covid').execute(message, args, bot, Discord);
+    }
+
 })
 
 bot.login(process.env.TOKEN);
