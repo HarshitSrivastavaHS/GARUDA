@@ -107,6 +107,10 @@ bot.on("message", message => {
         bot.commands.get('flip').execute(message, args, bot, Discord);
     }
 
+    else if (command === 'snipe') {
+        bot.commands.get('snipe').execute(message, args, bot, Discord);
+    }
+
 })
 
 bot.login(process.env.TOKEN);
