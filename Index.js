@@ -28,6 +28,15 @@ bot.on("ready", ()=>{
     //iamonline();
 })
 
+bot.snipes = new Map();
+bot.on("messageDelete", (message, channel)=>{
+   bot.snipes.set(message.channel.id, {
+      content: message.content,
+      author: message.author.tag,
+      image: message.attachments.first() ? message.attachments.first().proxyURL : null
+   });
+})
+
 bot.on("message", message => {
     
     if (message.author.bot) return;
