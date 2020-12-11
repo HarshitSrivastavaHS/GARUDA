@@ -5,7 +5,7 @@ module.exports = {
         const mentionUser = message.mentions.members.first();
         const avataremb = new Discord.MessageEmbed()
         .setColor("#D441EE")
-        .setTitle('Avatat')
+        .setTitle('Avatar')
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL()}`)
         .setFooter('Avatar Command');
         if (mentionUser)
