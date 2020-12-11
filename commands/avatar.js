@@ -1,6 +1,6 @@
 module.exports = {
     name: 'avatar',
-    description: 'shows the user's avatar',
+    description: 'shows the user\'s avatar',
     execute(message, args, bot, Discord) {
         const mentionUser = message.mentions.members.first();
         const avataremb = new Discord.MessageEmbed()
