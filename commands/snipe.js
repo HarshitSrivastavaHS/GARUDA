@@ -6,7 +6,7 @@ module.exports = {
         if (!msg) return message.channel.send("There is no deleted message in this channel.");
         let snipEMbed = new Discord.MessageEmbed()
         .setColor("RANDOM")
-        .setTitle(msg.author)
+        .setAuthir(msg.author, msg.author.displayAvatarURL)
         .setDescription(msg.content)
         .setImage(msg.image?msg.image:null)
         .setTimestamp();
