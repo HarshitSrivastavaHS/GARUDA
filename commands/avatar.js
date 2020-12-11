@@ -9,7 +9,7 @@ module.exports = {
         .setFooter('Avatar Command');
         if (mentionUser){
           avataremb.attachFiles(`${mentionUser.displayAvatarURL()}`)
-          .setTitle(`${mentionUser.tag}'s Avatar`, dynamic: true);
+          .setTitle(`${mentionUser.tag}'s Avatar`);
         }
         else {
           avataremb.attachFiles(`${message.author.displayAvatarURL()}`)
