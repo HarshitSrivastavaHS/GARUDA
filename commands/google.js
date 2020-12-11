@@ -11,6 +11,8 @@ module.exports = {
         
         href = await search(query);
         
+        message.channel.send(href.link);
+        
         async function search(query) {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
@@ -19,8 +21,5 @@ module.exports = {
             else
             return body.items[0];
         }
-        
-        message.channel.send(href);
-        
     }
 }
