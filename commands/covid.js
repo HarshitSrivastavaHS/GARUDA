@@ -22,7 +22,7 @@ module.exports = {
                         { name: "Area", value: `${data.area} km`, inline: true}*/
                     )
                     .setTimestamp()
-                    .setFooter(")
+                    .setFooter('')
                     .setThumbnail(``);
                 message.channel.send(covid);
             })
