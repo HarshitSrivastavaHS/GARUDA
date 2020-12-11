@@ -5,7 +5,7 @@ module.exports = {
         const code = args[0];
         const fetch = require("node-fetch");
         try {
-            fetch(`https://api.covid19api.com/summary`).then((res)=>{
+            fetch(`https://disease.sh/v3/covid-19/all`).then((res)=>{
                 return res.json()
             }).then ((data)=>{
                 const covid = new Discord.MessageEmbed()
@@ -13,7 +13,7 @@ module.exports = {
                     .setTitle('test')
                     .setAuthor(``,``)
                     .addFields(
-                        { name: "Native Name", value: data.Global.TotalConfirmed, inline: true}
+                        { name: "Total Cases", value: data.cases, inline: true}
                         /*{ name: "Capital" , value: data.capital, inline: true},
                         { name: "Population", value: data.population, inline: true},
                         { name: "Main Currency", value: `${data.currencies[0].name} (${data.currencies[0].symbol})`, inline: true},
