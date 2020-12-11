@@ -87,7 +87,7 @@ bot.on("message", message => {
     }
     
     else if (command === 'avatar') {
-        bot.command.get('avatar').execute(message, args, bot, Discord);
+        bot.commands.get('avatar').execute(message, args, bot, Discord);
     } 
 
 })
