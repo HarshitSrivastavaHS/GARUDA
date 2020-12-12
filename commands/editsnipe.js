@@ -11,7 +11,7 @@ module.exports = {
         {name: "Old Message" ,value: msg.oldContent},
         {name: "New Message" ,value: msg.newContent}
         )
-        .setImage(msg.image?msg.image:null)
+        .setThumbnail(msg.image?msg.image:null)
         .setTimestamp();
         message.channel.send(editSnipEMbed);
     }
