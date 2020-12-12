@@ -28,9 +28,10 @@ module.exports = {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
             });
-           
-            console.log(body.items[0]);
-            return body.items[0];
+            if (body.items[0])
+                return body.items[0];
+            else
+                return null;
         }
     }
 }
