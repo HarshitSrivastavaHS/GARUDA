@@ -12,11 +12,13 @@ module.exports = {
       let ms = 0;
       
       let giveawayEM = new Discord.MessageEmbed()
-      .setTitle("New Giveaway")
+      .setTitle(prize)
       .setColor("PURPLE")
-      .setDescription(`Hosted by ${message.author.tag} | Time ${time} | Prize ${prize}`)
+      .setFooter("Ends at")
+      .setDescription(`React with :tada: to enter!\nTime ${time}\nHosted by ${message.author.tag}`)
       //.setTimestamp(Date.now() + ms);
-      let msg = await message.channel.send(":tada:GIVEAWAY:tada:"+giveawayEM);
+      message.channel.send(":tada:GIVEAWAY:tada:");
+      let msg = await message.channel.send(giveawayEM);
       msg.react("🎉");
     }
 }
