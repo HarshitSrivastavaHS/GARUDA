@@ -11,12 +11,18 @@ module.exports = {
       let prize = args.slice(1).join(" ");
       if (!prize) return message.channel.send("No prize specified. Please specify after the time.");
       let ms = 0;
-      
+      let sym
+      switch (time) {
+         case 'd': ms = timee*86400*1000; sym="day(s)"; break;
+         case 'h': ms = time*3600*1000; sym="hour(s)"; break;
+         case 'm': ms = time*60*1000; sym="minute(s)"; break;
+         case 's': ms = time*1000; sym="second(s)"; break;
+      }
       let giveawayEM = new Discord.MessageEmbed()
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter("Ends at")
-      .setDescription(`React with :tada: to enter!\nTime ${timee}\nHosted by ${message.author.tag}`)
+      .setDescription(`React with :tada: to enter!\nTime: ${timee} ${sym}\nHosted by ${message.author.tag}`)
       .setTimestamp(Date.now() + ms);
       message.channel.send(":tada:GIVEAWAY:tada:");
       let msg = await message.channel.send(giveawayEM);
