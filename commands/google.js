@@ -12,6 +12,9 @@ module.exports = {
         try {
         href = await search(query);
         }
+        catch {
+           message.channel.send("something went wrong.");
+        }
       
         let searchemb = new Discord.MessageEmbed()
         .setAuthor(message.author.tag,message.author.displayAvatarURL)
@@ -26,17 +29,15 @@ module.exports = {
         message.channel.send(searchemb);
         
         async function search(query) {
-            try {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
             });
-            }
-            catch {
+            
             console.log(body.items);
             console.log(body.items[0]);
            
             message.channel.send("Something went wrong.");
-            }
+ 
             if (!body.items) return null;
             else
             return body.items[0];
