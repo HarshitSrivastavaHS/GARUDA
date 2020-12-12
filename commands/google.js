@@ -9,8 +9,10 @@ module.exports = {
         let query = args.join(" ");
         if (!query) return message.channel.send("Please enter the query.");
         
+        try {
         href = await search(query);
-        
+        }
+      
         let searchemb = new Discord.MessageEmbed()
         .setAuthor(message.author.tag,message.author.displayAvatarURL)
         .setColor("RANDOM")
@@ -32,7 +34,7 @@ module.exports = {
             catch {
             console.log(body.items);
             console.log(body.items[0]);
-            console.log(body);
+           
             message.channel.send("Something went wrong.");
             }
             if (!body.items) return null;
