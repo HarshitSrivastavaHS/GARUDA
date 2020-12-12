@@ -33,7 +33,7 @@ module.exports = {
             console.log(body.items);
             console.log(body.items[0]);
             console.log(body);
-            message.channel.send("Something went wrong.";
+            message.channel.send("Something went wrong.");
             }
             if (!body.items) return null;
             else
