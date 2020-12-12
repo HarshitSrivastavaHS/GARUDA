@@ -32,14 +32,10 @@ module.exports = {
                 return null;
             }
             else {
-                
-                try {
-                    let result = body.items[0];
-                    return result;
-                }
-                catch (err) {
+                let result = body.items[0].catch((error)=>{
                     return null;
-                }
+                });
+                return result;
             }
         }
     }
