@@ -10,7 +10,7 @@ module.exports = {
         if (!query) return message.channel.send("Please enter the query.");
         
         href = await search(query);
-        
+        if (href === null) return message.channel.send(`Nothing found regarding this query:\n\`${query}\``);
       
         let searchemb = new Discord.MessageEmbed()
         .setAuthor(message.author.tag,message.author.displayAvatarURL)
@@ -29,15 +29,9 @@ module.exports = {
                 key: googleKey, cx: csx, safe: "off", q: query
             });
            
+            if (!body.items) return null;
             
-            let hrefreturn = "";
-            try {
-                 hrefreturn = body.items[0];
-            }
-            catch{
-                message.channel.send("Something went wrong.");
-            }
-            return hrefreturn;
+            return body.items[0];
         }
     }
 }
