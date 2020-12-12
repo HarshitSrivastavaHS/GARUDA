@@ -13,6 +13,6 @@ module.exports = {
         )
         .setImage(msg.image?msg.image:null)
         .setTimestamp();
-        message.channel.send(snipEMbed);
+        message.channel.send(editSnipEMbed);
     }
 }
