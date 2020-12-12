@@ -8,7 +8,7 @@ module.exports = {
         
         let query = args.join(" ");
         if (!query) return message.channel.send("Please enter the query.");
-        
+        let href = "";
         try {
         href = search(query);
         }
