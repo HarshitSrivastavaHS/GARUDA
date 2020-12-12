@@ -1,7 +1,7 @@
 module.exports = {
     name: 'giveaway',
     description: 'to start a giveaway',
-    execute: async (message, args, bot, Discord) => {=
+    execute: async (message, args, bot, Discord) => {
       if (!args[0]) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d Prize```");
       let time = args[0].toLowerCase();
       if (!time.endsWith("d")&&!time.endsWith("m")&&!time.endsWith("s")) return message.channel.send("Invalid Syntax!\nFormat for time: 1d = 1day, 1m = 1 minute, 1s = 1 second\nExample:```%giveaway 1d Prize```");
