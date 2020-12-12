@@ -12,11 +12,21 @@ module.exports = {
       if (!prize) return message.channel.send("No prize specified. Please specify after the time.");
       let ms = 0;
       let sym
-      switch (time) {
-         case 'd': ms = timee*86400*1000; sym="day(s)"; break;
-         case 'h': ms = time*3600*1000; sym="hour(s)"; break;
-         case 'm': ms = time*60*1000; sym="minute(s)"; break;
-         case 's': ms = time*1000; sym="second(s)"; break;
+      if (time=="d") {
+         ms = timee*86400*1000;
+         sym="day(s)";
+      }
+      else if (time=="h") {
+         ms = time*3600*1000; 
+         sym="hour(s)";
+      }
+      else if (time=="m") {
+         ms = time*60*1000; 
+         sym="minute(s)";
+      }
+      else if (time=="s") {
+         ms = time*1000; 
+         sym="second(s)";
       }
       let giveawayEM = new Discord.MessageEmbed()
       .setTitle(prize)
