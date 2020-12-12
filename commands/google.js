@@ -28,12 +28,19 @@ module.exports = {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
             });
-            if (!body.items)
+            if (!body.items) {
                 return null;
-            else if (!body.items[0])
-                return null;
-            else
-                return body.items[0];
+            }
+            else {
+                
+                try {
+                    let result = body.items[0];
+                    return result;
+                }
+                catch {
+                    return null;
+                }
+            }
         }
     }
 }
