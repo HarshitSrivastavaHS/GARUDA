@@ -32,10 +32,10 @@ module.exports = {
                 return null;
             }
             else {
-                function resultfunc(()=>{
+                function resultfunc(){
                     let result = body.items[0]
                     return result
-                }).catch((error)=>{
+                }.catch((error)=>{
                     return null;
                 });
                 let resultF = resultfunc();
