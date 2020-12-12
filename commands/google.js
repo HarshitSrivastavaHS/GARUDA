@@ -24,13 +24,18 @@ module.exports = {
         message.channel.send(searchemb);
         
         async function search(query) {
+            try {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
             });
+            }
+            catch {
             console.log(body.items);
             console.log(body.items[0]);
             console.log(body);
-            if (!body.items) return "https://www.youtube.com/c/TechAllByHarshit";
+            message.channel.send("Something went wrong.";
+            }
+            if (!body.items) return null;
             else
             return body.items[0];
         }
