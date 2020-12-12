@@ -30,6 +30,8 @@ module.exports = {
             });
             if (!body.items)
                 return null;
+            else if (!body.items[0])
+                return null;
             else
                 return body.items[0];
         }
