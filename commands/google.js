@@ -9,12 +9,8 @@ module.exports = {
         let query = args.join(" ");
         if (!query) return message.channel.send("Please enter the query.");
         
-        try {
         href = await search(query);
-        }
-        catch {
-           message.channel.send("something went wrong.");
-        }
+        
       
         let searchemb = new Discord.MessageEmbed()
         .setAuthor(message.author.tag,message.author.displayAvatarURL)
@@ -33,13 +29,13 @@ module.exports = {
                 key: googleKey, cx: csx, safe: "off", q: query
             });
            
-            message.channel.send("Something went wrong.");
+            
             let hrefreturn = "";
             try {
                  hrefreturn = body.items[0];
             }
             catch{
-            
+                message.channel.send("Something went wrong.");
             }
             return hrefreturn;
         }
