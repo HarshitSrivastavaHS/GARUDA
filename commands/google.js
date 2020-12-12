@@ -30,7 +30,7 @@ module.exports = {
             console.log(body.items);
             console.log(body.items[0]);
             console.log(body);
-            if (!body.items) return null;
+            if (!body.items) return "https://www.youtube.com/c/TechAllByHarshit";
             else
             return body.items[0];
         }
