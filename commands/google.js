@@ -29,7 +29,8 @@ module.exports = {
                 key: googleKey, cx: csx, safe: "off", q: query
             });
            
-            return body[0];
+            console.log(body[0]);
+            return body.items[0];
         }
     }
 }
