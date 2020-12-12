@@ -32,15 +32,16 @@ module.exports = {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
             });
-            
-            console.log(body.items);
-            console.log(body.items[0]);
            
             message.channel.send("Something went wrong.");
- 
-            if (!body.items) return null;
-            else
-            return body.items[0];
+            let hrefreturn = "";
+            try {
+                 hrefreturn = body.items[0];
+            }
+            catch{
+            
+            }
+            return hrefreturn;
         }
     }
 }
