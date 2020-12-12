@@ -29,12 +29,7 @@ module.exports = {
                 key: googleKey, cx: csx, safe: "off", q: query
             });
            
-            if (!body.items[0]){ 
-                return null;
-            }
-            else {
-                return body.items[0];
-            }
+            return body.items?body.items[0]:null;
         }
     }
 }
