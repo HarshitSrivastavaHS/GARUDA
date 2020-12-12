@@ -32,14 +32,8 @@ module.exports = {
                 return null;
             }
             else {
-                function resultfunc(){
-                    let result = body.items[0]
-                    return result
-                }.catch((error)=>{
-                    return null;
-                });
-                let resultF = resultfunc();
-                return resultF;
+                let result = body.items[0];
+                return result;
             }
         }
     }
