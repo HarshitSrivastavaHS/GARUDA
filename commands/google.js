@@ -28,7 +28,7 @@ module.exports = {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
             });
-            if (!body.items.size === 0)
+            if (!body.items.size() === 0)
                 return null;
             else
                 return body.items[0];
