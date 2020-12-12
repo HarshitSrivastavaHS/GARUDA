@@ -8,8 +8,8 @@ module.exports = {
         .setColor("RANDOM")
         .setAuthor(msg.author, msg.avatar)
         .addFields(
-        {name:Old Message,value: msg.oldContent},
-        {name:New Message,value: msg.newContent}
+        {name: "Old Message" ,value: msg.oldContent},
+        {name: "New Message" ,value: msg.newContent}
         )
         .setImage(msg.image?msg.image:null)
         .setTimestamp();
