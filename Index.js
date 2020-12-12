@@ -124,6 +124,10 @@ bot.on("message", message => {
     else if (command === 'snipe') {
         bot.commands.get('snipe').execute(message, args, bot, Discord);
     }
+    
+    else if (command === 'editsnipe') {
+        bot.commands.get('editsnipe').execute(message, args, bot, Discord);
+    }
 
 })
 
