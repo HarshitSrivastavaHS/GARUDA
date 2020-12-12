@@ -26,10 +26,10 @@ module.exports = {
         async function search(query) {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
-            })
-            console.log(body.items)
-            console.log(body.items[0])
-            console.log(body)
+            });
+            console.log(body.items);
+            console.log(body.items[0]);
+            console.log(body);
             if (!body.items) return null;
             else
             return body.items[0];
