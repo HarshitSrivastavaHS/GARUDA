@@ -1,7 +1,7 @@
 module.exports = {
     name: 'google',
     description: 'searches the internet',
-    execute: async (message, args, bot, Discord) => {
+    execute:  (message, args, bot, Discord) => {
         const request = require("node-superfetch");
         let googleKey = process.env.GoogleAPI;
         let csx = process.env.GoogleCSX;
@@ -10,7 +10,7 @@ module.exports = {
         if (!query) return message.channel.send("Please enter the query.");
         
         try {
-        href = await search(query);
+        href = search(query);
         }
         catch {
            message.channel.send("something went wrong.");
@@ -28,20 +28,16 @@ module.exports = {
         
         message.channel.send(searchemb);
         
-        async function search(query) {
-            const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
+        function search(query) {
+            const {body} = request.get("https://www.googleapis.com/customsearch/v1").query({
                 key: googleKey, cx: csx, safe: "off", q: query
             });
            
             message.channel.send("Something went wrong.");
-            let hrefreturn = "";
-            try {
-                 hrefreturn = body.items[0];
-            }
-            catch{
             
-            }
-            return hrefreturn;
+            if (!body.items) return;
+            
+            return body.items[0];
         }
     }
 }
