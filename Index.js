@@ -30,12 +30,25 @@ bot.on("ready", ()=>{
 
 bot.snipes = new Map();
 bot.on("messageDelete", (message, channel)=>{
+   if (message.author.bot) return;
    bot.snipes.set(message.channel.id, {
       content: message.content,
       author: message.author.tag,
       avatar: message.author.displayAvatarURL(),
       image: message.attachments.first() ? message.attachments.first().proxyURL : null
    });
+})
+
+bot.editSnipes = new Map();
+bot.on("messageUpdate",(oldMessage, newMessage)=>{
+      if (oldMessage.author.bot) return;
+      bot.editSnipes.set(oldMessage.channel.id, {
+      oldContent: oldMessage.content,
+      newContent: newMessage.content,
+      author: oldMessage.author.tag,
+      avatar: oldMessage.author.displayAvatarURL(),
+      image: oldMessage.attachments.first() ? oldMessage.attachments.first().proxyURL : null
+    });
 })
 
 bot.on("message", message => {
