@@ -30,6 +30,7 @@ module.exports = {
             });
            
             console.log(body.items);
+            console.log(body.items?body.items[0]:null);
         }
     }
 }
