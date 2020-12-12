@@ -16,6 +16,6 @@ module.exports = {
       .setDescription(`Hosted by ${message.author.tag} | Time ${time} | Prize ${prize}`)
       //.setTimestamp(Date.now() + ms);
       let msg = await message.channel.send(giveawayEM);
-      msg.react(":tada:");
+      msg.react("🎉");
     }
 }
