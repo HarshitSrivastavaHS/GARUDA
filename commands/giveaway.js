@@ -13,9 +13,9 @@ module.exports = {
       let giveawayEM = new Discord.MessageEmbed()
       .setTitle("New Giveaway")
       .setColor("PURPLE")
-      .setDescription(`Hosted by ${message.author.id} | Time ${time} | Prize ${prize}`)
+      .setDescription(`Hosted by ${message.author.tag} | Time ${time} | Prize ${prize}`)
       //.setTimestamp(Date.now() + ms);
-      let msg = message.channel.send(giveawayEM);
+      let msg = await message.channel.send(giveawayEM);
       msg.react(":tada:");
     }
 }
