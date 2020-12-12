@@ -9,6 +9,17 @@ module.exports = {
         let query = args.join(" ");
         if (!query) return message.channel.send("Please enter the query.");
         let href = "";
+        function search(query) {
+            const {body} = request.get("https://www.googleapis.com/customsearch/v1").query({
+                key: googleKey, cx: csx, safe: "off", q: query
+            });
+           
+            message.channel.send("Something went wrong.");
+            
+            if (!body.items) return;
+            
+            return body.items[0];
+        }
         try {
         href = search(query);
         }
