@@ -8,6 +8,13 @@ module.exports = {
       if (isNaN(time[0])) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d Prize```");
       let prize = args.slice(1).join(" ");
       if (!prize) return message.channel.send("No prize specified. Please specify after the time.");
-      message.channel.send("Test Successful");
+        
+      let giveawayEM = new Discord.MessageEmbed()
+      .setTitle("New Giveaway")
+      .setColor("PURPLE")
+      .setDescription(`Hosted by ${message.author.id} | Time ${time} | Prize ${prize}`)
+      .setTimestamp(Date.now + ms(time));
+      let msg = message.channel.send(giveawayEM);
+      msg.react(":tada:");
     }
 }
