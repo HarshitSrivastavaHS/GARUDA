@@ -16,7 +16,7 @@ module.exports = {
       .setColor("PURPLE")
       .setDescription(`Hosted by ${message.author.tag} | Time ${time} | Prize ${prize}`)
       //.setTimestamp(Date.now() + ms);
-      let msg = await message.channel.send(":tada:GIVEAWAY:tada:"giveawayEM);
+      let msg = await message.channel.send(":tada:GIVEAWAY:tada:"+giveawayEM);
       msg.react("🎉");
     }
 }
