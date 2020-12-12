@@ -37,7 +37,7 @@ module.exports = {
                     let result = body.items[0];
                     return result;
                 }
-                catch {
+                catch (err) {
                     return null;
                 }
             }
