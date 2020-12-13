@@ -10,6 +10,7 @@ module.exports = {
       if (isNaN(timee)) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d Prize```");
       let prize = args.slice(1).join(" ");
       if (!prize) return message.channel.send("No prize specified. Please specify after the time.");
+      message.delete();
       let ms = 0;
       let sym = "";
       if (time=="d") {
