@@ -38,7 +38,17 @@ module.exports = {
       let msg = await message.channel.send(giveawayEM);
       msg.react("🎉");
       setTimeout(()=>{
-          message.channel.send("Ok");
+          if (msg.reactions.cache.get("🎉").count <= 1) {
+             let nowin = new Discord.MessageEmbed()
+             .setColor("RED")
+             .setTitle(prize)
+             .setDescription("No Winner")
+             .setFooter(`Ended at`)
+             .setTimestamp();
+             msg.edit(nowin);
+             message.channel.send("No one participated in the giveaway.");
+          }
+          
       }, ms)
     }
 }
