@@ -13,5 +13,6 @@ module.exports = {
        message.channel.send(pollembed).then((msg)=>{
           msg.react("👍").then(()=>{msg.react("👎")})
        })
+       message.delete();
     }
 }
