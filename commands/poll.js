@@ -6,9 +6,8 @@ module.exports = {
        let question = args.join(" ");
        let pollembed = new Discord.MessageEmbed()
        .setColor("RANDOM")
-       .setAuthor("📃Poll📃")
-       .setTitle(question)
-       .setDescription("React with 👍 for yes. \nReact with 👎 for no.")
+       .setTitle(`**${question}**`)
+       .setDescription("React with 👍 for yes.\n\nReact with 👎 for no.")
        .setFooter(`Poll by ${message.author.tag}`)
        .setTimestamp();
        message.channel.send(pollembed).then((msg)=>{
