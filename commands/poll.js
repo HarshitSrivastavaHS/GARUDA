@@ -9,9 +9,10 @@ module.exports = {
        .setAuthor("📃Poll📃")
        .setTitle(question)
        .setDescription("React with 👍 for yes. \nReact with 👎 for no.")
-       .setFooter(`Poll by ${message.author}`)
+       .setFooter(`Poll by ${message.author.tag}`)
        .setTimestamp();
-       let msg = await message.channel.send(pollembed)
-       msg.react("👍").then(()=>{msg.react("👎")})
+       message.channel.send(pollembed).then((msg)=>{
+          msg.react("👍").then(()=>{msg.react("👎")})
+       })
     }
 }
