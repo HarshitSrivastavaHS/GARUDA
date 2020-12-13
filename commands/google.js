@@ -26,7 +26,7 @@ module.exports = {
         
         async function search(query) {
             const {body} = await request.get("https://www.googleapis.com/customsearch/v1").query({
-                key: googleKey, cx: csx, safe: "on", q: query
+                key: googleKey, cx: csx, q: query
             });
             if (!body.items) {
                 return null;
