@@ -37,5 +37,8 @@ module.exports = {
       .setTimestamp(Date.now() + ms);
       let msg = await message.channel.send(giveawayEM);
       msg.react("🎉");
+      setTimeout(()=>{
+          message.channel.send("Ok");
+      }, ms)
     }
 }
