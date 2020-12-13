@@ -133,6 +133,10 @@ bot.on("message", message => {
         bot.commands.get('giveaway').execute(message, args, bot, Discord);
     }
 
+    else if (command === 'poll') {
+        bot.commands.get('poll').execute(message, args, bot, Discord);
+    }
+
 })
 
 bot.login(process.env.TOKEN);
