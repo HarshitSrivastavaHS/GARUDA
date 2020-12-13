@@ -2,7 +2,7 @@ module.exports = {
     name: 'poll',
     description: 'starts a simple yes/no poll',
     execute: async (message, args, bot, Discord) => {
-       if (!args) return message.channel.send("Invalid Syntax.\n```\n%poll <The yes/no question>\n```");
+       if (!args[0]) return message.channel.send("Invalid Syntax.\n```\n%poll <The yes/no question>\n```");
        let question = args.join(" ");
        let pollembed = new Discord.MessageEmbed()
        .setColor("RANDOM")
@@ -11,7 +11,7 @@ module.exports = {
        .setDescription("React with 👍 for yes. \nReact with 👎 for no.")
        .setFooter(`Poll by ${message.author}`)
        .setTimestamp();
-       let msg = message.channel.send(pollembed)
+       let msg = await message.channel.send(pollembed)
        msg.react("👍").then(()=>{msg.react("👎")})
     }
 }
