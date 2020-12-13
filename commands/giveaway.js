@@ -58,7 +58,7 @@ module.exports = {
           .setFooter("Ended at")
           .setTimestamp()
           msg.edit(winem);
-          message.channel.send("Congratulations ${winner}! You won the ${prize}.")
+          message.channel.send(`Congratulations ${winner}! You won the ${prize}.`)
       }, ms)
     }
 }
