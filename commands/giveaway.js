@@ -47,9 +47,18 @@ module.exports = {
              .setFooter(`Ended at`)
              .setTimestamp();
              msg.edit(nowin);
-             message.channel.send("No one participated in the giveaway.");
+             return message.channel.send("No one participated in the giveaway.");
           }
-          
+          let winner = msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random();
+          let winem = new Discord.MessageEmbed()
+          .setAuthor("🎉Giveaway Ended🎉")
+          .setColor("GREEN")
+          .setTitle(prize)
+          .setDescription (`Winner\n${winner}`)
+          .setFooter("Ended at")
+          .setTimestamp()
+          msg.edit(winem);
+          message.channel.send("Congratulations ${winner}! You won the ${prize}.")
       }, ms)
     }
 }
