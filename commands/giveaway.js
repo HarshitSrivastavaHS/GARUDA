@@ -29,12 +29,12 @@ module.exports = {
          sym="second(s)";
       }
       let giveawayEM = new Discord.MessageEmbed()
+      .setAuthor(":tada:Giveaway:tada:")
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter("Ends at")
       .setDescription(`React with :tada: to enter!\nTime: ${timee} ${sym}\nHosted by ${message.author.tag}`)
       .setTimestamp(Date.now() + ms);
-      message.channel.send(":tada:GIVEAWAY:tada:"+time+timee);
       let msg = await message.channel.send(giveawayEM);
       msg.react("🎉");
     }
