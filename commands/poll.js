@@ -9,7 +9,7 @@ module.exports = {
        .setAuthor("📃Poll📃")
        .setTitle(question)
        .setDescription("React with 👍 for yes. \nReact with 👎 for no.")
-       .setFooter(message.author)
+       .setFooter(`Poll by ${message.author}`)
        .setTimestamp();
        let msg = message.channel.send(pollembed)
        msg.react("👍").then(()=>{msg.react("👎")})
