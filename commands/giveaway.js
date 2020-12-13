@@ -29,7 +29,7 @@ module.exports = {
          sym="second(s)";
       }
       let giveawayEM = new Discord.MessageEmbed()
-      .setAuthor(":tada:Giveaway:tada:")
+      .setAuthor("🎉Giveaway🎉")
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter("Ends at")
@@ -40,6 +40,7 @@ module.exports = {
       setTimeout(()=>{
           if (msg.reactions.cache.get("🎉").count <= 1) {
              let nowin = new Discord.MessageEmbed()
+             .setAuthor("🎉Giveaway Ended🎉")
              .setColor("RED")
              .setTitle(prize)
              .setDescription("No Winner")
