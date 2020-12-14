@@ -18,15 +18,16 @@ for (const file of commandFiles) {
 
 }
 
-/*const iamonline = function iamonline() {
-    bot.users.cache.get("451693463742840842").send("I am Online!");
-}*/
+const iamonline = async function iamonline() {
+    let msg = await bot.users.cache.get("451693463742840842");
+    msg.send("I am online now!");
+}
 
 bot.on("ready",()=>{
     console.log("I am Online!");
     bot.user.setPresence({ activity: { name: `${bot.guilds.cache.size} servers`, type: "WATCHING" }, status: 'dnd' });
     
-    //iamonline();
+    iamonline();
 })
 
 bot.snipes = new Map();
