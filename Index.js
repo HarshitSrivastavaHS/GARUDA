@@ -24,7 +24,20 @@ for (const file of commandFiles) {
 
 bot.on("ready",()=>{
     console.log("I am Online!");
-    bot.user.setPresence({ activity: { name: `${bot.guilds.cache.size} servers!`, type: "WATCHING" }, status: 'dnd' });
+    let activity = [
+        `${bot.guilds.cache.size} servers!`,
+        `%help`,
+        `TechAllByHarshit on youtube`
+    ]
+    let i = 0;
+    setInterval(()=>{
+        bot.user.setPresence({ activity: { name: activity[i], type: "WATCHING" }, status: 'dnd' });
+        i++;
+        if (i>=activity.length){
+            i=0;
+        }
+    }, 15000)
+    
     //iamonline();
 })
 
