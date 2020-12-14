@@ -22,7 +22,7 @@ for (const file of commandFiles) {
     bot.users.cache.get("451693463742840842").send("I am Online!");
 }*/
 
-bot.on("ready", ()=>{
+bot.on("ready", async ()=>{
     console.log("I am Online!");
     let activity = [
     `${bot.guilds.cache.size} servers`,
