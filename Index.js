@@ -29,7 +29,7 @@ bot.on("ready", ()=>{
     `%help`,
     `TechAllByHarshit on youtube`
     ]
-    let i = 0;
+    var i = 0;
     setInterval(()=>{
         bot.user.setActivity(`${activity[i]}`, {type: "WATCHING"});
         i++;
