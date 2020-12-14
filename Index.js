@@ -19,7 +19,7 @@ for (const file of commandFiles) {
 }
 
 const iamonline = async function iamonline() {
-    let msg = await bot.users.cache.get("451693463742840842");
+    let msg = /*await bot.users.cache.get(*/"451693463742840842";
     msg.send("I am online now!");
 }
 
