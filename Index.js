@@ -22,20 +22,9 @@ for (const file of commandFiles) {
     bot.users.cache.get("451693463742840842").send("I am Online!");
 }*/
 
-bot.on("ready", async ()=>{
+bot.on("ready",()=>{
     console.log("I am Online!");
-    let activity = [
-    `${bot.guilds.cache.size} servers`,
-    `%help`,
-    `TechAllByHarshit on youtube`
-    ]
-    var i = 0;
-    setInterval(()=>{
-        bot.user.setActivity(`${activity[i]}`, {type: "WATCHING"});
-        i++;
-        if (i>=activity.length)
-            i=0;
-    }, 15000)
+    bot.user.setActivity(`${bot.guilds.cache.size}`, {type: "WATCHING"});
     //iamonline();
 })
 
