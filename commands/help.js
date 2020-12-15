@@ -21,7 +21,7 @@ module.exports = {
                     if (command.type == categories[cat])
                         str += `\n\`${file}\` => ${command.description}`;
                 }
-                helpembed.addFields({name:`${categories[cat]}`, value: str});
+                helpembed.addFields({name:`${categories[cat]}`, value: str?str:"No command"});
             }
         }
         message.channel.send(helpembed);
