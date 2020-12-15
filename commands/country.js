@@ -1,5 +1,6 @@
 module.exports = {
     name: 'country',
+    type: 'info',
     description: 'tells some details of a country.',
     execute(message, args, bot, Discord) {
         const code = args[0];
