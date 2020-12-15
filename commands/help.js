@@ -12,9 +12,14 @@ module.exports = {
            helpembed.addFields({name:`${args[0]}`, value: `${command}`});
         }
         else {
-            for (const file of commandFiles) {  
-                const command = require(`${__dirname}/${file}`).description;  
-                helpembed.addFields({name:`${file.slice(0, file.indexOf("."))}`,value: `${command}`});
+            let categories = ["moderation","fun","info"]
+            let totalFiles = commandFiles.length;
+            for (let cat in categories) {
+                helpembed.addFields({name:`${cat}`});
+                for (const file of commandFiles) {
+                    const command = require(`${__dirname}/${file}`).description;  
+                    helpembed.addFields({value: `${command}`});
+                }
             }
         }
         message.channel.send(helpembed);
