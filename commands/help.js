@@ -14,15 +14,19 @@ module.exports = {
         else {
             let categories = ["moderation","fun","info"]
             let totalFiles = commandFiles.length;
+            let notype = "";
             for (let cat in categories) {
                 let str = "";
                 for (const file of commandFiles) {
                     const command = require(`${__dirname}/${file}`);
                     if (command.type == categories[cat])
                         str += `\n\`${file}\` => ${command.description}`;
+                    if (command.type == undefined)
+                    notype += `\n\`${file}\` => ${command.description}`;
                 }
                 helpembed.addFields({name:`${categories[cat]}`, value: str?str:"No command"});
             }
+            helpembed.addFields({name:`No category`, value: notype?notype:"No command"});
         }
         message.channel.send(helpembed);
     }
