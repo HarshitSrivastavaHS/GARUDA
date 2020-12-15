@@ -1,5 +1,6 @@
 module.exports = {
     name: 'avatar',
+    type: 'fun',
     description: 'shows the user\'s avatar',
     execute(message, args, bot, Discord) {
         const mentionUser = message.mentions.users.first();
