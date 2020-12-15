@@ -1,5 +1,6 @@
 module.exports = {
     name: 'covid',
+    type: 'info',
     description: 'shows covid 19 stats',
     execute(message, args, bot, Discord) {
         const code = args[0];
