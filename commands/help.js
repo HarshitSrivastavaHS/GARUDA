@@ -17,8 +17,9 @@ module.exports = {
             for (let cat in categories) {
                 let str = "";
                 for (const file of commandFiles) {
-                    const command = require(`${__dirname}/${file}`).description;  
-                    str += `\n\`${file}\` => ${command.description}`;
+                    const command = require(`${__dirname}/${file}`);
+                    if (command.type == categories[cat])
+                        str += `\n\`${file}\` => ${command.description}`;
                 }
                 helpembed.addFields({name:`${categories[cat]}`, value: str});
             }
