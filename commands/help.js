@@ -15,7 +15,7 @@ module.exports = {
            helpembed.addFields({name:`${args[0]}`, value: `${command}`});
         }
         else {
-            let categories = ["moderation","fun","info"]
+            let categories = ["moderation","fun","info", "utility"]
             let totalFiles = commandFiles.length;
             let notype = "";
             for (let cat in categories) {
