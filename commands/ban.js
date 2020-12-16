@@ -1,5 +1,6 @@
 module.exports = {
     name: 'ban',
+    type: 'moderation',
     description: 'kicks and bans a user out of the server',
     execute(message, args) {
         if(!message.member.permissions.has("BAN_MEMBERS")) {
