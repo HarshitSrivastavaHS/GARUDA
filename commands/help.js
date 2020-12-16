@@ -7,7 +7,7 @@ module.exports = {
         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
         const helpembed = new Discord.MessageEmbed()
         .setColor("#D441EE")
-        .setTitle('Help Menu');
+        .setTitle('Help Menu')
         .setFooter(`Requested by ${message.author.username}`)
         .setTimestamp();
         if (commandFiles.includes(args[0]+".js")) {
