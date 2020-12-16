@@ -6,7 +6,10 @@ module.exports = {
         const fs = require('fs');
         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
         const helpembed = new Discord.MessageEmbed()
-        .setColor("#D441EE");
+        .setColor("#D441EE")
+        .setTitle('Help Menu');
+        .setFooter(`Requested by ${message.author.username}`)
+        .setTimestamp();
         if (commandFiles.includes(args[0]+".js")) {
            const command = require(`${__dirname}/${args[0]}.js`).description; 
            helpembed.addFields({name:`${args[0]}`, value: `${command}`});
