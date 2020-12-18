@@ -22,8 +22,12 @@ module.exports = {
                 let str = "";
                 for (const file of commandFiles) {
                     const command = require(`${__dirname}/${file}`);
-                    if (command.type == categories[cat])
-                        str += `\n\`${command.name}\` => ${command.description}`;
+                    if (command.type == categories[cat]) {
+                        if (str == "")
+                            str += `\`${command.name}\``;
+                        else
+                            str += `, \`${command.name}\``;
+                    }
                     if (command.type == undefined) {
                         if (notype == "")
                             notype += `\`${command.name}\``;
@@ -34,7 +38,7 @@ module.exports = {
                 }
                 helpembed.addFields({name:`${categories[cat]}`, value: str?str:"No command"});
             }
-            helpembed.addFields({name:`No category`, value: notype/*?notype:"No command"*/});
+            helpembed.addFields({name:`No category`, value: notype?notype:"No command"});
         }
         message.channel.send(helpembed);
     }
