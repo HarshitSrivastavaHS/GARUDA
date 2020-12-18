@@ -1,5 +1,6 @@
 module.exports = {
     name: 'giveaway',
+    type: 'utility',
     description: 'to start a giveaway',
     execute: async (message, args, bot, Discord) => {
       if (!args[0]) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d Prize```");
