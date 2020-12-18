@@ -17,7 +17,6 @@ module.exports = {
         else {
             let categories = ["moderation","fun","info", "utility"]
             let totalFiles = commandFiles.length;
-            let notype = "";
             for (let cat in categories) {
                 let str = "";
                 for (const file of commandFiles) {
@@ -28,18 +27,21 @@ module.exports = {
                         else
                             str += `, \`${command.name}\``;
                     }
-                    if (command.type == undefined) {
-                        if (notype == "")
-                            notype += `\`${command.name}\``;
-
-                        else
-                            notype += `, \`${command.name}\``;
-                    }
                 }
                 helpembed.addFields({name:`${categories[cat]}`, value: str?str:"No command"});
             }
-            helpembed.addFields({name:`No category`, value: notype?notype:"No command"});
         }
+        let notype = "";
+        for (const file of commandFiles){
+            const command = require(`${__dirname}/${file}`);
+            if (command.type == undefined) {
+                if (notype == "")
+                    notype += `\`${command.name}\``;
+                else
+                    notype += `, \`${command.name}\``;
+            }
+        }
+        helpembed.addFields({name:`No category`, value: notype?notype:"No command"});
         message.channel.send(helpembed);
     }
 }
