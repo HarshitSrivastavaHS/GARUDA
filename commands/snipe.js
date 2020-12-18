@@ -1,5 +1,6 @@
 module.exports = {
     name: 'snipe',
+    type: 'utility',
     description: 'shows last deleted message in that channel',
     execute(message, args, bot, Discord) {
         let msg = bot.snipes.get(message.channel.id);
