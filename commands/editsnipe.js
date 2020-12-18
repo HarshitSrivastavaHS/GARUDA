@@ -1,5 +1,6 @@
 module.exports = {
     name: 'editsnipe',
+    type: 'utility',
     description: 'shows last edited message in that channel',
     execute(message, args, bot, Discord) {
         let msg = bot.editSnipes.get(message.channel.id);
