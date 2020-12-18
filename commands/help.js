@@ -24,8 +24,13 @@ module.exports = {
                     const command = require(`${__dirname}/${file}`);
                     if (command.type == categories[cat])
                         str += `\n\`${command.name}\` => ${command.description}`;
-                    if (command.type == undefined)
-                    notype += `\n\`${command.name}\` => ${command.description}`;
+                    if (command.type == undefined) {
+                        if (notype == "")
+                            notype += `\`${command.name}\``;
+
+                        else
+                            notype += `, \`${command.name}\``;
+                    }
                 }
                 helpembed.addFields({name:`${categories[cat]}`, value: str?str:"No command"});
             }
