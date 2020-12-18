@@ -1,5 +1,6 @@
 module.exports = {
     name: 'clear',
+    type: 'utility',
     description: 'deletes the given number of messages',
     execute(message, args) {
 
