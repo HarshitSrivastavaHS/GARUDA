@@ -132,6 +132,10 @@ bot.on("message", message => {
         bot.commands.get('poll').execute(message, args, bot, Discord);
     }
 
+    else if (command === 'fuse') {
+        bot.commands.get('fuse').execute(message, args, bot, Discord);
+    }
+
 })
 
 bot.login(process.env.TOKEN);
