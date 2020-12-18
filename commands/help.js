@@ -28,7 +28,7 @@ module.exports = {
                             str += `, \`${command.name}\``;
                     }
                 }
-                helpembed.addFields({name:`${categories[cat][0].toUpperCase+categories[cat].substr(1, categories[cat].length)}`, value: str?str:"No command"});
+                helpembed.addFields({name:`${categories[cat][0].toUpperCase()+categories[cat].substr(1, categories[cat].length)}`, value: str?str:"No command"});
             }
         }
         let notype = "";
