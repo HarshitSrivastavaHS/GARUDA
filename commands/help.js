@@ -28,7 +28,7 @@ module.exports = {
                             str += `, \`${command.name}\``;
                     }
                 }
-                helpembed.addFields({name:`${categories[cat]}`, value: str?str:"No command"});
+                helpembed.addFields({name:`${categories[cat][0].toUpperCase+categories[cat].substr(1, categories[cat].length)}`, value: str?str:"No command"});
             }
         }
         let notype = "";
@@ -41,7 +41,7 @@ module.exports = {
                     notype += `, \`${command.name}\``;
             }
         }
-        helpembed.addFields({name:`No category`, value: notype?notype:"No command"});
+        helpembed.addFields({name:`Other`, value: notype?notype:"No command"});
         message.channel.send(helpembed);
     }
 }
