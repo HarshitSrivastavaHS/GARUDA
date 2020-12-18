@@ -34,7 +34,7 @@ module.exports = {
                 }
                 helpembed.addFields({name:`${categories[cat]}`, value: str?str:"No command"});
             }
-            //helpembed.addFields({name:`No category`, value: notype?notype:"No command"});
+            helpembed.addFields({name:`No category`, value: notype?notype:"No command"});
         }
         message.channel.send(helpembed);
     }
