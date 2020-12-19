@@ -136,6 +136,10 @@ bot.on("message", message => {
         bot.commands.get('fuse').execute(message, args, bot, Discord);
     }
 
+    else if (command === '8ball') {
+        bot.commands.get('8ball').execute(message, args, bot, Discord);
+    }
+
     else if (command === 'play') {
         bot.commands.get('play').execute(message, args, bot, Discord);
     }
