@@ -136,6 +136,14 @@ bot.on("message", message => {
         bot.commands.get('fuse').execute(message, args, bot, Discord);
     }
 
+    else if (command === 'play') {
+        bot.commands.get('play').execute(message, args, bot, Discord);
+    }
+
+    else if (command === 'leave') {
+        bot.commands.get('leave').execute(message, args, bot, Discord);
+    }
+
 })
 
 bot.login(process.env.TOKEN);
