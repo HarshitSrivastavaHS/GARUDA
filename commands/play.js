@@ -46,9 +46,9 @@ module.exports = {
             connection.play(video, {seek: 0, volume: 1})
             .on('finish', () =>{
                 voiceChannel.leave();
-                message.channel.send(`**Finished Playing \`${video.title}\` - Disconnected Successfully.**`);
+                message.channel.send(`**Finished Playing the song. - Disconnected Successfully.**`);
             });
-            await message.channel.send(`**Playing :notes: \`${video.title}\` - Now!**`);
+            await message.channel.send(`**Playing :notes: \`your music\` - Now!**`);
             return
         }
 
