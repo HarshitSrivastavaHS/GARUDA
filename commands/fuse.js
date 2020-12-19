@@ -6,8 +6,7 @@ module.exports = {
         const Canvas = require("canvas");
         const canvas = Canvas.createCanvas(800, 800);
         const ctx = canvas.getContext("2d");
-        const img = await Canvas.loadImage(message.author.displayAvatarURL());
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(message.author.displayAvatarURL(), 0, 0, canvas.width, canvas.height);
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "test.png")
         message.channel.send(attachment);
     }
