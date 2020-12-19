@@ -30,6 +30,27 @@ module.exports = {
 
         const connection = await voiceChannel.join();
         message.channel.send(`**Joined \`${voiceChannel.name}\`!**`);
+        
+        const validURL = (str) =>{
+            var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+            if(!regex.test(str)){
+                return false;
+            } else {
+                return true;
+            }
+        }
+ 
+        if(validURL(args[0])){
+            const  connection = await voiceChannel.join();
+            const video  = ytdl(args[0], {filter: 'audioonly'});
+            connection.play(video, {seek: 0, volume: 1})
+            .on('finish', () =>{
+                voiceChannel.leave();
+                message.channel.send(`**Finished Playing \`${video.title}\` - Disconnected Successfully.**`);
+            });
+            await message.channel.send(`**Playing :notes: \`${video.title}\` - Now!**`);
+            return
+        }
 
         const videoFinder = async (query) => {
             message.channel.send(`**Searching :mag_right: \`${query}\` on youtube.**`)
