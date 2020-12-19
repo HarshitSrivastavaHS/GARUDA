@@ -3,6 +3,6 @@ module.exports = {
     type: 'fun',
     description: 'ask yes/no question from the bot',
     execute: async (message, args, bot, Discord) => {
-        const replies = ["It is certain.", "It is decidedly so.", "Without a doubt.", "Yes – definitely.", "You may rely on it."];
+        const replies = ["It is certain.", "It is decidedly so.", "Without a doubt.", "Yes – definitely.", "You may rely on it.", "As I see it, yes.", "Most likely.", "Outlook good.", "Yes.", "Signs point to yes."];
     }
 }
