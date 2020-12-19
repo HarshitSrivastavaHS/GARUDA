@@ -14,6 +14,6 @@ module.exports = {
         ctx.globalAlpha = 0.5;
         ctx.drawImage(img1, 0, 0, canvas.width,canvas.height);
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), `${message.author.username}${mention.username}.png`)
-        message.channel.send(attachment);
+        message.channel.send(`${message.author.username}'s and ${mention.username}'s Avatar's were fused together.`, attachment);
     }
 }
