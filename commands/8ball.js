@@ -9,7 +9,8 @@ module.exports = {
         let question = args.join(" ");
         question = question[0].toUpperCase()+question.substr(1, question.length);
         const embed = new Discord.MessageEmbed()
-        .setTitle(question);
-        message.channel.send("Test Embed", embed);
+        .setTitle(question)
+        .setDescription(`\`${replies[opt]}\``);
+        message.channel.send(embed);
     }
 }
