@@ -12,7 +12,7 @@ module.exports = {
         .setTitle(question)
         .setFooter(`Asked by ${message.author.username}`)
         .setTimestamp()
-        .setThumbnail("https://images.app.goo.gl/dapRZzGEU4hX9QjV8")
+        .setThumbnail("https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
         .setDescription(`\`${replies[opt]}\``);
         if (opt<10) {
            embed.setColor("GREEN");
