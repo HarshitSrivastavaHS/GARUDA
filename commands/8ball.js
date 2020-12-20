@@ -14,9 +14,15 @@ module.exports = {
         .setTimestamp()
         .setThumbnail("https://images.app.goo.gl/dapRZzGEU4hX9QjV8")
         .setDescription(`\`${replies[opt]}\``);
-        if (opt<=10) embed.setColor("GREEN");
-        else if (opt >10 && opt<=15) embed.setColor("YELLOW");
-        else embed.setColor("RED");
+        if (opt<10) {
+           embed.setColor("GREEN");
+        }
+        else if (opt >= 10 && opt<15) {
+           embed.setColor("YELLOW");
+        }
+        else {
+           embed.setColor("RED");
+        }
         message.channel.send(embed);
     }
 }
