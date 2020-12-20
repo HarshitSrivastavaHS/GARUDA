@@ -68,8 +68,8 @@ bot.on("message", message => {
         bot.commands.get('ping').execute(message, args);
     }
 
-    else if (command === 'details') {
-        bot.commands.get('details').execute(message, args, Discord, bot);
+    else if (command === 'info') {
+        bot.commands.get('info').execute(message, args, Discord, bot);
     }
 
     else if (command === 'repeat') {
