@@ -10,6 +10,9 @@ module.exports = {
         question = question[0].toUpperCase()+question.substr(1, question.length);
         const embed = new Discord.MessageEmbed()
         .setTitle(question)
+        .setFooter(`Asked by ${message.author.username}`)
+        .setTimestamp()
+        .setThumbnail("https://images.app.goo.gl/dapRZzGEU4hX9QjV8")
         .setDescription(`\`${replies[opt]}\``);
         if (opt<=10) embed.setColor("GREEN");
         else if (opt >10 && opt<=15) embed.setColor("YELLOW");
