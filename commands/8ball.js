@@ -8,7 +8,7 @@ module.exports = {
         const opt = Math.floor(Math.random()*replies.length);
         let question = args.join(" ");
         question = question[0].toUpperCase()+question.substr(1, question.length);
-        const embed = Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         .setTitle(question);
         message.channel.send("Test Embed", embed);
     }
