@@ -11,6 +11,9 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         .setTitle(question)
         .setDescription(`\`${replies[opt]}\``);
+        if (opt<=10) embed.setColor("GREEN");
+        else if (opt >10 && opt<=15) embed.setColor("YELLOW");
+        else embed.setColor("RED");
         message.channel.send(embed);
     }
 }
