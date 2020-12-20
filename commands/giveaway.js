@@ -31,35 +31,32 @@ module.exports = {
          sym="second(s)";
       }
       let giveawayEM = new Discord.MessageEmbed()
-      .setAuthor("🎉Giveaway🎉")
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter("Ends at")
       .setDescription(`React with :tada: to enter!\nTime: ${timee} ${sym}\nHosted by ${message.author.tag}`)
       .setTimestamp(Date.now() + ms);
-      let msg = await message.channel.send(giveawayEM);
+      let msg = await message.channel.send("🎉Giveaway🎉",giveawayEM);
       msg.react("🎉");
       setTimeout(()=>{
           if (msg.reactions.cache.get("🎉").count <= 1) {
              let nowin = new Discord.MessageEmbed()
-             .setAuthor("🎉Giveaway Ended🎉")
              .setColor("RED")
              .setTitle(prize)
              .setDescription("No Winner")
              .setFooter(`Ended at`)
              .setTimestamp();
-             msg.edit(nowin);
+             msg.edit("🎉Giveaway Ended🎉", nowin);
              return message.channel.send("No one participated in the giveaway.");
           }
           let winner = msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random();
           let winem = new Discord.MessageEmbed()
-          .setAuthor("🎉Giveaway Ended🎉")
           .setColor("GREEN")
           .setTitle(prize)
           .setDescription (`Winner\n${winner}`)
           .setFooter("Ended at")
           .setTimestamp()
-          msg.edit(winem);
+          msg.edit("🎉Giveaway Ended🎉", winem);
           message.channel.send(`Congratulations ${winner}! You won the ${prize}.`)
       }, ms)
     }
