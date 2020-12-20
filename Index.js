@@ -56,7 +56,7 @@ bot.on("message", message => {
     }
     
     if (message.mentions.members.has("777840690515279872")) {
-        message.reply(`My prefix is \`${prefix}\``);
+        message.channel.send(`My prefix is \`${prefix}\``);
     }
 
     if (!message.content.startsWith(prefix)) return;
