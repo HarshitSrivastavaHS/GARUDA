@@ -23,6 +23,6 @@ module.exports = {
         else {
            embed.setColor("RED");
         }
-        message.channel.send(embed);
+        message.channel.send(":magic_wand: Magic 8 Ball :magic_wand:", embed);
     }
 }
