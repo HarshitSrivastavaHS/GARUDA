@@ -36,7 +36,7 @@ module.exports = {
       .setFooter("Ends at")
       .setDescription(`React with :tada: to enter!\nTime: ${timee} ${sym}\nHosted by ${message.author.tag}`)
       .setTimestamp(Date.now() + ms);
-      let msg = await message.channel.send("🎉Giveaway🎉",giveawayEM);
+      let msg = await message.channel.send("**🎉Giveaway🎉**",giveawayEM);
       msg.react("🎉");
       setTimeout(()=>{
           if (msg.reactions.cache.get("🎉").count <= 1) {
@@ -46,7 +46,7 @@ module.exports = {
              .setDescription("No Winner")
              .setFooter(`Ended at`)
              .setTimestamp();
-             msg.edit("🎉Giveaway Ended🎉", nowin);
+             msg.edit("**🎉Giveaway Ended🎉**", nowin);
              return message.channel.send("No one participated in the giveaway.");
           }
           let winner = msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random();
@@ -56,7 +56,7 @@ module.exports = {
           .setDescription (`Winner\n${winner}`)
           .setFooter("Ended at")
           .setTimestamp()
-          msg.edit("🎉Giveaway Ended🎉", winem);
+          msg.edit("**🎉Giveaway Ended🎉**", winem);
           message.channel.send(`Congratulations ${winner}! You won the ${prize}.`)
       }, ms)
     }
