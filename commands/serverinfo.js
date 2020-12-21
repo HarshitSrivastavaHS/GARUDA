@@ -12,7 +12,7 @@ module.exports = {
            {name: 'Region', value: message.guild.region},
            {name: 'Total Members', value: message.guild.memberCount},
            {name: 'Total Bots', value: message.guild.members.cache.filter(m=>m.user.bot).size},
-           {name: 'Creation Date', value: message.guild.createdAt.toLocaleDateString(locales: "en-en")},
+           {name: 'Creation Date', value: message.guild.createdAt.toLocaleDateString({locales: "en-en"})},
         )
         message.channel.send(embed);
     }
