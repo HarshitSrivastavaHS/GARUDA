@@ -95,10 +95,6 @@ bot.on("message", message => {
     else if (command === 'country') {
         bot.commands.get('country').execute(message, args, bot, Discord);
     }
-    
-    else if (command === 'maths') {
-        bot.commands.get('maths').execute(message, args, bot, Discord);
-    }
 
     else if (command === 'covid') {
         bot.commands.get('covid').execute(message, args, bot, Discord);
@@ -146,6 +142,10 @@ bot.on("message", message => {
 
     else if (command === 'leave') {
         bot.commands.get('leave').execute(message, args, bot, Discord);
+    }
+    
+    else if (command === 'add') {
+        bot.commands.get('add').execute(message, args, bot, Discord);
     }
 
 })
