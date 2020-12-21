@@ -8,7 +8,7 @@ module.exports = {
         let mul = 1;
         let lhs = "";
         for (let num in args) {
-            sum *= parseFloat(args[num]);
+            mul *= parseFloat(args[num]);
             lhs += (num!=0)?`*${args[num]}`:`${args[num]}`;
         }
         if (isNaN(mul)) return message.channel.send("Please enter numbers only.");
