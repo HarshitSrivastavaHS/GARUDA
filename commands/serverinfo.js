@@ -5,7 +5,7 @@ module.exports = {
     execute(message, args, bot, Discord) {
         let embed = new Discord.MessageEmbed()
         .setColor("YELLOW")
-        .setTitle(`${message.guild.name`)
+        .setTitle(`${message.guild.name}`)
         .setThumbnail(message.guild.iconURL())
         .addFields(
            {name: 'Owner', value: message.guild.owner.user.tag},
