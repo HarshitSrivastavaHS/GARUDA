@@ -10,7 +10,7 @@ module.exports = {
         try {
             sub = eval(`${sub}-${lhs}`);
         } catch {
-            message.channel.send("Please enter numbers only.");
+            return message.channel.send("Please enter numbers only.");
         }
         if (isNaN(sub)) return message.channel.send("Please enter numbers only.");
         message.channel.send(`${args[0]}-${lhs}=${sub}`);
