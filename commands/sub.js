@@ -5,10 +5,11 @@ module.exports = {
     usage: '%sub <num1> <num2> <num3> ... <num-n>',
     execute(message, args, bot, Discord) {
         if (args.length <= 1) return message.channel.send("Please enter numbers to be subtracted.");
-        let sub = 0;
+        let sub = parseFloat(args[num]);;
         let lhs = "";
         for (let num in args) {
-            sub -= parseFloat(args[num]);
+            if (num!=0)
+                sub -= parseFloat(args[num]);
             lhs += (num!=0)?`-${args[num]}`:`${args[num]}`;
         }
         if (isNaN(sub)) return message.channel.send("Please enter numbers only.");
