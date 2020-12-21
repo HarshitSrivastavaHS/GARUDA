@@ -11,8 +11,8 @@ module.exports = {
         .setFooter(`Requested by ${message.author.username}`)
         .setTimestamp();
         if (commandFiles.includes(args[0]+".js")) {
-           const command = require(`${__dirname}/${args[0]}.js`).description; 
-           helpembed.addFields({name:`${args[0]}`, value: `${command}`});
+           const command = require(`${__dirname}/${args[0]}.js`); 
+           helpembed.addFields({name:`Name`, value: `${command.name}`},{name:`Description`, value: `${command.description}`},{name:`Usage`, value: `${command.usage?command.usage:"not added"}`});
         }
         else {
             let categories = ["moderation", "fun", "music", "maths", "info", "utility"]
