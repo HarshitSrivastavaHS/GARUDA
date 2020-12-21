@@ -7,13 +7,12 @@ module.exports = {
         if (args.length <= 1) return message.channel.send("Please enter numbers to be subtracted.");
         let sub = parseFloat(args[0]);;
         let lhs = args.slice(1).join("-");
-        sub = eval(`${sub}-${lhs}`);
-//         for (let num in args) {
-//             if (num!=0)
-//                 sub -= parseFloat(args[num]);
-//             lhs += (num!=0)?`-${args[num]}`:`${args[num]}`;
-//         }
-//         if (isNaN(sub)) return message.channel.send("Please enter numbers only.");
-         message.channel.send(`${lhs}=${sub}`);
+        try {
+            sub = eval(`${sub}-${lhs}`);
+        } catch {
+            message.channel.send("Please enter numbers only.");
+        }
+        if (isNaN(sub)) return message.channel.send("Please enter numbers only.");
+        message.channel.send(`${args[0]}-${lhs}=${sub}`);
     }
 }
