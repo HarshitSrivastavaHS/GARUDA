@@ -1,4 +1,4 @@
-module.exports = {
+/*module.exports = {
     name: 'serverinfo',
     type: 'info',
     description: 'shows details of that server.',
@@ -16,4 +16,4 @@ module.exports = {
         )
         message.channel.send(embed);
     }
-}
+}*/
