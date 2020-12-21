@@ -6,11 +6,11 @@ module.exports = {
     execute(message, args, bot, Discord) {
         if (args.length <= 1) return message.channel.send("Please enter numbers to be subtracted.");
         let sub = parseFloat(args[0]);;
-        let lhs = args.slice(1).join("-");
-        try {
-            sub = eval(`${sub}-${lhs}`);
-        } catch {
-            return message.channel.send("Please enter numbers only.");
+        let lhs = "";
+        for (let num in args) {
+            if (num != 0)
+                sub -= parseFloat(args[num]);
+            lhs += (num!=0)?`*${args[num]}`:`${args[num]}`;
         }
         if (isNaN(sub)) return message.channel.send("Please enter numbers only.");
         message.channel.send(`${args[0]}-${lhs}=${sub}`);
