@@ -1,6 +1,6 @@
 module.exports = {
     name: 'add',
-    description: 'adds two numbers',
+    description: 'adds numbers',
     type: 'maths',
     usage: '%add <num1> <num2> <num3> ... <num-n>',
     execute(message, args, bot, Discord) {
