@@ -30,8 +30,7 @@ module.exports = {
                 }
                 helpembed.addFields({name:`${categories[cat][0].toUpperCase()+categories[cat].substr(1, categories[cat].length)}`, value: str?str:"No command"});
             }
-        }
-        let notype = "";
+            let notype = "";
         for (const file of commandFiles){
             const command = require(`${__dirname}/${file}`);
             if (command.type == undefined) {
@@ -42,6 +41,8 @@ module.exports = {
             }
         }
         helpembed.addFields({name:`Other`, value: notype?notype:"No command"});
+        }
+        
         message.channel.send(helpembed);
     }
 }
