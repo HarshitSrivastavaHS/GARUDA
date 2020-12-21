@@ -7,7 +7,7 @@ module.exports = {
         if (args.length <= 1) return message.channel.send("Please enter numbers to be subtracted.");
         let sub = parseFloat(args[0]);;
         let lhs = args.slice(1).join("-");
-        let sub = eval(`${sub}-${lhs}`);
+        sub = eval(`${sub}-${lhs}`);
 //         for (let num in args) {
 //             if (num!=0)
 //                 sub -= parseFloat(args[num]);
