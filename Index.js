@@ -147,6 +147,14 @@ bot.on("message", message => {
     else if (command === 'add') {
         bot.commands.get('add').execute(message, args, bot, Discord);
     }
+    
+    else if (command === 'sub') {
+        bot.commands.get('sub').execute(message, args, bot, Discord);
+    }
+    
+    else if (command === 'multi') {
+        bot.commands.get('multi').execute(message, args, bot, Discord);
+    }
 
 })
 
