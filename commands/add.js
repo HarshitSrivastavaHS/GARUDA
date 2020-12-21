@@ -2,17 +2,8 @@ module.exports = {
     name: 'add',
     description: 'adds two numbers',
     type: 'maths',
+    usage: '%add <num1> <num2> <num3> ... <num-n>',
     execute(message, args, bot, Discord) {
-//      if (args[0]!=undefined&&args[1]!=undefined){
-//          const sum = parseFloat(args[0])+parseFloat(args[1]);
-//          if (!isNaN(sum)) 
-//              message.channel.send(`${args[0]}+${args[1]}=${sum}`);
-//          else 
-//              message.channel.send("Please enter numbers only.")
-//          }
-//      else {
-//          message.channel.send("Please enter numbers to be added.")
-//      }
         if (args.length <= 1) return message.channel.send("Please enter numbers to be added.");
         let sum = 0;
         let lhs = "";
