@@ -16,7 +16,7 @@ module.exports = {
         if (args.length <= 1) return message.channel.send("Please enter numbers to be added.");
         let sum = 0;
         for (let num in args) {
-            sum += parseFloat(num);
+            sum += parseFloat(args[num]);
         }
         if (isNaN(sum)) return message.channel.send("Please enter numbers only.");
         message.channel.send(sum);
