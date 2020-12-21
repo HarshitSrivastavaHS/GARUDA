@@ -10,9 +10,9 @@ module.exports = {
         for (let num in args) {
             if (num != 0)
                 sub -= parseFloat(args[num]);
-            lhs += (num!=0)?`*${args[num]}`:`${args[num]}`;
+            lhs += (num!=0)?`-${args[num]}`:`${args[num]}`;
         }
         if (isNaN(sub)) return message.channel.send("Please enter numbers only.");
-        message.channel.send(`${args[0]}-${lhs}=${sub}`);
+        message.channel.send(`${lhs}=${sub}`);
     }
 }
