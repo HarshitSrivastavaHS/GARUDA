@@ -9,7 +9,7 @@ module.exports = {
         let lhs = "";
         for (let num in args) {
             mul *= parseFloat(args[num]);
-            lhs += (num!=0)?`*${args[num]}`:`${args[num]}`;
+            lhs += (num!=0)?`\`*\`${args[num]}`:`${args[num]}`;
         }
         if (isNaN(mul)) return message.channel.send("Please enter numbers only.");
         message.channel.send(`${lhs}=${mul}`);
