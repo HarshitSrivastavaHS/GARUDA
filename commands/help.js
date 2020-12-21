@@ -6,6 +6,8 @@ module.exports = {
         const fs = require('fs');
         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
         const helpembed = new Discord.MessageEmbed()
+        .setDescription("Do `%help <command>` for more info on that command.")
+        .setThumbnail(message.author.displayAvatarURL)
         .setColor("#D441EE")
         .setTitle('Help Menu')
         .setFooter(`Requested by ${message.author.username}`)
