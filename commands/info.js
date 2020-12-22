@@ -7,7 +7,7 @@ module.exports = {
         .setTitle("TheTronBot")
         .setThumbnail(message.author.displayAvatarURL())
         .addFields(
-            { name: "Invite the bot", value: "https://bit.ly/38j303G" },
+            { name: "Invite the bot", value: "https://bit.ly/TheTronBot" },
             { name: "Join the support Server" , value: "NA"}
         )
         .setTimestamp()
