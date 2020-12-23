@@ -9,8 +9,11 @@ module.exports = {
         }
         message.delete();
         if (message.mentions.everyone) {
-            if (message.author.flags.has("MENTION_EVERYONE")) console.log("yes")
-            if (!message.author.has("MENTION_EVERYONE")) console.log("no")
+            if (message.author.flags.has("MENTION_EVERYONE")) {
+                console.log("yes"); 
+                return
+            }
+            console.log("no")
             return
         }
         const reptext = message.content.substr(message.content.indexOf(' ')+1);
