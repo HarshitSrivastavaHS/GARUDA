@@ -10,12 +10,7 @@ module.exports = {
         message.delete();
         const EVERYONE_PATTERN = /@(everyone|here)/g;
         let x = message.content.replace(EVERYONE_PATTERN, "everyone");
-            if (message.member.permissions.has("MENTION_EVERYONE")) 
-                console.log("yes"); 
-            else 
-            console.log("no")
-        console.log(x);
-        const reptext = message.content.substr(message.content.indexOf(' ')+1);
+        const reptext = message.content.substr(x.indexOf(' ')+1);
         message.channel.send(reptext);
     }
 }
