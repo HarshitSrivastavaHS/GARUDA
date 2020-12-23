@@ -8,7 +8,7 @@ module.exports = {
             return;
         }
         message.delete();
-        console.log(message);
+        console.log(message.mentions.everyone);
         const reptext = message.content.substr(message.content.indexOf(' ')+1);
         message.channel.send(reptext);
     }
