@@ -10,7 +10,7 @@ module.exports = {
         message.delete();
         const EVERYONE_PATTERN = /@(everyone|here)/g;
         let x = message.content.replace(EVERYONE_PATTERN, "everyone");
-        const reptext = message.content.substr(x.indexOf(' ')+1);
+        const reptext = x.substr(x.indexOf(' ')+1);
         message.channel.send(reptext);
     }
 }
