@@ -8,6 +8,7 @@ module.exports = {
             return;
         }
         message.delete();
+        const EVERYONE_PATTERN = /@(everyone|here)/g;
         let x = message.content.match(EVERYONE_PATTERN);
         if (x) {
             if (message.member.permissions.has("MENTION_EVERYONE")) {
