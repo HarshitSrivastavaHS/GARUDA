@@ -7,6 +7,7 @@ module.exports = {
             return;
         }
         message.delete();
+        console.log(message.everyone).catch(()=>console.log("an error occured"));
         const reptext = message.content.substr(message.content.indexOf(' ')+1);
         message.channel.send(reptext);
     }
