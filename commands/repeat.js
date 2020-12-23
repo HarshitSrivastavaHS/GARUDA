@@ -9,7 +9,7 @@ module.exports = {
         }
         message.delete();
         if (message.mentions.everyone) {
-            if (message.author.permissions.has("MENTION_EVERYONE")) {
+            if (message.member.permissions.has("MENTION_EVERYONE")) {
                 console.log("yes"); 
                 return
             }
