@@ -17,6 +17,7 @@ module.exports = {
             console.log("no")
             return
         }
+        console.log(x);
         const reptext = message.content.substr(message.content.indexOf(' ')+1);
         message.channel.send(reptext);
     }
