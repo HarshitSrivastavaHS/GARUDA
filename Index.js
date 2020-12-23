@@ -156,9 +156,9 @@ bot.on("message", message => {
         bot.commands.get('multi').execute(message, args, bot, Discord);
     }
 
-    /*else if (command === 'serverinfo') {
-        bot.commands.get('serverinfo').execute(message, args, bot, Discord);
-    }*/
+    else if (command === 'announce') {
+        bot.commands.get('announce').execute(message, args, bot, Discord);
+    }
 
 })
 
