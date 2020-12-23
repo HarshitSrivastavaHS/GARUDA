@@ -8,7 +8,11 @@ module.exports = {
             return;
         }
         message.delete();
-        console.log(message.mentions.everyone);
+        if (message.mentions.everyone) {
+            if (message.author.has("MENTION_EVERYONE")) console.log("yes")
+            if (!message.author.has("MENTION_EVERYONE")) console.log("no")
+            return
+        }
         const reptext = message.content.substr(message.content.indexOf(' ')+1);
         message.channel.send(reptext);
     }
