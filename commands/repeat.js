@@ -8,7 +8,10 @@ module.exports = {
         }
         message.delete();
         const EVERYONE_PATTERN = /@(everyone|here)/g;
-        let x = message.content.replace(EVERYONE_PATTERN, "everyone");
+        let x = message.content;
+        if (!message.member.permissions.has("MENTION_EVERYONE")) {
+            x = x.replace(EVERYONE_PATTERN, "everyone");
+        }
         const reptext = x.substr(x.indexOf(' ')+1);
         message.channel.send(reptext);
     }
