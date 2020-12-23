@@ -9,15 +9,11 @@ module.exports = {
         }
         message.delete();
         const EVERYONE_PATTERN = /@(everyone|here)/g;
-        let x = message.content.match(EVERYONE_PATTERN);
-        if (x) {
-            if (message.member.permissions.has("MENTION_EVERYONE")) {
+        let x = message.content.replace(EVERYONE_PATTERN, "everyone");
+            if (message.member.permissions.has("MENTION_EVERYONE")) 
                 console.log("yes"); 
-                return
-            }
+            else 
             console.log("no")
-            return
-        }
         console.log(x);
         const reptext = message.content.substr(message.content.indexOf(' ')+1);
         message.channel.send(reptext);
