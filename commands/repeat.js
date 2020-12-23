@@ -9,7 +9,7 @@ module.exports = {
         }
         message.delete();
         if (message.mentions.everyone) {
-            if (message.author.has("MENTION_EVERYONE")) console.log("yes")
+            if (message.author.user.has("MENTION_EVERYONE")) console.log("yes")
             if (!message.author.has("MENTION_EVERYONE")) console.log("no")
             return
         }
