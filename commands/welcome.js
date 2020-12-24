@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const welcomeSchema = require(`${__dirname}/Schemas/welcomeSchema`);
+const welcomeSchema = require(`../Schemas/welcomeSchema`);
 module.exports = {
     name: 'welcome',
     type: 'utility',
