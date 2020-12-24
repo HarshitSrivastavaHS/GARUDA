@@ -1,11 +1,8 @@
 const Discord = require("discord.js");
-const mongoose = require("mongoose");
 
 const bot = new Discord.Client();
 
 const prefix = '%';
-
-mongoose.connect(process.env.MongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const fs = require('fs');
 
