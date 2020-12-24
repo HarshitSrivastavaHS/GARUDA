@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const reqString = {
   type: String,
-  required: true
+  require: true
 }
 
-const welcomeSchema = new mongoose.Schema({
+const welcomeSchema = mongoose.Schema({
   _id: reqString,
   channelId: reqString,
   message: reqString
