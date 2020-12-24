@@ -21,6 +21,9 @@ module.exports = {
                     message: args.slice(1).join(" ")
                 }).save()
             }
+            catch {
+                console.log("Nothing new, you did a mistake :(");
+            }
         })
         message.channel.send(`GuildID: ${message.guild.id}\nChannelId: ${channelid}\nMessage: ${args.slice(1).join(" ")}`);     
     }
