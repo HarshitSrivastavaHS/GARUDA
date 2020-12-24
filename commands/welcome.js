@@ -13,9 +13,9 @@ module.exports = {
         if (!Channel) return message.channel.send("Please mention the channel.");
         let channelid = args[0].substr(args[0].indexOf("#")+1, args[0].indexOf(">")-2);
         
-        await mongo().then(mongoose =>{
+        await mongo().then(async mongoose =>{
             try {
-                new welcomeSchema({
+                await new welcomeSchema({
                     _id: message.guild.id,
                     channelId: channelid,
                     message: args.slice(1).join(" ")
