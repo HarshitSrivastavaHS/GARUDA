@@ -16,9 +16,9 @@ module.exports = {
         await mongo().then(async mongoose =>{
             try {
                 await new welcomeSchema({
-                    _id: message.guild.id,
-                    channelId: channelid,
-                    message: args.slice(1).join(" "),
+                    message.guild.id,
+                    channelid,
+                    args.slice(1).join(" "),
                 }).save()
             }
             finally {
