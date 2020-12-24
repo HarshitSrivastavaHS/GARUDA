@@ -18,7 +18,7 @@ module.exports = {
                 await new welcomeSchema({
                     _id: message.guild.id,
                     channelId: channelid,
-                    message: args.slice(1).join(" ")
+                    message: args.slice(1).join(" "),
                 }).save()
             }
             finally {
