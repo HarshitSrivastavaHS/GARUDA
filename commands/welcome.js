@@ -11,9 +11,7 @@ module.exports = {
         const CHANNELS_PATTERN = /<#(\d{17,19})>/g;
         let Channel = CHANNELS_PATTERN.test(args[0]);
         if (!Channel) return message.channel.send("Please mention the channel.");
-        let channelid = args[0].substr(args[0].indexOf("#")+1, args[0].indexOf(">")-1);
-        message.channel.send(`GuildID: ${message.guild.id}\nChannelId: ${channelid}\nMessage: ${args.slice(1).join(" ")}`);
-        
-        
+        let channelid = args[0].substr(args[0].indexOf("#")+1, args[0].indexOf(">")-2);
+        message.channel.send(`GuildID: ${message.guild.id}\nChannelId: ${channelid}\nMessage: ${args.slice(1).join(" ")}`);     
     }
 }
