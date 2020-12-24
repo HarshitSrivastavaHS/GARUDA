@@ -10,3 +10,5 @@ const welcomeSchema = mongoose.Schema({
   channelId: reqString,
   message: reqString
 });
+
+module.export = mongoose.model("welcome-channels", welcomeSchema)
