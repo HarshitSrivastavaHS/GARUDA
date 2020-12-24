@@ -162,6 +162,10 @@ bot.on("message", message => {
     else if (command === 'announce') {
         bot.commands.get('announce').execute(message, args, bot, Discord);
     }
+    
+    else if (command === 'welcome') {
+        bot.commands.get('welcome').execute(message, args, bot, Discord);
+    }
 
 })
 
