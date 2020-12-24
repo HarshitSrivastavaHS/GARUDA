@@ -12,6 +12,16 @@ module.exports = {
         let Channel = CHANNELS_PATTERN.test(args[0]);
         if (!Channel) return message.channel.send("Please mention the channel.");
         let channelid = args[0].substr(args[0].indexOf("#")+1, args[0].indexOf(">")-2);
+        
+        await mongo().then(mongoose =>{
+            try {
+                new welcomeSchema({
+                    _id: message.guild.id,
+                    channelId: channelid,
+                    message: args.slice(1).join(" ")
+                }).save()
+            }
+        })
         message.channel.send(`GuildID: ${message.guild.id}\nChannelId: ${channelid}\nMessage: ${args.slice(1).join(" ")}`);     
     }
 }
