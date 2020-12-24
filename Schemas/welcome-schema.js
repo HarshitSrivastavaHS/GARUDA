@@ -5,10 +5,10 @@ const reqString = {
   required: true
 }
 
-const welcomeSchema = new mongoose.Schema({
+const welcomeSchema = mongoose.Schema({
   _id: reqString,
   channelId: reqString,
   message: reqString
-});
+})
 
 module.export = mongoose.model("welcome-channels", welcomeSchema)
