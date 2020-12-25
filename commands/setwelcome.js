@@ -1,7 +1,7 @@
 const mongo = require(`../mongo`);
 const welcomeSchema = require(`../Schemas/welcome-schema`);
 module.exports = {
-    name: 'welcome',
+    name: 'setwelcome',
     type: 'utility',
     description: 'sets the welcome channel',
     async execute(message, args, bot, Discord) {
