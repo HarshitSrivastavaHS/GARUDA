@@ -15,10 +15,14 @@ module.exports = {
         
         await mongo().then(async mongoose =>{
             try {
-                await new welcomeSchema({
+                await welcomeSchema.findOneAndUpdate({
+                    _id: message.guild.id
+                },{
                     _id: message.guild.id,
                     channelId: channelid,
-                    text: args.slice(1).join(" "),
+                    text: args.slice(1).join(" ")
+                },{
+                    upsert: true
                 }).save()
             }
             finally {
