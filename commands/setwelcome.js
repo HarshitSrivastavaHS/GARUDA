@@ -23,7 +23,7 @@ module.exports = {
                     text: args.slice(1).join(" ")
                 },{
                     upsert: true
-                }).save()
+                })
             }
             finally {
                 mongoose.connection.close();
