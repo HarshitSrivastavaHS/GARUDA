@@ -26,8 +26,6 @@ bot.on("ready", () => {
   bot.user.setPresence({ activity: { name: `${bot.guilds.cache.size} servers`, type: "WATCHING" }, status: 'dnd' });
 })
 
-bot.welcomeChannel = new Map();
-
 bot.snipes = new Map();
 
 bot.on("messageDelete", (message, channel) => {
@@ -52,6 +50,7 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
   });
 })
 
+bot.welcomeChannel = new Map();
 bot.on('guildMemberAdd', async (member) => {
     let data = bot.welcomeChannel.get(member.guild.id);
         if (!data) {

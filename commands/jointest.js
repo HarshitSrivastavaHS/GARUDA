@@ -20,9 +20,13 @@ module.exports = {
           })
         }
         if (data!=null) {
+          console.log(data[0]);
+          console.log(data.welChannel)
           const channelID = data[0]?data[0]:data.welChannel;
+          console.log(channelID)
           const text = data[1]?data[1]:data.welMessage;
           const channel = message.guild.channels.cache.get(channelID);
+          console.log(channel)
           channel.send(text);
           bot.welcomeChannel.set(message.guild.id, {
           welChannel: channelID,
