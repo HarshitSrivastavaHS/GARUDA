@@ -160,8 +160,8 @@ bot.on("message", message => {
         bot.commands.get('announce').execute(message, args, bot, Discord);
     }
     
-    else if (command === 'welcome') {
-        bot.commands.get('welcome').execute(message, args, bot, Discord);
+    else if (command === 'setwelcome') {
+        bot.commands.get('setwelcome').execute(message, args, bot, Discord);
     }
 
 })
