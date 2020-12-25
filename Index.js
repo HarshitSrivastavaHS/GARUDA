@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const keepAlive = require("./server.js");
 
 const bot = new Discord.Client();
+const mongo = require(`./mongo`);
+const welcomeSchema = require(`./Schemas/welcome-schema`);
 
 const prefix = '%';
 
@@ -24,7 +26,10 @@ bot.on("ready", () => {
   bot.user.setPresence({ activity: { name: `${bot.guilds.cache.size} servers`, type: "WATCHING" }, status: 'dnd' });
 })
 
+bot.welcomeChannel = new Map();
+
 bot.snipes = new Map();
+
 bot.on("messageDelete", (message, channel) => {
   if (message.author.bot) return;
   bot.snipes.set(message.channel.id, {
@@ -45,6 +50,33 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
     avatar: oldMessage.author.displayAvatarURL(),
     image: oldMessage.attachments.first() ? oldMessage.attachments.first().proxyURL : null
   });
+})
+
+bot.on('guildMemberAdd', async (member) => {
+    let data = bot.welcomeChannel.get(member.guild.id);
+        if (!data) {
+          await mongo().then(async (mongoose)=>{
+            try {
+              const result = await welcomeSchema.findOne({
+                _id: member.guild.id
+              })
+              data = result!=null?[result.channelId, result.text]:null;
+            }
+            finally {
+              mongoose.connection.close()
+            }
+          })
+        }
+        if (data!=null) {
+          const channelID = data[0]?data[0]:data.welChannel;
+          const text = data[1]?data[1]:data.welMessage;
+          const channel = member.guild.channels.cache.get(channelID);
+          channel.send(text);
+          bot.welcomeChannel.set(member.guild.id, {
+          welChannel: channelID,
+          welMessage: text
+        })
+        }  
 })
 
 bot.on("message", message => {
@@ -163,6 +195,10 @@ bot.on("message", message => {
 
   else if (command === 'setwelcome') {
     bot.commands.get('setwelcome').execute(message, args, bot, Discord);
+  }
+
+  else if (command === 'jointest') {
+    bot.commands.get('jointest').execute(message, args, bot, Discord);
   }
 
 })

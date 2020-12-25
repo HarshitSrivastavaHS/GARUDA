@@ -14,7 +14,7 @@ module.exports = {
             return;
         }
         var num = parseInt(args[0]);
-        if (num<=50) {
+        if (num<=75) {
             message.channel.bulkDelete(num+1, true);
             message.channel.send(`Deleting ${num} messages`)
             .then(msg => {
@@ -25,7 +25,7 @@ module.exports = {
             message.channel.send(`${message.member}, Please enter a number greater than 0.`)
         }
         else {
-            message.channel.send(`${message.member}, I can only delete less than 50 messages right now.`)
+            message.channel.send(`${message.member}, I can only delete less than 75 messages right now.`)
         }
     }
 }

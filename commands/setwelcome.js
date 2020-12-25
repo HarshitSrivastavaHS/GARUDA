@@ -3,6 +3,7 @@ const welcomeSchema = require(`../Schemas/welcome-schema`);
 module.exports = {
     name: 'setwelcome',
     type: 'utility',
+    usage: '%setwelcome <channel> <welcome text>',
     description: 'sets the welcome channel',
     async execute(message, args, bot, Discord) {
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can run this.")
@@ -29,6 +30,10 @@ module.exports = {
                 mongoose.connection.close();
             }
         })
-        message.channel.send(`GuildID: ${message.guild.id}\nChannelId: ${channelid}\nMessage: ${args.slice(1).join(" ")}`);     
+        bot.welcomeChannel.set(message.guild.id, {
+          welChannel: channelid,
+          welMessage: args.slice(1).join(" ")
+        })
+        message.channel.send(`Successfully set the <#${channelid}> as the welcome channel with welcome message as ${args.slice(1).join(" ")}`);     
     }
 }
