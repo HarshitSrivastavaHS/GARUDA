@@ -51,9 +51,10 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 })
 
 bot.prefixes = new Map();
+bot.suggestionChannel = new Map();
 bot.on("message", async (message) => {
 
-  prefix = bot.prefixes.get(message.guild.id)
+  prefix = bot.prefixes.get(message.guild.id);
   if (!prefix) {
     await mongo().then(async (mongoose)=>{
       try {
@@ -189,6 +190,14 @@ bot.on("message", async (message) => {
 
   else if (command === 'prefix') {
     bot.commands.get('prefix').execute(message, args, bot, Discord, prefix);
+  }
+
+  else if (command === 'setsuggestion') {
+    bot.commands.get('setsuggestion').execute(message, args, bot, Discord, prefix);
+  }
+
+  else if (command === 'suggest') {
+    bot.commands.get('suggest').execute(message, args, bot, Discord, prefix);
   }
 
 })
