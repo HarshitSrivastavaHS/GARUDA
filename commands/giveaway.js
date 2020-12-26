@@ -2,7 +2,7 @@ module.exports = {
     name: 'giveaway',
     type: 'utility',
     description: 'to start a giveaway',
-    execute: async (message, args, bot, Discord) => {
+    async execute(message, args, bot, Discord, prefix) {
       if (!args[0]) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d Prize```");
       
       if (!args[0].endsWith("d")&&!args[0].endsWith("h")&&!args[0].endsWith("m")&&!args[0].endsWith("s")) return message.channel.send("Invalid Syntax!\nFormat for time: 1d = 1 day, 1h = 1 hour, 1m = 1 minute, 1s = 1 second\nExample:```%giveaway 1d Prize```");

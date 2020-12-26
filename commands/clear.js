@@ -2,7 +2,7 @@ module.exports = {
     name: 'clear',
     type: 'utility',
     description: 'deletes the given number of messages',
-    execute(message, args) {
+    async execute(message, args, bot, Discord, prefix) {
 
         if (isNaN(args[0])) {
             message.channel.send("Invalid Syntax!\n```%clear <number of messsages to be deleted>```");

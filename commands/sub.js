@@ -3,7 +3,7 @@ module.exports = {
     description: 'subtracts numbers',
     type: 'maths',
     usage: '%sub <num1> <num2> <num3> ... <num-n>',
-    execute(message, args, bot, Discord) {
+    async execute(message, args, bot, Discord, prefix) {
         if (args.length <= 1) return message.channel.send("Please enter numbers to be subtracted.");
         let sub = parseFloat(args[0]);;
         let lhs = "";

@@ -3,9 +3,9 @@ const keepAlive = require("./server.js");
 
 const bot = new Discord.Client();
 const mongo = require(`./mongo`);
-const welcomeSchema = require(`./Schemas/welcome-schema`);
+const prefixSchema = require(`./Schemas/prefix-schema`);
 
-const prefix = '%';
+let prefix;
 
 const fs = require('fs');
 
@@ -50,7 +50,30 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
   });
 })
 
-bot.on("message", message => {
+bot.prefixes = new Map();
+bot.on("message", async (message) => {
+
+  prefix = bot.prefixes.get(message.guild.id)
+  if (!prefix) {
+    await mongo().then(async (mongoose)=>{
+      try {
+        const result = prefixSchema.findOne({
+          _id: message.guild.id
+        })
+        prefix = result!=null?result.prefix:null;
+        if (prefix){
+          bot.prefixes.set(message.guild.id, prefix);
+        }
+        else {
+          prefix = "%";
+          bot.prefixes.set(message.guild.id, "%");
+        }
+      }
+      finally {
+        mongoose.connection.close()
+      }
+    })
+  }
 
   if (message.author.bot) return;
 
@@ -69,99 +92,103 @@ bot.on("message", message => {
   const command = args.shift().toLowerCase();
 
   if (command === 'ping') {
-    bot.commands.get('ping').execute(message, args);
+    bot.commands.get('ping').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'info') {
-    bot.commands.get('info').execute(message, args, Discord, bot);
+    bot.commands.get('info').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'repeat') {
-    bot.commands.get('repeat').execute(message, args, prefix);
+    bot.commands.get('repeat').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'kick') {
-    bot.commands.get('kick').execute(message, args);
+    bot.commands.get('kick').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'ban') {
-    bot.commands.get('ban').execute(message, args);
+    bot.commands.get('ban').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'clear') {
-    bot.commands.get('clear').execute(message, args);
+    bot.commands.get('clear').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'help') {
-    bot.commands.get('help').execute(message, args, bot, Discord);
+    bot.commands.get('help').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'country') {
-    bot.commands.get('country').execute(message, args, bot, Discord);
+    bot.commands.get('country').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'covid') {
-    bot.commands.get('covid').execute(message, args, bot, Discord);
+    bot.commands.get('covid').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'avatar') {
-    bot.commands.get('avatar').execute(message, args, bot, Discord);
+    bot.commands.get('avatar').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'google') {
-    bot.commands.get('google').execute(message, args, bot, Discord);
+    bot.commands.get('google').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'flip') {
-    bot.commands.get('flip').execute(message, args, bot, Discord);
+    bot.commands.get('flip').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'snipe') {
-    bot.commands.get('snipe').execute(message, args, bot, Discord);
+    bot.commands.get('snipe').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'editsnipe') {
-    bot.commands.get('editsnipe').execute(message, args, bot, Discord);
+    bot.commands.get('editsnipe').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'giveaway') {
-    bot.commands.get('giveaway').execute(message, args, bot, Discord);
+    bot.commands.get('giveaway').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'poll') {
-    bot.commands.get('poll').execute(message, args, bot, Discord);
+    bot.commands.get('poll').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'fuse') {
-    bot.commands.get('fuse').execute(message, args, bot, Discord);
+    bot.commands.get('fuse').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === '8ball') {
-    bot.commands.get('8ball').execute(message, args, bot, Discord);
+    bot.commands.get('8ball').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'play') {
-    bot.commands.get('play').execute(message, args, bot, Discord);
+    bot.commands.get('play').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'leave') {
-    bot.commands.get('leave').execute(message, args, bot, Discord);
+    bot.commands.get('leave').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'add') {
-    bot.commands.get('add').execute(message, args, bot, Discord);
+    bot.commands.get('add').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'sub') {
-    bot.commands.get('sub').execute(message, args, bot, Discord);
+    bot.commands.get('sub').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'multi') {
-    bot.commands.get('multi').execute(message, args, bot, Discord);
+    bot.commands.get('multi').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'announce') {
-    bot.commands.get('announce').execute(message, args, bot, Discord);
+    bot.commands.get('announce').execute(message, args, bot, Discord, prefix);
+  }
+
+  else if (command === 'prefix') {
+    bot.commands.get('prefix').execute(message, args, bot, Discord, prefix);
   }
 
 })

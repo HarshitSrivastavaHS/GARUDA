@@ -2,7 +2,7 @@ module.exports = {
     name: 'flip',
     type: 'fun',
     description: 'flips a coin',
-    execute: async (message, args, bot, Discord) => {
+    async execute(message, args, bot, Discord, prefix) {
         let faces = ['Head', 'Tail'];
         let coin = new Discord.MessageEmbed()
         .setColor("RANDOM")

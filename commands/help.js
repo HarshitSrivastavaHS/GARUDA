@@ -2,7 +2,7 @@
 module.exports = {
     name: 'help',
     description: 'shows the help menu',
-    execute(message, args, bot, Discord) {
+    async execute(message, args, bot, Discord, prefix) {
         const fs = require('fs');
         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
         const helpembed = new Discord.MessageEmbed()

@@ -2,7 +2,7 @@ module.exports = {
     name: 'country',
     type: 'info',
     description: 'tells some details of a country.',
-    execute(message, args, bot, Discord) {
+    async execute(message, args, bot, Discord, prefix) {
         const code = args[0];
         if (code===undefined) {
             message.channel.send("%country <country code>"); 

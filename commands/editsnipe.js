@@ -2,7 +2,7 @@ module.exports = {
     name: 'editsnipe',
     type: 'utility',
     description: 'shows last edited message in that channel',
-    execute(message, args, bot, Discord) {
+    async execute(message, args, bot, Discord, prefix) {
         let msg = bot.editSnipes.get(message.channel.id);
         if (!msg) return message.channel.send("There is no edited message in this channel.");
         let editSnipEMbed = new Discord.MessageEmbed()

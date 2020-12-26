@@ -2,7 +2,7 @@ module.exports = {
     name: 'kick',
     type: 'moderation',
     description: 'Kicks a user out of the server',
-    execute(message, args) {
+    async execute(message, args, bot, Discord, prefix) {
         if(!message.member.permissions.has("KICK_MEMBERS")) {
             message.channel.send("You don't have the required permissions.");
             return;

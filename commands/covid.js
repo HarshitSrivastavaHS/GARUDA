@@ -2,7 +2,7 @@ module.exports = {
     name: 'covid',
     type: 'info',
     description: 'shows covid 19 stats',
-    execute(message, args, bot, Discord) {
+    async execute(message, args, bot, Discord, prefix) {
         const code = args[0];
         const fetch = require("node-fetch");
         try {

@@ -2,7 +2,7 @@ module.exports = {
     name: 'avatar',
     type: 'fun',
     description: 'shows the user\'s avatar',
-    execute(message, args, bot, Discord) {
+    async execute(message, args, bot, Discord, prefix) {
         const mentionUser = message.mentions.users.first();
         const avataremb = new Discord.MessageEmbed()
         .setColor("#D441EE")

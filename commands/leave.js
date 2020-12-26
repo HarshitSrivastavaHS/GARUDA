@@ -2,7 +2,7 @@ module.exports = {
     name: 'leave',
     type: 'music',
     description: 'leaves the voice channel.',
-    execute: async (message, args, bot, Discord) => {
+    async execute(message, args, bot, Discord, prefix) {
         const voiceChannel = message.member.voice.channel;
 
         if(!voiceChannel) return message.channel.send("You must be in a voice channel to use this command.");

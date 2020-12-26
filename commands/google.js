@@ -1,7 +1,7 @@
 module.exports = {
     name: 'google',
     description: 'searches the internet',
-    execute: async (message, args, bot, Discord) => {
+    async execute(message, args, bot, Discord, prefix) {
         return message.channel.send("Command turned off by the developer to fix.");
         const request = require("node-superfetch");
         let googleKey = process.env.GoogleAPI;

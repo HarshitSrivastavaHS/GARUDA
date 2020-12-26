@@ -5,7 +5,7 @@ module.exports = {
     name: 'play',
     type: 'music',
     description: 'play\'s music according to the search query.',
-    execute: async (message, args, bot, Discord) => {
+    async execute(message, args, bot, Discord, prefix) {
         const voiceChannel = message.member.voice.channel;
 
         if(!voiceChannel) return message.channel.send("You must be in a voice channel to use this command.");

@@ -2,7 +2,7 @@ module.exports = {
     name: 'fuse',
     type: 'fun',
     description: 'fuses user\'s avatar with the mentioned user\'s avatar',
-    execute: async (message, args, bot, Discord) => {
+    async execute(message, args, bot, Discord, prefix) {
         const Canvas = require("canvas");
         const canvas = Canvas.createCanvas(800, 800);
         const mention = message.mentions.users.first();
