@@ -3,21 +3,22 @@ module.exports = {
     name: 'help',
     description: 'shows the help menu',
     async execute(message, args, bot, Discord, prefix) {
+        const PREFIX_REG = /&{prefix}/g;
         const fs = require('fs');
         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
         const helpembed = new Discord.MessageEmbed()
-        .setDescription("Do `%help <command>` for more info on that command.")
-        .setThumbnail(message.author.displayAvatarURL())
+        .setDescription(`Do \`${prefix}help <command>\` for more info on that command.`)
+        .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .setColor("#D441EE")
         .setTitle('Help Menu')
         .setFooter(`Requested by ${message.author.username}`)
         .setTimestamp();
         if (commandFiles.includes(args[0]+".js")) {
            const command = require(`${__dirname}/${args[0]}.js`); 
-           helpembed.addFields({name:`Name`, value: `${command.name}`},{name:`Description`, value: `${command.description}`},{name:`Usage`, value: `${command.usage?command.usage:"not added"}`});
+           helpembed.addFields({name:`Name`, value: `${command.name}`},{name:`Description`, value: `${command.description}`},{name:`Usage`, value: `${command.usage?command.usage.replace(PREFIX_REG, prefix):"not added"}`});
         }
         else {
-            let categories = ["moderation", "fun", "music", "maths", "info", "utility"]
+            let categories = ["moderation", "fun", "maths", "info", "utility"]
             let totalFiles = commandFiles.length;
             for (let cat in categories) {
                 let str = "";

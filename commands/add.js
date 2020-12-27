@@ -2,7 +2,7 @@ module.exports = {
     name: 'add',
     description: 'adds numbers',
     type: 'maths',
-    usage: '%add <num1> <num2> <num3> ... <num-n>',
+    usage: '&{prefix}add <num1> <num2> <num3> ... <num-n>',
     async execute(message, args, bot, Discord, prefix) {
         if (args.length <= 1) return message.channel.send("Please enter numbers to be added.");
         let sum = 0;

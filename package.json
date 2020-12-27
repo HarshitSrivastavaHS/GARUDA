@@ -12,16 +12,12 @@
   "author": "Harshit",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.3.3",
     "canvas": "^2.6.1",
     "discord.js": "^12.4.1",
     "express": "^4.17.1",
-    "ffmpeg-static": "^4.2.7",
     "mongoose": "^5.11.8",
     "node-dev": "^6.2.0",
     "node-fetch": "^2.6.1",
-    "node-superfetch": "^0.1.10",
-    "yt-search": "^2.5.1",
-    "ytdl-core": "^4.2.1"
+    "node-superfetch": "^0.1.10"
   }
 }

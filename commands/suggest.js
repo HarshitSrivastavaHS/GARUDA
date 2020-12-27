@@ -32,7 +32,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         .setColor("RANDOM")
         .setTitle("Suggestion")
-        .setAuthor(message.author.tag, message.author.displayAvatarURL())
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
         .setDescription(args.join(" "))
         .setFooter("Suggested at")
         .setTimestamp();

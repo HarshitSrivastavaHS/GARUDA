@@ -132,10 +132,6 @@ bot.on("message", async (message) => {
     bot.commands.get('avatar').execute(message, args, bot, Discord, prefix);
   }
 
-  else if (command === 'google') {
-    bot.commands.get('google').execute(message, args, bot, Discord, prefix);
-  }
-
   else if (command === 'flip') {
     bot.commands.get('flip').execute(message, args, bot, Discord, prefix);
   }
@@ -162,14 +158,6 @@ bot.on("message", async (message) => {
 
   else if (command === '8ball') {
     bot.commands.get('8ball').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'play') {
-    bot.commands.get('play').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'leave') {
-    bot.commands.get('leave').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'add') {
