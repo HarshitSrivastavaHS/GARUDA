@@ -1,6 +1,10 @@
+const mongo = require("../mongo.js");
+const giveawaySchema = require("../Schemas/giveaway-schema.js")
+
 module.exports = {
     name: 'giveaway',
     type: 'utility',
+    usage: '&{prefix}giveaway <time> <prize>',
     description: 'to start a giveaway',
     async execute(message, args, bot, Discord, prefix) {
       if (!args[0]) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d Prize```");
@@ -30,15 +34,44 @@ module.exports = {
          ms = timee*1000; 
          sym="second(s)";
       }
+      const tme = Date.now()+ms;
       let giveawayEM = new Discord.MessageEmbed()
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter("Ends at")
       .setDescription(`React with :tada: to enter!\nTime: ${timee} ${sym}\nHosted by ${message.author.tag}`)
-      .setTimestamp(Date.now() + ms);
+      .setTimestamp(tme);
       let msg = await message.channel.send("**🎉Giveaway🎉**",giveawayEM);
       msg.react("🎉");
-      setTimeout(()=>{
+      await mongo().then(async (mongoose)=>{
+        try {
+          await giveawaySchema.findOneAndUpdate({
+            _id: msg.id
+          },{
+            _id: msg.id,
+            prize: prize,
+            endTime: tme,
+            chID: message.channel.id
+          },{
+            upsert: true
+          })
+        }
+        finally {
+          mongoose.connection.close();
+        }
+      })
+      setTimeout(async()=>{
+          await mongo().then(async (mongoose)=>{
+            try {
+              await giveawaySchema.deleteOne({
+                _id: message.id
+              })
+            }
+            finally {
+              mongoose.connection.close();
+            }
+          })
+          if (msg.deleted) return;
           if (msg.reactions.cache.get("🎉").count <= 1) {
              let nowin = new Discord.MessageEmbed()
              .setColor("RED")
@@ -57,7 +90,8 @@ module.exports = {
           .setFooter("Ended at")
           .setTimestamp()
           msg.edit("**🎉Giveaway Ended🎉**", winem);
-          message.channel.send(`Congratulations ${winner}! You won the ${prize}.`)
+          message.channel.send(`Congratulations ${winner}! You won the **${prize}**.`)
       }, ms)
     }
+      
 }

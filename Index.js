@@ -4,6 +4,7 @@ const keepAlive = require("./server.js");
 const bot = new Discord.Client();
 const mongo = require(`./mongo`);
 const prefixSchema = require(`./Schemas/prefix-schema`);
+const giveawaySchema = require("./Schemas/giveaway-schema.js")
 
 let prefix;
 
@@ -21,9 +22,26 @@ for (const file of commandFiles) {
 
 }
 
-bot.on("ready", () => {
+bot.on("ready", async () => {
   console.log("I am Online!");
   bot.user.setPresence({ activity: { name: `${bot.guilds.cache.size} servers`, type: "WATCHING" }, status: 'dnd' });
+  let allDocuments;
+  const give = require("./functions/giveaway.js")
+  const mongo = await require(`./mongo`);
+  const giveawaySchema = require("./Schemas/giveaway-schema.js")
+  await mongo().then(async (mongoose)=>{
+    try {
+      allDocuments = await giveawaySchema.find({})
+    }
+    finally {
+      mongoose.connection.close();
+    }
+  })
+  if (allDocuments.length<1) return 
+
+  for (let x in allDocuments) {
+    give(bot, Discord, allDocuments[x]._id, allDocuments[x].endTime, allDocuments[x].prize, allDocuments[x].chID);
+  }
 })
 
 bot.snipes = new Map();
@@ -170,10 +188,6 @@ bot.on("message", async (message) => {
 
   else if (command === 'multi') {
     bot.commands.get('multi').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'announce') {
-    bot.commands.get('announce').execute(message, args, bot, Discord, prefix);
   }
 
   else if (command === 'prefix') {

@@ -1,6 +1,7 @@
 module.exports = {
     name: 'ban',
     type: 'moderation',
+    usage: '&{prefix}ban <user\'s @>',
     description: 'kicks and bans a user out of the server',
     async execute(message, args, bot, Discord, prefix) {
         if(!message.member.permissions.has("BAN_MEMBERS")) {

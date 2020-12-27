@@ -1,6 +1,7 @@
 module.exports = {
     name: 'covid',
     type: 'info',
+    usage: '&{prefix}covid',
     description: 'shows covid 19 stats',
     async execute(message, args, bot, Discord, prefix) {
         const code = args[0];

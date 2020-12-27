@@ -1,6 +1,7 @@
 module.exports = {
     name: 'flip',
     type: 'fun',
+    usage: '&{prefix}flip',
     description: 'flips a coin',
     async execute(message, args, bot, Discord, prefix) {
         let faces = ['Head', 'Tail'];

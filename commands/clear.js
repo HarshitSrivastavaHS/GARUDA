@@ -1,6 +1,7 @@
 module.exports = {
     name: 'clear',
     type: 'utility',
+    usage: '&{prefix}clear <Number of messages to be deleted>',
     description: 'deletes the given number of messages',
     async execute(message, args, bot, Discord, prefix) {
 
