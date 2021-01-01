@@ -5,7 +5,7 @@ module.exports = {
         const detembed = new Discord.MessageEmbed()
         .setColor("#D441EE")
         .setTitle("TheTronBot")
-        .setThumbnail(message.author.displayAvatarURL())
+        .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .addFields(
             { name: "Invite the bot", value: "https://bit.ly/TheTronBot" },
             { name: "Join the support Server" , value: "NA"}
