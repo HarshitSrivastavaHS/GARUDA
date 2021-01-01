@@ -201,6 +201,10 @@ bot.on("message", async (message) => {
   else if (command === 'suggest') {
     bot.commands.get('suggest').execute(message, args, bot, Discord, prefix);
   }
+  
+  else if (command === 'cat') {
+    bot.commands.get('cat').execute(message, args, bot, Discord, prefix);
+  }
 
 })
 
