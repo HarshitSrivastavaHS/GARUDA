@@ -14,7 +14,7 @@ module.exports = {
         .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .setDescription(msg)
-        .setColor("RANDOM")
+        .setColor("GREEN")
         .setTimestamp();
         user.send(embed);
         message.channel.send("Message sent successfully.");
