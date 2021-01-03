@@ -72,6 +72,12 @@ bot.prefixes = new Map();
 bot.suggestionChannel = new Map();
 bot.on("message", async (message) => {
 
+  if (message.author.bot) return;
+
+  if (message.channel.type === ("dm")) {
+    return;
+  }
+
   prefix = bot.prefixes.get(message.guild.id);
   if (!prefix) {
     await mongo().then(async (mongoose)=>{
@@ -92,13 +98,6 @@ bot.on("message", async (message) => {
         mongoose.connection.close()
       }
     })
-  }
-
-  if (message.author.bot) return;
-
-  if (message.channel.type === ("dm")) {
-    message.channel.send(`Hello ${message.author}!\nI do not accept commands in DM\nTo know my prefix in a server, just ping me and i will tell the prefix.`);
-    return;
   }
 
   if (message.mentions.members.has("777840690515279872")) {
@@ -204,6 +203,10 @@ bot.on("message", async (message) => {
   
   else if (command === 'cat') {
     bot.commands.get('cat').execute(message, args, bot, Discord, prefix);
+  }
+ 
+  else if (command === 'dm') {
+    bot.commands.get('dm').execute(message, args, bot, Discord, prefix);
   }
 
 })
