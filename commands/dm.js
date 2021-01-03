@@ -1,6 +1,7 @@
 module.exports = {
-    name: 'kick',
-    type: 'moderation',
+    name: 'dm',
+    type: 'fun',
+    usage: '&{prefix}dm <user @> <message here>',
     description: 'Kicks a user out of the server',
     async execute(message, args, bot, Discord, prefix) {
         if (args.length <= 1) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more info.`)
