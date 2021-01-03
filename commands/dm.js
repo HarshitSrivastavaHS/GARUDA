@@ -10,7 +10,12 @@ module.exports = {
         if (!user || !(args[0].match(mention_reg))) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more jnfo.`);
         const msg = args.slice(1).join(" ");
         if (!msg) return message.channel.send("Please enter the message to be sent.");
-        user.send(msg);
+        const embed = new Discord.MessageEmbed()
+        .setAuthor(message.author.username, message.author.displayAvatarURL())
+        .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
+        .setDescription(msg)
+        .setTimestamp();
+        user.send(embed);
         message.channel.send("Message sent successfully.");
         message.delete();
     }
