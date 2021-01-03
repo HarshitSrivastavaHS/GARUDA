@@ -11,9 +11,10 @@ module.exports = {
         const msg = args.slice(1).join(" ");
         if (!msg) return message.channel.send("Please enter the message to be sent.");
         const embed = new Discord.MessageEmbed()
-        .setAuthor(message.author.username, message.author.displayAvatarURL())
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .setDescription(msg)
+        .setColor("RANDOM")
         .setTimestamp();
         user.send(embed);
         message.channel.send("Message sent successfully.");
