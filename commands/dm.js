@@ -7,7 +7,7 @@ module.exports = {
         if (args.length <= 1) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more info.`)
         const user = message.mentions.users.first();
         const mention_reg = /<@!?(\d{17,19})>/g;
-        if (!user || args[0].match(mention_reg)) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more jnfo.`);
+        if (!user || !(args[0].match(mention_reg))) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more jnfo.`);
         const msg = args.slice(1).join(" ");
         if (!msg) return message.channel.send("Please enter the message to be sent.");
         user.send(msg);
