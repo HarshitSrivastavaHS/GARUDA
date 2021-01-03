@@ -6,6 +6,8 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         if (args.length <= 1) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more info.`)
         const user = message.mentions.users.first();
+        const ureg = /user/g;
+        message.channel.send(ureg.match(user));
         if (!user) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more jnfo.`);
         const msg = args.slice(1).join(" ");
         if (!msg) return message.channel.send("Please enter the message to be sent.");
