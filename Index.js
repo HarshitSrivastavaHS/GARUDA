@@ -205,6 +205,10 @@ bot.on("message", async (message) => {
   else if (command === 'cat') {
     bot.commands.get('cat').execute(message, args, bot, Discord, prefix);
   }
+ 
+  else if (command === 'dm') {
+    bot.commands.get('dm').execute(message, args, bot, Discord, prefix);
+  }
 
 })
 
