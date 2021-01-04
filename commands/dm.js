@@ -13,9 +13,8 @@ module.exports = {
         const msg = args.slice(1).join(" ");
         if (!msg) return message.channel.send("Please enter the message to be sent.");
         const mesg = await message.channel.send("Please wait");
-        let blockss = bot.blocks.get(user.id)?bot.blocks.get(user.id):[];
+        let blockss = bot.blocks.get(user.id)?bot.blocks.get(user.id):null;
         if (!blockss) {
-          console.log("Fetching from db")
           await mongo().then(async (mongoose)=>{
             try {
               const result = await blockedSchema.findOne({

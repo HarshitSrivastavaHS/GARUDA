@@ -13,7 +13,6 @@ module.exports = {
         if (blockss.includes(user.id)) return msg.edit("That user is already blocked")
         await mongo().then(async (mongoose)=>{
           try {
-            console.log("Fetching from db")
             const result = await blockedSchema.findOne({
                 _id: message.author.id
               })
