@@ -217,6 +217,7 @@ bot.on("message", async (message) => {
   }
 
   else if (command === 'dmblock') {
+    console.log("works")
     bot.commands.get('dmblock').execute(message, args, bot, Discord, prefix);
   }
 
