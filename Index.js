@@ -33,6 +33,9 @@ bot.on("ready", async () => {
     try {
       allDocuments = await giveawaySchema.find({})
     }
+    catch {
+      console.log("Error in giveaway continue")
+    }
     finally {
       mongoose.connection.close();
     }
@@ -68,6 +71,7 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
   });
 })
 
+bot.blocks = new Map();
 bot.prefixes = new Map();
 bot.suggestionChannel = new Map();
 bot.on("message", async (message) => {
@@ -93,6 +97,9 @@ bot.on("message", async (message) => {
           prefix = "%";
           bot.prefixes.set(message.guild.id, "%");
         }
+      }
+      catch {
+      console.log("Error in custom prefix")
       }
       finally {
         mongoose.connection.close()
@@ -209,7 +216,13 @@ bot.on("message", async (message) => {
     bot.commands.get('dm').execute(message, args, bot, Discord, prefix);
   }
 
+  else if (command === 'dmblock') {
+    console.log("works")
+    bot.commands.get('dmblock').execute(message, args, bot, Discord, prefix);
+  }
+
 })
 
 keepAlive();
+console.log("Logged In")
 bot.login(process.env.TOKEN);

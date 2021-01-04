@@ -1,8 +1,10 @@
+const mongo = require(`../mongo`);
+const blockedSchema = require(`../Schemas/blocked-schema`);
 module.exports = {
     name: 'dm',
     type: 'fun',
     usage: '&{prefix}dm <user @> <message here>',
-    description: 'Kicks a user out of the server',
+    description: 'dm someone using the bot.',
     async execute(message, args, bot, Discord, prefix) {
         if (args.length <= 1) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more info.`)
         const user = message.mentions.users.first();
@@ -10,6 +12,29 @@ module.exports = {
         if (!user || !(args[0].match(mention_reg))) return message.channel.send(`Invalid Syntax. ${prefix}help dm for more jnfo.`);
         const msg = args.slice(1).join(" ");
         if (!msg) return message.channel.send("Please enter the message to be sent.");
+        const mesg = await message.channel.send("Please wait");
+        let blockss = bot.blocks.get(user.id)?bot.blocks.get(user.id):[];
+        if (!blockss) {
+          console.log("Fetching from db")
+          await mongo().then(async (mongoose)=>{
+            try {
+              const result = await blockedSchema.findOne({
+                  _id: user.id
+                })
+              blockss = result!=null?result.blocks:null;
+            }
+            finally {
+              mongoose.connection.close();
+            }
+          })
+        }
+
+        if (blockss.includes(message.author.id)) { 
+          mesg.edit("You cannot send a message to that user using this bot. That user has blocked you.");
+          message.delete();
+          return
+        }
+
         const embed = new Discord.MessageEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
@@ -17,7 +42,8 @@ module.exports = {
         .setColor("GREEN")
         .setTimestamp();
         user.send(embed);
-        message.channel.send("Message sent successfully.");
+        mesg.edit("Message sent successfully.");
         message.delete();
+
     }
 }
