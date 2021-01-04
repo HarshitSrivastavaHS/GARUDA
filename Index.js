@@ -223,4 +223,5 @@ bot.on("message", async (message) => {
 })
 
 keepAlive();
+console.log("Logged In")
 bot.login(process.env.TOKEN);
