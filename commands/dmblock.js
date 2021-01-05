@@ -9,8 +9,10 @@ module.exports = {
         var user = message.mentions.users.first();
         if (!user) return message.channel.send(`Please mention the user.`);
         const msg = await message.channel.send("Please Wait...")
-        let blockss = bot.blocks.get(message.author.id)?bot.blocks.get(message.author.id):[];
-        if (blockss.includes(user.id)) return msg.edit("That user is already blocked")
+        let blockss = bot.blocks.get(message.author.id)?bot.blocks.get(message.author.id):null;
+        if (!blockss) {
+          if (blockss.includes(user.id)) return msg.edit("That user is already blocked")
+        }
         await mongo().then(async (mongoose)=>{
           try {
             const result = await blockedSchema.findOne({
