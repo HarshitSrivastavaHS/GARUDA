@@ -33,7 +33,7 @@ module.exports = {
             msg.edit("Something went wrong :(\nPlease try again.");
           }
           finally {
-            bot.blocks.set(message.author.id, [blockss]);
+            bot.blocks.set(message.author.id, blockss);
             mongoose.connection.close();
           }
         })

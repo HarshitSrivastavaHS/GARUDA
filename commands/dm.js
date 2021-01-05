@@ -14,6 +14,7 @@ module.exports = {
         if (!msg) return message.channel.send("Please enter the message to be sent.");
         const mesg = await message.channel.send("Please wait");
         let blockss = bot.blocks.get(user.id)?bot.blocks.get(user.id):null;
+        console.log(blockss)
         if (!blockss) {
           await mongo().then(async (mongoose)=>{
             try {
@@ -27,11 +28,14 @@ module.exports = {
             }
           })
         }
+        if (blockss!= null) {
+          bot.blocks.set(user.id, blockss);
 
-        if (blockss.includes(message.author.id)) { 
-          mesg.edit("You cannot send a message to that user using this bot. That user has blocked you.");
-          message.delete();
-          return
+          if (blockss.includes(message.author.id)) { 
+            mesg.edit("You cannot send a message to that user using this bot. That user has blocked you.");
+            message.delete();
+            return
+          }
         }
 
         const embed = new Discord.MessageEmbed()
