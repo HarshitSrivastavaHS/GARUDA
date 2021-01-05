@@ -33,9 +33,6 @@ bot.on("ready", async () => {
     try {
       allDocuments = await giveawaySchema.find({})
     }
-    catch {
-      console.log("Error in giveaway continue")
-    }
     finally {
       mongoose.connection.close();
     }
@@ -97,9 +94,6 @@ bot.on("message", async (message) => {
           prefix = "%";
           bot.prefixes.set(message.guild.id, "%");
         }
-      }
-      catch {
-      console.log("Error in custom prefix")
       }
       finally {
         mongoose.connection.close()
