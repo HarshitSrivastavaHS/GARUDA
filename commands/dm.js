@@ -42,9 +42,8 @@ module.exports = {
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .setDescription(msg)
         .setColor("GREEN")
-        .setTimestamp()
-        .setFooter(`Don't want to receive messages from a user using this bot? Block them using the %dmblock @user command`);
-        user.send(`Don't want to receive messages from a user using this bot? Block them using the %dmblock @user command`,embed);
+        .setTimestamp();
+        user.send("Use this command to block a user \n```%dmblock @mention```",embed);
         mesg.edit("Message sent successfully.");
         message.delete();
 
