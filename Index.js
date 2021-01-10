@@ -215,6 +215,11 @@ bot.on("message", async (message) => {
     bot.commands.get('dmblock').execute(message, args, bot, Discord, prefix);
   }
 
+  else if (command === 'dmunblock') {
+    console.log("works")
+    bot.commands.get('undmblock').execute(message, args, bot, Discord, prefix);
+  }
+
 })
 
 keepAlive();
