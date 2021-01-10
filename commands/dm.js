@@ -43,7 +43,7 @@ module.exports = {
         .setDescription(msg)
         .setColor("GREEN")
         .setTimestamp();
-        user.send("Don't want to receive messages from a user using this bot? Block them using this command.\n```%dmblock @mention```",embed);
+        user.send("**Don't want to receive messages from a user using this bot? Block them using this command.**\n`%dmblock @mention`",embed);
         mesg.edit("Message sent successfully.");
         message.delete();
 
