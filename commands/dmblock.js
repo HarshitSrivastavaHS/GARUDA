@@ -13,14 +13,13 @@ module.exports = {
         let blockss = bot.blocks.get(message.author.id)?bot.blocks.get(message.author.id):undefined;
         if (blockss) {
           if (blockss.includes(user.id)) return msg.edit("That user is already blocked")
-          console.log("SAD :(")
         }
         await mongo().then(async (mongoose)=>{
           try {
             const result = await blockedSchema.findOne({
                 _id: message.author.id
               })
-            blockss = result!=null?result.blocks:null;
+            blockss = result!=null?result.blocks:[];
             if (blockss.includes(user.id)) return msg.edit("That user is already blocked");
             blockss[blockss.length] = user.id;
             await blockedSchema.findOneAndUpdate({
