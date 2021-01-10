@@ -10,9 +10,10 @@ module.exports = {
         if (!user) return message.channel.send(`Please mention the user.`);
         const msg = await message.channel.send("Please Wait...");
 
-        let blockss = bot.blocks.get(message.author.id)?bot.blocks.get(message.author.id):null;
+        let blockss = bot.blocks.get(message.author.id)?bot.blocks.get(message.author.id):undefined;
         if (blockss) {
           if (blockss.includes(user.id)) return msg.edit("That user is already blocked")
+          console.log("SAD :(")
         }
         await mongo().then(async (mongoose)=>{
           try {
