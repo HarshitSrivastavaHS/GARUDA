@@ -217,7 +217,7 @@ bot.on("message", async (message) => {
 
   else if (command === 'dmunblock') {
     console.log("works")
-    bot.commands.get('undmblock').execute(message, args, bot, Discord, prefix);
+    bot.commands.get('dmunblock').execute(message, args, bot, Discord, prefix);
   }
 
 })
