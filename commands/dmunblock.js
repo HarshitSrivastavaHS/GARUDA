@@ -24,7 +24,8 @@ module.exports = {
 
             if (!(blockss.includes(user.id))) return msg.edit("That user is not blocked");
             const index = blockss.indexOf(user.id);
-            blockss = blockss.splice(index,1);
+            blockss.splice(index,1);
+            console.log(blockss)
             await blockedSchema.findOneAndUpdate({
                 _id: message.author.id
               },{
