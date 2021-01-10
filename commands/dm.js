@@ -14,7 +14,6 @@ module.exports = {
         if (!msg) return message.channel.send("Please enter the message to be sent.");
         const mesg = await message.channel.send("Please wait");
         let blockss = bot.blocks.get(user.id)?bot.blocks.get(user.id):null;
-        console.log(blockss)
         if (!blockss) {
           await mongo().then(async (mongoose)=>{
             try {

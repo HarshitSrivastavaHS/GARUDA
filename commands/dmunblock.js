@@ -25,7 +25,6 @@ module.exports = {
             if (!(blockss.includes(user.id))) return msg.edit("That user is not blocked");
             const index = blockss.indexOf(user.id);
             blockss.splice(index,1);
-            console.log(blockss)
             await blockedSchema.findOneAndUpdate({
                 _id: message.author.id
               },{
@@ -35,6 +34,9 @@ module.exports = {
                 upsert: true
               })
               msg.edit(`Successfully unblocked ${user.username}`)
+          }
+          catch {
+            msg.edit(`Something went wrong. Please try again.`);
           }
           finally {
             bot.blocks.set(message.author.id, blockss);
