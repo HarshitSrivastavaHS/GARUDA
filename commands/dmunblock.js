@@ -12,7 +12,7 @@ module.exports = {
 
         let blockss = bot.blocks.get(message.author.id)?bot.blocks.get(message.author.id):undefined;
         if (blockss) {
-          if ((blockss.includes(user.id)) return msg.edit("That user is not blocked");
+          if (!(blockss.includes(user.id))) return msg.edit("That user is not blocked");
         }
         await mongo().then(async (mongoose)=>{
           try {
@@ -22,7 +22,7 @@ module.exports = {
 
             blockss = result!=null?result.blocks:[];
 
-            if (!(blockss.includes(user.id)) return msg.edit("That user is not blocked");
+            if (!(blockss.includes(user.id))) return msg.edit("That user is not blocked");
             const index = blockss.indexOf(user.id);
             blockss = blockss.splice(index,1);
             await blockedSchema.findOneAndUpdate({
