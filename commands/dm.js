@@ -43,7 +43,7 @@ module.exports = {
         .setDescription(msg)
         .setColor("GREEN")
         .setTimestamp()
-        .setFooter("Try %dmblock @user to block that user.");
+        .setFooter("Do %dmblock @user to block that user.");
         user.send(embed);
         mesg.edit("Message sent successfully.");
         message.delete();
