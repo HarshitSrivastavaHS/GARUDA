@@ -7,7 +7,7 @@ module.exports = {
         .setTitle("GARUDA")
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .addFields(
-            { name: "Invite the bot", value: "https://bit.ly/TheTronBot" },
+            { name: "Invite the bot", value: "https://bit.ly/GARUDA_bot" },
             { name: "Join the support Server" , value: "NA"}
         )
         .setTimestamp()
