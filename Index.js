@@ -181,6 +181,9 @@ bot.on('message', async message => {
   else if (command === 'banner') {
 		bot.commands.get('banner').execute(message, args, bot, Discord, prefix);
 	}
+  else if (command === 'invite') {
+		bot.commands.get('invite').execute(message, args, bot, Discord, prefix);
+	}
 });
 
 keepAlive();
