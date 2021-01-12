@@ -6,6 +6,6 @@ module.exports = {
     description: 'types that text in banner form',
     async execute(message, args, bot, Discord, prefix) {
       if (args.length==0) return message.channel.send("Please enter the text.");
-      message.channel.send(await figlet(args.join(" ")), {code : true})
+      message.channel.send(await figlet(args.join("\n")), {code : true})
     }
 }
