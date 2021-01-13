@@ -14,6 +14,7 @@ module.exports = {
             message.channel.send("<@"+message.member+"> You don't have the required permissions.");
             return;
         }
+        if (!message.guild.me.permissions.has("MANAGE_MESSAGES")) return message.channel.send("I don't have the required permissions.");
         var num = parseInt(args[0]);
         if (num<=75) {
             message.channel.bulkDelete(num+1, true);
