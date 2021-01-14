@@ -187,6 +187,9 @@ bot.on('message', async message => {
   else if (command === 'afk') {
 		bot.commands.get('afk').execute(message, args, bot, Discord, prefix);
 	}
+  else if (command === 'fasttype') {
+		bot.commands.get('fasttype').execute(message, args, bot, Discord, prefix);
+	}
 });
 
 keepAlive();
