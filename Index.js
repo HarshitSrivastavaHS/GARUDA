@@ -190,6 +190,9 @@ bot.on('message', async message => {
   else if (command === 'fasttype') {
 		bot.commands.get('fasttype').execute(message, args, bot, Discord, prefix);
 	}
+  else if (command === 'trigger') {
+		bot.commands.get('trigger').execute(message, args, bot, Discord, prefix);
+	}
 });
 
 keepAlive();

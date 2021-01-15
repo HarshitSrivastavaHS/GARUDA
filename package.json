@@ -12,6 +12,7 @@
   "author": "Harshit",
   "license": "ISC",
   "dependencies": {
+    "canvacord": "^5.0.8",
     "canvas": "^2.6.1",
     "discord.js": "^12.4.1",
     "express": "^4.17.1",

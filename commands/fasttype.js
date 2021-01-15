@@ -71,7 +71,7 @@ module.exports = {
       games[channel.id] = {
         message,
         stage: 'STARTING',
-        counter: 5,
+        counter: 3,
         remainingWords: [...words],
         points: {
           
