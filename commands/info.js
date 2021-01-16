@@ -8,7 +8,7 @@ module.exports = {
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .addFields(
             { name: "Invite the bot", value: "https://bit.ly/GARUDA-BOT" },
-            { name: "Join the support Server" , value: "NA"}
+            { name: "Join the support Server" , value: "https://discord.gg/sBe3jNSdqN"}
         )
         .setTimestamp()
         .setDescription("GARUDA is an multipurpose discord bot created by <@451693463742840842>")

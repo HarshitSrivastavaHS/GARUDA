@@ -8,6 +8,9 @@ module.exports = {
       .setColor("BLUE")
       .addFields({
         name: "Invite me", value: "https://www.bit.ly/GARUDA-BOT"
+      },
+      { 
+        name: "Join the support Server" , value: "https://discord.gg/sBe3jNSdqN"
       })
       .setThumbnail(bot.user.displayAvatarURL({size: 4096}));
       message.channel.send(em);
