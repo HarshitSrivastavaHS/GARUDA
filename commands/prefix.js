@@ -10,7 +10,7 @@ module.exports = {
         if (args.length<1) return message.channel.send("Invalid syntax. Do `%help prefix` for more info.");
         
         await mongo().then(async mongoose =>{
-            try {
+            
                 await prefixSchema.findOneAndUpdate({
                     _id: message.guild.id
                 },{
@@ -19,10 +19,7 @@ module.exports = {
                 },{
                     upsert: true
                 })
-            }
-            finally {
-                mongoose.connection.close();
-            }
+            
         })
         bot.prefixes.set(message.guild.id, 
           args[0]

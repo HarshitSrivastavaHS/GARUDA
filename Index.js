@@ -1,10 +1,16 @@
 const Discord = require('discord.js');
 const keepAlive = require('./server.js');
 
-const bot = new Discord.Client();
+const bot = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
+
 const mongo = require(`./mongo`);
 const prefixSchema = require(`./Schemas/prefix-schema`);
+const welcomeSchema = require(`./Schemas/welcome-Schema`);
 const giveawaySchema = require('./Schemas/giveaway-schema.js');
+const blockedSchema = require(`./Schemas/blocked-schema`);
+const suggestionSchema = require(`./Schemas/suggestion-schema`);
+const welcomeJS = require(`./util/welcome`);
+const Canvas = require("canvas");
 
 let prefix;
 
@@ -22,6 +28,25 @@ for (const file of commandFiles) {
 	bot.commands.set(command.name, command);
 }
 
+bot.welcome = new Map();
+const loadWelcome = async ()=>{
+	const results = await welcomeSchema.find();
+  for (const result of results){
+    bot.welcome.set(result._id, {
+            chID: result.chID,
+            welMSG: result.welMSG 
+          });
+  }
+}
+loadWelcome()
+
+bot.on("guildMemberAdd", async (member) => {
+  let wc = bot.welcome.get(member.guild.id);
+  if (!wc) return;
+  const welcomeCH = member.guild.channels.cache.get(wc.chID) || member.guild.fetch(wc.chID);
+  welcomeJS.execute(member, welcomeCH, Discord);
+})
+
 bot.on('ready', async () => {
 	console.log('I am Online!');
 	bot.user.setPresence({
@@ -33,11 +58,8 @@ bot.on('ready', async () => {
 	const mongo = await require(`./mongo`);
 	const giveawaySchema = require('./Schemas/giveaway-schema.js');
 	await mongo().then(async mongoose => {
-		try {
 			allDocuments = await giveawaySchema.find({});
-		} finally {
-			mongoose.connection.close();
-		}
+
 	});
 	if (allDocuments.length < 1) return;
 
@@ -82,8 +104,30 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 });
 
 bot.blocks = new Map();
+const loadBlock = async ()=>{
+	const results = await blockedSchema.find();
+  for (const result of results){
+    bot.blocks.set(result._id, result.blocks);
+  }
+}
+loadBlock()
 bot.prefixes = new Map();
+const loadPrefix = async ()=>{
+	const results = await prefixSchema.find();
+  for (const result of results){
+    bot.prefixes.set(result._id, result.prefix);
+  }
+}
+loadPrefix()
 bot.suggestionChannel = new Map();
+const loadSuggestion = async ()=>{
+	const results = await suggestionSchema.find();
+  for (const result of results){
+    bot.suggestionChannel.set(result._id, result.channel_Id);
+  }
+}
+loadSuggestion()
+
 bot.on('message', async message => {
 	if (message.author.bot) return;
 
@@ -93,22 +137,8 @@ bot.on('message', async message => {
 
 	prefix = bot.prefixes.get(message.guild.id);
 	if (!prefix) {
-		await mongo().then(async mongoose => {
-			try {
-				const result = prefixSchema.findOne({
-					_id: message.guild.id
-				});
-				prefix = result != null ? result.prefix : null;
-				if (prefix) {
-					bot.prefixes.set(message.guild.id, prefix);
-				} else {
-					prefix = '%';
-					bot.prefixes.set(message.guild.id, '%');
-				}
-			} finally {
-				mongoose.connection.close();
-			}
-		});
+    bot.prefixes.set(message.guild.id, "%");
+    prefix = "%";
 	}
 
 	if (message.mentions.members.has('777840690515279872')) {
@@ -120,79 +150,8 @@ bot.on('message', async message => {
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
-	if (command === 'ping') {
-		bot.commands.get('ping').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'info') {
-		bot.commands.get('info').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'repeat') {
-		bot.commands.get('repeat').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'kick') {
-		bot.commands.get('kick').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'ban') {
-		bot.commands.get('ban').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'clear') {
-		bot.commands.get('clear').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'help') {
-		bot.commands.get('help').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'country') {
-		bot.commands.get('country').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'covid') {
-		bot.commands.get('covid').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'avatar') {
-		bot.commands.get('avatar').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'flip') {
-		bot.commands.get('flip').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'snipe') {
-		bot.commands.get('snipe').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'editsnipe') {
-		bot.commands.get('editsnipe').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'giveaway') {
-		bot.commands.get('giveaway').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'poll') {
-		bot.commands.get('poll').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'fuse') {
-		bot.commands.get('fuse').execute(message, args, bot, Discord, prefix);
-	} else if (command === '8ball') {
-		bot.commands.get('8ball').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'add') {
-		bot.commands.get('add').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'sub') {
-		bot.commands.get('sub').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'multi') {
-		bot.commands.get('multi').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'prefix') {
-		bot.commands.get('prefix').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'setsuggestion') {
-		bot.commands
-			.get('setsuggestion')
-			.execute(message, args, bot, Discord, prefix);
-	} else if (command === 'suggest') {
-		bot.commands.get('suggest').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'cat') {
-		bot.commands.get('cat').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'dm') {
-		bot.commands.get('dm').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'dmblock') {
-		console.log('works');
-		bot.commands.get('dmblock').execute(message, args, bot, Discord, prefix);
-	} else if (command === 'dmunblock') {
-		bot.commands.get('dmunblock').execute(message, args, bot, Discord, prefix);
-	}
-  else if (command === 'banner') {
-		bot.commands.get('banner').execute(message, args, bot, Discord, prefix);
-	}
-  else if (command === 'invite') {
-		bot.commands.get('invite').execute(message, args, bot, Discord, prefix);
-	}
-  else if (command === 'afk') {
-		bot.commands.get('afk').execute(message, args, bot, Discord, prefix);
-	}
-  else if (command === 'fasttype') {
-		bot.commands.get('fasttype').execute(message, args, bot, Discord, prefix);
-	}
-  else if (command === 'trigger') {
-		bot.commands.get('trigger').execute(message, args, bot, Discord, prefix);
-	}
+  if (!bot.commands.has(command)) return;
+  bot.commands.get(command).execute(message, args, bot, Discord, prefix);
 });
 
 keepAlive();

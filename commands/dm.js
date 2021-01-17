@@ -16,15 +16,12 @@ module.exports = {
         let blockss = bot.blocks.get(user.id)?bot.blocks.get(user.id):null;
         if (!blockss) {
           await mongo().then(async (mongoose)=>{
-            try {
+            
               const result = await blockedSchema.findOne({
                   _id: user.id
                 })
               blockss = result!=null?result.blocks:null;
-            }
-            finally {
-              mongoose.connection.close();
-            }
+            
           })
         }
         if (blockss!= null) {

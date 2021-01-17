@@ -12,11 +12,7 @@ module.exports = {
         const x = args[0].match(CHANNELS_PATTERN);
         if (!x) return message.channel.send(`Invalid syntax. Do \`${prefix}help setsuggestion\` for more info.`);
         let channel_id = (args[0].replace(/<#/g,"")).replace(/>/g,"");
-        let msg = await message.channel.send(`Setting <#${channel_id}> as the suggestion channel.`);
-        
-        await mongo().then(async (mongoose)=>{
-          try {
-            await suggestionSchema.findOneAndUpdate({
+        let msg = await message.channel.send(`Setting <#${channel_id}> as the suggestion channel.`);await suggestionSchema.findOneAndUpdate({
                     _id: message.guild.id
                 },{
                     _id: message.guild.id,
@@ -24,12 +20,8 @@ module.exports = {
                 },{
                     upsert: true
                 })
-          }
-          finally {
-            mongoose.connection.close();
-          }
           msg.edit(`Successfully set the <#${channel_id}> as the suggestion channel.`)
           bot.suggestionChannel.set(message.guild.id, channel_id);
-        })
+      
     }
 }
