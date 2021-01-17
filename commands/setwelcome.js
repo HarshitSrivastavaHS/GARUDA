@@ -13,7 +13,6 @@ module.exports = {
         const x = args[0].match(CHANNELS_PATTERN);
         if (!x) return message.channel.send(`Invalid syntax. Do \`${prefix}help setwelcome\` for more info.`);
         let channel_id = (args[0].replace(/<#/g,"")).replace(/>/g,"");
-        let welcomeMessage = args.slice(1).join(" ");
         const msg = await message.channel.send(`Setting <#${channel_id}> as the welcome channel.`);
         await mongo().then(async (mongoose)=>{
           
