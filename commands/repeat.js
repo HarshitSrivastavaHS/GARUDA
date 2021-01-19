@@ -1,6 +1,7 @@
 module.exports = {
     name: 'repeat',
     description: 'repeats whatever the user wants it to repeat',
+    usage: "&{prefix}repeat <text>",
     async execute(message, args, bot, Discord, prefix) {
         if (message.content.indexOf(' ') === -1) {
             message.reply("Invalid Syntax! ```\n%repeat <Text to be repeated by the bot>\n```");

@@ -3,7 +3,7 @@ const prefixSchema = require(`../Schemas/prefix-schema`);
 module.exports = {
     name: 'prefix',
     type: 'utility',
-    usage: '%prefix <new prefix>',
+    usage: '&{prefix}prefix <new prefix>',
     description: 'changes the prefix of the bot',
     async execute(message, args, bot, Discord, prefix) {
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can run this.")

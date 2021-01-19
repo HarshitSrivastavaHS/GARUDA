@@ -18,7 +18,7 @@ module.exports = {
            helpembed.addFields({name:`Name`, value: `${command.name}`},{name:`Description`, value: `${command.description}`},{name:`Usage`, value: `${command.usage?command.usage.replace(PREFIX_REG, prefix):"not added"}`});
         }
         else {
-            let categories = ["moderation", "game", "fun", "maths", "info", "utility"]
+            let categories = ["moderation", "game", "fun", "maths", "info", "utility", "admin"]
             let totalFiles = commandFiles.length;
             for (let cat in categories) {
                 let str = "";

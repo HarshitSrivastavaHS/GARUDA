@@ -4,7 +4,8 @@ const suggestionSchema = require(`../Schemas/suggestion-schema`);
 module.exports = {
     name: 'setsuggestion',
     description: 'sets the channel where suggestions will be sent',
-    usage: `%setsuggestion <suggestion channel>`,
+    type: "admin",
+    usage: `&{prefix}setsuggestion <suggestion channel>`,
     async execute(message, args, bot, Discord, prefix) {
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can use this command.");
         if (args<1) return message.channel.send(`Invalid syntax. Do \`${prefix}help setsuggestion\` for more info.`)

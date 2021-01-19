@@ -2,7 +2,7 @@ module.exports = {
     name: 'multi',
     description: 'multiplies numbers',
     type: 'maths',
-    usage: '%multi <num1> <num2> <num3> ... <num-n>',
+    usage: '&{prefix}multi <num1> <num2> <num3> ... <num-n>',
     async execute(message, args, bot, Discord, prefix) {
         if (args.length <= 1) return message.channel.send("Please enter numbers to be added.");
         let mul = 1;

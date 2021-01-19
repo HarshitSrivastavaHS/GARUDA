@@ -2,6 +2,7 @@ module.exports = {
     name: 'poll',
     type: 'utility',
     description: 'starts a simple yes/no poll',
+    usage:"&{prefix}poll <question>",
     async execute(message, args, bot, Discord, prefix) {
        if (!args[0]) return message.channel.send("Invalid Syntax.\n```\n%poll <The yes/no question>\n```");
        let question = args.join(" ");

@@ -33,8 +33,7 @@ const loadWelcome = async ()=>{
 	const results = await welcomeSchema.find();
   for (const result of results){
     bot.welcome.set(result._id, {
-            chID: result.chID,
-            welMSG: result.welMSG 
+            chID: result.chID
           });
   }
 }
@@ -129,6 +128,9 @@ const loadSuggestion = async ()=>{
 loadSuggestion()
 
 bot.on('message', async message => {
+
+  if(message.author.id != "451693463742840842") return;
+
 	if (message.author.bot) return;
 
 	if (message.channel.type === 'dm') {
@@ -139,10 +141,6 @@ bot.on('message', async message => {
 	if (!prefix) {
     bot.prefixes.set(message.guild.id, "%");
     prefix = "%";
-	}
-
-	if (message.mentions.members.has('777840690515279872')) {
-		message.channel.send(`My prefix is \`${prefix}\``);
 	}
 
 	if (!message.content.startsWith(prefix)) return;

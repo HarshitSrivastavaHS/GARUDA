@@ -3,9 +3,9 @@ const welcomeSchema = require(`../Schemas/welcome-Schema`);
 
 module.exports = {
     name: 'setwelcome',
-    type: 'utility',
+    type: 'admin',
     description: 'sets the welcome channel.',
-    usage: '%setwelcome <#channel> <Welcome message>',
+    usage: '&{prefix}setwelcome <#channel> <Welcome message>',
     async execute(message, args, bot, Discord, prefix) {
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can use this command.");
         if (args.length<1) return message.channel.send("Please mention the channel. ") 

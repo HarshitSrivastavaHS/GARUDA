@@ -3,9 +3,9 @@ const welcomeSchema = require(`../Schemas/welcome-Schema`);
 
 module.exports = {
     name: 'disablewelcome',
-    type: 'utility',
+    type: 'admin',
     description: 'disables the welcome command.',
-    usage: '%disablewelcome',
+    usage: '&{prefix}disablewelcome',
     async execute(message, args, bot, Discord, prefix) {
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can use this command.");
         
