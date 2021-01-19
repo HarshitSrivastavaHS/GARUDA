@@ -52,6 +52,9 @@ module.exports = {
             {name: "Status", value: `:x: Declined ${args.length>0?"| "+args.join(" "):""}`}
           );
         }
+        message.channel.send("Done!").then((ms) =>{
+          setTimeout({message.delete(); ms.delete();}, 2000)
+        })
         msg.edit(embed);
     }
 }
