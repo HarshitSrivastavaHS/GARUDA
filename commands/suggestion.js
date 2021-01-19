@@ -53,7 +53,7 @@ module.exports = {
           );
         }
         message.channel.send("Done!").then((ms) =>{
-          setTimeout({message.delete(); ms.delete();}, 2000)
+          setTimeout(()=>{message.delete(); ms.delete();}, 2000)
         })
         msg.edit(embed);
     }
