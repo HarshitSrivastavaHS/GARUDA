@@ -129,8 +129,6 @@ loadSuggestion()
 
 bot.on('message', async message => {
 
-  if(message.author.id != "451693463742840842") return;
-
 	if (message.author.bot) return;
 
 	if (message.channel.type === 'dm') {
