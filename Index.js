@@ -10,6 +10,7 @@ const giveawaySchema = require('./Schemas/giveaway-schema.js');
 const blockedSchema = require(`./Schemas/blocked-schema`);
 const suggestionSchema = require(`./Schemas/suggestion-schema`);
 const welcomeJS = require(`./util/welcome`);
+const leaveSchema = require(`./Schemas/leave-schema`);
 const Canvas = require("canvas");
 
 let prefix;
@@ -44,6 +45,22 @@ bot.on("guildMemberAdd", async (member) => {
   if (!wc) return;
   const welcomeCH = member.guild.channels.cache.get(wc.chID) || member.guild.fetch(wc.chID);
   welcomeJS.execute(member, welcomeCH, Discord);
+})
+
+bot.leaves = new Map();
+const loadBye = async ()=>{
+	const results = await leaveSchema.find();
+  for (const result of results){
+    bot.leaves.set(result._id, result.chID);
+  }
+}
+loadBye()
+
+bot.on("guildMemberRemove", async (member) => {
+  let gc = bot.leaves.get(member.guild.id);
+  if (!gc) return;
+  const byeCH = member.guild.channels.cache.get(gc) || member.guild.fetch(gc);
+  byeCH.send(`${member.user.username}#${member.user.discriminator} just left the server.`);
 })
 
 bot.on('ready', async () => {
