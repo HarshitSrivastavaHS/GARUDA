@@ -1,23 +1,23 @@
 const mongo = require(`../mongo`);
-const welcomeSchema = require(`../Schemas/welcome-Schema`);
+const leaveSchema = require(`../Schemas/leave-schema`);
 
 module.exports = {
-    name: 'disablewelcome',
+    name: 'disableleave',
     type: 'admin',
-    description: 'disables the welcome command.',
-    usage: '&{prefix}disablewelcome',
+    description: 'disables the leave command.',
+    usage: '&{prefix}disableleave',
     async execute(message, args, bot, Discord, prefix) {
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can use this command.");
         
-        const msg = await message.channel.send(`Disabling the welcome message.`);
+        const msg = await message.channel.send(`Disabling the leave message.`);
         await mongo().then(async (mongoose)=>{
           
-            await welcomeSchema.findOneAndDelete({
+            await leaveSchema.findOneAndDelete({
                     _id: message.guild.id
                 })
           
-          msg.edit(`Successfully disabled the welcome message.`);
-          bot.welcome.delete(message.guild.id);
+          msg.edit(`Successfully disabled the leave message.`);
+          bot.leaves.delete(message.guild.id);
         })
     }
 }
