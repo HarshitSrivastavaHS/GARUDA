@@ -8,9 +8,9 @@ module.exports = {
        var icon = message.guild.iconURL() 
     const embed = new Discord.MessageEmbed()
    .setColor("#FFC0CB")
-  .setThumbnail("${icon}")
+  .setThumbnail(`${icon}`)
  .setTitle("🏓Pong.")
-.setDescription("Your ping is ${ping} ms\n Latency is ${bot.ws.ping}")
+.setDescription(`Your ping is ${ping} ms\n Latency is ${bot.ws.ping}`)
 message.channel.send(embed)
     }
 }
