@@ -10,7 +10,7 @@ module.exports = {
    .setColor("#FFC0CB")
   .setThumbnail(`${icon}`)
  .setTitle("🏓Pong.")
-.setDescription(`Your ping is ${ping} ms\n Latency is ${bot.ws.ping}`)
+.setDescription(`Your ping is ${ping} ms\n Latency is ${bot.ws.ping} ms`)
 message.channel.send(embed)
     }
 }
