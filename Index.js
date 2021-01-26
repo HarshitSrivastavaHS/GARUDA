@@ -7,7 +7,6 @@ const mongo = require(`./mongo`);
 const prefixSchema = require(`./Schemas/prefix-schema`);
 const welcomeSchema = require(`./Schemas/welcome-Schema`);
 const giveawaySchema = require('./Schemas/giveaway-schema.js');
-const blockedSchema = require(`./Schemas/blocked-schema`);
 const suggestionSchema = require(`./Schemas/suggestion-schema`);
 const welcomeJS = require(`./util/welcome`);
 const leaveSchema = require(`./Schemas/leave-schema`);
@@ -119,14 +118,6 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 	});
 });
 
-bot.blocks = new Map();
-const loadBlock = async ()=>{
-	const results = await blockedSchema.find();
-  for (const result of results){
-    bot.blocks.set(result._id, result.blocks);
-  }
-}
-loadBlock()
 bot.prefixes = new Map();
 const loadPrefix = async ()=>{
 	const results = await prefixSchema.find();
