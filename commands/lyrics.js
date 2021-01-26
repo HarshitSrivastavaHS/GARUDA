@@ -2,10 +2,11 @@ const fetch = require('node-fetch');
 const { Util, MessageEmbed } = require ('discord.js');
 module.exports = {
   name: 'lyrics', 
-  type: 'info',
+  type: 'utility',
   usage: '&{prefix}lyrics <Song name>', 
   description:'Retrieves the lyrics of the given song name',
   async execute(message,args, bot, Discord,prefix) {
+    if (args.length<1) return message.channel.send("**Please enter the name of the song.**")
     message.channel.startTyping();
     const song = await fetch(`https://some-random-api.ml/lyrics?title=${args.join(" ")}`).then(r=> r.json());
     if (!song ||!song.lyrics){
