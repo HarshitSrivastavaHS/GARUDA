@@ -65,9 +65,9 @@ bot.on("guildMemberRemove", async (member) => {
 bot.on('ready', async () => {
 	console.log('I am Online!');
 	bot.user.setPresence({
-		activity: { name: `${bot.guilds.cache.size} servers`, type: 'WATCHING' },
-		status: 'dnd'
-	});
+        activity: { name: `${bot.guilds.cache.size} servers and ${bot.users.cache.size} users`, type: 'WATCHING' },
+        status: 'ONLINE'
+    });
 	let allDocuments;
 	const give = require('./functions/giveaway.js');
 	const mongo = await require(`./mongo`);
@@ -135,6 +135,18 @@ const loadSuggestion = async ()=>{
 }
 loadSuggestion()
 
+const devIds =  {
+    "451693463742840842":true,
+    "699972833094271046" :true
+};
+
+function clean(text) {
+  if (typeof(text) === "string")
+    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+  else
+      return text;
+}
+
 bot.on('message', async message => {
 
 	if (message.author.bot) return;
@@ -153,6 +165,24 @@ bot.on('message', async message => {
 
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
+
+  if (message.content.startsWith('%' + "eval")) {
+    if(!devIds[message.author.id]) return;
+    const text = /process.env/i;
+    const isMatch = args.some(arg => arg.match(text));
+    if (isMatch) return message.channel.send("Code with process.env won't work :)")
+    try {
+      const code = args.join(" ");
+      let evaled = eval(code);
+
+      if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
+
+      return message.channel.send(clean(evaled), {code:"xl", split: true });
+    } catch (err) {
+      return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    }
+  }
 
   if (!bot.commands.has(command)) return;
   bot.commands.get(command).execute(message, args, bot, Discord, prefix);
