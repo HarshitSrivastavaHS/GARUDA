@@ -60,7 +60,7 @@ module.exports = {
           await mongo().then(async (mongoose)=>{
            
               await giveawaySchema.deleteOne({
-                _id: message.id
+                _id: msg.id
               })
             
   
