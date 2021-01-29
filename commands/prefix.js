@@ -3,14 +3,14 @@ const prefixSchema = require(`../Schemas/prefix-schema`);
 module.exports = {
     name: 'prefix',
     type: 'utility',
-    usage: '%prefix <new prefix>',
+    usage: '&{prefix}prefix <new prefix>',
     description: 'changes the prefix of the bot',
     async execute(message, args, bot, Discord, prefix) {
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can run this.")
         if (args.length<1) return message.channel.send("Invalid syntax. Do `%help prefix` for more info.");
         
         await mongo().then(async mongoose =>{
-            try {
+            
                 await prefixSchema.findOneAndUpdate({
                     _id: message.guild.id
                 },{
@@ -19,10 +19,7 @@ module.exports = {
                 },{
                     upsert: true
                 })
-            }
-            finally {
-                mongoose.connection.close();
-            }
+            
         })
         bot.prefixes.set(message.guild.id, 
           args[0]

@@ -1,10 +1,16 @@
-const Discord = require("discord.js");
-const keepAlive = require("./server.js");
+const Discord = require('discord.js');
+const keepAlive = require('./server.js');
 
-const bot = new Discord.Client();
+const bot = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
+
 const mongo = require(`./mongo`);
 const prefixSchema = require(`./Schemas/prefix-schema`);
-const giveawaySchema = require("./Schemas/giveaway-schema.js")
+const welcomeSchema = require(`./Schemas/welcome-Schema`);
+const giveawaySchema = require('./Schemas/giveaway-schema.js');
+const suggestionSchema = require(`./Schemas/suggestion-schema`);
+const welcomeJS = require(`./util/welcome`);
+const leaveSchema = require(`./Schemas/leave-schema`);
+const Canvas = require("canvas");
 
 let prefix;
 
@@ -12,217 +18,176 @@ const fs = require('fs');
 
 bot.commands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+const commandFiles = fs
+	.readdirSync('./commands/')
+	.filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
 
-  const command = require(`./commands/${file}`);
-
-  bot.commands.set(command.name, command);
-
+	bot.commands.set(command.name, command);
 }
 
-bot.on("ready", async () => {
-  console.log("I am Online!");
-  bot.user.setPresence({ activity: { name: `${bot.guilds.cache.size} servers`, type: "WATCHING" }, status: 'dnd' });
-  let allDocuments;
-  const give = require("./functions/giveaway.js")
-  const mongo = await require(`./mongo`);
-  const giveawaySchema = require("./Schemas/giveaway-schema.js")
-  await mongo().then(async (mongoose)=>{
-    try {
-      allDocuments = await giveawaySchema.find({})
-    }
-    catch {
-      console.log("Error in giveaway continue")
-    }
-    finally {
-      mongoose.connection.close();
-    }
-  })
-  if (allDocuments.length<1) return 
-
-  for (let x in allDocuments) {
-    give(bot, Discord, allDocuments[x]._id, allDocuments[x].endTime, allDocuments[x].prize, allDocuments[x].chID);
+bot.welcome = new Map();
+const loadWelcome = async ()=>{
+	const results = await welcomeSchema.find();
+  for (const result of results){
+    bot.welcome.set(result._id, {
+            chID: result.chID
+          });
   }
+}
+loadWelcome()
+
+bot.on("guildMemberAdd", async (member) => {
+  let wc = bot.welcome.get(member.guild.id);
+  if (!wc) return;
+  const welcomeCH = member.guild.channels.cache.get(wc.chID) || member.guild.fetch(wc.chID);
+  welcomeJS.execute(member, welcomeCH, Discord);
 })
+
+bot.leaves = new Map();
+const loadBye = async ()=>{
+	const results = await leaveSchema.find();
+  for (const result of results){
+    bot.leaves.set(result._id, result.chID);
+  }
+}
+loadBye()
+
+bot.on("guildMemberRemove", async (member) => {
+  let gc = bot.leaves.get(member.guild.id);
+  if (!gc) return;
+  const byeCH = member.guild.channels.cache.get(gc) || member.guild.fetch(gc);
+  byeCH.send(`${member.user.username}#${member.user.discriminator} just left the server.`);
+})
+
+bot.on('ready', async () => {
+	console.log('I am Online!');
+	bot.user.setPresence({
+        activity: { name: `${bot.guilds.cache.size} servers and ${bot.users.cache.size} users`, type: 'WATCHING' },
+        status: 'ONLINE'
+    });
+	let allDocuments;
+	const give = require('./functions/giveaway.js');
+	const mongo = await require(`./mongo`);
+	const giveawaySchema = require('./Schemas/giveaway-schema.js');
+	await mongo().then(async mongoose => {
+			allDocuments = await giveawaySchema.find({});
+
+	});
+	if (allDocuments.length < 1) return;
+
+	for (let x in allDocuments) {
+		give(
+			bot,
+			Discord,
+			allDocuments[x]._id,
+			allDocuments[x].endTime,
+			allDocuments[x].prize,
+			allDocuments[x].chID
+		);
+	}
+});
 
 bot.snipes = new Map();
 
-bot.on("messageDelete", (message, channel) => {
-  if (message.author.bot) return;
-  bot.snipes.set(message.channel.id, {
-    content: message.content,
-    author: message.author.tag,
-    avatar: message.author.displayAvatarURL(),
-    image: message.attachments.first() ? message.attachments.first().proxyURL : null
-  });
-})
+bot.on('messageDelete', (message, channel) => {
+	if (message.author.bot) return;
+	bot.snipes.set(message.channel.id, {
+		content: message.content,
+		author: message.author.tag,
+		avatar: message.author.displayAvatarURL(),
+		image: message.attachments.first()
+			? message.attachments.first().proxyURL
+			: null
+	});
+});
 
 bot.editSnipes = new Map();
-bot.on("messageUpdate", (oldMessage, newMessage) => {
-  if (oldMessage.author.bot) return;
-  bot.editSnipes.set(oldMessage.channel.id, {
-    oldContent: oldMessage.content,
-    newContent: newMessage.content,
-    author: oldMessage.author.tag,
-    avatar: oldMessage.author.displayAvatarURL(),
-    image: oldMessage.attachments.first() ? oldMessage.attachments.first().proxyURL : null
-  });
-})
+bot.on('messageUpdate', (oldMessage, newMessage) => {
+	if (oldMessage.author.bot) return;
+	bot.editSnipes.set(oldMessage.channel.id, {
+		oldContent: oldMessage.content,
+		newContent: newMessage.content,
+		author: oldMessage.author.tag,
+		avatar: oldMessage.author.displayAvatarURL(),
+		image: oldMessage.attachments.first()
+			? oldMessage.attachments.first().proxyURL
+			: null
+	});
+});
 
-bot.blocks = new Map();
 bot.prefixes = new Map();
+const loadPrefix = async ()=>{
+	const results = await prefixSchema.find();
+  for (const result of results){
+    bot.prefixes.set(result._id, result.prefix);
+  }
+}
+loadPrefix()
 bot.suggestionChannel = new Map();
-bot.on("message", async (message) => {
+const loadSuggestion = async ()=>{
+	const results = await suggestionSchema.find();
+  for (const result of results){
+    bot.suggestionChannel.set(result._id, result.channel_Id);
+  }
+}
+loadSuggestion()
 
-  if (message.author.bot) return;
+const devIds =  {
+    "451693463742840842":true,
+    "699972833094271046" :true
+};
 
-  if (message.channel.type === ("dm")) {
-    return;
+function clean(text) {
+  if (typeof(text) === "string")
+    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+  else
+      return text;
+}
+
+bot.on('message', async message => {
+
+	if (message.author.bot) return;
+
+	if (message.channel.type === 'dm') {
+		return;
+	}
+
+	prefix = bot.prefixes.get(message.guild.id);
+	if (!prefix) {
+    bot.prefixes.set(message.guild.id, "%");
+    prefix = "%";
+	}
+
+	if (!message.content.startsWith(prefix)) return;
+
+	const args = message.content.slice(prefix.length).split(/ +/);
+	const command = args.shift().toLowerCase();
+
+  if (message.content.startsWith('%' + "eval")) {
+    if(!devIds[message.author.id]) return;
+    const text = /process.env/i;
+    const isMatch = args.some(arg => arg.match(text));
+    if (isMatch) return message.channel.send("Code with process.env won't work :)")
+    try {
+      const code = args.join(" ");
+      let evaled = eval(code);
+
+      if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
+
+      return message.channel.send(clean(evaled), {code:"xl", split: true });
+    } catch (err) {
+      return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    }
   }
 
-  prefix = bot.prefixes.get(message.guild.id);
-  if (!prefix) {
-    await mongo().then(async (mongoose)=>{
-      try {
-        const result = prefixSchema.findOne({
-          _id: message.guild.id
-        })
-        prefix = result!=null?result.prefix:null;
-        if (prefix){
-          bot.prefixes.set(message.guild.id, prefix);
-        }
-        else {
-          prefix = "%";
-          bot.prefixes.set(message.guild.id, "%");
-        }
-      }
-      catch {
-      console.log("Error in custom prefix")
-      }
-      finally {
-        mongoose.connection.close()
-      }
-    })
-  }
-
-  if (message.mentions.members.has("777840690515279872")) {
-    message.channel.send(`My prefix is \`${prefix}\``);
-  }
-
-  if (!message.content.startsWith(prefix)) return;
-
-  const args = message.content.slice(prefix.length).split(/ +/);
-  const command = args.shift().toLowerCase();
-
-  if (command === 'ping') {
-    bot.commands.get('ping').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'info') {
-    bot.commands.get('info').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'repeat') {
-    bot.commands.get('repeat').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'kick') {
-    bot.commands.get('kick').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'ban') {
-    bot.commands.get('ban').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'clear') {
-    bot.commands.get('clear').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'help') {
-    bot.commands.get('help').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'country') {
-    bot.commands.get('country').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'covid') {
-    bot.commands.get('covid').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'avatar') {
-    bot.commands.get('avatar').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'flip') {
-    bot.commands.get('flip').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'snipe') {
-    bot.commands.get('snipe').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'editsnipe') {
-    bot.commands.get('editsnipe').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'giveaway') {
-    bot.commands.get('giveaway').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'poll') {
-    bot.commands.get('poll').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'fuse') {
-    bot.commands.get('fuse').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === '8ball') {
-    bot.commands.get('8ball').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'add') {
-    bot.commands.get('add').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'sub') {
-    bot.commands.get('sub').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'multi') {
-    bot.commands.get('multi').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'prefix') {
-    bot.commands.get('prefix').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'setsuggestion') {
-    bot.commands.get('setsuggestion').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'suggest') {
-    bot.commands.get('suggest').execute(message, args, bot, Discord, prefix);
-  }
-  
-  else if (command === 'cat') {
-    bot.commands.get('cat').execute(message, args, bot, Discord, prefix);
-  }
- 
-  else if (command === 'dm') {
-    bot.commands.get('dm').execute(message, args, bot, Discord, prefix);
-  }
-
-  else if (command === 'dmblock') {
-    console.log("works")
-    bot.commands.get('dmblock').execute(message, args, bot, Discord, prefix);
-  }
-
-})
+  if (!bot.commands.has(command)) return;
+  bot.commands.get(command).execute(message, args, bot, Discord, prefix);
+});
 
 keepAlive();
-console.log("Logged In")
+console.log("logged in")
 bot.login(process.env.TOKEN);

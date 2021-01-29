@@ -8,14 +8,9 @@ module.exports = async (bot, Discord, msg, time, prize, ch) => {
   }
   setTimeout(async ()=>{
     await mongo().then(async (mongoose)=>{
-      try {
-        await giveawaySchema.deleteOne({
-          _id: msg
-        })
-      }
-      finally {
-        mongoose.connection.close();
-      }
+      await giveawaySchema.deleteOne({
+        _id: msg
+      })
     })
     const giveawayChannel = await bot.channels.fetch(ch); 
     if (!giveawayChannel) return;   

@@ -44,7 +44,6 @@ module.exports = {
       let msg = await message.channel.send("**🎉Giveaway🎉**",giveawayEM);
       msg.react("🎉");
       await mongo().then(async (mongoose)=>{
-        try {
           await giveawaySchema.findOneAndUpdate({
             _id: msg.id
           },{
@@ -55,21 +54,16 @@ module.exports = {
           },{
             upsert: true
           })
-        }
-        finally {
-          mongoose.connection.close();
-        }
+        
       })
       setTimeout(async()=>{
           await mongo().then(async (mongoose)=>{
-            try {
+           
               await giveawaySchema.deleteOne({
-                _id: message.id
+                _id: msg.id
               })
-            }
-            finally {
-              mongoose.connection.close();
-            }
+            
+  
           })
           if (msg.deleted) return;
           if (msg.reactions.cache.get("🎉").count <= 1) {
