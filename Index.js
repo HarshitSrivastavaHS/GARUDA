@@ -189,5 +189,5 @@ bot.on('message', async message => {
 });
 
 keepAlive();
-console.log("logged in")
-bot.login(process.env.TOKEN);
+console.log("logged in");
+bot.login(process.env.TOKEN); 
