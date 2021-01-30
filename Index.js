@@ -161,11 +161,15 @@ bot.on('message', async message => {
     prefix = "%";
 	}
 
-	if (!message.content.startsWith(prefix)) return;
-
-	const args = message.content.slice(prefix.length).split(/ +/);
+	if (!message.content.startsWith(prefix)&&!message.content.startsWith("<@!777840690515279872> ")) return;
+  var args;
+  if (message.content.startsWith(prefix)) {
+    args = message.content.slice(prefix.length).split(/ +/);
+  }
+  else {
+    args = message.content.slice("<@!777840690515279872> ".length).split(/ +/);
+  }
 	const command = args.shift().toLowerCase();
-
   if (message.content.startsWith('%' + "eval")) {
     if(!devIds[message.author.id]) return;
     const text = /process.env/i;
