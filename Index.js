@@ -62,6 +62,13 @@ bot.on("guildMemberRemove", async (member) => {
   byeCH.send(`${member.user.username}#${member.user.discriminator} just left the server.`);
 })
 
+bot.on("guildCreate", function(guild){
+    bot.user.setPresence({
+        activity: { name: `${bot.guilds.cache.size} servers and ${bot.users.cache.size} users`, type: 'WATCHING' },
+        status: 'ONLINE'
+    });
+});
+
 bot.on('ready', async () => {
 	console.log('I am Online!');
 	bot.user.setPresence({
