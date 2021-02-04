@@ -69,6 +69,13 @@ bot.on("guildCreate", function(guild){
     });
 });
 
+bot.on("guildDelete", function(guild){
+    bot.user.setPresence({
+        activity: { name: `${bot.guilds.cache.size} servers and ${bot.users.cache.size} users`, type: 'WATCHING' },
+        status: 'ONLINE'
+    });
+});
+
 bot.on('ready', async () => {
 	console.log('I am Online!');
 	bot.user.setPresence({
