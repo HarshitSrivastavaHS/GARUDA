@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'fuse',
 	type: 'fun',
-	usage: "&{prefix}fuse <user's mention>",
+	usage: "&{prefix}fuse <user's mention>\n&{prefix}fuse <user's mention> <another user's mention>",
 	description: "fuses user's avatar with the mentioned user's avatar",
 	async execute(message, args, bot, Discord, prefix) {
 		const Canvas = require('canvas');
