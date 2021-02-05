@@ -40,10 +40,10 @@ module.exports = {
 		  ctx.drawImage(img1, 0, 0, canvas.width, canvas.height);
 		  attachment = new Discord.MessageAttachment(
 		  	canvas.toBuffer(),
-		  	`${message.author.username}${mention.username}.png`
+		  	`${message.author.id}${mention.id}.png`
 		  );
 
-   		   address = `${message.author.username}${mention.username}.png`;
+   		   address = `${message.author.id}${mention.id}.png`;
 
    		   string = `${message.author.username}'s and ${mention.username}'s Avatar were fused together.`;
       
@@ -61,9 +61,9 @@ module.exports = {
 		  ctx.drawImage(img1, 0, 0, canvas.width, canvas.height);
 		  attachment = new Discord.MessageAttachment(
 		  	canvas.toBuffer(),
-		  	`${mention.username}${user2.username}.png`
+		  	`${mention.id}${user2.id}.png`
 		  );
-    		  address = `${mention.username}${user2.username}.png`;
+    		  address = `${mention.id}${user2.id}.png`;
   		    string = `${mention.username}'s and ${user2.username}'s Avatar were fused together.`
       
  		   }
