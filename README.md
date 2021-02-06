@@ -57,5 +57,5 @@
     
 ##### For more info on the command, one can try %help \<command\>
 ##### More commands are added every week!
-##### [Invite The Bot Now!](https://bit.ly/GARUDA-BOT){:target="_blank"}
-##### [Join The Support Server!](https://discord.gg/sBe3jNSdqN){:target="_blank"}
+##### <a href="https://bit.ly/GARUDA-BOT" target="_blank">Invite The Bot Now!</a>
+##### <a href="https://discord.gg/sBe3jNSdqN" target="_blank">Join The Support Server!</a>
