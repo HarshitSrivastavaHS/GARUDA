@@ -6,8 +6,7 @@ module.exports = {
         const PREFIX_REG = /&{prefix}/g;
         const fs = require('fs');
         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
-        const helpembed = new Discord.MessageEmbed()
-        .setDescription(`Do \`${prefix}help <command>\` for more info on that command.`)
+        const helpembed = new Discord.MessageEmbed()    
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .setColor("#D441EE")
         .setTitle('Help Menu')
@@ -18,6 +17,7 @@ module.exports = {
            helpembed.addFields({name:`Name`, value: `${command.name}`},{name:`Description`, value: `${command.description}`},{name:`Usage`, value: `${command.usage?command.usage.replace(PREFIX_REG, prefix):"not added"}`});
         }
         else {
+            helpembed.setDescription(`Do \`${prefix}help <command>\` for more info on that command.\nJoin the support server: https://discord.gg/sBe3jNSdqN`);
             let categories = ["moderation", "game", "fun", "maths", "info", "utility", "admin"]
             let totalFiles = commandFiles.length;
             for (let cat in categories) {
