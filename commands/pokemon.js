@@ -9,13 +9,15 @@ module.exports = {
             message.channel.send(`${prefix}pokemon <name>`); 
             return;
         }
+        message.channel.startTyping();
         const fetch = require("node-fetch");
         try {
             fetch(`https://some-random-api.ml/pokedex?pokemon=${poke}`).then((res)=>{
                 return res.json()
             }).then ((data)=>{
                 if (data.name===undefined){
-                    message.reply("Could not find that pokemon. :broken-heart:");
+                    message.reply("Could not find that pokemon. 💔");
+                    message.channel.stopTyping();
                     return;
                 }
                 let stats = "";
@@ -39,10 +41,12 @@ module.exports = {
                     .setFooter(`Requested by ${message.author.username}`)
                     .setThumbnail(`http://i.some-random-api.ml/pokemon/${poke}.png`);
                 message.channel.send(pokemon);
+                message.channel.stopTyping();
             })
         }
         catch (err){
-                message.channel.send(":broken-heart: Something went wrong");
+                message.channel.send("💔 Something went wrong");
+                message.channel.stopTyping();
         }
     }
 }
