@@ -174,6 +174,7 @@ bot.on('message', async message => {
     bot.prefixes.set(message.guild.id, "%");
     prefix = "%";
 	}
+        prefix = prefix.toLowerCase();
 
 	if (!message.content.startsWith(prefix)&&!message.content.startsWith("<@!777840690515279872> ")) return;
   var args;
@@ -184,7 +185,7 @@ bot.on('message', async message => {
     args = message.content.slice("<@!777840690515279872> ".length).split(/ +/);
   }
 	const command = args.shift().toLowerCase();
-  if (message.content.startsWith('%' + "eval")) {
+  if (message.content.startsWith(prefix + "eval")) {
     if(!devIds[message.author.id]) return;
     const text = /process.env/i;
     const isMatch = args.some(arg => arg.match(text));
