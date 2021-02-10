@@ -178,7 +178,7 @@ bot.on('message', async message => {
 
 	if (!message.content.toLowerCase().startsWith(prefix)&&!message.content.startsWith("<@!777840690515279872> ")) return;
   var args;
-  if (message.content.startsWith(prefix)) {
+  if (message.content.toLowerCase().startsWith(prefix)) {
     args = message.content.slice(prefix.length).split(/ +/);
   }
   else {
