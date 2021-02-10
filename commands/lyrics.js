@@ -15,7 +15,7 @@ module.exports = {
     }
     let embed = new MessageEmbed()
     .setColor("#FFC0CB")
-    .setAuthor('Lyrics')
+    .setAuthor(song.author)
     .setThumbnail(song.thumbnail ? song.thumbnail.genius : null)
     .setTitle(song.title || 'Unknown')
     .setURL();
