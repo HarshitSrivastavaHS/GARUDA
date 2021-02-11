@@ -11,7 +11,7 @@ module.exports = {
         .setTitle(prize)
         .setDescription(`The first one to react with 🎉 wins!\nMaximum Time: 30 seconds.\nHosted By ${message.member.user.tag}.`)
         .setFooter("Drop");
-        let msg = await message.channel.send(embed);
+        let msg = await message.channel.send("🎉 PRIZE DROP 🎉",embed);
         message.delete();
         let winner;
         msg.react("🎉");
@@ -21,12 +21,12 @@ module.exports = {
             message.channel.send(`Congratulations <@${winner.id}>!! You have won the **${prize}**.`)
             embed.setColor("GREEN")
             .setDescription(`Winner: ${winner.username+"#"+winner.discriminator}\nHosted By ${message.member.user.tag}.`)
-            msg.edit(embed);
+            msg.edit("🎉 DROP ENDED 🎉",embed);
           }).catch(() => {
             message.channel.send('No one reacted within 30 seconds.');
             embed.setColor("RED")
             .setDescription(`Nobody reacted\nHosted By ${message.member.user.tag}.`)
-            msg.edit(embed);
+            msg.edit("🎉 DROP ENDED 🎉",embed);
         });
     }
 }
