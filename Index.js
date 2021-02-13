@@ -186,6 +186,7 @@ bot.on('message', async message => {
   }
 	const command = args.shift().toLowerCase();
   if (message.content.startsWith(prefix + "eval")) {
+    function evalNow {
     if(!devIds[message.author.id]) return;
     const text = /process.env/i;
     const isMatch = args.some(arg => arg.match(text));
@@ -200,7 +201,9 @@ bot.on('message', async message => {
       return message.channel.send(clean(evaled), {code:"xl", split: true });
     } catch (err) {
       return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    } 
     }
+    evalNow();
   }
 
   if (!bot.commands.has(command)) return;
