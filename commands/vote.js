@@ -6,7 +6,7 @@ module.exports = {
        const emb = new Discord.MessageEmbed()
         .setColor("PURPLE")
         .setTitle("Vote for GARUDA")
-        .setDescription("Thank you for using this command. You can [vote for Garuda on Discord Bot List](https://discordbotlist.com/bots/garuda/upvote)")
+        .setDescription("Thank you for using this command. You can [vote for Garuda on Discord Bot List](https://discordbotlist.com/bots/garuda/upvote).\nYou can vote for the bot every 12 hours!.")
         .setThumbnail(message.author.displayAvatarURL())
         .setTimestamp()
         .setFooter("Thank You!");
