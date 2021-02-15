@@ -10,7 +10,7 @@
     - Ban
 - Games
 	- Fasttype
-        - TicTacToe
+    - TicTacToe
 - Fun 
 	- 8Ball
     - Avatar
