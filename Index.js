@@ -192,11 +192,15 @@ bot.on('message', async message => {
     const isMatch = args.some(arg => arg.match(text));
     if (isMatch) return message.channel.send("Code with process.env won't work :)")
     try {
+
       const code = args.join(" ");
       let evaled = eval(code);
 
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled, { depth: 0 });
+
+      	
+
 
       return message.channel.send(clean(evaled), { code:"xl", split: true });
     } catch (err) {
