@@ -196,9 +196,9 @@ bot.on('message', async message => {
       let evaled = eval(code);
 
       if (typeof evaled !== "string")
-        evaled = require("util").inspect(evaled);
+        evaled = require("util").inspect(evaled, { depth: 0 });
 
-      return message.channel.send(clean(evaled), {code:"xl", split: true });
+      return message.channel.send(clean(evaled), { code:"xl", split: true });
     } catch (err) {
       return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     } 
