@@ -16,6 +16,8 @@
     - Avatar
     - Banner
     - Cat
+    - Dog
+    - Fox
     - Flip
     - Fuse
     - Trigger
@@ -23,6 +25,7 @@
 	- Add
     - Multi
     - Sub
+    - Linear
 - Info 
 	- Country
     - Covid
