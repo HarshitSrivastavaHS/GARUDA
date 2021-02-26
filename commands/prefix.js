@@ -1,5 +1,5 @@
 const mongo = require(`../mongo`);
-const prefixSchema = require(`../Schemas/prefix-schema`);
+const serverConfig = require('../Schemas/server-config');
 module.exports = {
     name: 'prefix',
     type: 'utility',
@@ -11,7 +11,7 @@ module.exports = {
         
         await mongo().then(async mongoose =>{
             
-                await prefixSchema.findOneAndUpdate({
+                await serverConfig.findOneAndUpdate({
                     _id: message.guild.id
                 },{
                     _id: message.guild.id,
@@ -21,9 +21,14 @@ module.exports = {
                 })
             
         })
-        bot.prefixes.set(message.guild.id, 
-          args[0]
-        )
+        let result = bot.serverConfig.get(message.guild.id);
+        bot.serverConfig.set(message.guild.id, {
+            prefix: args[0],
+            suggestion: result.suggestion,
+            welcome: result.welcome,
+            leave: result.leave,
+            modLog: result.modLog
+        });
         message.channel.send(`Successfully changed the prefix to \`${args[0]}\``); 
     }
 }

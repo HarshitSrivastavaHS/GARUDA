@@ -1,5 +1,5 @@
 const mongo = require(`../mongo`);
-const leaveSchema = require(`../Schemas/leave-schema`);
+const serverConfig = require('../Schemas/server-config');
 
 module.exports = {
     name: 'setleave',
@@ -16,17 +16,24 @@ module.exports = {
         const msg = await message.channel.send(`Setting <#${channel_id}> as the leave message channel.`);
         await mongo().then(async (mongoose)=>{
           
-            await leaveSchema.findOneAndUpdate({
+            await serverConfig.findOneAndUpdate({
                     _id: message.guild.id
                 },{
                     _id: message.guild.id,
-                    chID: channel_id
+                    leave: channel_id,
                 },{
                     upsert: true
                 })
           
           msg.edit(`Successfully set the <#${channel_id}> as the leaves channel.`);
-          bot.leaves.set(message.guild.id, channel_id);
+          let result = bot.serverConfig.get(message.guild.id);
+          bot.serverConfig.set(message.guild.id, {
+            prefix: result.prefix,
+            suggestion: result.suggestion,
+            welcome: result.welcome,
+            leave: channel_id,
+            modLog: result.modLog
+          });
         })
     }
 }

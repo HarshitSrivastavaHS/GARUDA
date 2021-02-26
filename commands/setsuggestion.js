@@ -1,5 +1,5 @@
 const mongo = require(`../mongo`);
-const suggestionSchema = require(`../Schemas/suggestion-schema`);
+const serverConfig = require('../Schemas/server-config');
 
 module.exports = {
     name: 'setsuggestion',
@@ -13,16 +13,22 @@ module.exports = {
         const x = args[0].match(CHANNELS_PATTERN);
         if (!x) return message.channel.send(`Invalid syntax. Do \`${prefix}help setsuggestion\` for more info.`);
         let channel_id = (args[0].replace(/<#/g,"")).replace(/>/g,"");
-        let msg = await message.channel.send(`Setting <#${channel_id}> as the suggestion channel.`);await suggestionSchema.findOneAndUpdate({
+        let msg = await message.channel.send(`Setting <#${channel_id}> as the suggestion channel.`);
+        await serverConfig.findOneAndUpdate({
                     _id: message.guild.id
                 },{
                     _id: message.guild.id,
-                    channel_Id: channel_id,
+                    suggestion: channel_id,
                 },{
                     upsert: true
                 })
           msg.edit(`Successfully set the <#${channel_id}> as the suggestion channel.`)
-          bot.suggestionChannel.set(message.guild.id, channel_id);
-      
+          bot.serverConfig.set(message.guild.id, {
+            prefix: result.prefix,
+            suggestion: channel_id,
+            welcome: result.welcome,
+            leave: result.leave,
+            modLog: result.modLog
+          });
     }
 }

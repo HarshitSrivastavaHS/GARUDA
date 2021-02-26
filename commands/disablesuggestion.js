@@ -1,5 +1,5 @@
 const mongo = require(`../mongo`);
-const suggestionSchema = require(`../Schemas/suggestion-schema`);
+const serverConfig = require('../Schemas/server-config');
 
 module.exports = {
     name: 'disablesuggestion',
@@ -12,12 +12,24 @@ module.exports = {
         const msg = await message.channel.send(`Removing the suggestion channel.`);
         await mongo().then(async (mongoose)=>{
           
-            await suggestionSchema.findOneAndDelete({
+            await serverConfig.findOneAndUpdate({
                     _id: message.guild.id
+                },{
+                    _id: message.guild.id,
+                    suggestion: undefined,
+                },{
+                    upsert: true
                 })
           
-          msg.edit(`Successfully removed the suggestion channel.`);
-          bot.suggestionChannel.delete(message.guild.id);
+          msg.edit(`Successfully disabled the suggestion channel.`);
+          let result = bot.serverConfig.get(message.guild.id);
+          bot.serverConfig.set(message.guild.id, {
+            prefix: result.prefix,
+            suggestion: undefined,
+            welcome: result.welcome,
+            leave: result.leave,
+            modLog: result.modLog
+            });
         })
     }
 }

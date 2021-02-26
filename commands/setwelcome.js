@@ -1,5 +1,5 @@
 const mongo = require(`../mongo`);
-const welcomeSchema = require(`../Schemas/welcome-Schema`);
+const serverConfig = require('../Schemas/server-config');
 
 module.exports = {
     name: 'setwelcome',
@@ -16,18 +16,22 @@ module.exports = {
         const msg = await message.channel.send(`Setting <#${channel_id}> as the welcome channel.`);
         await mongo().then(async (mongoose)=>{
           
-            await welcomeSchema.findOneAndUpdate({
+            await serverConfig.findOneAndUpdate({
                     _id: message.guild.id
                 },{
                     _id: message.guild.id,
-                    chID: channel_id
+                    welcome: channel_id,
                 },{
                     upsert: true
                 })
           
           msg.edit(`Successfully set the <#${channel_id}> as the welcome channel.`);
-          bot.welcome.set(message.guild.id, {
-            chID: channel_id
+          bot.serverConfig.set(message.guild.id, {
+            prefix: result.prefix,
+            suggestion: result.suggestion,
+            welcome: channel_id,
+            leave: result.leave,
+            modLog: result.modLog
           });
         })
     }

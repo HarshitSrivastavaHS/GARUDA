@@ -1,21 +1,21 @@
 module.exports = {
-    name: 'cat',
+    name: 'fox',
     type: 'fun',
-    usage: '&{prefix}cat',
-    description: 'get a random cat pic',
+    usage: '&{prefix}fox',
+    description: 'get a random fox pic',
     async execute(message, args, bot, Discord, prefix) {
         message.channel.startTyping();
         const fetch = require("node-fetch");
         try {
-            fetch(`https://api.thecatapi.com/v1/images/search`).then((res)=>{
+            fetch(`https://some-random-api.ml/img/fox`).then((res)=>{
                 return res.json()
             }).then ((data)=>{
                 const embed = new Discord.MessageEmbed()
                     .setColor("GREEN")
                     .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
                 	.setTimestamp()
-                    .setFooter("A cute cat")
-                    .setImage(`${data[0].url}`);                    
+                    .setFooter("A cute fox")
+                    .setImage(`${data.link}`);                    
                 message.channel.send(embed);
             })
         }
@@ -27,3 +27,4 @@ module.exports = {
         }
     }
 }
+ 

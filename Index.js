@@ -4,12 +4,9 @@ const keepAlive = require('./server.js');
 const bot = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
 
 const mongo = require(`./mongo`);
-const prefixSchema = require(`./Schemas/prefix-schema`);
-const welcomeSchema = require(`./Schemas/welcome-Schema`);
+const serverConfig = require('./Schemas/server-config');
 const giveawaySchema = require('./Schemas/giveaway-schema.js');
-const suggestionSchema = require(`./Schemas/suggestion-schema`);
 const welcomeJS = require(`./util/welcome`);
-const leaveSchema = require(`./Schemas/leave-schema`);
 const Canvas = require("canvas");
 
 let prefix;
@@ -28,35 +25,31 @@ for (const file of commandFiles) {
 	bot.commands.set(command.name, command);
 }
 
-bot.welcome = new Map();
-const loadWelcome = async ()=>{
-	const results = await welcomeSchema.find();
-  for (const result of results){
-    bot.welcome.set(result._id, {
-            chID: result.chID
-          });
-  }
+bot.serverConfig = new Map();
+
+const server = async ()=>{
+	const results = await serverConfig.find();
+        for (const result of results){
+            bot.serverConfig.set(result._id, {
+                prefix: result.prefix,
+                suggestion: result.suggestion,
+                welcome: result.welcome,
+                leave: result.leave,
+                modLog: result.modLog
+            });
+        }
 }
-loadWelcome()
+server()
 
 bot.on("guildMemberAdd", async (member) => {
-  let wc = bot.welcome.get(member.guild.id);
+  let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
   if (!wc) return;
-  const welcomeCH = member.guild.channels.cache.get(wc.chID) || member.guild.fetch(wc.chID);
+  const welcomeCH = member.guild.channels.cache.get(wc) || member.guild.fetch(wc);
   welcomeJS.execute(member, welcomeCH, Discord);
 })
 
-bot.leaves = new Map();
-const loadBye = async ()=>{
-	const results = await leaveSchema.find();
-  for (const result of results){
-    bot.leaves.set(result._id, result.chID);
-  }
-}
-loadBye()
-
 bot.on("guildMemberRemove", async (member) => {
-  let gc = bot.leaves.get(member.guild.id);
+  let gc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).leave:undefined;
   if (!gc) return;
   const byeCH = member.guild.channels.cache.get(gc) || member.guild.fetch(gc);
   byeCH.send(`${member.user.username}#${member.user.discriminator} just left the server.`);
@@ -105,6 +98,7 @@ bot.on('ready', async () => {
 });
 
 bot.snipes = new Map();
+bot.editSnipes = new Map();
 
 bot.on('messageDelete', (message, channel) => {
 	if (message.author.bot) return;
@@ -116,9 +110,21 @@ bot.on('messageDelete', (message, channel) => {
 			? message.attachments.first().proxyURL
 			: null
 	});
+    let ml = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).modLog:undefined;
+    if (!ml) return;
+    let modChannel = message.guild.channels.cache.get(ml)|| message.guild.fetch(ml);
+    if (!modChannel) return;
+    let ModEmbed = new Discord.MessageEmbed()
+    .setColor("RED")
+    .setTimestamp()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL())
+    .setDescription(`${message.content}`)
+    .setTitle("MESSAGE DELETED")
+    .setFooter(`USER ID: ${message.author.id}`)
+    .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
+    modChannel.send(ModEmbed);
 });
 
-bot.editSnipes = new Map();
 bot.on('messageUpdate', (oldMessage, newMessage) => {
 	if (oldMessage.author.bot) return;
 	bot.editSnipes.set(oldMessage.channel.id, {
@@ -130,24 +136,21 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 			? oldMessage.attachments.first().proxyURL
 			: null
 	});
+    let message = oldMessage;
+    let ml = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).modLog:undefined;
+    if (!ml) return;
+    let modChannel = message.guild.channels.cache.get(ml)|| message.guild.fetch(ml);
+    if (!modChannel) return;
+    let ModEmbed = new Discord.MessageEmbed()
+    .setColor("YELLOW")
+    .setTimestamp()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL())
+     .setDescription(`Old Message: ${oldMessage?oldMessage.content:"No Message"}\nNew Message: ${newMessage?newMessage.content:"No Message"}`)
+    .setTitle("MESSAGE EDITED")
+    .setFooter(`USER ID: ${message.author.id}`)
+    .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
+    modChannel.send(ModEmbed);
 });
-
-bot.prefixes = new Map();
-const loadPrefix = async ()=>{
-	const results = await prefixSchema.find();
-  for (const result of results){
-    bot.prefixes.set(result._id, result.prefix);
-  }
-}
-loadPrefix()
-bot.suggestionChannel = new Map();
-const loadSuggestion = async ()=>{
-	const results = await suggestionSchema.find();
-  for (const result of results){
-    bot.suggestionChannel.set(result._id, result.channel_Id);
-  }
-}
-loadSuggestion()
 
 const devIds =  {
     "451693463742840842":true,
@@ -169,38 +172,32 @@ bot.on('message', async message => {
 		return;
 	}
 
-	prefix = bot.prefixes.get(message.guild.id);
+	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
 	if (!prefix) {
-    bot.prefixes.set(message.guild.id, "%");
-    prefix = "%";
+        bot.serverConfig.set(message.guild.id, { prefix: "%"});
+        prefix = "%";
 	}
         prefix = prefix.toLowerCase();
 
-	if (!message.content.toLowerCase().startsWith(prefix)&&!message.content.startsWith("<@!777840690515279872> ")) return;
-  var args;
-  if (message.content.toLowerCase().startsWith(prefix)) {
-    args = message.content.slice(prefix.length).split(/ +/);
-  }
-  else {
-    args = message.content.slice("<@!777840690515279872> ".length).split(/ +/);
-  }
-	const command = args.shift().toLowerCase();
-  if (message.content.startsWith(prefix + "eval")) {
+    if (message.content.startsWith(`<@!${bot.user.id}>`))
+        message.reply("My prefix in this server is `"+prefix+"`");
+	if (!message.content.toLowerCase().startsWith(prefix)) return;
+    
+    var args = args = message.content.slice(prefix.length).split(/ +/);
+     
+    const command = args.shift().toLowerCase();
+    if (message.content.startsWith(prefix + "eval")) {
     
     if(!devIds[message.author.id]) return;
     const text = /process.env/i;
     const isMatch = args.some(arg => arg.match(text));
     if (isMatch) return message.channel.send("Code with process.env won't work :)")
     try {
-
-      const code = args.join(" ");
-      let evaled = eval(code);
-
-      if (typeof evaled !== "string")
-        evaled = require("util").inspect(evaled, { depth: 0 });
-
-      	
-
+      	const code = args.join(" ");
+      	let evaled = eval(code);
+	if (evaled instanceof Promise || (Boolean(evaled) && typeof evaled.then === 'function' && typeof evaled.catch === 'function')) evaled = await evaled;
+      	if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
 
       return message.channel.send(clean(evaled), { code:"xl", split: true });
     } catch (err) {

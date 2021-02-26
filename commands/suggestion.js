@@ -6,7 +6,7 @@ module.exports = {
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can accept or reject suggestions.");
         const smsgid = message.reference?message.reference["messageID"]:args[0];
         if (!smsgid) return message.reply("Please reply or type the messsage id")
-        let sch = bot.suggestionChannel.get(message.guild.id);
+        let sch = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).suggestion:undefined;
         if (!sch) return message.reply("Suggestion channel not set :(");
         const channel = bot.channels.cache.get(sch);
         if (!channel) return message.reply("Suggestion channel not found.");

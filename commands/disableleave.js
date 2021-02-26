@@ -1,5 +1,5 @@
 const mongo = require(`../mongo`);
-const leaveSchema = require(`../Schemas/leave-schema`);
+const serverConfig = require('../Schemas/server-config');
 
 module.exports = {
     name: 'disableleave',
@@ -12,12 +12,24 @@ module.exports = {
         const msg = await message.channel.send(`Disabling the leave message.`);
         await mongo().then(async (mongoose)=>{
           
-            await leaveSchema.findOneAndDelete({
+            await serverConfig.findOneAndUpdate({
                     _id: message.guild.id
+                },{
+                    _id: message.guild.id,
+                    leave: undefined,
+                },{
+                    upsert: true
                 })
           
           msg.edit(`Successfully disabled the leave message.`);
-          bot.leaves.delete(message.guild.id);
+          let result = bot.serverConfig.get(message.guild.id);
+          bot.serverConfig.set(message.guild.id, {
+            prefix: result.prefix,
+            suggestion: result.suggestion,
+            welcome: result.welcome,
+            leave: undefined,
+            modLog: result.modLog
+            });
         })
     }
 }

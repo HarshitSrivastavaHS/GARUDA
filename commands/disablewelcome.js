@@ -1,5 +1,5 @@
 const mongo = require(`../mongo`);
-const welcomeSchema = require(`../Schemas/welcome-Schema`);
+const serverConfig = require('../Schemas/server-config');
 
 module.exports = {
     name: 'disablewelcome',
@@ -12,12 +12,24 @@ module.exports = {
         const msg = await message.channel.send(`Disabling the welcome message.`);
         await mongo().then(async (mongoose)=>{
           
-            await welcomeSchema.findOneAndDelete({
+            await serverConfig.findOneAndUpdate({
                     _id: message.guild.id
+                },{
+                    _id: message.guild.id,
+                    welcome: undefined,
+                },{
+                    upsert: true
                 })
           
           msg.edit(`Successfully disabled the welcome message.`);
-          bot.welcome.delete(message.guild.id);
+          let result = bot.serverConfig.get(message.guild.id);
+          bot.serverConfig.set(message.guild.id, {
+            prefix: result.prefix,
+            suggestion: result.suggestion,
+            welcome: undefined,
+            leave: result.leave,
+            modLog: result.modLog
+            });
         })
     }
 }
