@@ -23,6 +23,7 @@ module.exports = {
                     upsert: true
                 })
           msg.edit(`Successfully set the <#${channel_id}> as the suggestion channel.`)
+          let result = bot.serverConfig.get(message.guild.id);
           bot.serverConfig.set(message.guild.id, {
             prefix: result.prefix,
             suggestion: channel_id,
