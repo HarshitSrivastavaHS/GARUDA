@@ -26,6 +26,7 @@ module.exports = {
                 })
           
           msg.edit(`Successfully set the <#${channel_id}> as the welcome channel.`);
+          let result = bot.serverConfig.get(message.guild.id);
           bot.serverConfig.set(message.guild.id, {
             prefix: result.prefix,
             suggestion: result.suggestion,
