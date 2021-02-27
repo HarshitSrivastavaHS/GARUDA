@@ -39,7 +39,6 @@ const server = async ()=>{
             });
         }
 }
-server()
 
 bot.on("guildMemberAdd", async (member) => {
   let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
@@ -70,6 +69,7 @@ bot.on("guildDelete", function(guild){
 });
 
 bot.on('ready', async () => {
+        server();
 	console.log('I am Online!');
 	bot.user.setPresence({
         activity: { name: `${bot.guilds.cache.size} servers and ${bot.users.cache.size} users`, type: 'WATCHING' },
