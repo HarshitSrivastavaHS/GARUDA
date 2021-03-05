@@ -175,7 +175,7 @@ bot.on('message', async message => {
 	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
 	if (!prefix) {
         let result = bot.serverConfig.get(message.guild.id);
-        bot.serverConfig.set(result._id, {
+        bot.serverConfig.set(message.guild.id, {
                 prefix: "%",
                 suggestion: result.suggestion,
                 welcome: result.welcome,
