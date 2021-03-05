@@ -30,6 +30,7 @@ bot.serverConfig = new Map();
 const server = async ()=>{
 	const results = await serverConfig.find();
         for (const result of results){
+            console.log(result._id);
             bot.serverConfig.set(result._id, {
                 prefix: result.prefix,
                 suggestion: result.suggestion,
