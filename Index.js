@@ -177,10 +177,10 @@ bot.on('message', async message => {
         let result = bot.serverConfig.get(message.guild.id);
         bot.serverConfig.set(message.guild.id, {
                 prefix: "%",
-                suggestion: result.suggestion,
-                welcome: result.welcome,
-                leave: result.leave,
-                modLog: result.modLog
+                suggestion: result?result.suggestion:undefined,
+                welcome: result?result.welcome:undefined,
+                leave: result?result.leave:undefined,
+                modLog: result?result.modLog:undefined
         });
         prefix = "%";
 	}
