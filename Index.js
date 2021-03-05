@@ -30,7 +30,6 @@ bot.serverConfig = new Map();
 const server = async ()=>{
 	const results = await serverConfig.find();
         for (const result of results){
-            console.log(result._id);
             bot.serverConfig.set(result._id, {
                 prefix: result.prefix,
                 suggestion: result.suggestion,
@@ -175,7 +174,14 @@ bot.on('message', async message => {
 
 	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
 	if (!prefix) {
-        bot.serverConfig.set(message.guild.id, { prefix: "%"});
+        let result = bot.serverConfig.get(message.guild.id);
+        bot.serverConfig.set(result._id, {
+                prefix: "%",
+                suggestion: result.suggestion,
+                welcome: result.welcome,
+                leave: result.leave,
+                modLog: result.modLog
+        });
         prefix = "%";
 	}
         prefix = prefix.toLowerCase();
