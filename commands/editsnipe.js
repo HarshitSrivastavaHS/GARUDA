@@ -3,7 +3,7 @@ module.exports = {
     type: 'utility',
     usage: '&{prefix}editsnipe',
     description: 'shows last edited message in that channel',
-    permissions: ['SEND_MESSAGES'],
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];
