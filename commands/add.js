@@ -13,7 +13,7 @@ module.exports = {
                 missingPerms.push(p);
         })
         missingPerms = missingPerms.join("\n");
-        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
+        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         if (args.length <= 1) return message.channel.send("Please enter numbers to be added.");
         let sum = 0;
         let lhs = "";
