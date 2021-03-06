@@ -3,7 +3,17 @@ module.exports = {
     type: 'info',
     usage: '&{prefix}country <country code>',
     description: 'tells some details of a country.',
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
+        let botPerms = [];
+        let missingPerms = [];
+        this.permissions.forEach(p=>{
+            botPerms.push(message.channel.permissionsFor(bot.user).has(p));
+            if (!(message.channel.permissionsFor(bot.user).has(p)))
+                missingPerms.push(p);
+        })
+        missingPerms = missingPerms.join("\n");
+        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         const code = args[0];
         if (code===undefined) {
             message.channel.send("%country <country code>"); 
