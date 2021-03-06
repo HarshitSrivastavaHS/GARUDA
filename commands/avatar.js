@@ -13,7 +13,7 @@ module.exports = {
                 missingPerms.push(p);
         })
         missingPerms = missingPerms.join("\n");
-        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
+        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         const mentionUser = message.mentions.users.first() || bot.users.cache.get(args[0]) || bot.users.cache.find(user => user.username == args.join(" ")) ||message.author;
         const avataremb = new Discord.MessageEmbed()
         .setColor("#D441EE")
