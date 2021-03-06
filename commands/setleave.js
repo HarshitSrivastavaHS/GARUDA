@@ -6,7 +6,17 @@ module.exports = {
     type: 'admin',
     description: 'sets the leaves channel.',
     usage: '&{prefix}setleave <#channel>',
+    permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
+        let botPerms = [];
+        let missingPerms = [];
+        this.permissions.forEach(p=>{
+            botPerms.push(message.channel.permissionsFor(bot.user).has(p));
+            if (!(message.channel.permissionsFor(bot.user).has(p)))
+                missingPerms.push(p);
+        })
+        missingPerms = missingPerms.join("\n");
+        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can use this command.");
         if (args.length<1) return message.channel.send("Please mention the channel. ") 
         const CHANNELS_PATTERN = /<#(\d{17,19})>/g;
@@ -25,7 +35,7 @@ module.exports = {
                     upsert: true
                 })
           
-          msg.edit(`Successfully set the <#${channel_id}> as the leaves channel.`);
+          msg.edit(`Successfully set the <#${channel_id}> as the leaves channel. Please make sure that the bot has permission to send message in that channel.`);
           let result = bot.serverConfig.get(message.guild.id);
           bot.serverConfig.set(message.guild.id, {
             prefix: result.prefix,
