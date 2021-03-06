@@ -6,7 +6,6 @@ module.exports = {
     description: 'solves a mathematical linear equation (one variable only).',
     async execute(message, args, bot, Discord, prefix) {
         if (args.length<1) return message.channel.send("Run the command again but this time with the expression.");
-        message.channel.startTyping();
         const steps = mathsteps.solveEquation(args.join(" "));
         let result = "";
         for (let step in steps) {
@@ -21,12 +20,10 @@ module.exports = {
         }
         catch {
 
-          message.channel.stopTyping();
           message.channel.send("Please type only linear equations in one variable."); 
           return;
         }
 
-        message.channel.stopTyping();
         message.channel.send(result, {code: true, split: true})
 
     }
