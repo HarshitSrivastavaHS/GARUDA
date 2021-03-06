@@ -3,7 +3,17 @@ module.exports = {
     type: 'utility',
     usage: '&{prefix}clear <Number of messages to be deleted>',
     description: 'deletes the given number of messages',
+    permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
+        let botPerms = [];
+        let missingPerms = [];
+        this.permissions.forEach(p=>{
+            botPerms.push(message.channel.permissionsFor(bot.user).has(p));
+            if (!(message.channel.permissionsFor(bot.user).has(p)))
+                missingPerms.push(p);
+        })
+        missingPerms = missingPerms.join("\n");
+        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
 
         if (isNaN(args[0])) {
             message.channel.send("Invalid Syntax!\n```%clear <number of messsages to be deleted>```");
@@ -14,7 +24,6 @@ module.exports = {
             message.channel.send("<@"+message.member+"> You don't have the required permissions.");
             return;
         }
-        if (!message.guild.me.permissions.has("MANAGE_MESSAGES")) return message.channel.send("I don't have the required permissions.");
         var num = parseInt(args[0]);
         if (num<=75) {
             message.channel.bulkDelete(num+1, true);
