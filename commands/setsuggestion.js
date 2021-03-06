@@ -6,7 +6,17 @@ module.exports = {
     description: 'sets the channel where suggestions will be sent',
     type: "admin",
     usage: `&{prefix}setsuggestion <suggestion channel>`,
+    permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
+        let botPerms = [];
+        let missingPerms = [];
+        this.permissions.forEach(p=>{
+            botPerms.push(message.channel.permissionsFor(bot.user).has(p));
+            if (!(message.channel.permissionsFor(bot.user).has(p)))
+                missingPerms.push(p);
+        })
+        missingPerms = missingPerms.join("\n");
+        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can use this command.");
         if (args<1) return message.channel.send(`Invalid syntax. Do \`${prefix}help setsuggestion\` for more info.`)
         const CHANNELS_PATTERN = /<#(\d{17,19})>/g;
@@ -22,7 +32,7 @@ module.exports = {
                 },{
                     upsert: true
                 })
-          msg.edit(`Successfully set the <#${channel_id}> as the suggestion channel.`)
+          msg.edit(`Successfully set the <#${channel_id}> as the suggestion channel. Please make sure that the bot has permission to send message, add reactions as well as embed links permission in that channel.`)
           let result = bot.serverConfig.get(message.guild.id);
           bot.serverConfig.set(message.guild.id, {
             prefix: result.prefix,
