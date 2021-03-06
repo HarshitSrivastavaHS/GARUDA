@@ -5,13 +5,15 @@ module.exports = {
     description: 'ask yes/no question from the bot',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        
         let botPerms = [];
+        let missingPerms = [];
         this.permissions.forEach(p=>{
             botPerms.push(message.channel.permissionsFor(bot.user).has(p));
+            if (!(message.channel.permissionsFor(bot.user).has(p)))
+                missingPerms.push(p);
         })
-        console.log(botPerms);
-        if (!(message.channel.permissionsFor(bot.user).has("EMBED_LINKS"))) return message.channel.send(`The Following permissions are needed by the bot for this command:\nEMBED_LINKS`).catch(err=>console.log(`Missing send message permission in a server.`));
+        missingPerms = missingPerms.join("\n");
+        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n${missingPerms}`).catch(err=>console.log(`Missing send message permission in a server.`));
         const replies = ["It is certain.", "It is decidedly so.", "Without a doubt.", "Yes – definitely.", "You may rely on it.", "As I see it, yes.", "Most likely.", "Outlook good.", "Yes.", "Signs point to yes.", "Reply hazy, try again.", "Ask again later.", "Better not tell you now.", "Cannot predict now.", "Concentrate and ask again.", "Don't count on it.", "My reply is no.", "My sources say no.", "Outlook not so good.", "Very doubtful."];
         if (args.length < 2) return message.channel.send("Please ask a full question");
         const opt = Math.floor(Math.random()*replies.length);
