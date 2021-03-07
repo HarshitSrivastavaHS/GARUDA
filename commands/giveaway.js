@@ -6,7 +6,7 @@ module.exports = {
     type: 'utility',
     usage: '&{prefix}giveaway <time> <prize>',
     description: 'to start a giveaway',
-    permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];
