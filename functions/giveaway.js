@@ -38,9 +38,8 @@ module.exports = async (bot, Discord, msg, time, prize, ch) => {
     let winDM = new Discord.MessageEmbed()
     .setColor("GREEN")
     .setTitle("You Won a giveaway!")
-    .setTimestamp()
     .setDescription(`Congratulations! You have won the giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name}`)
-    .setFooter(`${giveawayChannel.guild.name} - ${giveawayChannel.name}`);
+    .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     bot.users.cache.get(winner.id).send(winDM);
     giveawayChannel.send(`${winner} has won the giveaway for **${prize}**.`)
    }, ms)
