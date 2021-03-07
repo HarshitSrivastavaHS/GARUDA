@@ -1,6 +1,4 @@
-const mongo = require("../mongo.js");
-const giveawaySchema = require("../Schemas/giveaway-schema.js")
-
+const giveaway = require('../functions/giveaway.js');
 module.exports = {
     name: 'giveaway',
     type: 'utility',
@@ -66,36 +64,7 @@ module.exports = {
           })
         
       })
-      setTimeout(async()=>{
-          await mongo().then(async (mongoose)=>{
-           
-              await giveawaySchema.deleteOne({
-                _id: msg.id
-              })
-            
-  
-          })
-          if (msg.deleted) return;
-          if (msg.reactions.cache.get("🎉").count <= 1) {
-             let nowin = new Discord.MessageEmbed()
-             .setColor("RED")
-             .setTitle(prize)
-             .setDescription("No Winner")
-             .setFooter(`Ended at`)
-             .setTimestamp();
-             msg.edit("**🎉Giveaway Ended🎉**", nowin);
-             return message.channel.send("No one participated in the giveaway.");
-          }
-          let winner = msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random();
-          let winem = new Discord.MessageEmbed()
-          .setColor("GREEN")
-          .setTitle(prize)
-          .setDescription (`Winner\n${winner}`)
-          .setFooter("Ended at")
-          .setTimestamp()
-          msg.edit("**🎉Giveaway Ended🎉**", winem);
-          message.channel.send(`Congratulations ${winner}! You won the **${prize}**.`)
-      }, ms)
+        giveaway(bot, Discord, msg.id, tme, prize, message.channel.id);
     }
       
 }
