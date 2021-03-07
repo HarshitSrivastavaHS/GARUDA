@@ -1,5 +1,6 @@
 const giveaway = require('../functions/giveaway.js');
 const mongo = require("../mongo.js")
+const giveawaySchema = require("../Schemas/giveaway-schema.js")
 module.exports = {
     name: 'giveaway',
     type: 'utility',
