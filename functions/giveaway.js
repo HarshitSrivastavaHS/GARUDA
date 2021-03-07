@@ -35,6 +35,7 @@ module.exports = async (bot, Discord, msg, time, prize, ch) => {
     .setFooter("Ended at")
     .setTimestamp()
     msg.edit("**🎉Giveaway Ended🎉**", winem);
-    giveawayChannel.send(`Congratulations ${winner}! You won the **${prize}**.`)
+    bot.users.cache.get(winner.id).send(`Congratulations! You have won the giveaway for **${prize}** in ${giveawayChannel.guild.name}`)
+    giveawayChannel.send(`${winner} has won the giveaway for **${prize}**.`)
    }, ms)
 }
