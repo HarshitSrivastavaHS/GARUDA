@@ -22,9 +22,7 @@
     - Fuse
     - Trigger
 - Maths
-	- Add
-    - Multi
-    - Sub
+	- Maths
     - Linear
 - Info 
 	- Country
