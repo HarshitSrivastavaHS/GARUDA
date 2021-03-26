@@ -1,4 +1,4 @@
- bot.afk = new Map();
+
 module.exports = {
     name: 'afk',
     usage: '&{prefix}afk',
