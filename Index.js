@@ -173,11 +173,16 @@ bot.on('message', async message => {
 		return;
 	}
 
+        if (bot.afk.has(message.author.id)) {
+           message.reply("Welcome back! I have cleared your AFK");
+           bot.afk.delete(message.author.id);
+        }
+
         if (message.mentions.members.first()) {
            let mention = message.mentions.members.first();
            let afkStatus = bot.afk.get(mention.user.id);
            if (afkStatus)
-               message.channel.send(`<@{mention.user.id}> is AFK. Message: ${afkStatus}`);
+               message.channel.send(`<@${mention.user.id}> is AFK. Message: ${afkStatus}`);
         }
 
 	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
