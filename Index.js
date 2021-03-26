@@ -182,7 +182,7 @@ bot.on('message', async message => {
            let mention = message.mentions.members.first();
            let afkStatus = bot.afk.get(mention.user.id);
            if (afkStatus)
-               message.channel.send(`<@${mention.user.id}> is AFK. Message: ${afkStatus}`);
+               message.channel.send(`${mention.user.username} is AFK. Message: ${afkStatus}`);
         }
 
 	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
