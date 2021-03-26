@@ -175,7 +175,7 @@ bot.on('message', async message => {
 
         if (message.mentions.members.first()) {
            let mention = message.mentions.members.first();
-           let afkStatus = bot.afk.gef(mention.user.id);
+           let afkStatus = bot.afk.get(mention.user.id);
            if (afkStatus)
                message.channel.send(`<@{mention.user.id}> is AFK. Message: ${afkStatus}`);
         }
