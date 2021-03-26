@@ -1,4 +1,4 @@
-let bot.afk = new Map();
+ bot.afk = new Map();
 module.exports = {
     name: 'afk',
     usage: '&{prefix}afk',
