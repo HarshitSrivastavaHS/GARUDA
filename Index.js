@@ -164,6 +164,7 @@ function clean(text) {
       return text;
 }
 
+bot.afk = new Map();
 bot.on('message', async message => {
 
 	if (message.author.bot) return;
@@ -171,6 +172,13 @@ bot.on('message', async message => {
 	if (message.channel.type === 'dm') {
 		return;
 	}
+
+        if (message.mentions.members.first()) {
+           let mention = message.mentions.members.first();
+           let afkStatus = bot.afk.gef(mention.user.id);
+           if (afkStatus)
+               message.channel.send(`<@{mention.user.id}> is AFK. Message: ${afkStatus}`);
+        }
 
 	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
 	if (!prefix) {
