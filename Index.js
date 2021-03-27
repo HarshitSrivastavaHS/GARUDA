@@ -102,7 +102,7 @@ bot.on('ready', async () => {
 bot.snipes = new Map();
 bot.editSnipes = new Map();
 
-bot.on('messageDelete', (message, channel) => {
+bot.on('messageDelete', async (message, channel) => {
 	if (message.author.bot) return;
 	bot.snipes.set(message.channel.id, {
 		content: message.content,
@@ -115,7 +115,7 @@ bot.on('messageDelete', (message, channel) => {
 	
 	let ghost = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).ghost:undefined;
 	if (ghost) {
-		let mention = message.mentions.members.first()||message.content.has("@everyone")||message.content.has("@here");
+		let mention = message.mentions.members.first()||message.content.includes("@everyone")||message.content.includes("@here");
 		if (mention){
 			let tarch = message.guild.channels.cache.get(ghost);
 			if (tarch) {
