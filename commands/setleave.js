@@ -42,7 +42,8 @@ module.exports = {
             suggestion: result.suggestion,
             welcome: result.welcome,
             leave: channel_id,
-            modLog: result.modLog
+            modLog: result.modLog,
+            ghost: result.ghost
           });
         })
     }

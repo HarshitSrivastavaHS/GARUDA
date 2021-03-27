@@ -16,7 +16,8 @@ const ServerConfig = mongoose.Schema({
   suggestion: string,
   welcome: string,
   leave: string,
-  modLog: string
+  modLog: string,
+  ghost: string
 })
 
 module.exports = mongoose.model("Server Config", ServerConfig)

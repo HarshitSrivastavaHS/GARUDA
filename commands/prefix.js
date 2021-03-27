@@ -37,7 +37,8 @@ module.exports = {
             suggestion: result.suggestion,
             welcome: result.welcome,
             leave: result.leave,
-            modLog: result.modLog
+            modLog: result.modLog,
+            ghost: result.ghost
         });
         message.channel.send(`Successfully changed the prefix to \`${args[0]}\``); 
     }
