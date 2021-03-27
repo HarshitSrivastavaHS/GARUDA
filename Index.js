@@ -119,7 +119,7 @@ bot.on('messageDelete', (message, channel) => {
 		if (mention){
 			let tarch = message.guild.channels.cache.get(ghost);
 			if (tarch) {
-				let ghostEM = new Discord.MessageEmbed
+				let ghostEM = new Discord.MessageEmbed()
 				.setColor("RED")
 				.setTitle("Possible Ghost Ping Detected")
 				.setFooter("Bot By TechAllByHarshit")
