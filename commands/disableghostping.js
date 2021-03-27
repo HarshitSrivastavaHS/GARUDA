@@ -16,7 +16,8 @@ module.exports = {
         })
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-        let msg = await message.channel.send("Disabling the ghost ping channel.");
+        if (!message.member.permissions.has("ADMINISTRATOR"))	return message.channel.send("You don't have the required permission to use it.");
+	    let msg = await message.channel.send("Disabling the ghost ping channel.");
         await mongo().then(async (mongoose)=>{
           
             await serverConfig.findOneAndUpdate({
