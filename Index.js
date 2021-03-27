@@ -125,7 +125,8 @@ bot.on('messageDelete', (message, channel) => {
 				.setFooter("Bot By TechAllByHarshit")
 				.setDescription(`Message:\n\n${message.content}`)
 				.addField("Channel", message.channel)
-				.addFields("Message Author", message.author)
+				.addFields("Message Author", message.author);
+				tarch.send(ghostEM);
 			}
 		}
 	}
