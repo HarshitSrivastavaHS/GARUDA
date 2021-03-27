@@ -31,7 +31,7 @@ module.exports = {
                     upsert: true
                 })
           
-          msg.edit(`Successfully set the <#${channel_id}> as the ghost ping channel. Please make sure that the bot has permission to send message in that channel.`);
+          msg.edit(`Successfully set the <#${targetChannel}> as the ghost ping channel. Please make sure that the bot has permission to send message in that channel.`);
           let result = bot.serverConfig.get(message.guild.id);
           bot.serverConfig.set(message.guild.id, {
             prefix: result.prefix,
