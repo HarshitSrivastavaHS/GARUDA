@@ -8,6 +8,7 @@ const serverConfig = require('./Schemas/server-config');
 const giveawaySchema = require('./Schemas/giveaway-schema.js');
 const welcomeJS = require(`./util/welcome`);
 const Canvas = require("canvas");
+const afkConfig = require('../Schemas/afk');
 
 let prefix;
 
@@ -165,6 +166,14 @@ function clean(text) {
 }
 
 bot.afk = new Map();
+const afkusers = async ()=>{
+	const results = await afkConfig.find();
+        for (const result of results){
+            bot.afk.set(result._id, result.afk);
+        }
+}
+afkusers();
+
 bot.on('message', async message => {
 
 	if (message.author.bot) return;
