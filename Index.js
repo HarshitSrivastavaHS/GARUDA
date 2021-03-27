@@ -185,6 +185,12 @@ bot.on('message', async message => {
         if (bot.afk.has(message.author.id)) {
            message.reply("Welcome back! I have cleared your AFK");
            bot.afk.delete(message.author.id);
+	   await mongo().then(async (mongoose)=>{
+          
+            await afkConfig.findOneAndRemove({
+                    _id: message.author.id
+                })
+            })
         }
 
         if (message.mentions.members.first()) {
