@@ -36,7 +36,8 @@ const server = async ()=>{
                 suggestion: result.suggestion,
                 welcome: result.welcome,
                 leave: result.leave,
-                modLog: result.modLog
+                modLog: result.modLog,
+		ghost: result.ghost
             });
         }
 }
@@ -208,7 +209,8 @@ bot.on('message', async message => {
                 suggestion: result?result.suggestion:undefined,
                 welcome: result?result.welcome:undefined,
                 leave: result?result.leave:undefined,
-                modLog: result?result.modLog:undefined
+                modLog: result?result.modLog:undefined,
+		ghost: result?result.ghost:undefined
         });
         prefix = "%";
 	}
