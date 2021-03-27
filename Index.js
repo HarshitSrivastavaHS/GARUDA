@@ -8,7 +8,7 @@ const serverConfig = require('./Schemas/server-config');
 const giveawaySchema = require('./Schemas/giveaway-schema.js');
 const welcomeJS = require(`./util/welcome`);
 const Canvas = require("canvas");
-const afkConfig = require('../Schemas/afk');
+const afkConfig = require('./Schemas/afk');
 
 let prefix;
 
