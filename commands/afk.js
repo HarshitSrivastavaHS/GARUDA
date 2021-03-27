@@ -1,4 +1,5 @@
-
+const mongo = require(`../mongo`);
+const afkConfig = require('../Schemas/afk');
 module.exports = {
     name: 'afk',
     usage: '&{prefix}afk <msg>',
@@ -17,5 +18,17 @@ module.exports = {
         let afkmsg = args.length<1?"AFK":args.join(" ");
         bot.afk.set(message.author.id, afkmsg);
         message.reply(`AFK successfully set, msg: ${afkmsg}`);
+        
+        await mongo().then(async (mongoose)=>{
+          
+            await afkConfig.findOneAndUpdate({
+                    _id: message.author.id
+                },{
+                    _id: message.guild.id,
+                    afk: afkmsg,
+                },{
+                    upsert: true
+                })
+        })
     }
 }
