@@ -26,7 +26,7 @@ module.exports = {
                     _id: message.guild.id
                 },{
                     _id: message.guild.id,
-                    ghost: targetChannel,
+                    ghost: targetChannel.id,
                 },{
                     upsert: true
                 })
@@ -39,7 +39,7 @@ module.exports = {
             welcome: result.welcome,
             leave: result.leave,
             modLog: result.modLog,
-            ghost: targetChannel
+            ghost: targetChannel.id
           });
         })
 	}
