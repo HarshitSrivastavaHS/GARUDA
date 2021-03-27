@@ -24,7 +24,7 @@ module.exports = {
             await afkConfig.findOneAndUpdate({
                     _id: message.author.id
                 },{
-                    _id: message.guild.id,
+                    _id: message.author.id,
                     afk: afkmsg,
                 },{
                     upsert: true
