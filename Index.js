@@ -115,7 +115,7 @@ bot.on('messageDelete', async (message, channel) => {
 	
 	let ghost = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).ghost:undefined;
 	if (ghost) {
-		let mention = message.mentions.members.first()||message.content.includes("@everyone")||message.content.includes("@here");
+		let mention = message.mentions.members.first();
 		if (mention){
 			let tarch = message.guild.channels.cache.get(ghost);
 			if (tarch) {
