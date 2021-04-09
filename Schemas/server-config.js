@@ -17,7 +17,8 @@ const ServerConfig = mongoose.Schema({
   welcome: string,
   leave: string,
   modLog: string,
-  ghost: string
+  ghost: string,
+  autoRole: string
 })
 
 module.exports = mongoose.model("Server Config", ServerConfig)
