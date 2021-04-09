@@ -43,7 +43,8 @@ module.exports = {
             welcome: result.welcome,
             leave: channel_id,
             modLog: result.modLog,
-            ghost: result.ghost
+            ghost: result.ghost,
+              autoRole: result.autoRole
           });
         })
     }
