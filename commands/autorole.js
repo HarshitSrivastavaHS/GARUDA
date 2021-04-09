@@ -16,6 +16,7 @@ module.exports = {
         let role = message.guild.roles.cache.get(args[1]);
         if (!role) return message.reply("Invalid role id or mention.");
         let msg = await message.channel.send("Setting autoRole");
+        await mongo().then(async (mongoose)=>{
          await serverConfig.findOneAndUpdate({
                     _id: message.guild.id
                 },{
@@ -38,9 +39,22 @@ module.exports = {
             
       }
       else {
-        let autoR = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).autoRole:undefined;
+        let autoR = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).autoRole:undefined;
         if (!autoR) message.channel.send("This server isn't using the autoRole feature of the bot.");
-        bot.serverConfig.set(message.guild.id, {
+        let msg2= await message.channel.send("Disabling autorole");
+        
+        await mongo().then(async (mongoose)=>{
+         await serverConfig.findOneAndUpdate({
+                    _id: message.guild.id
+                },{
+                    _id: message.guild.id,
+                    autoRole: undefined,
+                },{
+                    upsert: true
+                })
+          msg2.edit(`AutoRole disabled successfully.`)
+          let result = bot.serverConfig.get(message.guild.id);
+          bot.serverConfig.set(message.guild.id, {
             prefix: result.prefix,
             suggestion: result.suggestion,
             welcome: result.welcome,
