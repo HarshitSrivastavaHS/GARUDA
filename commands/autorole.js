@@ -37,7 +37,8 @@ module.exports = {
             autoRole: role.id
           });
             
-      }
+      })
+        }
       else {
         let autoR = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).autoRole:undefined;
         if (!autoR) message.channel.send("This server isn't using the autoRole feature of the bot.");
@@ -63,6 +64,6 @@ module.exports = {
             ghost: result.ghost,
             autoRole: undefined
           });
-      }
+      })}
     }
 }
