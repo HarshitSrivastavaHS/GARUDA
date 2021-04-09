@@ -13,7 +13,7 @@ module.exports = {
       let subcmd = args[0];
         if (subcmd.toLowerCase()=="set") {
             if (!args[1]) return message.reply(`Invalid Synatx. ${prefix}autorole set <role id or mention>`);
-        let role = message.guild.roles.cache.get(args[1]);
+        let role = message.mentions.roles.first()||message.guild.roles.cache.get(args[1]);
         if (!role) return message.reply("Invalid role id or mention.");
         let msg = await message.channel.send("Setting autoRole");
         await mongo().then(async (mongoose)=>{
