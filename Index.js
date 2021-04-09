@@ -235,7 +235,7 @@ bot.on('message', async message => {
 	}
         prefix = prefix.toLowerCase();
 
-    if (message.content.startsWith(`<@!${bot.user.id}>`))
+    if (message.content.startsWith(`<@!${bot.user.id}>`)||message.content.startsWith(`<@${bot.user.id}>`))
         message.reply("My prefix in this server is `"+prefix+"`");
 	if (!message.content.toLowerCase().startsWith(prefix)) return;
     
