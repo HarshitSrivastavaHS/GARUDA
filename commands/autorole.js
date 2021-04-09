@@ -15,6 +15,7 @@ module.exports = {
             if (!args[1]) return message.reply(`Invalid Synatx. ${prefix}autorole set <role id or mention>`);
         let role = message.mentions.roles.first()||message.guild.roles.cache.get(args[1]);
         if (!role) return message.reply("Invalid role id or mention.");
+        if (!message.guild.me.roles.highest>message.member.guild.roles.highest) return message.reply("That role is higher than the bot's role.");
         let msg = await message.channel.send("Setting autoRole");
         await mongo().then(async (mongoose)=>{
          await serverConfig.findOneAndUpdate({
