@@ -1,6 +1,7 @@
 const { words } = require("../util/fasttypeWords.json");
 
 const games = {};
+let count=15;
 const stages = {
   STARTING: (counter)=>{
     return `A new "fast type" game is starting in ${counter}s!`
@@ -12,6 +13,7 @@ const stages = {
       sword += " ";
     }
     return `The word is **${sword}**`;
+     --count;
   },
   ENDING: (points)=>{
     const sorted = Object.keys(points).sort((a,b)=>{
@@ -39,7 +41,8 @@ const gameLoop = ()=>{
       message.edit(string);
       if (game.counter<=0) {
         game.stage = "GAME_RUNNING"
-        game.counter = 15;
+        //game.counter = 15;
+        count = 15;
         selectWord(game);
         string = stages[game.stage](game.currentWord);
         message.edit(string);
@@ -53,7 +56,7 @@ const gameLoop = ()=>{
         continue;
       }
     }
-    --game.counter;
+    //--game.counter;
   }
   setTimeout(gameLoop, 2000);
 }
