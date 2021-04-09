@@ -41,7 +41,7 @@ module.exports = {
         }
       else {
         let autoR = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).autoRole:undefined;
-        if (!autoR) message.channel.send("This server isn't using the autoRole feature of the bot.");
+        if (!autoR) return message.channel.send("This server isn't using the autoRole feature of the bot.");
         let msg2= await message.channel.send("Disabling autorole");
         
         await mongo().then(async (mongoose)=>{
