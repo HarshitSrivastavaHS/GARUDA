@@ -40,7 +40,8 @@ module.exports = {
             welcome: result.welcome,
             leave: result.leave,
             modLog: result.modLog,
-            ghost: targetChannel.id
+            ghost: targetChannel.id,
+		  autoRole: result.autoRole
           });
         })
 	}
