@@ -37,16 +37,32 @@ const server = async ()=>{
                 welcome: result.welcome,
                 leave: result.leave,
                 modLog: result.modLog,
-		ghost: result.ghost
+		ghost: result.ghost,
+		autoRole: result.autoRole
             });
         }
 }
 
 bot.on("guildMemberAdd", async (member) => {
   let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
-  if (!wc) return;
-  const welcomeCH = member.guild.channels.cache.get(wc) || member.guild.fetch(wc);
-  welcomeJS.execute(member, welcomeCH, Discord);
+  if (wc) {
+	const welcomeCH = member.guild.channels.cache.get(wc) || member.guild.fetch(wc);
+	if (member.user.bot) {
+		welcomeCH.send(`${member.user.tag} was just invited to the server.`);
+	}
+  	else {
+  		welcomeJS.execute(member, welcomeCH, Discord);
+	}
+  }
+  let ar = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).autoRole:undefined;
+  if (ar){
+  	let autorole = message.guild.roles.cache.get(ar);
+	if (autorole) {
+		if (!member.user.bot){
+			member.roles.add(autorole);
+		}
+	}
+  }
 })
 
 bot.on("guildMemberRemove", async (member) => {
