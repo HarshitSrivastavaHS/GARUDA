@@ -1,16 +1,16 @@
 module.exports = {
     name: 'autorole',
     type: 'admin',
-    usage: `&{prefix}autorole <add/remove> <@role or id>`,
+    usage: `&{prefix}autorole <set/remove> <@role or id>`,
     description: 'give roles automatically to the members (human only)',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
       if (!message.member.permissions.has("MANAGE_SERVER"))
         return message.reply("You don't have the required permissions.");
-      if (!args[0]||(args[0].toLowerCase()!="add"&&args[0].toLowerCase()!="remove")) return message.reply(`Invalid Syntax. ${prefix}autorole <add/remove> <role id or mention>\nRole is required only if you are setting auto role.`)
+      if (!args[0]||(args[0].toLowerCase()!="set"&&args[0].toLowerCase()!="remove")) return message.reply(`Invalid Syntax. ${prefix}autorole <set/remove> <role id or mention>\nRole is required only if you are setting auto role.`)
       let subcmd = args[0];
-        if (subcmd.toLowerCase()=="add") {
-            if (!args[1]) return message.reply(`Invalid Synatx. ${prefix}autorole add <role id or mention>`);
+        if (subcmd.toLowerCase()=="set") {
+            if (!args[1]) return message.reply(`Invalid Synatx. ${prefix}autorole set <role id or mention>`);
         let role = message.guild.roles.cache.get(args[1]);
         if (!role) return message.reply("Invalid role id or mention.");
         let msg = await message.channel.send("Setting autoRole");
