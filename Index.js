@@ -56,7 +56,7 @@ bot.on("guildMemberAdd", async (member) => {
   }
   let ar = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).autoRole:undefined;
   if (ar){
-  	let autorole = message.guild.roles.cache.get(ar);
+  	let autorole = member.guild.roles.cache.get(ar);
 	if (autorole) {
 		if (!member.user.bot){
 			member.roles.add(autorole);
