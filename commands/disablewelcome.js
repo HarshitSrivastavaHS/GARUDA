@@ -39,7 +39,8 @@ module.exports = {
             welcome: undefined,
             leave: result.leave,
             modLog: result.modLog,
-            ghost: result.ghost
+            ghost: result.ghost,
+              autoRole: result.autoRole
             });
         })
     }
