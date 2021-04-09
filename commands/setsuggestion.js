@@ -40,7 +40,8 @@ module.exports = {
             welcome: result.welcome,
             leave: result.leave,
             modLog: result.modLog,
-            ghost: result.ghost
+            ghost: result.ghost,
+              autoRole: result.autoRole
           });
     }
 }
