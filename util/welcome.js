@@ -26,7 +26,7 @@ module.exports = {
 	    ctx.fillStyle = '#edf2f4';
 	    ctx.fillText(text, 250, canvas.height / 1.8);
       ctx.font = `bold 28px sans-serif`;
-      ctx.fillText(`Member #${member.guild.memberCount}`, 250+ctx.measureText(`Member #${member.guild.memberCount}`).width/2, canvas.height / 3.5 + canvas.height / 1.8 - 10);
+      ctx.fillText(`Member #${member.guild.members.cache.filter(m=>!m.user.bot).size}`, 250+ctx.measureText(`Member #${member.guild.memberCount}`).width/2, canvas.height / 3.5 + canvas.height / 1.8 - 10);
       ctx.beginPath();
 	    ctx.arc(125, 125, 75, 0, Math.PI * 2, true);
     	ctx.closePath();
