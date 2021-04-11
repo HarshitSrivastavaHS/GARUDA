@@ -245,7 +245,8 @@ bot.on('message', async message => {
                 welcome: result?result.welcome:undefined,
                 leave: result?result.leave:undefined,
                 modLog: result?result.modLog:undefined,
-		ghost: result?result.ghost:undefined
+		ghost: result?result.ghost:undefined,
+                autoRole: result?result.autoRole:undefined
         });
         prefix = "%";
 	}
