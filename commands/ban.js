@@ -18,7 +18,7 @@ module.exports = {
             message.channel.send("You don't have the required permissions.");
             return;
         }
-        const mentionMember = message.mentions.members.first();
+        const mentionMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(member => member.user.username.toLowerCase() == args.join(" ").toLowerCase());
 
         if (args.length === 0 || mentionMember === undefined) {
             message.reply(`Invalid Syntax! \`\`\`%ban @mention\`\`\``)
@@ -26,19 +26,18 @@ module.exports = {
         }
         const srole = message.member.roles.highest.position;
         const rrole = mentionMember.roles.highest.position;
-        const brole = message.guild.me.roles.highest.position;
         
         if (srole>rrole) {
-            if (brole>rrole) {
+            if (mentionMember.bannable) {
                 mentionMember.ban();
                 message.channel.send(`${mentionMember} was banned by ${message.member}.`);
             }
             else {
-                message.reply(":cry: I cannot ban that user.");
+                message.reply("I cannot ban that user.");
             }
         }
         else {
-            message.reply(":broken_heart: You cannot ban someone with a higher or equal role as your.");
+            message.reply("You cannot ban someone with a higher or equal role as your.");
         }
     }
 }
