@@ -61,7 +61,7 @@ module.exports = {
                 
                 message.channel.send(`**<@${m.author.id}>, +1 Point. Total Point${points[m.author.id]==1?"":"s"}: ${points[m.author.id]}**`)
                 
-                if (counter < maxWords) {
+                if (counter < maxWords-1) {
                     chosenWord = "";
                     collector.resetTimer();
                     selectWord();
