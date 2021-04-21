@@ -22,7 +22,7 @@ module.exports = {
         
         if (args[0]) {
             if (isNaN(args[0])) return message.channel.send("Please specify number of words only. This is optional. Default: 10")
-            if (args[0]<3&&args[0]>25) 
+            if (Number(args[0])<3&&Number(args[0])>25) 
                 maxWords = args[0];
         }
         
