@@ -52,7 +52,7 @@ module.exports = {
             selectWord()
             
             message.channel.send("**The Game will start in 3 seconds.**");
-            message.channel.send(`**Total Rounds: ${maxWords}`)
+            message.channel.send(`**Total Rounds: ${maxWords}**`)
             
             setTimeout(()=>{
                 message.channel.send(`**The Word is:  \`${chosenWord}\`**`);
