@@ -3,9 +3,9 @@ const { words } = require("../util/fasttypeWords.json");
 module.exports = {
     name: 'fasttype',
     type: 'game',
-    usage: '&{prefix}fasttype',
-    description: 'starts a typing game!',
-    permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
+    usage: '&{prefix}fasttype <optional number of words>',
+    description: 'starts a typing game! You can define the number of words. Default: 10',
+    permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];
@@ -18,8 +18,14 @@ module.exports = {
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         
         let chosenWord = "";
-            maxWords = 10;
-            
+        let maxWords = 10;
+        
+        if (args[0]) {
+            if (isNaN(args[0])) return message.channel.send("Please specify number of words only. This is optional. Default: 10")
+            if (args[0]<3&&args[0]>25) 
+                maxWords = args[0];
+        }
+        
             let counter = 0;
             
             let word;
@@ -74,7 +80,7 @@ module.exports = {
             })
             
             collector.on("end", collected => {
-                if (Object.keys(points).length == 0 ) return message.channel.send("**😕 Looks like nobody participated 😕**")
+                if (Object.keys(points).length == 0 ) return message.channel.send("**😕 Looks like nobody scored any points. 😕**")
                 let leaderboard = "🏆 The Game has Ended. Here is how everybody did: 🏆\n\n";
                 const sorted = Object.keys(points).sort((a,b)=>{
                     return points[b] - points[a];
