@@ -78,7 +78,7 @@ module.exports = {
                     setTimeout(()=>{
                         message.channel.send(`**The Word is:  \`${chosenWord}\`**`);
                         counter++;
-                    }, 1000);
+                    }, 2000);
                 }
             })
             
