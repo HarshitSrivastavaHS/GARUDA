@@ -47,6 +47,7 @@ module.exports = {
             
             setTimeout(()=>{
                 message.channel.send(`**The Word is:  \`${chosenWord}\`**`);
+                counter++;
             }, 3000)
             
             
@@ -61,12 +62,13 @@ module.exports = {
                 
                 message.channel.send(`**<@${m.author.id}>, +1 Point. Total Point${points[m.author.id]==1?"":"s"}: ${points[m.author.id]}**`)
                 
-                if (counter < maxWords-1) {
+                if (counter < maxWords) {
                     chosenWord = "";
                     collector.resetTimer();
                     selectWord();
                     setTimeout(()=>{
                         message.channel.send(`**The Word is:  \`${chosenWord}\`**`);
+                        counter++;
                     }, 1000);
                 }
             })
