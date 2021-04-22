@@ -1,5 +1,3 @@
-const { words } = require("../util/fasttypeWords.json");
-
 module.exports = {
     name: 'fasttype',
     type: 'game',
@@ -16,7 +14,7 @@ module.exports = {
         })
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-        
+        let { words } = require("../util/fasttypeWords.json");
         let chosenWord = "";
         let maxWords = 10;
         
