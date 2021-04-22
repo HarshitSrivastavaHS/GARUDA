@@ -33,7 +33,7 @@ module.exports = {
         x = x.replace(HERE_PATTERN, "@ here");
         let reptext = x.substr(x.indexOf(' ')+1);
         if (h||e) {
-            reptext += `\n||The user who has used this command pinged: ${e?"everyone":""} ${h&&e?"and":""} ${h?"here":""}`
+            reptext += `\n||The user who has used this command pinged: ${e?"everyone":""} ${h&&e?"and":""} ${h?"here":""}||`
         }
         message.channel.send(reptext);
     }
