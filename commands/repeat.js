@@ -2,7 +2,7 @@ module.exports = {
     name: 'repeat',
     description: 'repeats whatever the user wants it to repeat',
     usage: "&{prefix}repeat <text>",
-    permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
+    permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];
@@ -17,14 +17,13 @@ module.exports = {
             message.reply("Invalid Syntax! ```\n%repeat <Text to be repeated by the bot>\n```");
             return;
         }
-        message.delete();
+        if (message.deletable)
+            message.delete();
         const EVERYONE_PATTERN = /@(everyone)/g;
         const HERE_PATTERN = /@(here)/g;
         let x = message.content;
-        if (!message.member.permissions.has("MENTION_EVERYONE")) {
-            x = x.replace(EVERYONE_PATTERN, "everyone");
-            x = x.replace(HERE_PATTERN, "here");
-        }
+        x = x.replace(EVERYONE_PATTERN, "everyone");
+        x = x.replace(HERE_PATTERN, "here");
         const reptext = x.substr(x.indexOf(' ')+1);
         message.channel.send(reptext);
     }
