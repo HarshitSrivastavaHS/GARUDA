@@ -51,8 +51,7 @@ module.exports = {
             
             selectWord()
             
-            message.channel.send("**The Game will start in 3 seconds.**");
-            message.channel.send(`**Total Rounds: ${maxWords}**`)
+            message.channel.send(`**The Game will start in 3 seconds.**\n**Total Rounds: ${maxWords}**`);
             
             setTimeout(()=>{
                 message.channel.send(`**The Word is:  \`${chosenWord}\`**`);
@@ -64,19 +63,17 @@ module.exports = {
                 max: maxWords,
                 time: 10*1000
             })
-            
+            let winner;
             collector.on("collect", (m)=>{
                 
                 points[m.author.id] = points[m.author.id]?points[m.author.id]+1:1;
-                
-                message.channel.send(`**<@${m.author.id}>, +1 Point. Total Point${points[m.author.id]==1?"":"s"}: ${points[m.author.id]}**`)
-                
+                winner = m.author.id;
                 if (counter < maxWords) {
                     chosenWord = "";
                     collector.resetTimer();
                     selectWord();
                     setTimeout(()=>{
-                        message.channel.send(`**The Word is:  \`${chosenWord}\`**`);
+                        message.channel.send(`**<@${m.author.id}>, +1 Point. Total Point${points[m.author.id]==1?"":"s"}: ${points[m.author.id]}**\n\n**The Word is:  \`${chosenWord}\`**`);
                         counter++;
                     }, 2000);
                 }
@@ -84,7 +81,7 @@ module.exports = {
             
             collector.on("end", collected => {
                 if (Object.keys(points).length == 0 ) return message.channel.send("**😕 Looks like nobody scored any points. 😕**")
-                let leaderboard = "🏆 The Game has Ended. Here is how everybody did: 🏆\n\n";
+                let leaderboard = `<@${winner}>, +1 Point. Total Point${points[winner]==1?"":"s"}: ${points[winner]}\n\n🏆 The Game has Ended. Here is how everybody did: 🏆\n\n`;
                 const sorted = Object.keys(points).sort((a,b)=>{
                     return points[b] - points[a];
                 })
