@@ -22,9 +22,19 @@ module.exports = {
         const EVERYONE_PATTERN = /@(everyone)/g;
         const HERE_PATTERN = /@(here)/g;
         let x = message.content;
-        x = x.replace(EVERYONE_PATTERN, "everyone");
-        x = x.replace(HERE_PATTERN, "here");
+        let h = false, e = false;
+        if (message.member.permissions.has("MANAGE_MESSAGES")) {
+            if (HERE_PATTERN.test(x))
+                h = true
+            if (EVERYONE_PATTERN.test(x))
+                e = true
+        }
+        x = x.replace(EVERYONE_PATTERN, "@ everyone");
+        x = x.replace(HERE_PATTERN, "@ here");
         const reptext = x.substr(x.indexOf(' ')+1);
+        if (h||e) {
+            reptext += `\n||The user who has used this command pinged: ${e?"everyone":""} ${h&&e?"and":""} ${h?"here":""}`
+        }
         message.channel.send(reptext);
     }
 }
