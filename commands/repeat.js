@@ -31,7 +31,7 @@ module.exports = {
         }
         x = x.replace(EVERYONE_PATTERN, "@ everyone");
         x = x.replace(HERE_PATTERN, "@ here");
-        const reptext = x.substr(x.indexOf(' ')+1);
+        let reptext = x.substr(x.indexOf(' ')+1);
         if (h||e) {
             reptext += `\n||The user who has used this command pinged: ${e?"everyone":""} ${h&&e?"and":""} ${h?"here":""}`
         }
