@@ -35,11 +35,11 @@ module.exports = {
             const selectWord = (game)=>{
                 word = words[Math.floor(Math.random()*words.length)];
                 const index = words.indexOf(word);
-                chosenWord
-                for (const char of [...word]) {
+                chosenWord = word.split("").join(" ")
+                /*for (const char of [...word]) {
                     chosenWord += char;
                     chosenWord += " ";
-                }
+                }*/
                 words.splice(index, 1);
             }
             
