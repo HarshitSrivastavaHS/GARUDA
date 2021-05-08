@@ -48,7 +48,7 @@ bot.on("guildMemberAdd", async (member) => {
   if (wc) {
 	const welcomeCH = member.guild.channels.cache.get(wc) || member.guild.fetch(wc);
 	if (member.user.bot) {
-		welcomeCH.send(`${member.user.tag} was just invited to the server.`);
+		welcomeCH.send(`${member} was just invited to the server.`);
 	}
   	else {
   		welcomeJS.execute(member, welcomeCH, Discord);
