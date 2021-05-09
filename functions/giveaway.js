@@ -28,7 +28,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
         .setColor("RED")
         .setTitle(prize)
         .setDescription(`Could not determine winner(s).\nHosted by: ${giveawayHost}`)
-        .setFooter(`Ended at`)
+        .setFooter(`Winners: ${winners} | Ended at`)
         .setTimestamp();
         msg.edit("**🎉Giveaway Ended🎉**", nowin);
         return giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
@@ -49,14 +49,17 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     .setColor("GREEN")
     .setTitle("You've Won a giveaway!")
     .setDescription(`Congratulations! You have won the giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name}`)
-    .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
+    .setFooter(`Winners: ${winners} | ${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     giveawayWinners.forEach((item,index)=>{
       item.send(winDM);
     })
     giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You ${winners>1?"all ":""}have won the **${prize}** giveaway!.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
     let giveawayWinnersTag = "";
     giveawayWinners.forEach((item,index)=>{
+      if (index == 0)
       giveawayWinnersTag += item.tag;
+      else 
+      giveawayWinnersTag += "\n"+item.tag;
     })
     hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\n${winners>1?"Winners are:":"Winner is:"}\n${giveawayWinnersTag}`)
     giveawayHost.send(hostDM);
