@@ -51,7 +51,6 @@ module.exports = {
             break;
       }
       if (ms<10*1000||ms>86400*1000*28) return message.channel.send("Time cannot be less than 10 seconds or more than 4 weeks.");
-      if (message.deletable) message.delete();
       const tme = Date.now()+ms;
       let giveawayEM = new Discord.MessageEmbed()
       .setTitle(prize)
@@ -76,7 +75,7 @@ module.exports = {
           })
         
       })
-        
+        if (message.deletable) message.delete();
         giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id, message.author.id);
     }
       
