@@ -16,15 +16,24 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     if (!giveawayChannel) return;   
     msg = await giveawayChannel.messages.fetch(msg);
     if (!msg) return;
+    let giveawayHost = giveawayChannel.guild.members.cache.get(host);
+    
+    let hostDM = new Discord.MessageEmbed()
+    .setColor("PURPLE")
+    .setTitle("Your giveaway has ended!")
+    .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
+    
     if (msg.reactions.cache.get("🎉").count <= winners) {
         let nowin = new Discord.MessageEmbed()
         .setColor("RED")
         .setTitle(prize)
-        .setDescription(`Could not determine winner(s).\nHosted by: ${giveawayChannel.guild.members.cache.get(host)}`)
+        .setDescription(`Could not determine winner(s).\nHosted by: ${giveawayHost}`)
         .setFooter(`Ended at`)
         .setTimestamp();
         msg.edit("**🎉Giveaway Ended🎉**", nowin);
         return giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
+        hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\nCould not determine ${winners>1?"":"a "}winner${winners>1?"s":""}.`)
+        giveawayHost.send(hostDM);
     }
     await msg.reactions.cache.get("🎉").users.fetch()
     let giveawayWinners = msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random(winners);
@@ -32,18 +41,20 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     let winem = new Discord.MessageEmbed()
     .setColor("GREEN")
     .setTitle(prize)
-    .setDescription (`${winners>1?"Winners:":"Winner"}\n${winners>1?giveawayWinners.join("\n"):giveawayWinners}\nHosted by: ${giveawayChannel.guild.members.cache.get(host)}`)
+    .setDescription (`${winners>1?"Winners:":"Winner"}\n${winners>1?giveawayWinners.join("\n"):giveawayWinners}\nHosted by: ${giveawayHost}`)
     .setFooter("Ended at")
     .setTimestamp()
     msg.edit("**🎉Giveaway Ended🎉**", winem);
     let winDM = new Discord.MessageEmbed()
     .setColor("GREEN")
-    .setTitle("You Won a giveaway!")
+    .setTitle("You've Won a giveaway!")
     .setDescription(`Congratulations! You have won the giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name}`)
     .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     giveawayWinners.forEach((item,index)=>{
       item.send(winDM);
     })
-    giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You have won the **${prize}** giveaway!.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
-   }, ms)
+    giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You ${winners>1?"all ":""}have won the **${prize}** giveaway!.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
+    hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\n${winners>1?"Winners are:":"Winner is:"}\n${giveawayWinners}`)
+    giveawayHost.send(hostDM);
+  }, ms)
 }
