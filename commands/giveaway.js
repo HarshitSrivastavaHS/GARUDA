@@ -32,6 +32,7 @@ module.exports = {
       if (winners<1||winners>20) return message.channel.send("Number of winners cannot be less than 1 or more than 20.");
       let ms = 0;
       let sym = "";
+      time =  parseInt(time);
       switch(timeType) {
         case 'd': 
             ms = time*86400*1000;
