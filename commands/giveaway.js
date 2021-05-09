@@ -51,7 +51,7 @@ module.exports = {
             sym= time>1?"seconds":"second";
             break;
       }
-      console.log(ms)
+      console.log(timeType)
       if (ms<10*1000||ms>86400*1000*28) return message.channel.send("Time cannot be less than 10 seconds or more than 4 weeks.");
       
       const tme = Date.now()+ms;
