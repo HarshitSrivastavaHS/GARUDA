@@ -59,7 +59,7 @@ module.exports = {
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter("Ends at")
-      .setDescription(`React with :tada: to enter!\nTime: ${time} ${sym}\nHosted by ${message}`)
+      .setDescription(`React with :tada: to enter!\nTime: ${time} ${sym}\nHosted by ${message.author}`)
       .setTimestamp(tme);
       let msg = await message.channel.send("**🎉Giveaway🎉**",giveawayEM);
       msg.react("🎉");
