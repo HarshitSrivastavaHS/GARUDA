@@ -24,7 +24,7 @@ module.exports = {
       let time = args[0].substr(args[0].length-1);
       let timee = args[0].substr(0, args[0].length-1)
       if (isNaN(timee)) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
-      if (!args[1].toLowerCase().endsWith("w")) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
+      if (!args[0]||!args[1].toLowerCase().endsWith("w")) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
       let winners = args[1].substr(0, args[1].length-1)
       if (isNaN(winners)) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
       let prize = args.slice(2).join(" ");
