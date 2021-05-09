@@ -4,7 +4,7 @@ const giveawaySchema = require("../Schemas/giveaway-schema.js")
 module.exports = {
     name: 'giveaway',
     type: 'utility',
-    usage: '&{prefix}giveaway <time> <prize>',
+    usage: '&{prefix}giveaway <time> <winners> <prize>',
     description: 'to start a giveaway',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
@@ -17,13 +17,17 @@ module.exports = {
         })
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-      if (!args[0]) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d Prize```");
+      
+        if (!args[0]) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
       args[0] = args[0].toLowerCase();
-      if (!args[0].endsWith("d")&&!args[0].endsWith("h")&&!args[0].endsWith("m")&&!args[0].endsWith("s")) return message.channel.send("Invalid Syntax!\nFormat for time: 1d = 1 day, 1h = 1 hour, 1m = 1 minute, 1s = 1 second\nExample:```%giveaway 1d Prize```");
+      if (!args[0].endsWith("d")&&!args[0].endsWith("h")&&!args[0].endsWith("m")&&!args[0].endsWith("s")) return message.channel.send("Invalid Syntax!\nFormat for time: 1d = 1 day, 1h = 1 hour, 1m = 1 minute, 1s = 1 second\nExample:```%giveaway 1d 1w Prize```");
       let time = args[0].substr(args[0].length-1);
       let timee = args[0].substr(0, args[0].length-1)
-      if (isNaN(timee)) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d Prize```");
-      let prize = args.slice(1).join(" ");
+      if (isNaN(timee)) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
+      if (!args[1].toLowerCase().endsWith("w")) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
+      let winners = args[1].substr(0, args[1].length-1)
+      if (isNaN(winners)) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
+      let prize = args.slice(2).join(" ");
       if (!prize) return message.channel.send("No prize specified. Please specify after the time.");
       message.delete();
       let ms = 0;
