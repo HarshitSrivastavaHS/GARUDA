@@ -29,6 +29,7 @@ module.exports = {
       let timeType = time[time.length-1].toLowerCase();
       if (!winners.endsWith("w")||isNaN(winners.substr(0, winners.length-1))) return message.channel.send("Please specify the number of winners with postfix `w`");
       winners = winners.substr(0, winners.length-1);
+      if (winners<1||winners>20) return message.channel.send("Number of winners cannot be less than 1 or more than 20.");
       let ms = 0;
       let sym = "";
       switch(timeType) {
@@ -49,13 +50,14 @@ module.exports = {
             sym= time>1?"seconds":"second";
             break;
       }
+      if (ms<10000||ms>86400*1000*28) return message.channel.send("Time cannot be less than 10 seconds or more than 4 weeks.");
       
       const tme = Date.now()+ms;
       let giveawayEM = new Discord.MessageEmbed()
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter("Ends at")
-      .setDescription(`React with :tada: to enter!\nTime: ${time} ${sym}\nHosted by ${message.author}`)
+      .setDescription(`React with :tada: to enter!\nTime: ${time} ${sym}\nHosted by ${message}`)
       .setTimestamp(tme);
       let msg = await message.channel.send("**🎉Giveaway🎉**",giveawayEM);
       msg.react("🎉");
@@ -67,13 +69,14 @@ module.exports = {
             prize: prize,
             endTime: tme,
             winners: winners,
-            chID: message.channel.id
+            chID: message.channel.id,
+            host: message.author.id
           },{
             upsert: true
           })
         
       })
-        giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id);
+        giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id, message.author.id);
     }
       
 }
