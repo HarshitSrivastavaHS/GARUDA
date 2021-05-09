@@ -18,12 +18,12 @@ module.exports = {
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
       
-      if (!args[0]||!args[1]||!args[2]) return message.channel.send(`Missing time/winner/prize. Try \`${prefix}help giveaway\` to know the syntax.`)
+      if (!args[0]||!args[1]||!args[2]) return message.channel.send(`Missing one of the arguements, time/winner/prize. Try \`${prefix}help giveaway\` to know the syntax.`)
       let time = args[0];
       let winners = args[1];
       let prize = args.slice(2).join(" ");
       
-      if (!time.endsWith("d")||!time.endsWith("h")||!time.endsWith("m")||!time.endsWith("s")) return message.channel.send("Please specify the time with a postfix of s/m/h/d for seconds, minutes, hours or days respectively.");
+      if (!time.endsWith("d")&&!time.endsWith("h")&&!time.endsWith("m")&&!time.endsWith("s")) return message.channel.send("Please specify the time with a postfix of s/m/h/d for seconds, minutes, hours or days respectively.");
       if (isNaN(time.substr(0, time.length))) return message.channel.send("Please specify the time");
       time = time.substr(0, time.length);
       let timeType = time[time.length-1].toLowerCase();
