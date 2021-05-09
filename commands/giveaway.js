@@ -24,9 +24,11 @@ module.exports = {
       let prize = args.slice(2).join(" ");
       
       if (!time.endsWith("d")&&!time.endsWith("h")&&!time.endsWith("m")&&!time.endsWith("s")) return message.channel.send("Please specify the time with a postfix of s/m/h/d for seconds, minutes, hours or days respectively.");
-      if (isNaN(time.substr(0, time.length))) return message.channel.send("Please specify the time");
       time = time.substr(0, time.length-1);
+      if (isNaN(time)) return message.channel.send("Please specify the time");
       let timeType = time[time.length-1].toLowerCase();
+      if (!winners.endsWith("w")||isNaN(winners.substr(0, winners.length-1))) return message.channel.send("Please specify the number of winners with postfix `w`");
+      winners = winners.substr(0, winners.length-1);
       let ms = 0;
       let sym = "";
       switch(timeType) {
