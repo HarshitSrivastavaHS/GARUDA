@@ -11,6 +11,7 @@ const giveawaySchema = mongoose.Schema({
   endTime: reqString,
   winners: reqString,
   chID: reqString,
+  host: reqString
 })
 
 module.exports = mongoose.model("ongoing giveaways", giveawaySchema)
