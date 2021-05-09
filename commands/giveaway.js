@@ -26,7 +26,7 @@ module.exports = {
       if (!time.endsWith("d")&&!time.endsWith("h")&&!time.endsWith("m")&&!time.endsWith("s")) return message.channel.send("Please specify the time with a postfix of s/m/h/d for seconds, minutes, hours or days respectively.");
       time = time.substr(0, time.length-1);
       if (isNaN(time)) return message.channel.send("Please specify the time");
-      let timeType = time[time.length-1].toLowerCase();
+      let timeType = args[0][args[0].length-1].toLowerCase();
       if (!winners.endsWith("w")||isNaN(winners.substr(0, winners.length-1))) return message.channel.send("Please specify the number of winners with postfix `w`");
       winners = winners.substr(0, winners.length-1);
       if (winners<1||winners>20) return message.channel.send("Number of winners cannot be less than 1 or more than 20.");
