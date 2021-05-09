@@ -18,42 +18,42 @@ module.exports = {
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
       
-        if (!args[0]) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
-      args[0] = args[0].toLowerCase();
-      if (!args[0].endsWith("d")&&!args[0].endsWith("h")&&!args[0].endsWith("m")&&!args[0].endsWith("s")) return message.channel.send("Invalid Syntax!\nFormat for time: 1d = 1 day, 1h = 1 hour, 1m = 1 minute, 1s = 1 second\nExample:```%giveaway 1d 1w Prize```");
-      let time = args[0].substr(args[0].length-1);
-      let timee = args[0].substr(0, args[0].length-1)
-      if (isNaN(timee)) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
-      if (!args[1]||!args[1].toLowerCase().endsWith("w")) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
-      let winners = args[1].substr(0, args[1].length-1)
-      if (isNaN(winners)) return message.channel.send("Invalid Syntax!\nExample:```%giveaway 1d 1w Prize```");
+      if (!args[0]||!args[1]||!args[2]) return message.channel.send(`Missing time/winner/prize. Try \`${prefix}help giveaway\` to know the syntax.`)
+      let time = args[0];
+      let winners = args[1];
       let prize = args.slice(2).join(" ");
-      if (!prize) return message.channel.send("No prize specified. Please specify after the time.");
-      message.delete();
+      
+      if (!time.endsWith("d")||!time.endsWith("h")||!time.endsWith("m")||!time.endsWith("s")) return message.channel.send("Please specify the time with a postfix of s/m/h/d for seconds, minutes, hours or days respectively.");
+      if (isNaN(time.substr(0, time.length))) return message.channel.send("Please specify the time");
+      let time = time.substr(0, time.length);
+      let timeType = time[time.length-1].toLowerCase();
       let ms = 0;
       let sym = "";
-      if (time=="d") {
-         ms = timee*86400*1000;
-         sym="day(s)";
+      switch(timeType) {
+        case 'd': 
+            ms = time*86400*1000;
+            sym= time>1?"days":"day";
+            break;
+        case 'h': 
+            ms = time*3600*1000;
+            sym= time>1?"hours":"hour";
+            break;
+        case 'm': 
+            ms = time*60*1000;
+            sym= time>1?"minutes":"minute";
+            break;
+        case 's': 
+            ms = time*1000;
+            sym= time>1?"seconds":"second";
+            break;
       }
-      else if (time=="h") {
-         ms = timee*3600*1000; 
-         sym="hour(s)";
-      }
-      else if (time=="m") {
-         ms = timee*60*1000; 
-         sym="minute(s)";
-      }
-      else if (time=="s") {
-         ms = timee*1000; 
-         sym="second(s)";
-      }
+      
       const tme = Date.now()+ms;
       let giveawayEM = new Discord.MessageEmbed()
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter("Ends at")
-      .setDescription(`React with :tada: to enter!\nTime: ${timee} ${sym}\nHosted by ${message.author.tag}`)
+      .setDescription(`React with :tada: to enter!\nTime: ${timee} ${sym}\nHosted by ${message.author}`)
       .setTimestamp(tme);
       let msg = await message.channel.send("**🎉Giveaway🎉**",giveawayEM);
       msg.react("🎉");
@@ -64,13 +64,14 @@ module.exports = {
             _id: msg.id,
             prize: prize,
             endTime: tme,
+            winners: winners,
             chID: message.channel.id
           },{
             upsert: true
           })
         
       })
-        giveaway(bot, Discord, msg.id, tme, prize, message.channel.id);
+        giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id);
     }
       
 }
