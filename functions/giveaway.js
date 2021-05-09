@@ -32,7 +32,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     let winem = new Discord.MessageEmbed()
     .setColor("GREEN")
     .setTitle(prize)
-    .setDescription (`${winners>1?"Winners:":"Winner"}\n${winners>1?giveawayWinners.forEach((item, index)=>{item+"\n"}):giveawayWinners}\nHosted by: ${giveawayChannel.guild.members.cache.get(host)}`)
+    .setDescription (`${winners>1?"Winners:":"Winner"}\n${winners>1?giveawayWinners.join("\n"):giveawayWinners}\nHosted by: ${giveawayChannel.guild.members.cache.get(host)}`)
     .setFooter("Ended at")
     .setTimestamp()
     msg.edit("**🎉Giveaway Ended🎉**", winem);
@@ -41,7 +41,9 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     .setTitle("You Won a giveaway!")
     .setDescription(`Congratulations! You have won the giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name}`)
     .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
-    bot.users.cache.get(giveawayWinners.id).send(winDM);
+    giveawayWinners.forEach((item,index)=>{
+      item.send(winDM);
+    })
     giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You have won the **${prize}** giveaway!.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
    }, ms)
 }
