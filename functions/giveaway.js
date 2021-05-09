@@ -56,7 +56,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You ${winners>1?"all ":""}have won the **${prize}** giveaway!.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
     let giveawayWinnersTag = "";
     giveawayWinners.forEach((item,index)=>{
-      giveawayWinnersTag += item.user.tag;
+      giveawayWinnersTag += item.tag;
     })
     hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\n${winners>1?"Winners are:":"Winner is:"}\n${giveawayWinnersTag}`)
     giveawayHost.send(hostDM);
