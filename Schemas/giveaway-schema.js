@@ -9,6 +9,7 @@ const giveawaySchema = mongoose.Schema({
   _id: reqString,
   prize: reqString,
   endTime: reqString,
+  winners: reqString,
   chID: reqString,
 })
 
