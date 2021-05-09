@@ -24,7 +24,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch) => {
         .setFooter(`Ended at`)
         .setTimestamp();
         msg.edit("**🎉Giveaway Ended🎉**", nowin);
-        return giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg}`);
+        return giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
     }
     await msg.reactions.cache.get("🎉").users.fetch()
     let winner = "";
@@ -49,6 +49,6 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch) => {
     .setDescription(`Congratulations! You have won the giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name}`)
     .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     bot.users.cache.get(winner.id).send(winDM);
-    giveawayChannel.send(`${winner} has won the giveaway for **${prize}**.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg}`)
+    giveawayChannel.send(`${winner} has won the giveaway for **${prize}**.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
    }, ms)
 }
