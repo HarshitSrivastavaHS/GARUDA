@@ -20,7 +20,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
         let nowin = new Discord.MessageEmbed()
         .setColor("RED")
         .setTitle(prize)
-        .setDescription(`Could not determine winner(s).\nHosted by: ${giveawayChannel.guild.members.cahce.get(host)}`)
+        .setDescription(`Could not determine winner(s).\nHosted by: ${giveawayChannel.guild.members.cache.get(host)}`)
         .setFooter(`Ended at`)
         .setTimestamp();
         msg.edit("**🎉Giveaway Ended🎉**", nowin);
