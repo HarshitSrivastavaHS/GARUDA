@@ -29,7 +29,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch) => {
     await msg.reactions.cache.get("🎉").users.fetch()
     let winner = "";
     if (winners>1) {
-      msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random(winners)forEach((item, index)=>{
+      msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random(winners).forEach((item, index)=>{
         winner += item+"\n"
       });
     }
