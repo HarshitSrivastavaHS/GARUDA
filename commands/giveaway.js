@@ -6,7 +6,7 @@ module.exports = {
     type: 'utility',
     usage: '&{prefix}giveaway <time> <winners> <prize>',
     description: 'to start a giveaway',
-    permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS', 'MANAGE_MESSAGES'],
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];
@@ -17,7 +17,6 @@ module.exports = {
         })
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-      
       if (!args[0]||!args[1]||!args[2]) return message.channel.send(`Missing one of the arguements, time/winner/prize. Try \`${prefix}help giveaway\` to know the syntax.`)
       let time = args[0];
       let winners = args[1];
@@ -52,7 +51,7 @@ module.exports = {
             break;
       }
       if (ms<10*1000||ms>86400*1000*28) return message.channel.send("Time cannot be less than 10 seconds or more than 4 weeks.");
-      
+      if (message.deletable) message.delete();
       const tme = Date.now()+ms;
       let giveawayEM = new Discord.MessageEmbed()
       .setTitle(prize)
@@ -77,6 +76,7 @@ module.exports = {
           })
         
       })
+        
         giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id, message.author.id);
     }
       
