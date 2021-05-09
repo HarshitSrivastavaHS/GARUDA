@@ -25,7 +25,7 @@ module.exports = {
       
       if (!time.endsWith("d")&&!time.endsWith("h")&&!time.endsWith("m")&&!time.endsWith("s")) return message.channel.send("Please specify the time with a postfix of s/m/h/d for seconds, minutes, hours or days respectively.");
       if (isNaN(time.substr(0, time.length))) return message.channel.send("Please specify the time");
-      time = time.substr(0, time.length);
+      time = time.substr(0, time.length-1);
       let timeType = time[time.length-1].toLowerCase();
       let ms = 0;
       let sym = "";
