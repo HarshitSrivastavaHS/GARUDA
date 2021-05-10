@@ -231,12 +231,14 @@ bot.on('message', async message => {
 
         if (message.mentions.members.size>0) {
             let mentions = message.mentions.members;
+            let arr = []
             mentions.forEach((item, index)=>{
                 let mention = item;
                 let afkStatus = bot.afk.get(mention.user.id);
                 if (afkStatus)
-                    message.channel.send(`${mention.user.username} is AFK. Message: ${afkStatus}`);
+                    arr.push(`${mention.user.username} is AFK. Message: ${afkStatus}`);
                 })
+            message.channel.send(arr.join("\n"));
         }
 
 	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
