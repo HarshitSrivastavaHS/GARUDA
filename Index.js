@@ -281,7 +281,7 @@ bot.on('message', async message => {
   }
   let cmdexe = bot.commands.get(command) || bot.commands.find(c=>c.aliases&&c.aliases.includes(command));
   if (!cmdexe) return;
-  cmd.execute(message, args, bot, Discord, prefix);
+  cmdexe.execute(message, args, bot, Discord, prefix);
 });
 
 keepAlive();
