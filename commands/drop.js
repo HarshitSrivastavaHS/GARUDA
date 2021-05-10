@@ -20,7 +20,7 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
         .setColor("PURPLE")
         .setTitle(prize)
-        .setDescription(`The first one to react with 🎉 wins!\nMaximum Time: 30 seconds.\nHosted By ${message.member.user.tag}.`)
+        .setDescription(`The first one to react with 🎉 wins!\nMaximum Time: 30 seconds.\nHosted By ${message.member}.`)
         .setFooter("Drop");
         let msg = await message.channel.send("**🎉 PRIZE DROP 🎉**",embed);
         message.delete();
@@ -31,12 +31,12 @@ module.exports = {
             collected.map(el=>el.users.cache.map(u=>winner = !u.bot?u:winner));
             message.channel.send(`Congratulations <@${winner.id}>!! You have won the **${prize}**.`)
             embed.setColor("GREEN")
-            .setDescription(`Winner: ${winner.username+"#"+winner.discriminator}\nHosted By ${message.member.user.tag}.`)
+            .setDescription(`Winner: ${winner}\nHosted By ${message.member}.`)
             msg.edit("**🎉 DROP ENDED 🎉**",embed);
           }).catch(() => {
             message.channel.send('No one reacted within 30 seconds.');
             embed.setColor("RED")
-            .setDescription(`Nobody reacted\nHosted By ${message.member.user.tag}.`)
+            .setDescription(`Nobody reacted\nHosted By ${message.member}.`)
             msg.edit("**🎉 DROP ENDED 🎉**",embed);
         });
     }
