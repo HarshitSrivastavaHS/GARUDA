@@ -229,11 +229,14 @@ bot.on('message', async message => {
             })
         }
 
-        if (message.mentions.members.first()) {
-           let mention = message.mentions.members.first();
-           let afkStatus = bot.afk.get(mention.user.id);
-           if (afkStatus)
-               message.channel.send(`${mention.user.username} is AFK. Message: ${afkStatus}`);
+        if (message.mentions.members.size>0) {
+            let mentions = message.mentions.members;
+            mentions.forEach((item, index)=>{
+                let mention = item;
+                let afkStatus = bot.afk.get(mention.user.id);
+                if (afkStatus)
+                    message.channel.send(`${mention.user.username} is AFK. Message: ${afkStatus}`);
+                })
         }
 
 	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
