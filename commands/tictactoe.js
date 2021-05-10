@@ -4,6 +4,7 @@ module.exports = {
     type: 'game',
     usage: `&{prefix}tictactoe <user's @>`,
     description: 'play tictactoe with someone',
+    aliases: ["ttt"],
     permissions: ['SEND_MESSAGES', 'ADD_REACTIONS', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

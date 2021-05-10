@@ -279,9 +279,9 @@ bot.on('message', async message => {
     } 
     
   }
-
-  if (!bot.commands.has(command)) return;
-  bot.commands.get(command).execute(message, args, bot, Discord, prefix);
+  let cmdexe = bot.commands.has(command) || bot.commands.find(c=>c.aliases&&c.aliases.includes(command));
+  if (!cmdexe) return;
+  bot.commands.get(cmdexe).execute(message, args, bot, Discord, prefix);
 });
 
 keepAlive();
