@@ -279,7 +279,7 @@ bot.on('message', async message => {
     } 
     
   }
-  let cmdexe = bot.commands.get(command) || bot.commands.find(c=>c.aliases&&c.aliases.includes(command));
+  let cmdexe = bot.commands.get(command).name || bot.commands.find(c=>c.aliases&&c.aliases.includes(command)).name;
   if (!cmdexe) return;
   bot.commands.get(cmdexe).execute(message, args, bot, Discord, prefix);
 });
