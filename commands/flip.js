@@ -3,6 +3,7 @@ module.exports = {
     type: 'fun',
     usage: '&{prefix}flip',
     description: 'flips a coin',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

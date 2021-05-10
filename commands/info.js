@@ -1,7 +1,9 @@
 module.exports = {
     name: 'info',
     description: 'Gives the details of the bot',
-   permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
+    usage: "&{prefix}info",
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
+    aliases: [],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];

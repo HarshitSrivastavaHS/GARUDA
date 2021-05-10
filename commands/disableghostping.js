@@ -5,6 +5,7 @@ module.exports = {
 	type: 'admin',
 	usage: "&{prefix}disableghostping",
 	description: "Disables the ghost ping",
+    aliases: [],
 	permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

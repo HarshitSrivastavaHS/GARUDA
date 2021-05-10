@@ -3,6 +3,7 @@ module.exports = {
     type: 'utility',
     usage: '&{prefix}clear <Number of messages to be deleted>',
     description: 'deletes the given number of messages',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

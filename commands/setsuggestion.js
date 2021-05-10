@@ -5,6 +5,7 @@ module.exports = {
     name: 'setsuggestion',
     description: 'sets the channel where suggestions will be sent',
     type: "admin",
+    aliases: [],
     usage: `&{prefix}setsuggestion <suggestion channel>`,
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

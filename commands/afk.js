@@ -4,6 +4,7 @@ module.exports = {
     name: 'afk',
     usage: '&{prefix}afk <msg>',
     description: 'sets AFK.',
+    aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

@@ -4,6 +4,7 @@ module.exports = {
     type: 'fun',
     usage: '&{prefix}trigger <@mention>',
     description: 'triggers that person',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'ATTACH_FILES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

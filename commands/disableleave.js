@@ -5,6 +5,7 @@ module.exports = {
     name: 'disableleave',
     type: 'admin',
     description: 'disables the leave command.',
+    aliases: [],
     usage: '&{prefix}disableleave',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

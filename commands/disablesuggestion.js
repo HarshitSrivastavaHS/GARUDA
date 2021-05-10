@@ -5,6 +5,7 @@ module.exports = {
     name: 'disablesuggestion',
     type: 'admin',
     description: 'removes the suggestion channel.',
+    aliases: [],
     usage: '&{prefix}disablesuggestion',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

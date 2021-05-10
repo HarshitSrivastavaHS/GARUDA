@@ -4,6 +4,7 @@ module.exports = {
     name: 'lyrics', 
     type: 'utility',
     usage: '&{prefix}lyrics <Song name>', 
+    aliases: [],
     description:'Retrieves the lyrics of the given song name',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {

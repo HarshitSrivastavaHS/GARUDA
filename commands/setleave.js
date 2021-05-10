@@ -6,6 +6,7 @@ module.exports = {
     type: 'admin',
     description: 'sets the leaves channel.',
     usage: '&{prefix}setleave <#channel>',
+    aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

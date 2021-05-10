@@ -5,6 +5,7 @@ module.exports = {
     name: 'disablewelcome',
     type: 'admin',
     description: 'disables the welcome command.',
+    aliases: [],
     usage: '&{prefix}disablewelcome',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

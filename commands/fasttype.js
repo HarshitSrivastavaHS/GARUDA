@@ -2,6 +2,7 @@ module.exports = {
     name: 'fasttype',
     type: 'game',
     usage: '&{prefix}fasttype <optional number of words>',
+    aliases: [],
     description: 'starts a typing game! You can define the number of words. Default: 10',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

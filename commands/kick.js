@@ -2,6 +2,7 @@ module.exports = {
     name: 'kick',
     type: 'moderation',
     description: 'Kicks a user out of the server',
+    aliases: [],
     usage:"&{prefix}kick @user",
     permissions: ['SEND_MESSAGES', 'KICK_MEMBERS'],
     async execute(message, args, bot, Discord, prefix) {

@@ -4,6 +4,7 @@ module.exports = {
     name: 'prefix',
     type: 'utility',
     usage: '&{prefix}prefix <new prefix>',
+    aliases: [],
     description: 'changes the prefix of the bot',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

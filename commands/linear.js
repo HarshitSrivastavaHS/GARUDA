@@ -3,6 +3,7 @@ module.exports = {
     name: 'linear',
     type: 'maths',
     usage: `&{prefix}linear <expression>`,
+    aliases: [],
     description: 'solves a mathematical linear equation (one variable only).',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

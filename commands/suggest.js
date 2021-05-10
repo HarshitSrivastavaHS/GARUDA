@@ -2,6 +2,7 @@ module.exports = {
     name: 'suggest',
     description: 'send suggestions in the suggestion channel.',
     usage: '&{prefix}suggest <suggestion>',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
         if (args<1) return message.channel.send(`Please type the suggestion also.`)

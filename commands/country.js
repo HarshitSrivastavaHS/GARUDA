@@ -3,6 +3,7 @@ module.exports = {
     type: 'info',
     usage: '&{prefix}country <country code>',
     description: 'tells some details of a country.',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

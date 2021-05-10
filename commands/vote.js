@@ -2,6 +2,7 @@ module.exports = {
     name: 'vote',
     usage: '&{prefix}vote',
     description: 'support the bot by voting for the bot.',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

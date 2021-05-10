@@ -3,6 +3,7 @@ module.exports = {
     type: 'info',
     usage: '&{prefix}covid',
     description: 'shows covid 19 stats',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

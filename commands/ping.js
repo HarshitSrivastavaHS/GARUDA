@@ -3,6 +3,7 @@ module.exports = {
     name: 'ping',
     description: 'This is the ping command',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
+    aliases: [],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];

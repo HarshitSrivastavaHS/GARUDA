@@ -2,6 +2,7 @@ module.exports = {
     name: 'poll',
     type: 'utility',
     description: 'starts a poll',
+    aliases: [],
     usage:'&{prefix}poll <question> \nor\n&{prefix}poll "question" "option1" "option2" ... "option9" ',
     permissions: ['SEND_MESSAGES', 'ADD_REACTIONS', 'EMBED_LINKS', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

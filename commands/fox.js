@@ -3,6 +3,7 @@ module.exports = {
     type: 'fun',
     usage: '&{prefix}fox',
     description: 'get a random fox pic',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

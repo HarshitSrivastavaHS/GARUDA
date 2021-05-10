@@ -3,6 +3,7 @@ module.exports = {
     type: 'admin',
     description: 'simulates leave for testing',
     usage: "&{prefix}simleave", 
+    aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

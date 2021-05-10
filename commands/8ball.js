@@ -3,6 +3,7 @@ module.exports = {
     type: 'fun',
     usage: `&{prefix}8ball <question>`,
     description: 'ask yes/no question from the bot',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

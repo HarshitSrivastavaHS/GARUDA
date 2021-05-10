@@ -2,6 +2,7 @@ module.exports = {
     name: 'invite',
     usage: '&{prefix}invite',
     description: 'gives bot\'s invite link',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

@@ -1,6 +1,7 @@
 module.exports = {
     name: 'suggestion',
     description: 'accept/reject a suggestion.',
+    aliases: [],
     usage: '&{prefix}suggestion <suggestion id or reply to the message and exclude this> <accept/reject> <reason>',
     permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {

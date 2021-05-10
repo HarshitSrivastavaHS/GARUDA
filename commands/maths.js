@@ -4,6 +4,7 @@ module.exports = {
     type: 'maths',
     usage: '&{prefix}mahts <expression>',
     description: 'solves a maths expression',
+    aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

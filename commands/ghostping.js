@@ -4,6 +4,7 @@ module.exports = {
 	name: 'ghostping',
 	type: 'admin',
 	usage: "&{prefix}ghostping #channel",
+    aliases: [],
 	description: "Sets the channel to send if someone ghost pings",
 	permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {

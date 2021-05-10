@@ -3,6 +3,7 @@ module.exports = {
     type: 'utility',
     usage: `&{prefix}drop <prize>`,
     description: 'first person to react within 30 seconds wins.',
+    aliases: [],
     permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

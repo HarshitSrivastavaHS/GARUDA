@@ -3,6 +3,7 @@ module.exports = {
     type: 'admin',
     description: 'simulates join for testing',
     usage: "&{prefix}simjoin", 
+    aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

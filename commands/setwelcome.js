@@ -6,6 +6,7 @@ module.exports = {
     type: 'admin',
     description: 'sets the welcome channel.',
     usage: '&{prefix}setwelcome <#channel>',
+    aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

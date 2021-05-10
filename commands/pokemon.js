@@ -4,6 +4,7 @@ module.exports = {
     usage: '&{prefix}pokemon <name>',
     description: 'get details of a pokemon.',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
+    aliases: [],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];

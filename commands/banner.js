@@ -4,6 +4,7 @@ module.exports = {
     type: 'fun',
     usage: '&{prefix}banner <text>',
     description: 'types that text in banner form',
+    aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];

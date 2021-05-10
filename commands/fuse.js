@@ -3,6 +3,7 @@ module.exports = {
 	type: 'fun',
 	usage: "&{prefix}fuse <user's mention>\n&{prefix}fuse <user's mention> <another user's mention>",
 	description: "fuses user's avatar with the mentioned user's avatar",
+    aliases: [],
 	permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
