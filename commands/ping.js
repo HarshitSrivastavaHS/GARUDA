@@ -16,12 +16,12 @@ module.exports = {
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
       const cnt = new Date().getTime();
       const ping = cnt - message.createdAt;
-     var icon = message.guild.iconURL() 
+     var icon = bot.user.displayAvatarURL(); 
       const embed = new Discord.MessageEmbed()
       .setColor("#FFC0CB")
       .setThumbnail(`${icon}`)
       .setTitle("🏓Pong.")
-      .setDescription(`Your ping is ${ping} ms\n Latency is ${bot.ws.ping} ms`)
+      .setDescription(`Your ping is ${ping} ms\nLatency is ${bot.ws.ping} ms`)
       message.channel.send(embed)
     }
 }
