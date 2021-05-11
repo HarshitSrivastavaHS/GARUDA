@@ -42,14 +42,14 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     .setColor("GREEN")
     .setTitle(prize)
     .setDescription (`${winners>1?"Winners:":"Winner"}\n${winners>1?giveawayWinners.join("\n"):giveawayWinners}\nHosted by: ${giveawayHost}`)
-    .setFooter("Ended at")
+    .setFooter(`Winners: ${winners} | Ended at`)
     .setTimestamp()
     msg.edit("**🎉Giveaway Ended🎉**", winem);
     let winDM = new Discord.MessageEmbed()
     .setColor("GREEN")
     .setTitle("You've Won a giveaway!")
     .setDescription(`Congratulations! You have won the giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name}`)
-    .setFooter(`Winners: ${winners} | ${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
+    .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     giveawayWinners.forEach((item,index)=>{
       item.send(winDM);
     })
