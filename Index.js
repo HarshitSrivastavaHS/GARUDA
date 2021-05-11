@@ -238,7 +238,8 @@ bot.on('message', async message => {
                 if (afkStatus)
                     arr.push(`${mention.user.username} is AFK. Message: ${afkStatus}`);
                 })
-            message.channel.send(arr.join("\n"));
+            if (arr.length>0)
+                message.channel.send(arr.join("\n"));
         }
 
 	prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
