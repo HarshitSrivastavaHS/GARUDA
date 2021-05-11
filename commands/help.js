@@ -16,8 +16,8 @@ module.exports = {
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         const PREFIX_REG = /&{prefix}/g;
-//         const fs = require('fs');
-//         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
+         const fs = require('fs');
+         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
         let cmd = bot.commands.get(args[0]) || bot.commands.find(c=>c.aliases&&c.aliases.includes(args[0]));
         const helpembed = new Discord.MessageEmbed()    
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
