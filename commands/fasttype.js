@@ -89,8 +89,8 @@ module.exports = {
                     const amount = points[key];
                     leaderboard+= `<@${key}> had ${amount} point${amount === 1 ? '' : 's'}\n`
                 }
-                message.channel.send("**"+leaderboard+"**")
-                
+                message.channel.send("**"+leaderboard+"**");
+                let { words } = require("../util/fasttypeWords.json");
             })
   }
 }
