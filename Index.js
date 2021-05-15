@@ -109,8 +109,10 @@ bot.on('ready', async () => {
 			Discord,
 			allDocuments[x]._id,
 			allDocuments[x].endTime,
+			allDocuments[x].winners,
 			allDocuments[x].prize,
-			allDocuments[x].chID
+			allDocuments[x].chID,
+			allDocuments[x].host
 		);
 	}
 });
