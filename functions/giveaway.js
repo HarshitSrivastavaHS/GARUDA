@@ -12,6 +12,14 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     if (!giveawayChannel) return;   
     msg = await giveawayChannel.messages.fetch(msg);
     if (!msg) return;
+    if (msg.content == "**🎉Giveaway Ended🎉**") {
+      await mongo().then(async (mongoose)=>{
+          await giveawaySchema.deleteOne({
+            _id: msg.id
+          })
+        })
+      return;
+    }
     let giveawayHost = giveawayChannel.guild.members.cache.get(host);
     
     let hostDM = new Discord.MessageEmbed()
@@ -29,7 +37,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
         msg.edit("**🎉Giveaway Ended🎉**", nowin);
         await mongo().then(async (mongoose)=>{
           await giveawaySchema.deleteOne({
-            _id: msg
+            _id: msg.id
           })
         })
         return giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
@@ -66,7 +74,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     giveawayHost.send(hostDM);
     await mongo().then(async (mongoose)=>{
       await giveawaySchema.deleteOne({
-        _id: msg
+        _id: msg.id
       })
     })
   }, ms)
