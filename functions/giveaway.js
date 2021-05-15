@@ -7,11 +7,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     ms = 10000;
   }
   setTimeout(async ()=>{
-    await mongo().then(async (mongoose)=>{
-      await giveawaySchema.deleteOne({
-        _id: msg
-      })
-    })
+    
     const giveawayChannel = await bot.channels.fetch(ch); 
     if (!giveawayChannel) return;   
     msg = await giveawayChannel.messages.fetch(msg);
@@ -31,6 +27,11 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
         .setFooter(`Winners: ${winners} | Ended at`)
         .setTimestamp();
         msg.edit("**🎉Giveaway Ended🎉**", nowin);
+        await mongo().then(async (mongoose)=>{
+          await giveawaySchema.deleteOne({
+            _id: msg
+          })
+        })
         return giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
         hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\nCould not determine ${winners>1?"":"a "}winner${winners>1?"s":""}.`)
         giveawayHost.send(hostDM);
@@ -63,5 +64,10 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     })
     hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\n${winners>1?"Winners are:":"Winner is:"}\n${giveawayWinnersTag}`)
     giveawayHost.send(hostDM);
+    await mongo().then(async (mongoose)=>{
+      await giveawaySchema.deleteOne({
+        _id: msg
+      })
+    })
   }, ms)
 }
