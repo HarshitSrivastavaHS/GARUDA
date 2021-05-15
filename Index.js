@@ -9,6 +9,7 @@ const giveawaySchema = require('./Schemas/giveaway-schema.js');
 const welcomeJS = require(`./util/welcome`);
 const Canvas = require("canvas");
 const afkConfig = require('./Schemas/afk');
+const give = require('./functions/giveaway.js');
 
 let prefix;
 
@@ -94,7 +95,7 @@ bot.on('ready', async () => {
         status: 'ONLINE'
     });
 	let allDocuments;
-	const give = require('./functions/giveaway.js');
+	
 	const mongo = await require(`./mongo`);
 	const giveawaySchema = require('./Schemas/giveaway-schema.js');
 	await mongo().then(async mongoose => {
