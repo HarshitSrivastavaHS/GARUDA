@@ -2,7 +2,7 @@ module.exports = {
     name: 'fasttype',
     type: 'game',
     usage: '&{prefix}fasttype <optional number of words>',
-    aliases: [],
+    aliases: ["ft"],
     description: 'starts a typing game! You can define the number of words. Default: 10',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
@@ -15,6 +15,9 @@ module.exports = {
         })
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
+        
+        if (bot.fasttype.includes(message.channel.id)) return message.channel.send("A Fasttype game is already going on in this channel.");
+        
         let { words } = require("../util/fasttypeWords.json");
         let chosenWord = "";
         let maxWords = 10;
@@ -49,7 +52,7 @@ module.exports = {
             }
             
             selectWord()
-            
+            bot.fasttype.push(message.channel.id);
             message.channel.send(`**The Game will start in 3 seconds.**\n**Total Rounds: ${maxWords}**`);
             
             setTimeout(()=>{
@@ -90,6 +93,7 @@ module.exports = {
                     leaderboard+= `<@${key}> had ${amount} point${amount === 1 ? '' : 's'}\n`
                 }
                 message.channel.send("**"+leaderboard+"**");
+                bot.fasttype.splice(bot.fasttype.indexOf(message.channel.id), 1);
                 let { words } = require("../util/fasttypeWords.json");
             })
   }

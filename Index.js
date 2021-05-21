@@ -14,6 +14,7 @@ const give = require('./functions/giveaway.js');
 let prefix;
 
 const fs = require('fs');
+const { Collection } = require('mongoose');
 
 bot.commands = new Discord.Collection();
 
@@ -212,6 +213,8 @@ const afkusers = async ()=>{
         }
 }
 afkusers();
+
+bot.fasttype = new Array();
 
 bot.on('message', async message => {
 
