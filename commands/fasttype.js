@@ -16,7 +16,7 @@ module.exports = {
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         
-        if (bot.fasttype.includes(message.channel.id)) return message.channel.send("A Fasttype game is already going on in this channel.");
+        if (bot.fasttype.includes(message.channel.id)) return message.channel.send("**A Fasttype game is already going on in this channel.**");
         
         let { words } = require("../util/fasttypeWords.json");
         let chosenWord = "";
