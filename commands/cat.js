@@ -26,7 +26,7 @@ module.exports = {
                     .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
                 	.setTimestamp()
                     .setFooter("A cute cat")
-                    .setImage(`${data}`);                    
+                    .setImage(`${data.file}`);                    
                 message.channel.send(embed);
             })
         }
