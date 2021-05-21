@@ -7,7 +7,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     ms = 10000;
   }
   setTimeout(async ()=>{
-    
+    let noMes = false;
     const giveawayChannel = await bot.channels.fetch(ch); 
     if (!giveawayChannel) return;   
     msg = await giveawayChannel.messages.fetch(msg).catch(async ()=>{
@@ -16,8 +16,9 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
           _id: msg.id
         })
       })
-      return;
+      noMes = true;
     });
+    if (noMes) return;
     if (msg.content == "**🎉Giveaway Ended🎉**") {
       await mongo().then(async (mongoose)=>{
           await giveawaySchema.deleteOne({
