@@ -19,7 +19,7 @@ module.exports = {
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
     if (args.length<1) return message.channel.send("**Please enter the name of the song.**")
     message.channel.startTyping();
-    const song = await fetch(encodeURIComponent(`https://some-random-api.ml/lyrics?title=${args.join(" ")}`)).then(r=> r.json());
+    const song = await fetch(`https://some-random-api.ml/lyrics?title=${encodeURIComponent(args.join(" "))}`).then(r=> r.json());
     if (!song ||!song.lyrics){
       message.channel.stopTyping();
       return message.channel.send("**Sorry, couldn't find anything**")
