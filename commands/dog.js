@@ -18,7 +18,7 @@ module.exports = {
         message.channel.startTyping();
         const fetch = require("node-fetch");
         try {
-            fetch(`https://some-random-api.ml/img/dog`).then((res)=>{
+            fetch(`https://dog.ceo/api/breeds/image/random`).then((res)=>{
                 return res.json()
             }).then ((data)=>{
                 const embed = new Discord.MessageEmbed()
@@ -26,7 +26,7 @@ module.exports = {
                     .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
                 	.setTimestamp()
                     .setFooter("A cute dog")
-                    .setImage(`${data.link}`);                    
+                    .setImage(`${data.message}`);                    
                 message.channel.send(embed);
             })
         }

@@ -18,7 +18,7 @@ module.exports = {
         message.channel.startTyping();
         const fetch = require("node-fetch");
         try {
-            fetch(`https://api.thecatapi.com/v1/images/search`).then((res)=>{
+            fetch(`http://aws.random.cat/meow`).then((res)=>{
                 return res.json()
             }).then ((data)=>{
                 const embed = new Discord.MessageEmbed()
@@ -26,7 +26,7 @@ module.exports = {
                     .setAuthor(message.author.username, message.author.displayAvatarURL({dynamic: true}))
                 	.setTimestamp()
                     .setFooter("A cute cat")
-                    .setImage(`${data[0].url}`);                    
+                    .setImage(`${data[0].file}`);                    
                 message.channel.send(embed);
             })
         }
