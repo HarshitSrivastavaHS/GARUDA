@@ -82,7 +82,11 @@ module.exports = {
             })
             
             collector.on("end", collected => {
-                if (Object.keys(points).length == 0 ) return message.channel.send("**😕 Looks like nobody scored any points. 😕**")
+                if (Object.keys(points).length == 0 ) {
+                   message.channel.send("**😕 Looks like nobody scored any points. 😕**");
+                   bot.fasttype.splice(bot.fasttype.indexOf(message.channel.id), 1);
+                   return;
+                }
                 let leaderboard = `<@${winner}>, +1 Point. Total Point${points[winner]==1?"":"s"}: ${points[winner]}\n\n🏆 The Game has Ended. Here is how everybody did: 🏆\n\n`;
                 const sorted = Object.keys(points).sort((a,b)=>{
                     return points[b] - points[a];
