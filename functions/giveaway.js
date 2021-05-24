@@ -70,7 +70,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host) => {
     giveawayWinners.forEach((item,index)=>{
       item.send(winDM);
     })
-    giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You ${winners>1?"all ":""}have won the **${prize}** giveaway!.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
+    giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You ${winners>1?"all ":""}have won the **${prize}** giveaway!\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
     let giveawayWinnersTag = "";
     giveawayWinners.forEach((item,index)=>{
       if (index == 0)
