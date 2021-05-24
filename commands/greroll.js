@@ -23,7 +23,7 @@ module.exports = {
                         args[0] = args[0].substr(args[0].lastIndexOf("/")+1,args[0].length)
                     
                     msg = await message.channel.messages.fetch(args[0]);
-                    if (msg.author.id!="777840690515279872"||!msg.embeds.length>0||!msg.content=="**🎉Giveaway Ended🎉**")
+                    if (msg.author.id!="777840690515279872"||!msg.embeds.length>0||msg.content!="**🎉Giveaway Ended🎉**")
                         throw new Error(':/');
                 }
                 catch {

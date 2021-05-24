@@ -9,7 +9,6 @@ module.exports = {
     aliases: ["giveaway-end", "giveawayend"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        if (message.author.id != "451693463742840842") return message.channel.send("Command still in development.")
         let botPerms = [];
         let missingPerms = [];
         this.permissions.forEach(p=>{
@@ -27,11 +26,7 @@ module.exports = {
                     args[0] = args[0].substr(args[0].lastIndexOf("/")+1,args[0].length)
                 
                 msg = await message.channel.messages.fetch(args[0]);
-                console.log(msg.content)
-                console.log(msg.author.id!="777840690515279872")
-                console.log(!msg.embeds.length>0)
-                console.log(msg.content=="**🎉Giveaway🎉**")
-                if (msg.author.id!="777840690515279872"||!msg.embeds.length>0||!msg.content=="**🎉Giveaway🎉**")
+                if (msg.author.id!="777840690515279872"||!msg.embeds.length>0||msg.content!="**🎉Giveaway🎉**")
                     throw new Error(':/');
             }
             catch {
