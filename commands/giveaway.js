@@ -4,7 +4,7 @@ const giveawaySchema = require("../Schemas/giveaway-schema.js")
 module.exports = {
     name: 'giveaway',
     type: 'utility',
-    aliases: [],
+    aliases: ["gstart"],
     usage: '&{prefix}giveaway <time> <winners> <prize>',
     description: 'to start a giveaway',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
