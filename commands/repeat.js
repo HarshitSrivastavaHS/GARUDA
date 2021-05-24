@@ -3,7 +3,7 @@ module.exports = {
     description: 'repeats whatever the user wants it to repeat',
     usage: "&{prefix}repeat <text>",
     permissions: ['SEND_MESSAGES'],
-    aliases: [],
+    aliases: ["say"],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
         let missingPerms = [];
