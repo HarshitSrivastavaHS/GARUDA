@@ -27,7 +27,7 @@ module.exports = {
                         throw new Error(':/');
                 }
                 catch {
-                    return message.channel.send("Provided message is not a valid giveaway message id.")
+                    return message.channel.send("Provided message is not a valid ended giveaway message id.")
                 }
             }
             else {
