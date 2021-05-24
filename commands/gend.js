@@ -28,6 +28,9 @@ module.exports = {
                 
                 msg = await message.channel.messages.fetch(args[0]);
                 console.log(msg.content)
+                console.log(msg.author.id!="777840690515279872")
+                console.log(!msg.embeds.length>0)
+                console.log(!msg.content=="**🎉Giveaway🎉**")
                 if (msg.author.id!="777840690515279872"||!msg.embeds.length>0||!msg.content=="**🎉Giveaway🎉**")
                     throw new Error(':/');
             }
