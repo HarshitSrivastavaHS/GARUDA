@@ -18,24 +18,30 @@ module.exports = {
         if (!message.member.permissions.has("BAN_MEMBERS")) return message.channel.send("You don't have the required permissions.");
             
             if (!args) return message.channel.send("Please also mention the id of the person who is to be unbanned");
-       
+            let err = false;
             message.guild.fetchBans().then((bans)=>{
                 if (bans.size==0) {
-                    return message.channel.send("Nobody is banned from this server.");
+                    err = true;
+                    message.channel.send("Nobody is banned from this server.");
                 }
                 let user = bans.filter(b=>b.user.id==args[0])
                 if (!user) {
-                    return message.channel.send("That user isn't banned.");
+                    err = true;
+                    message.channel.send("That user isn't banned.");
                 }
             }).catch(()=>{
+                err = true;
                 return message.channel.send("I don't have the required permissions.");
             })
             
+            if (!err) {
+
             message.guild.members.unban(args[0]).then((u)=>{
                 message.channel.send(`Successfully unbanned ${u.tag}`);
             }).catch(()=>{
                 message.channel.send("I could not unban that person");
             })
+        }
     }
 }
 
