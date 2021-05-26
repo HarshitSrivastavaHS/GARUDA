@@ -58,7 +58,6 @@ module.exports = {
                         errdes += `Specify the title after \`--${b[0]}\`\n`; 
                     }
                     embed.setTitle(title);
-                    title = false;
                     break;
                 case "d": description = c;
                     if (description.length<1) {
@@ -66,7 +65,6 @@ module.exports = {
                         errdes += `Specify the description after \`--${b[0]}\`\n`; 
                     }
                     embed.setDescription(description);
-                    description = false;
                     break;
                 case "f": footer = c;
                     if (footer.length<1) {
@@ -74,15 +72,14 @@ module.exports = {
                         errdes += `Specify the footer after \`--${b[0]}\`\n`; 
                     }
                     embed.setFooter(footer);
-                    footer = false;
                     break;
                 default: err = true; 
                         errdes += `Not a valid flag: \`--${b[0]}\`\n`; 
             }
         })
         if (err) return message.channel.send(errdes);
-        if (footer||description||title) return message.channel.send("At least one of the values are to be specified: title, description or footer");
-        if (channel) {
+        if (!footer&&!description&&!title) return message.channel.send("At least one of the values are to be specified: title, description or footer");
+        if (channel&&channel.id!=message.channel.id) {
             channel.send(embed)
             message.channel.send(`Embed posted in ${channel}`);
         }
