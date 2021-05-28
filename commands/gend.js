@@ -56,6 +56,6 @@ module.exports = {
               _id: msg.id
             })
         })
-        giveaway(bot, Discord, result._id, message.createdTimestamp+10000, result.winners, result.prize, result.chID, result.host, result.req, true);
+        giveaway(bot, Discord, result._id, message.createdTimestamp+10000, result.winners, result.prize, result.chID, result.host, result.reqs, true);
     }
 }

@@ -114,7 +114,9 @@ bot.on('ready', async () => {
 	// 		allDocuments[x].winners,
 	// 		allDocuments[x].prize,
 	// 		allDocuments[x].chID,
-	// 		allDocuments[x].host
+	// 		allDocuments[x].host,
+  //    allDocuments[x].reqs,
+  //    false
 	// 	);
 	// }
 });

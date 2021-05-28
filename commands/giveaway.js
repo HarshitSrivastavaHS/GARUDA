@@ -95,11 +95,13 @@ module.exports = {
       let msg = await message.channel.send("**🎉Giveaway🎉**",giveawayEM);
       msg.react("🎉");
       
+      if (req) {
+
       for (let i in req) {
         req[i] = req[i].id
       }
       req = req.join(" ");
-      console.log(req);
+      }
       await mongo().then(async (mongoose)=>{
           await giveawaySchema.findOneAndUpdate({
             _id: msg.id
