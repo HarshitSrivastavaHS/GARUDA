@@ -43,7 +43,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
         if (msg.content == "**🎉Giveaway Ended🎉**") collector.stop();
         
         for (let req of reqs) {
-          let req = msg.guild.roles.cache.get(req);
+          req = msg.guild.roles.cache.get(req);
             if (!member.roles.cache.has(req.id)){ 
                 msg.reactions.resolve('🎉').users.remove(u.id);
                 let noJoin = new Discord.MessageEmbed()
