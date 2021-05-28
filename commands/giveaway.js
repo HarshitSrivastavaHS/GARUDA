@@ -96,8 +96,7 @@ module.exports = {
       msg.react("🎉");
       
       for (let i in req) {
-        req[i] = req.id
-        console.log(req.id)
+        req[i] = req[i].id
       }
       req = req.join(" ");
       console.log(req);
