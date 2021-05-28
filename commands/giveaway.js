@@ -9,7 +9,7 @@ module.exports = {
     description: 'to start a giveaway',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
-      if (message.author.id != "451693463742840842") return message.channel.send("Command turned off for some time.");
+      //if (message.author.id != "451693463742840842") return message.channel.send("Command turned off for some time.");
         let botPerms = [];
         let missingPerms = [];
         this.permissions.forEach(p=>{

@@ -47,7 +47,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     {   
         let member = msg.guild.members.cache.get(u.id);
         
-        if (msg.content == "**🎉Giveaway Ended🎉**") collector.stop();
+        if (msg.content == "**🎉Giveaway Ended🎉**") return collector.stop();
         let NO = false;
         let norole = [];
         for (let req of reqs) {
