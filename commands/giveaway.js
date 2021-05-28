@@ -5,8 +5,8 @@ module.exports = {
     name: 'giveaway',
     type: 'utility',
     aliases: ["gstart"],
-    usage: '&{prefix}giveaway <time> <winners> <prize>',
-    description: 'to start a giveaway',
+    usage: '&{prefix}giveaway <time> <winners> <prize>\n&{prefix}giveaway <time> <winners> <prize> --r @role\n&{prefix}giveaway <time> <winners> <prize> --r @role1 --r @role2',
+    description: 'to start a giveaway.\nFlags:\n\`--r\` to add role requirement. To add multiple role requirements, use \`--r\` multiple times. Role ID or mention can be used for role requirement.\nNOTE: USE FLAGS AT THE END ONLY.',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
       //if (message.author.id != "451693463742840842") return message.channel.send("Command turned off for some time.");
