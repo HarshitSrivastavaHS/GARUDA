@@ -14,6 +14,7 @@ module.exports = {
         })
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
+        return message.channel.send("This bot is turned off my the developer.");
         if (message.content.indexOf(' ') === -1) {
             message.reply("Invalid Syntax! ```\n%repeat <Text to be repeated by the bot>\n```");
             return;
