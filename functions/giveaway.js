@@ -41,17 +41,22 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
         let member = msg.guild.members.cache.get(u.id);
         
         if (msg.content == "**🎉Giveaway Ended🎉**") collector.stop();
-        
+        let NO = false;
+        let norole = [];
         for (let req of reqs) {
           req = msg.guild.roles.cache.get(req);
             if (!member.roles.cache.has(req.id)){ 
                 msg.reactions.resolve('🎉').users.remove(u.id);
-                let noJoin = new Discord.MessageEmbed()
+                NO = true;
+                norole.push(req.name)
+            }
+        }
+        if (NO) {
+        let noJoin = new Discord.MessageEmbed()
                       .setColor("RED")
                       .setTitle("You cannot join this giveaway.")
-                      .setDescription(`You do not have the \`${req.name}\` role which is required for [this](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id})  giveaway.`);
+                      .setDescription(`You do not have the \`${norole.join(", ")}\` role${norole.size>1?"s":""} which ${norole.size>1?"are":"is"} required for [this](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id})  giveaway.`);
                   member.send(noJoin);
-            }
         }
     });
     }
