@@ -105,18 +105,18 @@ bot.on('ready', async () => {
 	});
 	if (allDocuments.length < 1) return;
 
-	for (let x in allDocuments) {
-		give(
-			bot,
-			Discord,
-			allDocuments[x]._id,
-			allDocuments[x].endTime,
-			allDocuments[x].winners,
-			allDocuments[x].prize,
-			allDocuments[x].chID,
-			allDocuments[x].host
-		);
-	}
+	// for (let x in allDocuments) {
+	// 	give(
+	// 		bot,
+	// 		Discord,
+	// 		allDocuments[x]._id,
+	// 		allDocuments[x].endTime,
+	// 		allDocuments[x].winners,
+	// 		allDocuments[x].prize,
+	// 		allDocuments[x].chID,
+	// 		allDocuments[x].host
+	// 	);
+	// }
 });
 
 bot.snipes = new Map();

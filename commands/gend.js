@@ -9,6 +9,7 @@ module.exports = {
     aliases: ["giveaway-end", "giveawayend"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
+        if (message.author.id != "451693463742840842") return message.channel.send("Command turned off by the developer.")
         let botPerms = [];
         let missingPerms = [];
         this.permissions.forEach(p=>{
@@ -55,6 +56,6 @@ module.exports = {
               _id: msg.id
             })
         })
-        giveaway(bot, Discord, result._id, message.createdTimestamp+10000, result.winners, result.prize, result.chID, result.host);
+        giveaway(bot, Discord, result._id, message.createdTimestamp+10000, result.winners, result.prize, result.chID, result.host, result.req, true);
     }
 }

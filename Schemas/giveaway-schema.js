@@ -5,13 +5,21 @@ const reqString = {
   required: true
 }
 
+const opString = {
+  type: String,
+  required: false,
+  default: undefined
+}
+
+
 const giveawaySchema = mongoose.Schema({
   _id: reqString,
   prize: reqString,
   endTime: reqString,
   winners: reqString,
   chID: reqString,
-  host: reqString
+  host: reqString,
+  reqs: opString
 })
 
 module.exports = mongoose.model("ongoing giveaways", giveawaySchema)
