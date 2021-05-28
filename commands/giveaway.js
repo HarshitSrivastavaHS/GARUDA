@@ -97,6 +97,7 @@ module.exports = {
       
       for (let i in req) {
         req[i] = req.id
+        console.log(req.id)
       }
       req = req.join(" ");
       console.log(req);
