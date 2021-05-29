@@ -100,7 +100,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       return element != undefined;
     });
     
-    if (!giveawayWinners) {
+    if (giveawayWinners.length<1) {
       let nowin = new Discord.MessageEmbed()
       .setColor("RED")
       .setTitle(prize)
