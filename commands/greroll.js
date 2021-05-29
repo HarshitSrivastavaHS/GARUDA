@@ -46,7 +46,7 @@ module.exports = {
                 msg = msgs.get(msgid);
             }
 
-            let rrole = msg.embeds[0].fields?msg.embeds[0].fields[0].value.split(", ")[0]:undefined;
+            let rrole = msg.embeds[0].fields.size>0?msg.embeds[0].fields[0].value.split(", ")[0]:undefined;
             if (rrole) {
                 for (r in rrole) { 
                     rrole[r] = rrole[r].replace("<@", "")
