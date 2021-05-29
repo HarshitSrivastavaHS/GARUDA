@@ -46,7 +46,7 @@ module.exports = {
                 msg = msgs.get(msgid);
             }
 
-            let rrole = msg.embeds[0].fields.size>0?msg.embeds[0].fields[0].value.split(", ")[0]:undefined;
+            let rrole = msg.embeds[0].fields.length>0?msg.embeds[0].fields[0].value.split(", ")[0]:undefined;
             if (rrole) {
                 for (r in rrole) { 
                     rrole[r] = rrole[r].replace("<@", "")
@@ -55,6 +55,10 @@ module.exports = {
                 }
             }
             let winner = msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
+                console.log(b)
+                console.log(b.bot)
+                console.log(b.id)
+                console.log(rrole)
                 if (b.bot) return false;
                 console.log("hi")
                 if (!rrole) return true;
