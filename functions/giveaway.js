@@ -81,7 +81,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     .setTitle("Your giveaway has ended!")
     .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     
-    if (msg.reactions.cache.get("🎉").count <= winners) {
+    if (msg.reactions.cache.get("🎉").count <= 1) {
         let nowin = new Discord.MessageEmbed()
         .setColor("RED")
         .setTitle(prize)
@@ -102,7 +102,23 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
         return giveawayHost.send(hostDM);
     }
     await msg.reactions.cache.get("🎉").users.fetch()
-    let giveawayWinners = msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random(winners);
+    let giveawayWinners = msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
+      if (b.bot) return false;
+      if (!reqs) return true;
+      let pass = true;
+      let member = msg.guild.members.cache.get(b.id);
+      for (let req of reqs) {
+        if (!member.roles.cache.has(req.id)){ 
+            pass = false;
+            break;
+        }
+      }
+      return pass;
+    }).random(winners);
+
+    giveawayWinners = giveawayWinners.filter(function( element ) {
+      return element != undefined;
+    });
     
     let winem = new Discord.MessageEmbed()
     .setColor("GREEN")
