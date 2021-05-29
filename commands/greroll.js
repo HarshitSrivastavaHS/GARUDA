@@ -59,7 +59,7 @@ module.exports = {
                 if (!reqs) return true;
                 let pass = true;
                 let member = msg.guild.members.cache.get(b.id);
-                for (let req of reqs) {
+                for (let req of rrole) {
                   if (!member.roles.cache.has(req.id)){ 
                       pass = false;
                       break;
