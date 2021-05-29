@@ -55,6 +55,10 @@ module.exports = {
                 }
             }
             let winner = await msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
+                console.log(b.bot);
+                console.log(rrole);
+                console.log(b.id);
+                console.log(b);
                 if (b.bot) return false;
                 if (!rrole) return true;
                 let pass = true;
@@ -67,6 +71,7 @@ module.exports = {
                 }
                 return pass;
               }).random();
+              console.log(winner);
             if (winner) {
                 
                 message.channel.send(`Congratulations ${winner}! You have won the reroll for **${msg.embeds[0].title}!**\nhttps://discord.com/channels/${message.guild.id}/${message.channel.id}/${msg.id}`);
