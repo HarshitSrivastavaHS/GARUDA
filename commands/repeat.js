@@ -14,29 +14,17 @@ module.exports = {
         })
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-        return message.channel.send("This command is turned off by the developer.");
+        
         if (message.content.indexOf(' ') === -1) {
             message.reply("Invalid Syntax! ```\n%repeat <Text to be repeated by the bot>\n```");
             return;
         }
+        
+        let x = Discord.Util.cleanContent(args.join(" "), message);
+        x = Discord.Util.removeMentions(x);
+        message.channel.send(x);
         if (message.deletable)
             message.delete();
-        const EVERYONE_PATTERN = /@(everyone)/g;
-        const HERE_PATTERN = /@(here)/g;
-        let x = message.content;
-        let h = false, e = false;
-        if (message.member.permissions.has("MANAGE_MESSAGES")) {
-            if (HERE_PATTERN.test(x))
-                h = true
-            if (EVERYONE_PATTERN.test(x))
-                e = true
-        }
-        x = x.replace(EVERYONE_PATTERN, "@ everyone");
-        x = x.replace(HERE_PATTERN, "@ here");
-        let reptext = x.substr(x.indexOf(' ')+1);
-        if (h||e) {
-            reptext += `\n||The user who has used this command pinged: ${e?"everyone":""} ${h&&e?"and":""} ${h?"here":""}||`
-        }
-        message.channel.send(reptext);
+
     }
 }
