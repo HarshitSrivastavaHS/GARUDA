@@ -81,26 +81,6 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     .setTitle("Your giveaway has ended!")
     .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     
-    if (msg.reactions.cache.get("🎉").count <= 1) {
-        let nowin = new Discord.MessageEmbed()
-        .setColor("RED")
-        .setTitle(prize)
-        .setDescription(`Could not determine winner(s).\nHosted by: ${giveawayHost}`)
-        .setFooter(`Winners: ${winners} | Ended at`)
-        .setTimestamp();
-        if (reqs)
-        nowin.addField("Requirement", reqs.join(", "))
-
-        msg.edit("**🎉Giveaway Ended🎉**", nowin);
-        await mongo().then(async (mongoose)=>{
-          await giveawaySchema.deleteOne({
-            _id: msg.id
-          })
-        })
-        giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
-        hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\nCould not determine ${winners>1?"":"a "}winner${winners>1?"s":""}.`)
-        return giveawayHost.send(hostDM);
-    }
     await msg.reactions.cache.get("🎉").users.fetch()
     let giveawayWinners = msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
       if (b.bot) return false;
@@ -120,6 +100,26 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       return element != undefined;
     });
     
+    if (!giveawayWinners) {
+      let nowin = new Discord.MessageEmbed()
+      .setColor("RED")
+      .setTitle(prize)
+      .setDescription(`Could not determine winner(s).\nHosted by: ${giveawayHost}`)
+      .setFooter(`Winners: ${winners} | Ended at`)
+      .setTimestamp();
+      if (reqs)
+      nowin.addField("Requirement", reqs.join(", "))
+
+      msg.edit("**🎉Giveaway Ended🎉**", nowin);
+      await mongo().then(async (mongoose)=>{
+        await giveawaySchema.deleteOne({
+          _id: msg.id
+        })
+      })
+      giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
+      hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\nCould not determine ${winners>1?"":"a "}winner${winners>1?"s":""}.`)
+      return giveawayHost.send(hostDM);
+    }
     let winem = new Discord.MessageEmbed()
     .setColor("GREEN")
     .setTitle(prize)
