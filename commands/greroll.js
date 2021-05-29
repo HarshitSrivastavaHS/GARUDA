@@ -46,13 +46,31 @@ module.exports = {
                 msg = msgs.get(msgid);
             }
 
-            console.log(msg.embeds[0].fields[0].value.split(", ")[0])
-            
-            if (msg.reactions.cache.get("🎉")&&msg.reactions.cache.get("🎉").count >1 ) {
+            let rrole = msg.embeds[0].fields?msg.embeds[0].fields[0].value.split(", ")[0]:undefined;
+            if (rrole) {
+                for (r in rrole) { 
+                    rrole[r] = rrole[r].replace("<@", "")
+                    rrole[r] = rrole[r].replace(">", "")
+                    rrole[r] = msg.guild.roles.cache.get(rrole[r]);
+                }
+            }
+            let winner = msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
+                if (b.bot) return false;
+                if (!reqs) return true;
+                let pass = true;
+                let member = msg.guild.members.cache.get(b.id);
+                for (let req of reqs) {
+                  if (!member.roles.cache.has(req.id)){ 
+                      pass = false;
+                      break;
+                  }
+                }
+                return pass;
+              }).random();
+
+            if (winner) {
                 
-                await msg.reactions.cache.get("🎉").users.fetch()
-                let rerollWinner = msg.reactions.cache.get("🎉").users.cache.filter((b)=>!b.bot).random();
-                message.channel.send(`Congratulations ${rerollWinner}! You have won the reroll for **${msg.embeds[0].title}!**\nhttps://discord.com/channels/${message.guild.id}/${message.channel.id}/${msg.id}`);
+                message.channel.send(`Congratulations ${winner}! You have won the reroll for **${msg.embeds[0].title}!**\nhttps://discord.com/channels/${message.guild.id}/${message.channel.id}/${msg.id}`);
                 
                 let winDM = new Discord.MessageEmbed()
                     .setColor("GREEN")
@@ -60,7 +78,7 @@ module.exports = {
                     .setDescription(`Congratulations! You have won the giveaway reroll for [${msg.embeds[0].title}](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${msg.id}) in ${message.guild.name}`)
                     .setFooter(`${message.guild.name} - #${message.channel.name}`);
                 
-                rerollWinner.send(winDM)
+                winner.send(winDM)
             }
             else {
                 message.channel.send(`Not enough reactions to choose a winner\nhttps://discord.com/channels/${message.guild.id}/${message.channel.id}/${msg.id}`)
