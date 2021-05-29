@@ -45,6 +45,8 @@ module.exports = {
                 })
                 msg = msgs.get(msgid);
             }
+
+            console.log(msg.embeds[0].fields)
             
             if (msg.reactions.cache.get("🎉")&&msg.reactions.cache.get("🎉").count >1 ) {
                 
