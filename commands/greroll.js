@@ -56,7 +56,7 @@ module.exports = {
             }
             let winner = msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
                 if (b.bot) return false;
-                if (!reqs) return true;
+                if (!rrole) return true;
                 let pass = true;
                 let member = msg.guild.members.cache.get(b.id);
                 for (let req of rrole) {
