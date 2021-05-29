@@ -49,7 +49,7 @@ module.exports = {
             let rrole = msg.embeds[0].fields.length>0?msg.embeds[0].fields[0].value.split(", ")[0]:undefined;
             if (rrole) {
                 for (r in rrole) { 
-                    rrole[r] = rrole[r].replace("<@", "")
+                    rrole[r] = rrole[r].replace("<@&", "")
                     rrole[r] = rrole[r].replace(">", "")
                     rrole[r] = msg.guild.roles.cache.get(rrole[r]);
                 }
