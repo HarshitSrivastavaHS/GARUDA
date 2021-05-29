@@ -60,11 +60,7 @@ module.exports = {
                 if (!rrole) return true;
                 let pass = true;
                 let member = msg.guild.members.cache.get(b.id);
-                console.log(".")
                 for (let req of rrole) {
-                    console.log(req);
-                    console.log(req.id)
-                    console.log(member.roles.cache.has(req.id))
                   if (!member.roles.cache.has(req.id)){ 
                       pass = false;
                       break;
