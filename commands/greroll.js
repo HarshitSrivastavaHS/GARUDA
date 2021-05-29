@@ -64,7 +64,7 @@ module.exports = {
                       pass = false;
                       break;
                   }
-                  console.log(rrole);
+                  console.log("...");
                 }
                 return pass;
               }).random();
