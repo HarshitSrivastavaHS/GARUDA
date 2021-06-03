@@ -1,6 +1,7 @@
  module.exports = async (bot, Discord) => {
 
   bot.on("messageDelete", (message)=>{
+    if (message.author.bot) return;
     let ml = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).modLog:undefined;
 	  if (!ml) return; 
 		let modChannel = message.guild.channels.cache.get(ml);
