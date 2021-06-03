@@ -119,6 +119,7 @@ bot.on('ready', async () => {
      false
 		);
 	}
+  require("./functions/ghostping")(bot, Discord);
 });
 
 bot.snipes = new Map();
@@ -134,24 +135,6 @@ bot.on('messageDelete', async (message, channel) => {
 			? message.attachments.first().proxyURL
 			: null
 	});
-	
-	let ghost = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).ghost:undefined;
-	if (ghost) {
-		let mention = message.mentions.members.first();
-		if (mention){
-			let tarch = message.guild.channels.cache.get(ghost);
-			if (tarch) {
-				let ghostEM = new Discord.MessageEmbed()
-				.setColor("RED")
-				.setTitle("Possible Ghost Ping Detected")
-				.setFooter("Bot By TechAllByHarshit")
-				.setDescription(`Message:\n\n${message.content}`)
-				.addField("Channel", message.channel)
-				.addField("Message Author", message.author);
-				tarch.send(ghostEM);
-			}
-		}
-	}
 	
     let ml = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).modLog:undefined;
     if (!ml) return;
