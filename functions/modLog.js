@@ -10,9 +10,11 @@
       .setTimestamp()
       .setAuthor(message.author.tag, message.author.displayAvatarURL())
       .setDescription(`${message.content}`)
-      .setTitle("MESSAGE DELETED")
-      .setFooter(`USER ID: ${message.author.id}`)
-      .setImage(message.attachments.first()?message.attachments.map(a=>a.proxyURL).join("\n"):null);
+      .setTitle(`Message Deleted in ${message.channel.name}`)
+      .setFooter(`User ID: ${message.author.id}`)
+      .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
+    if (message.attachments.first())
+      ModEmbed.addField("Attachments", message.attachments.map(a=>`[Attachment](${a.proxyURL})`).join(", "))
     modChannel.send(ModEmbed);
   })
 }
