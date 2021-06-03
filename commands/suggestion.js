@@ -29,7 +29,7 @@ module.exports = {
         catch {
           return message.channel.send("Message not found.")
         }
-        if (!msg.editable) return message.reply("That message cannot be edited by me.");
+        if (!msg.editable) return message.reply("I am not able to edit that message.");
         if (!msg.embeds) return message.reply("That's not the message id of a suggestion message.")
         if (msg.embeds[0].title!="Suggestion") return message.reply("That suggestion is either already accepted/rejected or its not a suggestion.")
 
