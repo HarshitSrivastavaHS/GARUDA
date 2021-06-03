@@ -120,6 +120,7 @@ bot.on('ready', async () => {
 		);
 	}
   require("./functions/ghostping")(bot, Discord);
+  require("./functions/modLog")(bot, Discord);
 });
 
 bot.snipes = new Map();
