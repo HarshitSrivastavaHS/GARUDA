@@ -136,19 +136,7 @@ bot.on('messageDelete', async (message, channel) => {
 			: null
 	});
 	
-    let ml = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).modLog:undefined;
-    if (!ml) return;
-    let modChannel = message.guild.channels.cache.get(ml)|| message.guild.fetch(ml);
-    if (!modChannel) return;
-    let ModEmbed = new Discord.MessageEmbed()
-    .setColor("RED")
-    .setTimestamp()
-    .setAuthor(message.author.tag, message.author.displayAvatarURL())
-    .setDescription(`${message.content}`)
-    .setTitle("MESSAGE DELETED")
-    .setFooter(`USER ID: ${message.author.id}`)
-    .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
-    modChannel.send(ModEmbed);
+    
 });
 
 bot.on('messageUpdate', (oldMessage, newMessage) => {
@@ -162,20 +150,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 			? oldMessage.attachments.first().proxyURL
 			: null
 	});
-    let message = oldMessage;
-    let ml = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).modLog:undefined;
-    if (!ml) return;
-    let modChannel = message.guild.channels.cache.get(ml)|| message.guild.fetch(ml);
-    if (!modChannel) return;
-    let ModEmbed = new Discord.MessageEmbed()
-    .setColor("YELLOW")
-    .setTimestamp()
-    .setAuthor(message.author.tag, message.author.displayAvatarURL())
-     .setDescription(`Old Message: ${oldMessage?oldMessage.content:"No Message"}\nNew Message: ${newMessage?newMessage.content:"No Message"}`)
-    .setTitle("MESSAGE EDITED")
-    .setFooter(`USER ID: ${message.author.id}`)
-    .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
-    modChannel.send(ModEmbed);
+    
 });
 
 const devIds =  {
