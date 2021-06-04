@@ -38,7 +38,7 @@
           ModEmbed.setDescription(desc[0])
           .addField('\u200b', desc[1].substr(0,1024));
           if (desc[1].length>1024) 
-          ModEmbed.addField('\u200b', desc[1].substr(1025, desc.length));
+          ModEmbed.addField('\u200b', desc[1].substr(1025, desc[1].length));
         }
         else {
           ModEmbed.setDescription(desc[0])
