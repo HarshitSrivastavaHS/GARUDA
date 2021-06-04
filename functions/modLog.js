@@ -15,7 +15,7 @@
       .setFooter(`User ID: ${message.author.id}`)
       .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
     if (message.attachments.first())
-      ModEmbed.addField("Attachments", message.attachments.map(a=>`[Attachment](${a.proxyURL})`).join(", "))
+      ModEmbed.addField("Attachments", message.attachments.map(a=>`[${a.name}](${a.url})`).join(", "))
     modChannel.send(ModEmbed);
   })
 }
