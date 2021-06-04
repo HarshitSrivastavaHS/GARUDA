@@ -36,9 +36,9 @@
     if(Array.isArray(desc)) {
         if (desc.length > 1) {
           ModEmbed.setDescription(desc[0])
-          .addField('\u200b', desc[1].substring(0,1024));
+          .addField('\u200b', desc[1].substr(0,1024));
           if (desc[1].length>1024) 
-          ModEmbed.addField('\u200b', desc[1].substring(1025, desc.length));
+          ModEmbed.addField('\u200b', desc[1].substr(1025, desc.length));
         }
         else {
           ModEmbed.setDescription(desc[0])
