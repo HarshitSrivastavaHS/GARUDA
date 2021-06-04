@@ -48,7 +48,7 @@
     return modChannel.send(ModEmbed);
     
     function split(content) {
-        return Util.splitMessage(content, {
+        return Discord.Util.splitMessage(content, {
           maxLength : 2048
         });
       }
