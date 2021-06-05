@@ -57,27 +57,6 @@
       }
   })
 
-  /* WHEN MESSAGES ARE DELETED IN BULK */
-  bot.on("messageDeleteBulk", (messages)=>{
-    console.log([Object.keys(messages)])
-    return;
-    let channel = messages[Object.keys(messages)[0]].channel;
-    let ml = bot.serverConfig.get(channel.guild.id)?bot.serverConfig.get(channel.guild.id).modLog:undefined;
-	  if (!ml) return; 
-		let modChannel = channel.guild.channels.cache.get(ml);
-		if (!ml) return;
-    console.log(messages.size);
-    let users = [];
-    messages.map(m=>users.push(m.author.tag))
-    users = new Set(users)
-    console.log(users)
-		let ModEmbed = new Discord.MessageEmbed()
-      .setColor("RED")
-      .setTimestamp()
-      .setDescription(`Total Messages Deleted: ${messages.size}\nMessages were sent by: ${Array(users).join("\n")}`)
-      .setTitle(`Message Bulk Deleted in ${channel.name}`)
-      .setFooter(`Mod Log`)
-    modChannel.send(ModEmbed);
-  })
+  
 
 }
