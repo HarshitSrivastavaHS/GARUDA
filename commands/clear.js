@@ -3,7 +3,7 @@ module.exports = {
     type: 'utility',
     usage: '&{prefix}clear <Number of messages to be deleted>',
     description: 'deletes the given number of messages',
-    aliases: [],
+    aliases: ["purge"],
     permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let botPerms = [];
@@ -26,8 +26,9 @@ module.exports = {
             return;
         }
         var num = parseInt(args[0]);
-        if (num<=75) {
-            message.channel.bulkDelete(num+1, true);
+        if (num<=100) {
+            message.delete();
+            message.channel.bulkDelete(num, true);
             message.channel.send(`Deleting ${num} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
@@ -37,7 +38,7 @@ module.exports = {
             message.channel.send(`${message.member}, Please enter a number greater than 0.`)
         }
         else {
-            message.channel.send(`${message.member}, I can only delete less than 75 messages right now.`)
+            message.channel.send(`${message.member}, I can only delete a maximum of 100 messages at a time.`)
         }
     }
 }
