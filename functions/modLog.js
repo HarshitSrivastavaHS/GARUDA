@@ -59,7 +59,7 @@
 
   /* WHEN MESSAGES ARE DELETED IN BULK */
   bot.on("messageDeleteBulk", (messages)=>{
-    let channel = messages.map(m=>{return m.channel});
+    let channel = messages[Object.keys(messages)[0]].channel;
     let ml = bot.serverConfig.get(channel.guild.id)?bot.serverConfig.get(channel.guild.id).modLog:undefined;
 	  if (!ml) return; 
 		let modChannel = channel.guild.channels.cache.get(ml);
