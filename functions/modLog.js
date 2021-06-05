@@ -59,6 +59,8 @@
 
   /* WHEN MESSAGES ARE DELETED IN BULK */
   bot.on("messageDeleteBulk", (messages)=>{
+    console.log(messages[Object.keys(messages)[0]])
+    return;
     let channel = messages[Object.keys(messages)[0]].channel;
     let ml = bot.serverConfig.get(channel.guild.id)?bot.serverConfig.get(channel.guild.id).modLog:undefined;
 	  if (!ml) return; 
