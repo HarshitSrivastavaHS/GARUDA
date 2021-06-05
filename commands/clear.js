@@ -26,9 +26,8 @@ module.exports = {
             return;
         }
         var num = parseInt(args[0]);
-        if (num<=100) {
-            message.delete();
-            message.channel.bulkDelete(num, true);
+        if (num<100) {
+            message.channel.bulkDelete(num+1, true);
             message.channel.send(`Deleting ${num} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
@@ -38,7 +37,7 @@ module.exports = {
             message.channel.send(`${message.member}, Please enter a number greater than 0.`)
         }
         else {
-            message.channel.send(`${message.member}, I can only delete a maximum of 100 messages at a time.`)
+            message.channel.send(`${message.member}, I can only delete a maximum of 99 messages at a time.`)
         }
     }
 }
