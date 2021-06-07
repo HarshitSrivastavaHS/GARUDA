@@ -254,6 +254,16 @@ bot.on('message', async message => {
   }
   let cmdexe = bot.commands.get(command) || bot.commands.find(c=>c.aliases&&c.aliases.includes(command));
   if (!cmdexe) return;
+  let botPerms = [];
+  let missingPerms = [];
+  cmdexe.permissions.forEach(p=>{
+  botPerms.push(message.channel.permissionsFor(bot.user).has(p));
+  if (!(message.channel.permissionsFor(bot.user).has(p)))
+    missingPerms.push(p);
+  })
+  missingPerms = missingPerms.join("\n");
+  if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
+        
   cmdexe.execute(message, args, bot, Discord, prefix);
 });
 
