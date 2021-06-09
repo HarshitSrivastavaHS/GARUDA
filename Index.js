@@ -95,6 +95,8 @@ bot.on('ready', async () => {
         activity: { name: `${bot.guilds.cache.size} servers and ${bot.users.cache.size} users`, type: 'WATCHING' },
         status: 'ONLINE'
     });
+	require("./functions/ghostping")(bot, Discord);
+  	require("./functions/modLog")(bot, Discord);
 	let allDocuments;
 	
 	const mongo = await require(`./mongo`);
@@ -119,8 +121,6 @@ bot.on('ready', async () => {
      false
 		);
 	}
-  require("./functions/ghostping")(bot, Discord);
-  require("./functions/modLog")(bot, Discord);
 });
 
 bot.snipes = new Map();
