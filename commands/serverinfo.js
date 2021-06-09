@@ -13,7 +13,7 @@ module.exports = {
 ✹ Created on: ${message.guild.createdAt}\n\
 ✹ Server Region: ${message.guild.region}\n\
 ✹ Verified Server: ${message.guild.verified}\n\
-✹ Verification Level: ${message.guild.verificationLever}`)
+✹ Verification Level: ${message.guild.verificationLevel}`)
         .addField("Categories & Channels", `✹ Categories: ${message.guild.channels.cache.filter(c=>c.type=="category").size}\n\
 ✹ Text: ${message.guild.channels.cache.filter(c=>c.type=="text").size}\n\
 ✹ Voice Channels: ${message.guild.channels.cache.filter(c=>c.type=="voice").size}\n\

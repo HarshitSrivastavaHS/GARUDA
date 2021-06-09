@@ -18,7 +18,7 @@ module.exports = {
         const PREFIX_REG = /&{prefix}/g;
          const fs = require('fs');
          const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
-        let cmd = bot.commands.get(args[0].toLowerCase()) || bot.commands.find(c=>c.aliases&&c.aliases.includes(args[0].toLowerCase()));
+        let cmd = bot.commands.get(args[0]?args[0].toLowerCase():"") || bot.commands.find(c=>c.aliases&&c.aliases.includes(args[0]?args[0].toLowerCase():""));
         const helpembed = new Discord.MessageEmbed()    
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .setColor("#D441EE")
