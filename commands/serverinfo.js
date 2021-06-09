@@ -21,7 +21,8 @@ module.exports = {
         .addField("Others", `✹ Total Members: ${message.guild.memberCount}\n\
 ✹ Humans: ${message.guild.members.cache.filter(m=>!m.user.bot).size}\n\
 ✹ Bots: ${message.guild.members.cache.filter(m=>m.user.bot).size}\n\
-✹ Custom Emojis: ${message.guild.emojis.cache.size}`)
+✹ Custom Emojis: ${message.guild.emojis.cache.size}\n\
+✹ Roles: ${message.guild.roles.cache.size}`)
         .setThumbnail(message.guild.icon?message.guild.iconURL():undefined)
         .setFooter(`Requested by ${message.author.tag}`)
         .setTimestamp();
