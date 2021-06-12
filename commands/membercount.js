@@ -10,7 +10,7 @@ module.exports = {
         .setTitle(`Member Count`)
         .setColor("#FFA500")
         .setThumbnail(message.guild.icon?message.guild.iconURL({dynamic: true}):undefined)
-        .setDescription(message.guild.memberCount)
+        .setDescription(`Total members: ${message.guild.memberCount}`)
         .setTimestamp();
         message.channel.send(emb);
     }
