@@ -142,6 +142,7 @@ bot.on('messageDelete', async (message, channel) => {
 
 bot.on('messageUpdate', (oldMessage, newMessage) => {
 	if (oldMessage.author.bot) return;
+  if (oldMessage.content == newMessage.content) return;
 	bot.editSnipes.set(oldMessage.channel.id, {
 		oldContent: oldMessage.content,
 		newContent: newMessage.content,
