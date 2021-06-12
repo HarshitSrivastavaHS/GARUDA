@@ -18,11 +18,13 @@
 		    .addField("Message Author", message.author);
 		tarch.send(ghostEM);
 		let mentions = message.mentions.members.filter(m=>!m.user.bot);
+		let msg = ""
+		mentions.forEach((e)=>msg=`${msg} ${e}`)
 		ghostEM = new Discord.MessageEmbed()
 		    .setColor("RED")
 		    .setTitle("Ghost ping detected")
 			.setTimestamp()
-		    .setDescription(`${message.member} ghost pinged ${mentions.join(", ")}`);
+		    .setDescription(`${message.member} ghost pinged ${msg}`);
 		message.channel.send(ghostEM).catch(()=>{
 			return;
 		})
