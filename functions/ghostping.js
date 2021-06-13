@@ -14,10 +14,10 @@
 		}
 		insert(mentions, message.mentions.members.filter(m=>!m.user.bot&&m.user.id!=message.author.id))
 		insert(mentions, message.mentions.roles)
-		if (message.mentions.everyone)
-			mentions.push("@everyone")
 		let msg = ""
 		mentions.forEach((e)=>msg=`${msg} ${e.map((i)=>i).join(" ")}`)
+		if (message.mentions.everyone)
+			msg = `${msg} ${message.guild.roles.everyone}`
 		if (!msg) return;
 		let tarch = message.guild.channels.cache.get(ghost);
 		if (!tarch) return;
