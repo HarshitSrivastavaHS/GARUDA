@@ -16,9 +16,9 @@
 		insert(mentions, message.mentions.roles)
 		if (message.mentions.everyone)
 			mentions.push("@everyone")
-		if (mentions.length==0) return;
 		let msg = ""
 		mentions.forEach((e)=>msg=`${msg} ${e.map((i)=>i).join(" ")}`)
+		if (!msg) return;
 		let tarch = message.guild.channels.cache.get(ghost);
 		if (!tarch) return;
         if (Date.now()>message.createdTimestamp+15000) return;
