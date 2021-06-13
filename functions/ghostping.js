@@ -7,7 +7,7 @@
 		if (!mention) return;
 		let mentions = [];
 		function insert(arr, ...items) {
-			if (!items) return;
+			if (items.size==0) return;
 			items.forEach((i)=>{
 				arr.push(i);
 			})
