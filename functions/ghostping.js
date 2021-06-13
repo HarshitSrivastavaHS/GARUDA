@@ -8,7 +8,9 @@
 		let mentions = [];
 		function insert(arr, ...items) {
 			if (!items) return;
-			arr.push(...items);
+			items.forEach((i)=>{
+				arr.push(i);
+			})
 		}
 		insert(mentions, message.mentions.members.filter(m=>!m.user.bot&&m.user.id!=message.author.id))
 		insert(mentions, message.mentions.roles)
