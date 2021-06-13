@@ -5,14 +5,16 @@
 	    if (!ghost) return; 
 		let mention = message.mentions.members.first() || message.mentions.roles.first() || message.mentions.everyone;
 		if (!mention) return;
-		let mentions = message.mentions.members.filter(m=>!m.user.bot&&m.user.id!=message.author.id);
+		let mentions = [];
 		function insert(arr, ...items) {
 			if (!items) return;
 			arr.push(...items);
 		}
+		inset(mentions, message.mentions.members.filter(m=>!m.user.bot&&m.user.id!=message.author.id))
 		insert(mentions, message.mentions.roles)
 		if (message.mentions.everyone)
 			mentions.push("@everyone")
+		console.log(mentions);
 		if (mentions.size==0) return;
 		let msg = ""
 		mentions.forEach((e)=>msg=`${msg} ${e}`)
