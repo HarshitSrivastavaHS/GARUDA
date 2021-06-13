@@ -10,7 +10,7 @@
 			if (!items) return;
 			arr.push(...items);
 		}
-		inset(mentions, message.mentions.members.filter(m=>!m.user.bot&&m.user.id!=message.author.id))
+		insert(mentions, message.mentions.members.filter(m=>!m.user.bot&&m.user.id!=message.author.id))
 		insert(mentions, message.mentions.roles)
 		if (message.mentions.everyone)
 			mentions.push("@everyone")
