@@ -6,6 +6,13 @@
 		let mention = message.mentions.members.first() || message.mentions.roles.first() || message.mentions.everyone;
 		if (!mention) return;
 		let mentions = message.mentions.members.filter(m=>!m.user.bot&&m.user.id!=message.author.id);
+		function insert(arr, ...items) {
+			if (!items) return;
+			arr.push(...items);
+		}
+		insert(mentions, message.mentions.roles)
+		if (message.mentions.everyone)
+			mentions.push("@everyone")
 		if (mentions.size==0) return;
 		let msg = ""
 		mentions.forEach((e)=>msg=`${msg} ${e}`)
