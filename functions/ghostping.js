@@ -19,7 +19,7 @@
 		console.log(mentions);
 		if (mentions.size==0) return;
 		let msg = ""
-		mentions.forEach((e)=>msg=`${msg} ${e}`)
+		mentions.forEach((e)=>msg=`${msg} ${e.map((i)=>i).join(" ")}`)
 		let tarch = message.guild.channels.cache.get(ghost);
 		if (!tarch) return;
         if (Date.now()>message.createdTimestamp+15000) return;
