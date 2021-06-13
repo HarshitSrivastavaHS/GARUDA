@@ -16,8 +16,7 @@
 		insert(mentions, message.mentions.roles)
 		if (message.mentions.everyone)
 			mentions.push("@everyone")
-		console.log(mentions);
-		if (mentions.size==0) return;
+		if (mentions.length==0) return;
 		let msg = ""
 		mentions.forEach((e)=>msg=`${msg} ${e.map((i)=>i).join(" ")}`)
 		let tarch = message.guild.channels.cache.get(ghost);
@@ -36,7 +35,7 @@
 		    .setColor("RED")
 		    .setTitle("Ghost ping detected")
 			.setTimestamp()
-		    .setDescription(`${message.member} ghost pinged ${msg}`);
+		    .setDescription(`${message.member} ghost pinged${msg}`);
 		message.channel.send(ghostEM).catch(()=>{
 			return;
 		})
