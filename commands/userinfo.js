@@ -13,7 +13,7 @@ module.exports = {
         .setDescription(`**Username:** \`${user.user.tag}\`\n\
 **Nickname:** \`${user.nickname?user.nickname: "None"}\`\n\
 **Id:** \`${user.user.id}\`\n\n\
-**Badges:** ${user.user.flags.length!=0?user.user.flags.toArray().join(" "):"`None`"}
+**Badges:** ${Object.entries(user.user.flags).length?user.user.flags.toArray().join(" "):"`None`"}
 **Bot:** \`${user.user.bot?"Yes":"No"}\`\n\n\
 **Last Message:** \`${user.user.lastMessage?(user.user.lastMessage.content.length<31?user.user.lastMessage.content:user.user.lastMessage.content.substr(0,31)+"..."):"None"}\`\n\
 **Highest Role:** \`${user.roles.cache.size>0?user.roles.highest.name:"None"}\` ${user.roles.cache.size==0?"":`(${user.roles.highest})`}\n\n\
