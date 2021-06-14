@@ -17,6 +17,7 @@ module.exports = {
                 case "EARLY_VERIFIED_BOT_DEVELOPER": badges[b]= "<:discord_bot_dev:853997524946518016>"; break;
             }
         }
+        console.log(badges);
         let emb = new Discord.MessageEmbed()
         .setTitle(`${user.user.tag}'s Account Information`)
         .setColor("#FFA500")
