@@ -7,7 +7,7 @@ module.exports = {
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let user = message.mentions.members.first() || message.member;
-        let badges = user.user.flags.toArray().join(" ");
+        let badges = user.user.flags.toArray();
         for (let b in badges) {
             switch(badges[b]){
                 case "HOUSE_BRAVERY": badges[b]= "<:bravery:853996728684773397>"; break;
@@ -17,7 +17,6 @@ module.exports = {
                 case "EARLY_VERIFIED_BOT_DEVELOPER": badges[b]= "<:discord_bot_dev:853997524946518016>"; break;
             }
         }
-        console.log(badges);
         let emb = new Discord.MessageEmbed()
         .setTitle(`${user.user.tag}'s Account Information`)
         .setColor("#FFA500")
