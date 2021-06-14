@@ -21,7 +21,7 @@
 		if (!msg) return;
 		let tarch = message.guild.channels.cache.get(ghost);
 		if (!tarch) return;
-        if (Date.now()>message.createdTimestamp+15000) return;
+        if (Date.now()>message.createdTimestamp+15000||Date.now()<message.createdTimestamp+1000) return;
 		let ghostEM = new Discord.MessageEmbed()
 		    .setColor("RED")
 		    .setTitle("Possible Ghost Ping Detected")
