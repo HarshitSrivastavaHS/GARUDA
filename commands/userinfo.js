@@ -15,6 +15,12 @@ module.exports = {
                 case "HOUSE_BALANCE": badges[b]= "<:balance:853996774473990145>"; break;
                 case "VERIFIED_BOT": badges[b]= "<:verified:853996934682116148>"; break;
                 case "EARLY_VERIFIED_BOT_DEVELOPER": badges[b]= "<:discord_bot_dev:853997524946518016>"; break;
+                case "DISCORD_EMPLOYEE": badges[b]= "<:staff:854023757454114848>"; break;
+                case "PARTNERED_SERVER_OWNER": badges[b]= "<:partner:854024145821368330>"; break;
+                case "HYPESQUAD_EVENTS": badges[b]= "<:hypesquad_events:854024504740806657>"; break;
+                case "BUGHUNTER_LEVEL_1": badges[b]= "<:bughunter:854024242956599337>"; break;
+                case "BUGHUNTER_LEVEL_2": badges[b]= "<:goldbughunter:854024280323784735>"; break;
+                case "EARLY_SUPPORTER": badges[b]= "<:supporter:854023957187788830>"; break;
             }
         }
         let emb = new Discord.MessageEmbed()
