@@ -73,6 +73,15 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
 
 
   setTimeout(async ()=>{
+
+    if (msg.content == "**🎉Giveaway Ended🎉**") {
+      await mongo().then(async (mongoose)=>{
+        await giveawaySchema.deleteOne({
+          _id: msg.id
+        })
+      })
+      return;
+    }
    
     let giveawayHost = giveawayChannel.guild.members.cache.get(host);
     
