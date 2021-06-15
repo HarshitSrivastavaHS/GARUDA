@@ -3,7 +3,7 @@ const Canvas = require("canvas");
 module.exports = {
     async execute(member, welcomeCH, Discord) {
       if (member.guild.members.cache.size!=member.guild.memberCount) 
-        member.guild.members.fetch();
+        await member.guild.members.fetch();
       const canvas = Canvas.createCanvas(700, 250);
       const ctx = canvas.getContext("2d");
       const background = await Canvas.loadImage('./util/welcome.png');
