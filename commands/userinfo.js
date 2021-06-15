@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["ui"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        let user = message.mentions.members.first() || args[0].length!=0?message.guild.members.fetch(args[0]).then((m)=>m):false || message.member;
+        let user = message.mentions.members.first() || args[0]?message.guild.members.fetch(args[0]).then((m)=>m):false || message.member;
         let badges = user.user.flags.toArray();
         for (let b in badges) {
             switch(badges[b]){
