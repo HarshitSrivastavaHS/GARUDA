@@ -29,7 +29,7 @@ module.exports = {
         .setDescription(`**Username:** \`${user.user.tag}\`\n\
 **Nickname:** \`${user.nickname?user.nickname: "None"}\`\n\
 **Id:** \`${user.user.id}\`\n\n\
-**Badges:** ${badges.length!=0?badges.join(", "):"`None`"}\n\
+**Badges:** ${badges.length!=0?badges.join(" "):"`None`"}\n\
 **Bot:** \`${user.user.bot?"Yes":"No"}\`\n\n\
 **Last Message:** \`${user.lastMessage?(user.lastMessage.content.length<31?user.lastMessage.content:user.lastMessage.content.substr(0,31)+"..."):"None"}\`\n\
 **Highest Role:** \`${user.roles.cache.size>0?user.roles.highest.name:"None"}\` ${user.roles.cache.size==0?"":`(${user.roles.highest})`}\n\n\
