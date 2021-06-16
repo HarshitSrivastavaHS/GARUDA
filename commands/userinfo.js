@@ -21,6 +21,7 @@ module.exports = {
                 case "BUGHUNTER_LEVEL_1": badges[b]= "<:bughunter:854024242956599337>"; break;
                 case "BUGHUNTER_LEVEL_2": badges[b]= "<:goldbughunter:854024280323784735>"; break;
                 case "EARLY_SUPPORTER": badges[b]= "<:supporter:854023957187788830>"; break;
+                default: badges.splice(b,1);
             }
         }
         let emb = new Discord.MessageEmbed()
