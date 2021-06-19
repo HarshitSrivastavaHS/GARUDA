@@ -31,7 +31,7 @@ module.exports = {
             .then(msg => {
                 msg.delete({ timeout: 3000 })
             })
-	    if (!message.deleted) message.delete;
+	    if (!message.deleted) message.delete();
         }
         else if(!(parseInt(args[0])>0)){
             message.channel.send(`${message.member}, Please enter a number greater than 0.`)
