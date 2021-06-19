@@ -18,7 +18,7 @@ module.exports = {
         }
         var num = parseInt(args[0]);
         if (num<100) {
-	    let msg = await message.channel.messages.fetch({limit: num+1}).toArray();
+	    let msg = await message.channel.messages.fetch({limit: num+1}).array();
 	    if (args[1]) {
 	        switch (args[1]) {
 			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned); break;
@@ -28,7 +28,7 @@ module.exports = {
 		 msg.push(message);
 	    }
             message.channel.bulkDelete(msg, true);
-            message.channel.send(`Deleting ${msg.size} messages`)
+            message.channel.send(`Deleting ${msg.length} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
             })
