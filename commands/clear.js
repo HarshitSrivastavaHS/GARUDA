@@ -18,13 +18,14 @@ module.exports = {
         }
         var num = parseInt(args[0]);
         if (num<100) {
-	    let msg = await message.channel.messages.fetch({limit: num+1}).array();
+	    let msg = await message.channel.messages.fetch({limit: num+1});
 	    if (args[1]) {
 	        switch (args[1]) {
-			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned); break;
-			case '--bot': msg = msg.filter((m)=>m.author.bot && !m.pinned); break;
+			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned).array(); break;
+			case '--bot': msg = msg.filter((m)=>m.author.bot && !m.pinned).array(); break;
 			default: return message.channel.send("Invalid flag");
 	         }
+
 		 msg.push(message);
 	    }
             message.channel.bulkDelete(msg, true);
