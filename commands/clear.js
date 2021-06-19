@@ -21,18 +21,17 @@ module.exports = {
 	    let msg = await message.channel.messages.fetch({limit: num+1});
 	    if (args[1]) {
 	        switch (args[1]) {
-			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned).array(); break;
-			case '--bot': msg = msg.filter((m)=>m.author.bot && !m.pinned).array(); break;
+			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned); break;
+			case '--bot': msg = msg.filter((m)=>m.author.bot && !m.pinned); break;
 			default: return message.channel.send("Invalid flag");
-	         }
-
-		 msg.push(message);
+	        }
 	    }
             message.channel.bulkDelete(msg, true);
-            message.channel.send(`Deleting ${msg.length} messages`)
+            message.channel.send(`Deleting ${msg.size} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
             })
+	    if (!message.deleted) message.delete;
         }
         else if(!(parseInt(args[0])>0)){
             message.channel.send(`${message.member}, Please enter a number greater than 0.`)
