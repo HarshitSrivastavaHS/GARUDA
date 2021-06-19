@@ -2,11 +2,10 @@ module.exports = {
     name: 'clear',
     type: 'utility',
     usage: '&{prefix}clear <Number of messages to be deleted>',
-    description: 'deletes the given number of messages',
-    aliases: ["purge"],
+    description: 'deletes the given number of messages. Some flags that can be used are:\n\`--human\` |\`--h\`: To Delete messages sent by humans only.\n\`--bot\` | \`--b\`: to delete messages sent by bots only.',
+    aliases: ["purge", "nuke"],
     permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-	if (message.author.id != "451693463742840842") return message.reply("Disabled for updates");
         if (isNaN(args[0])) {
             message.channel.send("Invalid Syntax!\n```%clear <number of messsages to be deleted> [--flags]```");
             return;
@@ -20,8 +19,10 @@ module.exports = {
         if (num<100) {
 	    let msg = await message.channel.messages.fetch({limit: num+1});
 	    if (args[1]) {
-	        switch (args[1]) {
+	        switch (args[1].toLowerCase()) {
+			case '--h':
 			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned); break;
+			case '--b':
 			case '--bot': msg = msg.filter((m)=>m.author.bot && !m.pinned); break;
 			default: return message.channel.send("Invalid flag");
 	        }
