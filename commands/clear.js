@@ -18,7 +18,7 @@ module.exports = {
         }
         var num = parseInt(args[0]);
         if (num<100) {
-	    let msg = message.channel.fetch({limit: num});
+	    let msg = message.channel.messages.fetch({limit: num});
 	    if (args[1]) {
 	        switch (args[1]) {
 			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned); break;
