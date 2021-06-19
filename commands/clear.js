@@ -6,18 +6,9 @@ module.exports = {
     aliases: ["purge"],
     permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        let botPerms = [];
-        let missingPerms = [];
-        this.permissions.forEach(p=>{
-            botPerms.push(message.channel.permissionsFor(bot.user).has(p));
-            if (!(message.channel.permissionsFor(bot.user).has(p)))
-                missingPerms.push(p);
-        })
-        missingPerms = missingPerms.join("\n");
-        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-
+	if (message.author.id != "451693463742840842") return message.reply("Disabled for updates");
         if (isNaN(args[0])) {
-            message.channel.send("Invalid Syntax!\n```%clear <number of messsages to be deleted>```");
+            message.channel.send("Invalid Syntax!\n```%clear <number of messsages to be deleted> [--flags]```");
             return;
         }
 
@@ -27,8 +18,17 @@ module.exports = {
         }
         var num = parseInt(args[0]);
         if (num<100) {
-            message.channel.bulkDelete(num+1, true);
-            message.channel.send(`Deleting ${num} messages`)
+	    let msg = message.channel.fetch({limit: num});
+	    if (args[1]) {
+	        switch (args[1]) {
+			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned); break;
+			case '--bot': msg = msg.filter((m)=>m.authro.bot && !m.pinned); break;
+			default: return message.channel.send("Invalid flag");
+	         }
+		 msg.push(message);
+	    }
+            message.channel.bulkDelete(msg, true);
+            message.channel.send(`Deleting ${msg.size} messages`)
             .then(msg => {
                 msg.delete({ timeout: 3000 })
             })
