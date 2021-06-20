@@ -20,12 +20,12 @@ module.exports = {
         let exp = args.join(" ");
         let sol;
         try {
-          sol = Maths.evaluate(exp);
+          sol = await Maths.evaluate(exp);
         }
         catch {
           return message.channel.send("Something went wrong. Was that really an expression?")
         }
-        message.channel.send(`Expression: ${exp}\nSolution: ${sol}`);
+        message.channel.send(`Expression: ${exp}\nSolution: ${sol}`).catch(()=>{message.reply("An error occurred.")});
     }
       
 }
