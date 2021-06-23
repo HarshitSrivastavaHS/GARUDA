@@ -63,7 +63,7 @@ const server = async ()=>{
 bot.on("guildMemberAdd", async (member) => {
   let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
   if (wc) {
-	const welcomeCH = member.guild.channels.cache.get(wc) || member.guild.fetch(wc);
+	const welcomeCH = await member.guild.fetch(wc);
 	if (member.user.bot) {
 		welcomeCH.send(`${member} was just invited to the server.`);
 	}
