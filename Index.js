@@ -63,7 +63,7 @@ const server = async ()=>{
 bot.on("guildMemberAdd", async (member) => {
   let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
   if (wc) {
-	const welcomeCH = await member.guild.fetch(wc);
+	const welcomeCH = await bot.channels.fetch(wc);
 	if (member.user.bot) {
 		welcomeCH.send(`${member} was just invited to the server.`);
 	}
@@ -85,7 +85,7 @@ bot.on("guildMemberAdd", async (member) => {
 bot.on("guildMemberRemove", async (member) => {
   let gc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).leave:undefined;
   if (!gc) return;
-  const byeCH = member.guild.channels.cache.get(gc) || member.guild.fetch(gc);
+  const byeCH = await bot.channels.fetch(gc);
   byeCH.send(`${member.user.username}#${member.user.discriminator} just left the server.`);
 })
 
