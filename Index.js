@@ -1,7 +1,22 @@
 const Discord = require('discord.js');
 const keepAlive = require('./server.js');
 
-const bot = new Discord.Client();
+const bot = new Discord.Client({ ws: { intents: new Discord.Intents([
+    "GUILDS",
+    "GUILD_MEMBERS",
+    "GUILD_BANS",
+    "GUILD_EMOJIS",
+    "GUILD_INTEGRATIONS:,
+    "GUILD_WEBHOOKS",
+    "GUILD_INVITES",
+    "GUILD_VOICE_STATES",
+    "GUILD_MESSAGES",
+    "GUILD_MESSAGE_REACTIONS",
+    "GUILD_MESSAGE_TYPING",
+    "DIRECT_MESSAGES",
+    "DIRECT_MESSAGE_REACTIONS",
+    "DIRECT_MESSAGE_TYPING"
+]) }}};
 
 const mongo = require(`./mongo`);
 const serverConfig = require('./Schemas/server-config');
