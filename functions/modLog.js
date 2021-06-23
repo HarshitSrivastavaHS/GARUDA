@@ -1,11 +1,11 @@
  module.exports = async (bot, Discord) => {
 
   /* WHEN MESSAGE IS DELETED */
-  bot.on("messageDelete", (message)=>{
+  bot.on("messageDelete", async (message)=>{
     if (message.author.bot) return;
     let ml = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).modLog:undefined;
 	  if (!ml) return; 
-		let modChannel = bot.channels.fetch(ml);
+		let modChannel = await bot.channels.fetch(ml);
 		if (!modChannel) return;
 		let ModEmbed = new Discord.MessageEmbed()
       .setColor("RED")
@@ -21,12 +21,12 @@
   })
 
   /* WHEN MESSAGE IS EDITED */
-  bot.on("messageUpdate", (oldMessage, message)=>{
+  bot.on("messageUpdate", async (oldMessage, message)=>{
     if (message.author.bot) return;
     if (oldMessage.content == message.content) return;
     let ml = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).modLog:undefined;
 	  if (!ml) return; 
-		let modChannel = bot.channels.fetch(ml);
+		let modChannel = await bot.channels.fetch(ml);
 		if (!modChannel) return;
     let desc = split(`Old Message: ${oldMessage.content}\n+New Message: ${message.content}`);
 		let ModEmbed = new Discord.MessageEmbed()
