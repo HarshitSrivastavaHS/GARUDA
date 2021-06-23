@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const keepAlive = require('./server.js');
 
-const bot = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
+const bot = new Discord.Client();
 
 const mongo = require(`./mongo`);
 const serverConfig = require('./Schemas/server-config');
