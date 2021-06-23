@@ -19,7 +19,7 @@
 		if (message.mentions.everyone)
 			msg = `${msg} ${message.guild.roles.everyone}`
 		if (!msg) return;
-		let tarch = message.guild.channels.cache.get(ghost);
+		let tarch = message.guild.channels.fetch(ghost);
 		if (!tarch) return;
         if (Date.now()>message.createdTimestamp+15000||Date.now()<message.createdTimestamp+1000) return;
 		let ghostEM = new Discord.MessageEmbed()
@@ -30,7 +30,9 @@
 			.addField("Ghost Pinged", `${msg}`)
 		    .addField("Channel", message.channel)
 		    .addField("Message Author", message.author);
-		tarch.send(ghostEM);
+		tarch.send(ghostEM).catch(()=>{
+                    return;
+		});
 		
 		ghostEM = new Discord.MessageEmbed()
 		    .setColor("RED")

@@ -5,7 +5,7 @@
     if (message.author.bot) return;
     let ml = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).modLog:undefined;
 	  if (!ml) return; 
-		let modChannel = message.guild.channels.cache.get(ml);
+		let modChannel = message.guild.channels.fetch(ml);
 		if (!ml) return;
 		let ModEmbed = new Discord.MessageEmbed()
       .setColor("RED")
@@ -26,7 +26,7 @@
     if (oldMessage.content == message.content) return;
     let ml = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).modLog:undefined;
 	  if (!ml) return; 
-		let modChannel = message.guild.channels.cache.get(ml);
+		let modChannel = message.guild.channels.fetch(ml);
 		if (!ml) return;
     let desc = split(`Old Message: ${oldMessage.content}\n+New Message: ${message.content}`);
 		let ModEmbed = new Discord.MessageEmbed()
