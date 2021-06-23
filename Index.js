@@ -6,7 +6,7 @@ const bot = new Discord.Client({ ws: { intents: new Discord.Intents([
     "GUILD_MEMBERS",
     "GUILD_BANS",
     "GUILD_EMOJIS",
-    "GUILD_INTEGRATIONS:,
+    "GUILD_INTEGRATIONS",
     "GUILD_WEBHOOKS",
     "GUILD_INVITES",
     "GUILD_VOICE_STATES",
