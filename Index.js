@@ -33,21 +33,15 @@ const { Collection } = require('mongoose');
 
 bot.commands = new Discord.Collection();
 
-const getCommands = (dir) => {
-    const files = fs.readdirSync(path.join(__dirname, dir));
-    for (const file of files) {
-        const stat = fs.lstatSync(path.join(__dirname, dir, file));
-        if (stat.isDirectory()) {
-           getCommands(path.join(dir,file));
-        }
-        else {
-            const command = require(path.join(__dirname, dir, file));
-            bot.commands.set(command.name, command);
-        }
-    }
-}
+const commandFiles = fs
+	.readdirSync('./commands/')
+	.filter(file => file.endsWith('.js'));
 
-getCommands("commands");
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+
+	bot.commands.set(command.name, command);
+}
 
 bot.serverConfig = new Map();
 
