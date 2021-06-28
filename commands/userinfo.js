@@ -3,7 +3,7 @@ module.exports = {
     type: 'info',
     usage: '&{prefix}userinfo <optional @user>',
     description: 'shows information about that server',
-    aliases: ["ui"],
+    aliases: ["ui", "whois"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
@@ -32,7 +32,7 @@ module.exports = {
 **Id:** \`${user.user.id}\`\n\n\
 **Badges:** ${badges.length!=0?badges.join(" "):"`None`"}\n\
 **Bot:** \`${user.user.bot?"Yes":"No"}\`\n\n\
-**Last Message:** \`${user.lastMessage?(user.lastMessage.content.length<31?user.lastMessage.content:user.lastMessage.content.substr(0,31)+"..."):"None"}\`\n\
+**Last Message:** \`${user.lastMessage?(user.lastMessage.content.length<31?user.lastMessage.content:user.lastMessage.content.substr(0,31).replaceAll("`", "\`")+"..."):"None"}\`\n\
 **Highest Role:** \`${user.roles.cache.size>0?user.roles.highest.name:"None"}\` ${user.roles.cache.size==0?"":`(${user.roles.highest})`}\n\n\
 **Account Created on:** \`${user.user.createdAt.toLocaleString("en-IN",{dateStyle: "long"})}\`\n\
 **Server Joined on:** \`${user.joinedAt.toLocaleString("en-IN",{dateStyle: "long"})}\``)
