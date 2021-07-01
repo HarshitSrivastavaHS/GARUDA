@@ -43,7 +43,7 @@ module.exports = {
             setTimeout(()=>{}, 500);
         }
         
-        activeplayer = player1;
+        let activeplayer = player1;
 	msg.edit(`${activeplayer}'s turn\n${gameboard.join("")}`);
 
         const filter = (reaction, user) => !user.bot && user.id == activeplayer.id && actemo.includes(reaction.emoji.name);
@@ -91,7 +91,6 @@ module.exports = {
 		return;
 	    }
 	    if (!gameboard.includes(pieces.empty)) {
-		    draw = true;
 		    a.message.edit(`Its a draw!'\n${gameboard.join("")}`);
 		    collector.stop();
 		    return
