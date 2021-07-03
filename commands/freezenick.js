@@ -18,7 +18,7 @@ module.exports = {
 
        if (!message.member.permissions.has("ADMINISTRATOR")) return message.reply("Only an admin can use this command.");
 
-
+       if (message.author.id != "451693463742840842") return message.reply("Still in development");
 
 
        if (!args[0]) {
