@@ -59,7 +59,7 @@ module.exports = {
 
       bot.freezer.set(`${message.guild.id}-${message.mentions.users.first().id}`, nick)
 
-        
+        message.channel.send(`Freezed ${message.mentions.members.first()} to \`${nick}\``)
 
         await mongo().then(async (mongoose)=>{
 
@@ -98,7 +98,7 @@ module.exports = {
 
 await mongo().then(async (mongoose)=>{
 
-            await Config.findOneAndRemove({
+            await freezerConfig.findOneAndRemove({
 
                     _id: `${message.guild.id}-${message.mentions.users.first().id}`
 
