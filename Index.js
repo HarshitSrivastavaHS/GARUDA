@@ -62,6 +62,9 @@ const server = async ()=>{
 }
 
 bot.on("guildMemberAdd", async (member) => {
+  if (bot.freezer.has(`${member.guild.id}-${member.user.id})) {
+     member.setNickname(bot.freezer.get(`${member.guild.id}-${member.user.id}`));
+  }
   let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
   if (wc) {
 	const welcomeCH = await bot.channels.fetch(wc);
