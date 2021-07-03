@@ -55,7 +55,7 @@ module.exports = {
 
       if (nick > 32) return message.reply("Nickname cannot be longer than 32 characters.");
 
-
+      message.mentions.members.first().setNickname(nick);
 
 
       bot.freezer.set(`${message.guild.id}-${message.mentions.users.first().id}`, nick)
