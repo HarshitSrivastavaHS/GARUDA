@@ -24,6 +24,7 @@ const giveawaySchema = require('./Schemas/giveaway-schema.js');
 const welcomeJS = require(`./util/welcome`);
 const Canvas = require("canvas");
 const afkConfig = require('./Schemas/afk');
+const freezerConfig = require('./Schemas/freezenick');
 const give = require('./functions/giveaway.js');
 
 let prefix;
@@ -191,6 +192,15 @@ const afkusers = async ()=>{
         }
 }
 afkusers();
+
+bot.freezer = new Map();
+const freezedusers = async ()=>{
+	const results = await freezerConfig.find();
+        for (const result of results){
+            bot.freezer.set(result._id, result.nick);
+        }
+}
+freezedusers();
 
 bot.fasttype = new Array();
 
