@@ -62,7 +62,7 @@ const server = async ()=>{
 }
 
 bot.on("guildMemberUpdate", async (oldMember, newMember)=>{
-   if (bot.freezer.has(`${newMember.guild.id}-${newMember.user.id})) {
+   if (bot.freezer.has(`${newMember.guild.id}-${newMember.user.id}`)) {
      if (newMember.nickname != bot.freezer.get(`${member.guild.id}-${member.user.id}`))
      newMember.setNickname(bot.freezer.get(`${newMember.guild.id}-${newMember.user.id}`));
   }
