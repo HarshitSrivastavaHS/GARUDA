@@ -136,9 +136,10 @@ await mongo().then(async (mongoose)=>{
        return message.channel.send("Invalid choice", emb);
 
           }
-       } catch((err)=>{
+       } 
+       catch (err){
            message.channel.send(`Error:\n\`${err}\``).catch((err)=>{console.log("sad")})
-       })
+       }
 
     }
 
