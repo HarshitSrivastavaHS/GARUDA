@@ -96,6 +96,8 @@ module.exports = {
 
              bot.freezer.delete(`${message.guild.id}-${message.mentions.users.first().id}`)
 
+             message.reply(`Unfreezed ${message.mentions.members.first()}'s nickname.`);
+
 await mongo().then(async (mongoose)=>{
 
             await freezerConfig.findOneAndRemove({
