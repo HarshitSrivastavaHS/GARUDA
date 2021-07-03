@@ -12,7 +12,7 @@ const string = {
 
 const freeze = mongoose.Schema({
   _id: reqString,
-  afk: string
+  nick: string
 })
 
 module.exports = mongoose.model("FREEZED NICKS", freeze)
