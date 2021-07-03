@@ -19,7 +19,8 @@ module.exports = {
        if (!message.member.permissions.has("ADMINISTRATOR")) return message.reply("Only an admin can use this command.");
 
        if (message.author.id != "451693463742840842") return message.reply("Still in development");
-
+     
+       try {
 
        if (!args[0]) {
 
@@ -50,7 +51,7 @@ module.exports = {
 
 
 
-      let nick = args.splice(0,2).join(" ");
+      let nick = args.slice(2).join(" ");
 
       if (nick > 32) return message.reply("Nickname cannot be longer than 32 characters.");
 
@@ -59,7 +60,7 @@ module.exports = {
 
       bot.freezer.set(`${message.guild.id}-${message.mentions.users.first().id}`, nick)
 
-        message.channel.send(`Freezed ${message.mentions.members.first()} to \`${nick}\``)
+        message.channel.send(`Freezed ${message.mentions.members.first()}'s nickname to \`${nick}\``)
 
         await mongo().then(async (mongoose)=>{
 
@@ -85,7 +86,7 @@ module.exports = {
 
         }
 
-        else if (args[0]&&args[0].toLowerCase == "remove") {
+        else if (args[0]&&args[0].toLowerCase() == "remove") {
 
              if (!message.mentions.users.first()) return message.reply("You forgot to mention the person");
 
@@ -135,6 +136,9 @@ await mongo().then(async (mongoose)=>{
        return message.channel.send("Invalid choice", emb);
 
           }
+       } catch((err)=>{
+           message.channel.send(`Error:\n\`${err}\``).catch((err)=>{console.log("sad")})
+       })
 
     }
 
