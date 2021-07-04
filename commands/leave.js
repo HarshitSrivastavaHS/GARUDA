@@ -25,7 +25,7 @@ module.exports = {
                 let channel = message.mentions.channels.first();
                 const msg = await message.channel.send(`Setting ${channel} as the leave channel.`);
                 try {
-                    await channel.send("Successfully set this channel for the leave.");
+                    await channel.send("Successfully set this channel for the leave message.");
                 }
                 catch (err) {
                     return msg.edit("Missing permissions in that channel");
