@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const Statcord = require("statcord.js");
 const keepAlive = require('./server.js');
 
 const bot = new Discord.Client({ ws: { intents: new Discord.Intents([
@@ -17,6 +18,11 @@ const bot = new Discord.Client({ ws: { intents: new Discord.Intents([
     "DIRECT_MESSAGE_REACTIONS",
     "DIRECT_MESSAGE_TYPING"
 ]) }});
+
+const statcord = new Statcord.Client({
+  client: bot,
+  key: "statcord.com-myxwk25i0MesmaUhOqpq"
+});
 
 const mongo = require(`./mongo`);
 const serverConfig = require('./Schemas/server-config');
@@ -120,6 +126,7 @@ bot.on("guildDelete", function(guild){
 });
 */
 bot.on('ready', async () => {
+  statcord.autopost();
         server();
 	console.log('I am Online!');
 	bot.user.setPresence({
@@ -295,6 +302,7 @@ bot.on('message', async message => {
   }
   let cmdexe = bot.commands.get(command) || bot.commands.find(c=>c.aliases&&c.aliases.includes(command));
   if (!cmdexe) return;
+  statcord.postCommand(cmdexe.name, message.author.id);
   let botPerms = [];
   let missingPerms = [];
   cmdexe.permissions.forEach(p=>{
@@ -304,8 +312,20 @@ bot.on('message', async message => {
   })
   missingPerms = missingPerms.join("\n");
   if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-        
+  statcord.post();
   cmdexe.execute(message, args, bot, Discord, prefix);
+});
+
+statcord.on("autopost-start", () => {
+  // Emitted when statcord autopost starts
+  console.log("Started autopost");
+});
+
+statcord.on("post", status => {
+  // status = false if the post was successful
+  // status = "Error message" or status = Error if there was an error
+  if (!status) console.log("Successful post");
+  else console.error(status);
 });
 
 keepAlive();
