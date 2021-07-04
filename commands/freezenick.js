@@ -54,10 +54,10 @@ module.exports = {
       let nick = args.slice(2).join(" ");
 
       if (nick > 32) return message.reply("Nickname cannot be longer than 32 characters.");
+      let er = false;
+      message.mentions.members.first().setNickname(nick).catch((err)=>{er = true; message.channel.send("I am Missing Permissions")});
 
-      message.mentions.members.first().setNickname(nick).catch((err)=>{return message.channel.send("I am Missing Permissions")});
-
-
+      if (er) return;
       bot.freezer.set(`${message.guild.id}-${message.mentions.users.first().id}`, nick)
 
         message.channel.send(`Freezed ${message.mentions.members.first()}'s nickname to \`${nick}\``)
