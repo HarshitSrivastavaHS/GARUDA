@@ -24,8 +24,9 @@ module.exports = {
             if (args[1]&&args[1].includes(message.mentions.channels.first())) {
                 let channel = args[1];
                 const msg = await message.channel.send(`Setting ${channel} as the welcome channel.`);
+                let ch = message.guild.fetch(channel.id);
                 try {
-                    channel.send("Successfully set this channel for the welcomer.");
+                    ch.send("Successfully set this channel for the welcomer.");
                 }
                 catch (err) {
                     return msg.edit("Missing permissions in that channel");
@@ -36,7 +37,7 @@ module.exports = {
                           _id: message.guild.id
                         },{
                             _id: message.guild.id,
-                            welcome: channel.id,
+                            welcome: ch.id,
                         },{
                             upsert: true
                         })
@@ -46,7 +47,7 @@ module.exports = {
                     bot.serverConfig.set(message.guild.id, {
                     prefix: result.prefix,
                     suggestion: result.suggestion,
-                    welcome: channel.id,
+                    welcome: ch.id,
                     leave: result.leave,
                     modLog: result.modLog,
                     ghost: result.ghost,
