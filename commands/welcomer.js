@@ -22,13 +22,12 @@ module.exports = {
         
         if (args[0]&&args[0].toLowerCase()=="set") {
             if (args[1]&&args[1].includes(message.mentions.channels.first())) {
-                let channel = args[1];
+                let channel = message.mentions.channels.first();
                 const msg = await message.channel.send(`Setting ${channel} as the welcome channel.`);
                 try {
                     await channel.send("Successfully set this channel for the welcomer.");
                 }
                 catch (err) {
-                    console.log(err);
                     return msg.edit("Missing permissions in that channel");
                 }
                 await mongo().then(async (mongoose)=>{
