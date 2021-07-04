@@ -28,6 +28,7 @@ module.exports = {
                     await channel.send("Successfully set this channel for the welcomer.");
                 }
                 catch (err) {
+                    console.log(err);
                     return msg.edit("Missing permissions in that channel");
                 }
                 await mongo().then(async (mongoose)=>{
