@@ -21,7 +21,7 @@ const bot = new Discord.Client({ ws: { intents: new Discord.Intents([
 
 const statcord = new Statcord.Client({
   client: bot,
-  key: "statcord.com-myxwk25i0MesmaUhOqpq"
+  key: process.env.statcord
 });
 
 const mongo = require(`./mongo`);
