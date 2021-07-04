@@ -6,15 +6,7 @@ module.exports = {
     description: 'Starts a pop game. The first one to find and send the hidden word wins!',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        let botPerms = [];
-        let missingPerms = [];
-        this.permissions.forEach(p=>{
-            botPerms.push(message.channel.permissionsFor(bot.user).has(p));
-            if (!(message.channel.permissionsFor(bot.user).has(p)))
-                missingPerms.push(p);
-        })
-        missingPerms = missingPerms.join("\n");
-        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
+        
         
         let str = "";
             let row = 7, col = 7;

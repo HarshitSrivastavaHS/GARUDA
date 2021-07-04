@@ -6,15 +6,7 @@ module.exports = {
     description: 'starts a typing game! You can define the number of words. Default: 10',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        let botPerms = [];
-        let missingPerms = [];
-        this.permissions.forEach(p=>{
-            botPerms.push(message.channel.permissionsFor(bot.user).has(p));
-            if (!(message.channel.permissionsFor(bot.user).has(p)))
-                missingPerms.push(p);
-        })
-        missingPerms = missingPerms.join("\n");
-        if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
+        
         
         if (bot.fasttype.includes(message.channel.id)) return message.channel.send("**A Fasttype game is already going on in this channel.**");
         
