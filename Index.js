@@ -324,8 +324,7 @@ statcord.on("autopost-start", () => {
 statcord.on("post", status => {
   // status = false if the post was successful
   // status = "Error message" or status = Error if there was an error
-  if (!status) console.log("Successful post");
-  else console.error(status);
+  if (status) console.error(status);
 });
 
 keepAlive();
