@@ -43,8 +43,8 @@ module.exports = {
 
        if (!args[1] || !message.mentions.users.first()||!args[1].includes(message.mentions.users.first().id)) return message.reply("Invalid Syntax");
 
-
-
+       if (message.author.id == message.mentions.users.first()) return message.reply("You cannot freeze your own nickanem.");
+	
 
        if (!args[2]) return message.reply("No nickname provided");
 
