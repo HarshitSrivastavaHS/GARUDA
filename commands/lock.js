@@ -13,7 +13,7 @@ module.exports = {
             message.channel.send("You don't have the required permissions.");
             return;
         }
-	if (!channel.permissionFor(channel.guild.roles.everyone).has("SEND_MESSAGES")) return message.channel.send(`${channel} is already locked`);
+	if (!channel.permissionsFor(channel.guild.roles.everyone).has("SEND_MESSAGES")) return message.channel.send(`${channel} is already locked`);
 	channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: false });
 	args = args.slice(1);
 	message.channel.send(`Successfully locked ${channel}`);
