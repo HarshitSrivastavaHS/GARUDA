@@ -22,7 +22,7 @@ module.exports = {
 	let emb = new Discord.MessageEmbed()
 	    .setColor("RED")
 	    .setTitle("Channel locked")
-	    .setDescription(`Locked this channel${args.length>0?"\n"+args.join():""}`)
+	    .setDescription(`Locked this channel${args.length>0?"\n"+args.join(" "):""}`)
 	    .setTimestamp();
 	channel.send(emb);
     }
