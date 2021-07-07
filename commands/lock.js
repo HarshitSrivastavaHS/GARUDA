@@ -9,7 +9,7 @@ module.exports = {
 	channel = message.channel;
 	if (args[0]&&message.mentions.channels.first()&&args[0].includes(message.mentions.channels.first().id))
 	{
-	    channel = message.mentions.channels.first;
+	    channel = message.mentions.channels.first();
 	    args = args.slice(1);
 	}
         if(!channel.permissionsFor(message.member).has("MANAGE_CHANNEL")) {
