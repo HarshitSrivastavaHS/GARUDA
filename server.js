@@ -1,9 +1,7 @@
-const express = require('express');
-const server = express();
+const server = require('http').createServer((req, res) => {
+  res.writeHead(200).end('<B>GARUDA is online</B>');
+});
 
-server.all('/', (req, res)=>{
-    res.send(`<B>GARUDA is online</B>`)
-})
 function keepAlive(){
     server.listen(3000, ()=>{console.log("Server is Ready!")});
 }
