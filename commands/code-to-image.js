@@ -14,7 +14,7 @@ module.exports = {
 			text = text.replace(/^```|```$|\n```$/g, "")
 			let space = text.indexOf(" ")
 			let newLine = text.indexOf("\n")
-			if (space > newLine || space == -1)
+			if (space > newLine || space == -1 && newLine != -1)
 				text = text.split("\n").slice(1).join("\n").trim();
       		}
 		if (!text)
