@@ -23,7 +23,7 @@ Example:
 %code-to-image \`\`\`
 hello world
 \`\`\``
-		const browser = await puppeteer.launch();
+		const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
         	const page = await browser.newPage();
         	await page.goto('https://carbon.now.sh');
         	for (let i = 1; i<=16; i++)
