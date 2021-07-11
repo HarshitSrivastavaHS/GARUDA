@@ -10,7 +10,7 @@ module.exports = {
 		message.channel.send("Generating image");
 		let text =  args.join(" ").match(/```[^```]+```|[\\S]+```[^```]+/);
 		if (text) {
-			text = text.trim();
+			text = text[0].trim();
 			text = text.replace(/^```|```$|\n```$/g, "")
 			let space = text.indexOf(/ /)
 			let newLine = text.indexOf(/\n/)
