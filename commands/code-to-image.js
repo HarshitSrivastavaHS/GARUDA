@@ -7,7 +7,7 @@ module.exports = {
     aliases: ["cti"],
     permissions: ['SEND_MESSAGES', 'ATTACH_FILES'],
     async execute(message, args, bot, Discord, prefix) {
-		message.channel.send("Please wait");
+		message.channel.send("Generating image");
 		let text =  args.join(" ").match(/```[^```]+```|[\\S]+```[^```]+/);
 		if (text) {
 			text = text.trim();
