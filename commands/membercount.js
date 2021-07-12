@@ -10,6 +10,7 @@ module.exports = {
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         if (args.length!=0) {
+	    if (!message.member.permissions.has("MANAGE_GUILD")) return message.reply(`You access subcommands, you need manage server permission. To view membercount, please run ${prefix}membercount`)
             if (args[0] == "goalset") {
                 if (args[1]&&Number.isInteger(parseInt(args[1]))) {
                     message.channel.send(`Server members goal (humans) set to ${args[1]}`);
