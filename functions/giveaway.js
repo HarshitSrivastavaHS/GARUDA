@@ -83,7 +83,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       return;
     }
    
-    let giveawayHost = giveawayChannel.guild.members.fetch(host);
+    let giveawayHost = await giveawayChannel.guild.members.fetch(host);
     
     let hostDM = new Discord.MessageEmbed()
     .setColor("PURPLE")
