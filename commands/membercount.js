@@ -11,7 +11,7 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         if (args.length!=0) {
             if (args[0] == "goalset") {
-                if (args[1]&&Number.isInteger(parseInt(args[1)])) {
+                if (args[1]&&Number.isInteger(parseInt(args[1]))) {
                     message.channel.send(`Server members goal (humans) set to ${args[1]}`);
                     await mongo().then(async (mongoose)=>{
               
