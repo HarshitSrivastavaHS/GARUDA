@@ -1,4 +1,4 @@
-const puppeteer = require("puppeteer");
+// const puppeteer = require("puppeteer");
 module.exports = {
 	name: 'code-to-image',
     type: 'fun',
