@@ -71,11 +71,11 @@ module.exports = {
             }
         }
         else {
+	    await message.guild.members.fetch();
             let goal = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).goal:undefined;
             let humans = message.guild.members.cache.filter(m=>!m.user.bot).size;
             let bots = message.guild.members.cache.filter(m=>m.user.bot).size;
             let goaltext = `${goal}\n${humans<goal?`Humans left to reach goal: ${goal-humans}`:`Human Goal Reached!`}`;
-            await message.guild.members.fetch();
             let emb = new Discord.MessageEmbed()
             .setTitle(`Member Count`)
             .setColor("#FFA500")
