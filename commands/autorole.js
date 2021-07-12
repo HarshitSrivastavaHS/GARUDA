@@ -36,7 +36,8 @@ module.exports = {
             leave: result.leave,
             modLog: result.modLog,
             ghost: result.ghost,
-            autoRole: role.id
+            autoRole: role.id,
+            goal: result.goal
           });
             
       })
@@ -64,7 +65,8 @@ module.exports = {
             leave: result.leave,
             modLog: result.modLog,
             ghost: result.ghost,
-            autoRole: undefined
+            autoRole: undefined,
+            goal: result.goal
           });
       })}
     }

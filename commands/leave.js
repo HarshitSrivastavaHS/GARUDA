@@ -50,7 +50,8 @@ module.exports = {
                     leave: channel.id,
                     modLog: result.modLog,
                     ghost: result.ghost,
-                    autoRole: result.autoRole
+                    autoRole: result.autoRole,
+                    goal: result.goal
                 })    
             }
             else {
@@ -79,7 +80,8 @@ module.exports = {
                 leave: undefined,
                 modLog: result.modLog,
                 ghost: result.ghost,
-                autoRole: result.autoRole
+                autoRole: result.autoRole,
+                goal: result.goal
             })    
         }
         else {

@@ -62,7 +62,8 @@ const server = async ()=>{
                 leave: result.leave,
                 modLog: result.modLog,
 		ghost: result.ghost,
-		autoRole: result.autoRole
+		autoRole: result.autoRole,
+    goal: result.goal
             });
         }
 }
@@ -267,7 +268,8 @@ bot.on('message', async message => {
                 leave: result?result.leave:undefined,
                 modLog: result?result.modLog:undefined,
 		ghost: result?result.ghost:undefined,
-                autoRole: result?result.autoRole:undefined
+                autoRole: result?result.autoRole:undefined,
+                goal: result?result.goal:undefined
         });
         prefix = "%";
 	}

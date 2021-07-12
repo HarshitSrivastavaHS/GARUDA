@@ -32,7 +32,8 @@ module.exports = {
             leave: result.leave,
             modLog: result.modLog,
             ghost: result.ghost,
-            autoRole: result.autoRole
+            autoRole: result.autoRole,
+            goal: result.goal
         });
         message.channel.send(`Successfully changed the prefix to \`${args[0]}\``); 
     }
