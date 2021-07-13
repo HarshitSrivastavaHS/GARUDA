@@ -7,9 +7,7 @@ module.exports = {
     aliases: ["cti"],
     permissions: ['SEND_MESSAGES', 'ATTACH_FILES'],
     async execute(message, args, bot, Discord, prefix) {
-	        if (message.author.id != "451693463742840842")
-	    	return message.channel.send("Under development...");
-		message.channel.send("Generating image");
+		let x = await message.channel.send("Generating image");
 		//let text =  args.join(" ").match(/```[^```]+```|[\\S]+```[^```]+/);
 		/*if (text) {
 			text = text[0].trim();
@@ -53,10 +51,11 @@ console.log(hi);`
 //         	let x = await logo.screenshot();
 //         	await browser.close();
         const createCTI = codeSnippet => {
-            let y = codeSnippet.replace(/ /g,"%20").replace(/\n/g,"%250a");
+            let y = encodeURIComponent(codeSnippet);
             const burl = `https://carbonnowsh.herokuapp.com/?code=${y}`;
             return burl
         }
         message.channel.send(new Discord.MessageAttachment(createCTI(text), "code.png"));
-	}
+	x.delete().catch(()=>console.log("error"));	
+    }
 }
