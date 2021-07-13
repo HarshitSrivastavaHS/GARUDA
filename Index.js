@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-// const Statcord = require("statcord.js");
+const Statcord = require("statcord.js");
 const keepAlive = require('./server.js');
 
 const bot = new Discord.Client({ ws: { intents: new Discord.Intents([
