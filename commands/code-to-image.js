@@ -7,23 +7,24 @@ module.exports = {
     aliases: ["cti"],
     permissions: ['SEND_MESSAGES', 'ATTACH_FILES'],
     async execute(message, args, bot, Discord, prefix) {
+	        if (message.author.id != "451693463742840842")
 	    	return message.channel.send("Under development...");
 		message.channel.send("Generating image");
-		let text =  args.join(" ").match(/```[^```]+```|[\\S]+```[^```]+/);
-		if (text) {
+		//let text =  args.join(" ").match(/```[^```]+```|[\\S]+```[^```]+/);
+		/*if (text) {
 			text = text[0].trim();
 			text = text.replace(/^```|```$|\n```$/g, "")
 			let space = text.indexOf(/ /)
 			let newLine = text.indexOf(/\n/)
 			if (space > newLine || space == -1 && newLine != -1)
 				text = text.split("\n").slice(1).join("\n").trim();
-      		}
+      		}*/
+	        let text = args.join(" ");
 		if (!text)
-			text = `Please attach a code block with the command
+			text = `Please type the code with the command
 Example: 
-%code-to-image \`\`\`
-hello world
-\`\`\``
+%code-to-image let hi = "hi";
+console.log(hi);`
 // 		const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 //         	const page = await browser.newPage();
 //         	await page.goto('https://carbon.now.sh');
