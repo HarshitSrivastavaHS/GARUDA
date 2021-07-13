@@ -314,7 +314,7 @@ bot.on('message', async message => {
   })
   missingPerms = missingPerms.join("\n");
   if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-  statcord.post();
+  //statcord.post();
   cmdexe.execute(message, args, bot, Discord, prefix);
 });
 
