@@ -51,7 +51,7 @@ console.log(hi);`
 //         	let x = await logo.screenshot();
 //         	await browser.close();
         const createCTI = codeSnippet => {
-            let y = codeSnippet.replace(/ /g,"%20").replace(/\n/g,"%250a");
+            let y = codeSnippet.replace(/%/g,"%25").replace(/ /g,"%20").replace(/\n/g,"%250a").replace(/\+/g,"%2B");
 	    y = encodeURIComponent(y)
             const burl = `https://carbonnowsh.herokuapp.com/?code=${y}`;
             return burl
