@@ -1,4 +1,5 @@
 // const puppeteer = require("puppeteer");
+const urlencode = require('urlencode');
 module.exports = {
 	name: 'code-to-image',
     type: 'fun',
@@ -51,8 +52,8 @@ console.log(hi);`
 //         	let x = await logo.screenshot();
 //         	await browser.close();
         const createCTI = codeSnippet => {
-            let y = codeSnippet.replace(/%/g,"%25").replace(/ /g,"%20").replace(/\n/g,"%250a").replace(/\+/g,"%2B");
-	    y = encodeURIComponent(y)
+            //let y = codeSnippet.replace(/%/g,"%25").replace(/ /g,"%20").replace(/\n/g,"%250a").replace(/\+/g,"%2B");
+	    let y = urlencode(codeSnippet);
             const burl = `https://carbonnowsh.herokuapp.com/?code=${y}`;
             return burl
         }
