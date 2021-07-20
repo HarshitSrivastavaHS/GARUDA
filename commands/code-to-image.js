@@ -57,6 +57,7 @@ console.log(hi);`
             let y = codeSnippet;
             if (y.match(/%/)) y = y.replace(/%/g, "%25");
             if (y.match(/\n/)) y = y.replace(/\n/g, "%250a");
+            if (y.match(/+/)) y = y.replace(/+/g, "%2B");
 	    y = encodeURIComponent(y)
             const burl = `https://carbonnowsh.herokuapp.com/?code=${y}`;
             return burl
