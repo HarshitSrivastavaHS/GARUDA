@@ -20,10 +20,7 @@ module.exports = {
       		}*/
 	        let text = args.join(" ");
 		if (!text)
-			text = `Please type the code with the command
-Example: 
-%code-to-image let hi = "hi";
-console.log(hi);`
+			text = `Please type the code with the command\nExample:\n%code-to-image let hi = "hi";\nconsole.log(hi);`
 // 		const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 //         	const page = await browser.newPage();
 //         	await page.goto('https://carbon.now.sh');
@@ -58,6 +55,8 @@ console.log(hi);`
             if (y.match(/%/)) y = y.replace(/%/g, "%25");
             if (y.match(/\n/)) y = y.replace(/\n/g, "%250a");
             if (y.match(/\+/)) y = y.replace(/\+/g, "%2B");
+            if (y.match(/&/)) y = y.replace(/&/g, "%26");
+            if (y.match(/#/)) y = y.replace(/#/g, "%23");
 	    y = encodeURIComponent(y)
             const burl = `https://carbonnowsh.herokuapp.com/?code=${y}`;
             return burl
