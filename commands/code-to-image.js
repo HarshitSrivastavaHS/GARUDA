@@ -20,7 +20,11 @@ module.exports = {
       		}*/
 	        let text = args.join(" ");
 		if (!text)
-			text = `Please type the code with the command\nExample:\n%code-to-image let hi = "hi";\nconsole.log(hi);`
+			text = `Please type the code with the command
+Example:
+%code-to-image
+let hi = "hi";
+console.log(hi);`
 // 		const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 //         	const page = await browser.newPage();
 //         	await page.goto('https://carbon.now.sh');
