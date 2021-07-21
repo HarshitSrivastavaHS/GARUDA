@@ -25,7 +25,7 @@ Example:
 %code-to-image
 let hi = "hi";
 console.log(hi);`*/
-return message.reply("Please type the code after the command. Example:\n%cti var x = 5;\nconsole.log(x);
+return message.reply("Please type the code after the command. Example:\n%cti var x = 5;\nconsole.log(x);")
 }
 // 		const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 //         	const page = await browser.newPage();
