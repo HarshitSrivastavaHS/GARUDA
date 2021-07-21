@@ -8,7 +8,6 @@ module.exports = {
     aliases: ["cti"],
     permissions: ['SEND_MESSAGES', 'ATTACH_FILES'],
     async execute(message, args, bot, Discord, prefix) {
-		let x = await message.channel.send("Generating image");
 		//let text =  args.join(" ").match(/```[^```]+```|[\\S]+```[^```]+/);
 		/*if (text) {
 			text = text[0].trim();
@@ -54,6 +53,8 @@ return message.reply("Please type the code after the command. Example:\n%cti var
 //         	const logo = await page.$('[id="export-container"]');        // logo is the element you want to capture
 //         	let x = await logo.screenshot();
 //         	await browser.close();
+ let x = await message.channel.send("Generating image");
+		
         const createCTI = codeSnippet => {
             //let y = codeSnippet.replace(/%/g,"%25").replace(/ /g,"%20").replace(/\n/g,"%250a").replace(/\+/g,"%2B");
 	    //let y = urlencode(codeSnippet, "gbk");
