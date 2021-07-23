@@ -77,7 +77,7 @@ module.exports = {
       .setTitle(prize)
       .setColor("PURPLE")
       .setFooter(`Winners: ${winners} | Ends at`)
-      .setDescription(`» React with :tada: to enter!\n» Time: **${time}** ${sym} (Ends <t:${tme/1000}:R>)\n» Hosted by ${message.author}`)
+      .setDescription(`» React with :tada: to enter!\n» Time: **${time}** ${sym} (Ends <t:${Math.ceil(tme/1000)}:R>)\n» Hosted by ${message.author}`)
       .setTimestamp(tme);
       if (req)
         giveawayEM.addField("Requirement", req.join(", "))
