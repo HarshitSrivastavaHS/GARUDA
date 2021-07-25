@@ -21,7 +21,7 @@ module.exports = {
                 },{
                     _id: message.author.id,
                     afk: afkmsg,
-                    time: Math.ceil(message.createdTimestamp/1000)
+                    time: Math.floor(message.createdTimestamp/1000-100)
                 },{
                     upsert: true
                 })
