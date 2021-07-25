@@ -8,6 +8,7 @@ module.exports = {
     aliases: ["cti"],
     permissions: ['SEND_MESSAGES', 'ATTACH_FILES'],
     async execute(message, args, bot, Discord, prefix) {
+	    return message.reply("Command disabled.")
 		//let text =  args.join(" ").match(/```[^```]+```|[\\S]+```[^```]+/);
 		/*if (text) {
 			text = text[0].trim();
