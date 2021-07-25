@@ -252,7 +252,7 @@ bot.on('message', async message => {
                 let mention = item;
                 let afkStatus = bot.afk.get(mention.user.id);
                 if (afkStatus)
-                    arr.push(`${mention.user.username} is AFK. Message: ${afkStatus.msg} - <t:${bot.afk.get(mention.user.id).time}:R>`);
+                    arr.push(`${mention.user.username} is AFK. Message: ${afkStatus.msg} - <t:${afkStatus.time}:R>`);
                 })
             if (arr.length>0)
                 message.channel.send(arr.join("\n"));
