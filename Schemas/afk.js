@@ -12,7 +12,8 @@ const string = {
 
 const afk = mongoose.Schema({
   _id: reqString,
-  afk: string
+  afk: string,
+  time: reqString,
 })
 
 module.exports = mongoose.model("AFK", afk)
