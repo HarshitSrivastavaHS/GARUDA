@@ -11,7 +11,7 @@ module.exports = {
         if (afkmsg.includes("@everyone")||afkmsg.includes("@here")||(/<@&[0-9]+>/g).test(afkmsg)) return message.channel.send("AFK messages cannot contain everyone, here or role mentions.")
         message.reply(`AFK successfully set, msg: ${afkmsg}\nIt Would start working after 15 seconds :D`);
         setTimeout(()=>{
-                bot.afk.set(message.author.id, afkmsg);
+                bot.afk.set(message.author.id, {msg: afkmsg, time: Math.floor(messgae.createdTimestamp/1000-100)});
         }, 15000)
         
         await mongo().then(async (mongoose)=>{
