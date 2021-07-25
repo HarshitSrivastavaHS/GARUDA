@@ -210,7 +210,7 @@ bot.afk = new Map();
 const afkusers = async ()=>{
 	const results = await afkConfig.find();
         for (const result of results){
-            bot.afk.set(result._id, result.afk);
+            bot.afk.set(result._id, {msg: result.afk, time: result.time});
         }
 }
 afkusers();
@@ -250,9 +250,9 @@ bot.on('message', async message => {
             let arr = []
             mentions.forEach((item, index)=>{
                 let mention = item;
-                let afkStatus = bot.afk.get(mention.user.id);
+                let afkStatus = bot.afk.get(mention.user.id).msg;
                 if (afkStatus)
-                    arr.push(`${mention.user.username} is AFK. Message: ${afkStatus}`);
+                    arr.push(`${mention.user.username} is AFK. Message: ${afkStatus} - <t:${bot.afk.get(mention.user.id).time}:R>`);
                 })
             if (arr.length>0)
                 message.channel.send(arr.join("\n"));
