@@ -6,6 +6,7 @@ module.exports = {
     aliases: ["si"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
+        message.guild.members.fetch();
         let emb = new Discord.MessageEmbed()
         .setTitle(`${message.guild.name}'s Server Information`)
         .setColor("#FFA500")
