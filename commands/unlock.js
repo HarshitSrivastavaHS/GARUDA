@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
     name: "unlock",
     type: 'moderation',
     usage: '&{prefix}unlock',
