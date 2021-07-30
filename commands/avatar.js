@@ -6,12 +6,13 @@ module.exports = {
     aliases: ["a"],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        const mentionUser = message.mentions.users.first() || bot.users.cache.get(args[0]) || bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(" ").toLowerCase())) ||message.author;
+        await message.guild.members.fetch();
+        const mentionUser = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || args?message.guild.members.cache.find(m => m.user.username.toLowerCase().includes(args.join(" ").toLowerCase())): undefined ||message.member;
         const avataremb = new Discord.MessageEmbed()
         .setColor("#D441EE")
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`);
-        avataremb.setImage(`${mentionUser.displayAvatarURL({size: 4096, dynamic: true})}`)
-        .setTitle(`${mentionUser.tag}'s Avatar`);
+        avataremb.setImage(`${mentionUser.user.displayAvatarURL({size: 4096, dynamic: true})}`)
+        .setTitle(`${mentionUser.user.tag}'s Avatar`);
         message.channel.send(avataremb);
     }
 }
