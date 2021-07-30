@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["a"],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        const mentionUser = message.mentions.users.first() || bot.users.cache.get(args[0]) || bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(" ").toLowerCase()) ||message.author;
+        const mentionUser = message.mentions.users.first() || bot.users.cache.get(args[0]) || bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(" ").toLowerCase())) ||message.author;
         const avataremb = new Discord.MessageEmbed()
         .setColor("#D441EE")
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`);
