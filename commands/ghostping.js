@@ -71,7 +71,7 @@ module.exports = {
                         upsert: true
                     })
             });
-            msg.edit(`Successfully disabled the welcomer`);
+            msg.edit(`Successfully disabled the ghostping detector`);
             let result = bot.serverConfig.get(message.guild.id);
                 bot.serverConfig.set(message.guild.id, {
                 prefix: result.prefix,
