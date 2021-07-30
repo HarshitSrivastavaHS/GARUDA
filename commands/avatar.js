@@ -7,7 +7,7 @@ module.exports = {
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         await message.guild.members.fetch();
-        const mentionUser = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || args>=0?message.guild.members.cache.find(m => m.user.username.toLowerCase().includes(args.join(" ").toLowerCase())): undefined ||message.member;
+        const mentionUser = message.mentions.members.first() || args?message.guild.members.cache.get(args[0]): undefined || args.length>=0?message.guild.members.cache.find(m => m.user.username.toLowerCase().includes(args.join(" ").toLowerCase())): undefined ||message.member;
         const avataremb = new Discord.MessageEmbed()
         .setColor("#D441EE")
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`);
