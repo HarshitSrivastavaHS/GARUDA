@@ -281,6 +281,7 @@ bot.on('message', async message => {
           message.content = message.content.replace(`<@!{bot.user.id}>`, prefix);
         if (message.content.startsWith(`<@{bot.user.id}>`))
           message.content = message.content.replace(`<@{bot.user.id}>`, prefix);
+        console.log(message.content)
     }
     if (!message.content.toLowerCase().startsWith(prefix)) return;
     
