@@ -276,10 +276,10 @@ bot.on('message', async message => {
         prefix = prefix.toLowerCase();
 
     if (message.content.startsWith(`<@!${bot.user.id}>`)||message.content.startsWith(`<@${bot.user.id}>`)) {
-        message.reply(`My prefix in this server is \`${prefix}\`. Type \`${prefix}help\` for all commands.`);
-        if (message.content.startsWith(`<@!{bot.user.id}>`))
+        //message.reply(`My prefix in this server is \`${prefix}\`. Type \`${prefix}help\` for all commands.`);
+        if (message.content.startsWith(`<@!${bot.user.id}>`))
           message.content = message.content.replace(`<@!${bot.user.id}>`, `${prefix}`);
-        if (message.content.startsWith(`<@{bot.user.id}>`))
+        if (message.content.startsWith(`<@${bot.user.id}>`))
           message.content = message.content.replace(`<@${bot.user.id}>`, `${prefix}`);
         console.log(message.content)
     }
