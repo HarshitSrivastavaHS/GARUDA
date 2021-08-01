@@ -281,13 +281,14 @@ bot.on('message', async message => {
           message.content = message.content.replace(`<@!${bot.user.id}>`, prefix);
         if (message.content.startsWith(`<@${bot.user.id}>`))
           message.content = message.content.replace(`<@${bot.user.id}>`, prefix);
-        console.log(message.content)
+        
     }
     if (!message.content.toLowerCase().startsWith(prefix)) return;
     
     var args = message.content.slice(prefix.length).split(/ +/);
      
     const command = args.shift().toLowerCase().trim();
+    console.log(command)
     if (message.content.startsWith(prefix + "eval")) {
     
     if(!devIds[message.author.id]) return;
