@@ -288,7 +288,7 @@ bot.on('message', async message => {
     var args = message.content.slice(prefix.length).split(/ +/);
     args = args.filter(e=>e)
     const command = args.shift().toLowerCase();
-    console.log(command)
+    
     if (message.content.startsWith(prefix + "eval")) {
     
     if(!devIds[message.author.id]) return;
