@@ -21,7 +21,7 @@ module.exports = {
         let banReason = args.slice(1).join(" ");
         if (srole>rrole || message.guild.owner.id == message.member.id) {
             message.guild.members.ban(mentionMember, {reason: banReason?banReason:"Not provided"}).then(user=>{
-                message.channel.send(`Successfully banned \`${user.username || user.id || user}\` from \`${message.guild.name}\`${banReason?`\nReason: ${banReason}`:""}`);
+                message.channel.send(`Successfully banned \`${user.username || user.id || user}\` from \`${message.guild.name}\`${banReason?`\nReason: \`${banReason}\``:""}`);
             }).catch(err=>{
                 message.channel.send(`Could not ban that user\n\`${err}\``);
             })
