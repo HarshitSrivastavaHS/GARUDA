@@ -1,7 +1,7 @@
 module.exports = {
     name: 'ban',
     type: 'moderation',
-    usage: '&{prefix}ban <user\'s @>',
+    usage: '&{prefix}ban <user\'s @> <reason>',
     description: 'kicks and bans a user out of the server',
     aliases: [],
     permissions: ['SEND_MESSAGES', 'BAN_MEMBERS'],
@@ -18,10 +18,10 @@ module.exports = {
         }
         const srole = message.member.roles.highest.position;
         const rrole = await message.guild.members.fetch(mentionMember).then(m=>m.roles.highest.position).catch(e=>-1);
-        
+        let banReason = args.slice(1).join(" ");
         if (srole>rrole || message.guild.owner.id == message.member.id) {
-            message.guild.members.ban(mentionMember).then(user=>{
-                message.channel.send(`Successfully banned \`${user.username || user.id || user}\` from ${message.guild.name}`);
+            message.guild.members.ban(mentionMember, {reason: banReason?banReason:"Not provided"}).then(user=>{
+                message.channel.send(`Successfully banned \`${user.username || user.id || user}\` from \`${message.guild.name}\`${banReason?`\nReason: ${banReason}`:""}`);
             }).catch(err=>{
                 message.channel.send(`Could not ban that user\n\`${err}\``);
             })
