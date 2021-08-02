@@ -10,23 +10,21 @@ module.exports = {
             message.channel.send("You don't have the required permissions.");
             return;
         }
-        const mentionMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(member => member.user.username.toLowerCase() == args.join(" ").toLowerCase());
+        const mentionMember = message.mentions.members.first().id || args[0];
 
         if (args.length === 0 || mentionMember === undefined) {
-            message.reply(`Invalid Syntax! \`\`\`%ban @mention\`\`\``)
+            message.reply(`Invalid Syntax! \`\`\`%ban <@user|id>\`\`\``)
             return;
         }
         const srole = message.member.roles.highest.position;
-        const rrole = mentionMember.roles.highest.position;
+        const rrole = message.guild.members.fetch(mentionMember).roles.highest.position;
         
-        if (srole>rrole) {
-            if (mentionMember.bannable) {
-                mentionMember.ban();
-                message.channel.send(`${mentionMember} was banned by ${message.member}.`);
-            }
-            else {
-                message.reply("I cannot ban that user.");
-            }
+        if (srole>rrole || message.guild.owner.id == message.member.id) {
+            message.guild.members.ban(mentionMember).then(user=>{
+                message.channel.send(`Successfully banned ${user.username || user.id || user} from ${message.guild.name}`);
+            }).catch(err=>{
+                message.channel.send(`Could not ban that user\n\`${err}\``);
+            })
         }
         else {
             message.reply("You cannot ban someone with a higher or equal role as your.");
