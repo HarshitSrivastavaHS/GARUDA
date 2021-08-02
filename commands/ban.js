@@ -21,7 +21,7 @@ module.exports = {
         
         if (srole>rrole || message.guild.owner.id == message.member.id) {
             message.guild.members.ban(mentionMember).then(user=>{
-                message.channel.send(`Successfully banned ${user.username || user.id || user} from ${message.guild.name}`);
+                message.channel.send(`Successfully banned \`${user.username || user.id || user}\` from ${message.guild.name}`);
             }).catch(err=>{
                 message.channel.send(`Could not ban that user\n\`${err}\``);
             })
