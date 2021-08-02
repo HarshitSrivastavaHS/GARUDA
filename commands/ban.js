@@ -17,7 +17,7 @@ module.exports = {
             return;
         }
         const srole = message.member.roles.highest.position;
-        const rrole = message.guild.members.fetch(mentionMember).roles.highest.position;
+        const rrole = message.guild.members.fetch(mentionMember)?message.guild.members.cache.get(mentionMember).roles.highest.position:-1;
         
         if (srole>rrole || message.guild.owner.id == message.member.id) {
             message.guild.members.ban(mentionMember).then(user=>{
