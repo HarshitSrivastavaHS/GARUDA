@@ -10,7 +10,7 @@ module.exports = {
             message.channel.send("You don't have the required permissions.");
             return;
         }
-        const mentionMember = message.mentions.members.first().id || args[0];
+        const mentionMember = message.mentions.members.first()?message.mentions.members.first().id:undefined || args[0];
 
         if (args.length === 0 || mentionMember === undefined) {
             message.reply(`Invalid Syntax! \`\`\`%ban <@user|id>\`\`\``)
