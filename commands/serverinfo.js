@@ -11,9 +11,9 @@ module.exports = {
         .setTitle(`${message.guild.name}'s Server Information`)
         .setColor("#FFA500")
         .addField("General", `✹ Owner: ${message.guild.owner} (${message.guild.owner.user.tag})\n\
-✹ Created on: ${message.guild.createdAt}\n\
+✹ Created on: ${message.guild.createdAttoLocaleString("en-IN",{dateStyle: "long"})}\n\
 ✹ Server Region: ${message.guild.region}\n\
-✹ Verified Server: ${message.guild.verified}\n\
+✹ Verified Server: ${message.guild.verified?"Yes":"No"}\n\
 ✹ Verification Level: ${message.guild.verificationLevel}`)
         .addField("Categories & Channels", `✹ Categories: ${message.guild.channels.cache.filter(c=>c.type=="category").size}\n\
 ✹ Text: ${message.guild.channels.cache.filter(c=>c.type=="text").size}\n\
