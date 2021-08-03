@@ -1,6 +1,7 @@
 module.exports = {
     name: 'serverinfo',
-    type: 'info'.{prefix}serverinfo',
+    type: 'info',
+    usage: '&{prefix}serverinfo',
     description: 'shows information about that server',
     aliases: ["si"],
     permissions: ['SEND_MESSAGES'],
