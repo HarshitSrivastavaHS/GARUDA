@@ -1,7 +1,6 @@
 module.exports = {
     name: 'serverinfo',
-    type: 'info',
-    usage: '&{prefix}serverinfo',
+    type: 'info'.{prefix}serverinfo',
     description: 'shows information about that server',
     aliases: ["si"],
     permissions: ['SEND_MESSAGES'],
@@ -11,7 +10,7 @@ module.exports = {
         .setTitle(`${message.guild.name}'s Server Information`)
         .setColor("#FFA500")
         .addField("General", `✹ Owner: ${message.guild.owner} (${message.guild.owner.user.tag})\n\
-✹ Created on: ${message.guild.createdAttoLocaleString("en-IN",{dateStyle: "long"})}\n\
+✹ Created on: ${message.guild.createdAt.toLocaleString("en-IN",{dateStyle: "long"})}\n\
 ✹ Server Region: ${message.guild.region}\n\
 ✹ Verified Server: ${message.guild.verified?"Yes":"No"}\n\
 ✹ Verification Level: ${message.guild.verificationLevel}`)
