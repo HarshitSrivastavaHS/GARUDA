@@ -40,7 +40,7 @@ module.exports = {
       const image = await new Canvas.Goodbye()
         .setUsername(member.user.username)
         .setDiscriminator(member.user.discriminator)
-        .setMemberCount(message.guild.members.cache.filter(m=>!m.user.bot).size)
+        .setMemberCount(member.guild.members.cache.filter(m=>!m.user.bot).size)
         .setGuildName(member.guild.name)
         .setAvatar(member.user.displayAvatarURL())
         .setColor("border", "#8015EA")
