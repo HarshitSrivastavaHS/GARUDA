@@ -5,6 +5,8 @@ module.exports = {
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     aliases: ["servericon", "icon"],
     async execute(message, args, bot, Discord, prefix) {
+        if (!message.guild.icon) 
+           return message.channel.send("This server has no icon.");
         const embed = new Discord.MessageEmbed()
         .setColor("#D441EE")
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`)
