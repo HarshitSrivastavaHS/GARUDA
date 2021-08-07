@@ -2,23 +2,22 @@ const Discord = require('discord.js');
 const Statcord = require("statcord.js");
 const keepAlive = require('./server.js');
 
-const bot = new Discord.Client({ intents: [
-  Intents.FLAGS.GUILDS, 
-  Intents.FLAGS.GUILD_MESSAGES,
-  Intents.FLAGS.GUILD_MEMBERS,
-  Intents.FLAGS.GUILD_BANS,
-  Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
-  Intents.FLAGS.GUILD_INTEGRATIONS,
-  Intents.FLAGS.GUILD_WEBHOOKS,
-  Intents.FLAGS.GUILD_INVITES,
-  Intents.FLAGS.GUILD_VOICE_STATES,
-  Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-  Intents.FLAGS.GUILD_MESSAGE_TYPING,
-  Intents.FLAGS.DIRECT_MESSAGES,
-  Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-  Intents.FLAGS.DIRECT_MESSAGE_TYPING,
-
-] });
+const bot = new Discord.Client({ intents: new Discord.Intents([
+    "GUILDS",
+    "GUILD_MEMBERS",
+    "GUILD_BANS",
+    "GUILD_EMOJIS",
+    "GUILD_INTEGRATIONS",
+    "GUILD_WEBHOOKS",
+    "GUILD_INVITES",
+    "GUILD_VOICE_STATES",
+    "GUILD_MESSAGES",
+    "GUILD_MESSAGE_REACTIONS",
+    "GUILD_MESSAGE_TYPING",
+    "DIRECT_MESSAGES",
+    "DIRECT_MESSAGE_REACTIONS",
+    "DIRECT_MESSAGE_TYPING"
+]) });
 
 const statcord = new Statcord.Client({
   client: bot,
@@ -227,7 +226,7 @@ freezedusers();
 
 bot.fasttype = new Array();
 
-bot.on('messageCreate', async message => {
+bot.on('message', async message => {
 
 	if (message.author.bot) return;
 
