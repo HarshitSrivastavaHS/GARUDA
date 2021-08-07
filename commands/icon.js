@@ -1,6 +1,6 @@
 module.exports = {
     name: 'server-icon',
-    description: 'shows the server banner, if it has one.',
+    description: 'shows the server Icon',
     usage: "&{prefix}server-icon",
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     aliases: ["servericon", "icon"],
