@@ -55,7 +55,7 @@ module.exports = {
             
             const collector = new Discord.MessageCollector(message.channel, filter, {
                 max: maxWords,
-                time: 10*1000
+                time: 10000
             })
             let winner;
             collector.on("collect", (m)=>{
