@@ -19,6 +19,8 @@ module.exports = {
                     .setFooter("A cute cat")
                     .setImage(`${data.file}`);                    
                 message.channel.send({embeds:[embed]});
+            }).catch(err=>{
+              message.channel.send("💔 Something went wrong");
             })
         }
          catch(err){
