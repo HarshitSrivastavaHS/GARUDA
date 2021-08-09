@@ -18,7 +18,7 @@ module.exports = {
         message.delete();
         let winner;
         msg.react("🎉");
-        msg.awaitReactions({filter: (reaction, user) => filter: user.id != bot.user.id && user.id != message.author.id &&reaction.emoji.name == '🎉',
+        msg.awaitReactions({filter: (reaction, user) => user.id != bot.user.id && user.id != message.author.id &&reaction.emoji.name == '🎉',
           max: 1, time: 30000 }).then((collected) => {
             collected.map(el=>el.users.cache.map(u=>winner = !u.bot?u:winner));
             message.channel.send(`Congratulations <@${winner.id}>!! You have won the **${prize}**.`)
