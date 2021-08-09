@@ -7,7 +7,7 @@ module.exports = {
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         
-        message.channel.startTyping();
+        message.channel.sendTyping();
         const fetch = require("node-fetch");
         try {
             fetch(`https://some-random-api.ml/img/fox`).then((res)=>{
@@ -20,14 +20,12 @@ module.exports = {
                     .setFooter("A cute fox")
                     .setImage(`${data.link}`);                    
                 message.channel.send({embeds:[embed]});
-            })
+            }).catch(err=>{message.channel.send("💔 Something went wrong");})
         }
          catch(err){
                 message.channel.send("💔 Something went wrong");
         }
-        finally {
-            message.channel.stopTyping();
-        }
+
     }
 }
  
