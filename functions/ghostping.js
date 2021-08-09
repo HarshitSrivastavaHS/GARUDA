@@ -39,7 +39,7 @@
 		    .setTitle("Ghost ping detected")
 			.setTimestamp()
 		    .setDescription(`${message.member} ghost pinged${msg}`);
-		message.channel.send(ghostEM).catch(()=>{
+		message.channel.send({embeds:[ghostEM]}).catch(()=>{
 			return;
 		})
 	})

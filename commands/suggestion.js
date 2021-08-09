@@ -12,7 +12,7 @@ module.exports = {
         if (!smsgid) return message.reply("Please reply or type the messsage id")
         let sch = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).suggestion:undefined;
         if (!sch) return message.reply("Suggestion channel not set :(");
-        const channel = bot.channels.cache.get(sch);
+        const channel = message.guild.fetch(sch);
         if (!channel) return message.reply("Suggestion channel not found.");
         let msg;
         try {
@@ -59,6 +59,6 @@ module.exports = {
         message.channel.send("Done!").then((ms) =>{
           setTimeout(()=>{message.delete(); ms.delete();}, 2000)
         })
-        msg.edit(embed);
+        msg.edit({embeds:[embed]});
     }
 }

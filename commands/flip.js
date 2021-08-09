@@ -17,6 +17,6 @@ module.exports = {
             case 'Head': coin.setThumbnail("https://www.pngitem.com/pimgs/m/123-1232373_coin-png-pic-heads-and-tails-indian-coin.png"); break;
             case 'Tail': coin.setThumbnail("https://thumbs.dreamstime.com/b/one-indian-rupee-coin-isolated-white-background-86022284.jpg"); break;    
         }
-        message.channel.send(coin);
+        message.channel.send({embeds: [coin]});
     }
 }

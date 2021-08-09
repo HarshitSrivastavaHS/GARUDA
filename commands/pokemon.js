@@ -12,7 +12,7 @@ module.exports = {
             message.channel.send(`${prefix}pokemon <name>`); 
             return;
         }
-        message.channel.startTyping();
+        message.channel.sendTyping();
         const fetch = require("node-fetch");
         try {
             fetch(`https://some-random-api.ml/pokedex?pokemon=${poke}`).then((res)=>{
@@ -43,13 +43,11 @@ module.exports = {
                 	.setTimestamp()
                     .setFooter(`Requested by ${message.author.username}`)
                     .setThumbnail(`http://i.some-random-api.ml/pokemon/${poke}.png`);
-                message.channel.send(pokemon);
-                message.channel.stopTyping();
+                message.channel.send({embeds:[pokemon]});
             })
         }
         catch (err){
                 message.channel.send("💔 Something went wrong");
-                message.channel.stopTyping();
         }
     }
 }

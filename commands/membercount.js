@@ -82,7 +82,7 @@ module.exports = {
             .setThumbnail(message.guild.icon?message.guild.iconURL({dynamic: true}):undefined)
             .setDescription(`Total members: ${message.guild.members.cache.size}\nTotal Humans: ${humans}\nTotal bots: ${bots}\n\nHuman Goal: ${goal?goaltext:`To set goal, use ${prefix}membercount goalset <number>`}`)
             .setTimestamp();
-            message.channel.send(emb);
+            message.channel.send({embeds:[emb]});
         }
     }
 }

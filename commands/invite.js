@@ -16,6 +16,6 @@ module.exports = {
         name: "Join the support Server" , value: "https://discord.gg/sBe3jNSdqN"
       })
       .setThumbnail(bot.user.displayAvatarURL({size: 4096}));
-      message.channel.send(em);
+      message.channel.send({embeds:[em]});
     }
 }

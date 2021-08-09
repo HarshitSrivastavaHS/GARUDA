@@ -1,9 +1,9 @@
 module.exports = {
-    name: 'dice',
+    name: 'roll',
     type: 'fun',
     usage: `&{prefix}dice `,
     description: 'gives a random number between 1 and 6 (or 1 and the number provided)',
-    aliases: [],
+    aliases: ["dice"],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let upperlimit = 6;
@@ -12,9 +12,9 @@ module.exports = {
         if (args[0]) upperlimit = args[0];
         let emb = new Discord.MessageEmbed()
          .setColor("GREEN")
-         .setTitle("Dice roll")
-         .setDescription(`The dice was rolled... It lands on ${Math.floor(1+Math.random()*upperlimit)}`)
+         .setTitle("Number roll")
+         .setDescription(`The number rolled is ${Math.floor(1+Math.random()*upperlimit)}`)
          .setTimestamp();
-         message.channel.send(emb);
+         message.channel.send({embeds: [emb]});
     }
 }

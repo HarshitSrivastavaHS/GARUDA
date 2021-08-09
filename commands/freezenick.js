@@ -32,7 +32,7 @@ module.exports = {
 
                .setDescription(`**Set**\n${prefix}freezenick set @Multi A programmer lol\n**Remove**\n${prefix}freezenick remove @Multi`)
 
-       return message.channel.send(emb);
+       return message.channel.send({embeds: [emb]});
 
         }
 
@@ -55,7 +55,7 @@ module.exports = {
 
       if (nick > 32) return message.reply("Nickname cannot be longer than 32 characters.");
       
-      if (!message.mentions.members.first().manageable) return message.reply("I don't have permissions");
+      if (!message.mentions.members.first().manageable) return message.reply("I don't have permissions to manage that member.");
 
       message.mentions.members.first().setNickname(nick);
 
@@ -135,7 +135,7 @@ await mongo().then(async (mongoose)=>{
 
 
 
-       return message.channel.send("Invalid choice", emb);
+       return message.channel.send({content:"Invalid choice", embeds: [emb]});
 
           }
        } 

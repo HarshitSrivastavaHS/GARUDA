@@ -17,7 +17,7 @@ module.exports = {
             .setTitle("Suggestion Channel Help Menu")
             .setDescription(`**To enable**\n${prefix}suggestionchannel set #suggestions\n**To disable**\n${prefix}suggestionchannel unset`)
             .setTimestamp();
-            return message.channel.send(emb);
+            return message.channel.send({embeds:[emb]});
         } 
         
         if (args[0]&&args[0].toLowerCase()=="set") {
@@ -91,7 +91,7 @@ module.exports = {
             .setTitle("Suggestion Channel Help Menu")
             .setDescription(`**To enable**\n${prefix}suggestionchannel set #suggestions\n**To disable**\n${prefix}suggestionchannel unset`)
             .setTimestamp();
-            message.reply("Invalid Syntax",emb)
+            message.reply({content:"Invalid Syntax",embeds:[emb]})
         }
         
     }

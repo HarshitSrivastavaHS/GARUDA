@@ -10,10 +10,9 @@ module.exports = {
         
         
       const user = message.mentions.users.first() || bot.users.cache.get(args[0]) ||message.author;
-      message.channel.startTyping();
+      message.channel.sendTyping();
       const img = await Canvacord.Canvas.trigger(user.displayAvatarURL({dynamic: false, format: "png"}));
       const attachment = new Discord.MessageAttachment(img, "triggered.gif");
-      message.channel.send( attachment);
-      message.channel.stopTyping();
+      message.channel.send({files:[attachment]});
     }
 }

@@ -14,6 +14,6 @@ module.exports = {
         .setDescription(msg.content)
         .setImage(msg.image?msg.image:null)
         .setTimestamp();
-        message.channel.send(snipEMbed);
+        message.channel.send({embeds:[snipEMbed]});
     }
 }

@@ -12,6 +12,6 @@ module.exports = {
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`)
         .setImage(`${message.guild.bannerURL({size: 4096, dynamic: true})}`)
         .setTitle(`${message.guild.name}'s Banner`);
-        message.channel.send(embed);
+        message.channel.send({embeds:[embed]});
     }
 }

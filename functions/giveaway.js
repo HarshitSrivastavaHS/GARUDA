@@ -62,7 +62,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
                       .setColor("RED")
                       .setTitle("You cannot join this giveaway.")
                       .setDescription(`You do not have the \`${norole.join(", ")}\` role${norole.length>1?"s":""} which ${norole.length>1?"are":"is"} required for [this](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id})  giveaway.`);
-                  member.send(noJoin);
+                  member.send({embeds:[noJoin]});
         }
     });
     }
@@ -119,7 +119,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       if (reqs)
       nowin.addField("Requirement", reqs.join(", "))
 
-      msg.edit("**🎉Giveaway Ended🎉**", nowin);
+      msg.edit({content:"**🎉Giveaway Ended🎉**", embeds:[nowin]});
       await mongo().then(async (mongoose)=>{
         await giveawaySchema.deleteOne({
           _id: msg.id
@@ -127,7 +127,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       })
       giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
       hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\nCould not determine ${winners>1?"":"a "}winner${winners>1?"s":""}.`)
-      return giveawayHost.send(hostDM);
+      return giveawayHost.send({embeds:[hostDM]});
     }
     let winem = new Discord.MessageEmbed()
     .setColor("GREEN")
@@ -138,14 +138,14 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     if (reqs)
     winem.addField("Requirement", reqs.join(", "))
 
-    msg.edit("**🎉Giveaway Ended🎉**", winem);
+    msg.edit({content:"**🎉Giveaway Ended🎉**", embeds:[winem]});
     let winDM = new Discord.MessageEmbed()
     .setColor("GREEN")
     .setTitle("You've Won a giveaway!")
     .setDescription(`Congratulations! You have won the giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name}`)
     .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     giveawayWinners.forEach((item,index)=>{
-      item.send(winDM);
+      item.send({embeds:[winDM]});
     })
     giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You ${winners>1?"all ":""}have won the **${prize}** giveaway!\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
     let giveawayWinnersTag = "";
@@ -156,7 +156,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       giveawayWinnersTag += "\n"+item.tag;
     })
     hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\n${winners>1?"Winners are:":"Winner is:"}\n${giveawayWinnersTag}`)
-    giveawayHost.send(hostDM);
+    giveawayHost.send({embeds:[hostDM]});
     await mongo().then(async (mongoose)=>{
       await giveawaySchema.deleteOne({
         _id: msg.id

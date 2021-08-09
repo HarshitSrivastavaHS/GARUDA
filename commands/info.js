@@ -18,6 +18,6 @@ module.exports = {
         .setDescription("GARUDA is an multipurpose discord bot created by <@451693463742840842>")
         .setImage(bot.user.displayAvatarURL({size: 4096}))
         .setFooter(`Requested by ${message.author.username}`);
-        message.channel.send(detembed);
+        message.channel.send({embeds:[detembed]});
     }
 }

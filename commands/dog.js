@@ -6,7 +6,7 @@ module.exports = {
     aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        message.channel.startTyping();
+        message.channel.sendTyping();
         const fetch = require("node-fetch");
         try {
             fetch(`https://dog.ceo/api/breeds/image/random`).then((res)=>{
@@ -18,14 +18,11 @@ module.exports = {
                 	.setTimestamp()
                     .setFooter("A cute dog")
                     .setImage(`${data.message}`);                    
-                message.channel.send(embed);
+                message.channel.send({embeds: [embed]});
             })
         }
          catch(err){
                 message.channel.send("💔 Something went wrong");
-        }
-        finally {
-            message.channel.stopTyping();
         }
     }
 }

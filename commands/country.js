@@ -8,7 +8,7 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
        const code = args[0];
         if (code===undefined) {
-            message.channel.send("%country <country code>"); 
+            message.channel.send("%country <country alpha code>"); 
             return;
         }
         const fetch = require("node-fetch");
@@ -36,7 +36,7 @@ module.exports = {
                 	.setTimestamp()
                     .setFooter("via restcountries.eu")
                     .setThumbnail(`https://www.countryflags.io/${data.alpha2Code}/flat/64.png`);
-                message.channel.send(country);
+                message.channel.send({embeds:[country]});
             })
         }
         catch (err){

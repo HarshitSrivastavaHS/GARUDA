@@ -17,13 +17,13 @@ module.exports = {
                 return;
             }
 	    if (channel.permissionsFor(channel.guild.roles.everyone).has("SEND_MESSAGES")) return message.channel.send(`${channel} is not locked`);
-	    channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: true });
+	    channel.permissionOverwrites.edit(channel.guild.roles.everyone, { SEND_MESSAGES: null });
 	    message.channel.send(`Successfully unlocked ${channel}`);
 	    let emb = new Discord.MessageEmbed()
 	     .setColor("GREEN")
 	     .setTitle("Channel unlocked")
 	     .setDescription(`Unlocked this channel${args.length>0?"\nReason: "+args.join(" "):""}`)
 	     .setTimestamp();
-	    channel.send(emb);
+	    channel.send({embeds:[emb]});
     }
 }

@@ -72,11 +72,11 @@ module.exports = {
         if (err) return message.channel.send(errdes);
         if (!footer&&!description&&!title) return message.channel.send("At least one of the values are to be specified: title, description or footer");
         if (channel&&channel.id!=message.channel.id) {
-            channel.send(embed)
+            channel.send({embeds:[embed]})
             message.channel.send(`Embed posted in ${channel}`);
         }
         else {
-            message.channel.send(embed);
+            message.channel.send({embeds: [embed]});
             message.delete();
         }
     }

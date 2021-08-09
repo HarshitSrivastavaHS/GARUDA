@@ -18,7 +18,7 @@ module.exports = {
         })
         .setFooter(`Poll help menu.`)
         .setTimestamp();
-        message.channel.send(pollembed);
+        message.channel.send({embeds:[pollembed]});
         message.delete();
         return;
       }
@@ -31,7 +31,7 @@ module.exports = {
         .setDescription("🇦 Yes\n🇧 No")
         .setFooter(`Poll by ${message.author.tag}`)
         .setTimestamp();
-        message.channel.send("**📊 POLL 📊**", pollembed).then((msg)=>{
+        message.channel.send({content:"**📊 POLL 📊**", embeds:[pollembed]}).then((msg)=>{
           msg.react("🇦").then(()=>{msg.react("🇧")})
         })
         message.delete();
@@ -73,7 +73,7 @@ module.exports = {
         .setFooter(`Poll by ${message.author.tag}`)
         .setTimestamp();
       message.delete();
-      const msg = await message.channel.send("**📊 POLL 📊**", pollembed);
+      const msg = await message.channel.send({content:"**📊 POLL 📊**", embeds:[pollembed]});
       for (var i = 0; i<regex.length;i++){
         msg.react(emojis[i]);
       }

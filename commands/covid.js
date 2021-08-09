@@ -25,7 +25,7 @@ module.exports = {
                     .setTimestamp()
                     .setFooter('via disease.sh')
                     .setThumbnail(`https://cdn.pixabay.com/photo/2020/04/29/07/54/coronavirus-5107715_1280.png`);
-                message.channel.send(covid);
+                message.channel.send({embeds:[covid]});
             })
         }
         catch (err){

@@ -17,7 +17,7 @@ module.exports = {
             .setTitle("Leave Help Menu")
             .setDescription(`**To set the leave channel**\n${prefix}leave set #bye\n**To disable the leave message**\n${prefix}leave unset`)
             .setTimestamp();
-            return message.channel.send(emb);
+            return message.channel.send({embeds:[emb]});
         } 
         
         if (args[0]&&args[0].toLowerCase()=="set") {
@@ -90,7 +90,7 @@ module.exports = {
             .setTitle("Leave Help Menu")
             .setDescription(`**To set the leave channel**\n${prefix}leave set #bye\n**To disable the leave message**\n${prefix}leave unset`)
             .setTimestamp();
-            message.reply("Invalid Syntax",emb)
+            message.reply({content:"Invalid Syntax",embeds:[emb]})
         }
         
     }

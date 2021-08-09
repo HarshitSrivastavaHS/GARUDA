@@ -32,7 +32,7 @@ module.exports = {
             .setDescription(str)
             .setTimestamp();
             filter = (m)=>{return m.content == word}
-            let msg = await message.channel.send("**Find the hidden word. The first one to send it in the chat wins! (Case-Sensitive)**",game)
+            let msg = await message.channel.send({content:"**Find the hidden word. The first one to send it in the chat wins! (Case-Sensitive)**",embeds:[game]})
                 message.channel.awaitMessages(filter, {max: 1, time: 45000, errors: ["time"]})
                 .then((collected)=>{
                     let winner = collected.first()
@@ -41,7 +41,7 @@ module.exports = {
                     .setTitle(`${winner.author.username} has won!`)
                     .setDescription(newStr)
                     .setTimestamp();
-                    msg.edit(`**<@${winner.author.id}> has won!**`, game);
+                    msg.edit({content:`**<@${winner.author.id}> has won!**`, embeds:[game]});
                 })
                 .catch((err)=>{
                     let game = new Discord.MessageEmbed()
@@ -49,7 +49,7 @@ module.exports = {
                     .setTitle("Looks like nobody won")
                     .setDescription(newStr)
                     .setTimestamp();
-                    msg.edit("**Either nobody messaged or nobody got the correct answer.**",game)
+                    msg.edit({content:"**Either nobody messaged or nobody got the correct answer.**",embeds:[game]})
                 })
         
     }

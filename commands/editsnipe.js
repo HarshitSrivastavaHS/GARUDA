@@ -17,6 +17,6 @@ module.exports = {
         )
         .setThumbnail(msg.image?msg.image:null)
         .setTimestamp();
-        message.channel.send(editSnipEMbed);
+        message.channel.send({embeds: [editSnipEMbed]});
     }
 }

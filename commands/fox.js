@@ -19,7 +19,7 @@ module.exports = {
                 	.setTimestamp()
                     .setFooter("A cute fox")
                     .setImage(`${data.link}`);                    
-                message.channel.send(embed);
+                message.channel.send({embeds:[embed]});
             })
         }
          catch(err){

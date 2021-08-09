@@ -12,6 +12,6 @@ module.exports = {
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`)
         .setImage(`${message.guild.iconURL({size: 4096, dynamic: true})}`)
         .setTitle(`${message.guild.name}'s Icon`);
-        message.channel.send(embed);
+        message.channel.send({embeds:[embed]});
     }
 }

@@ -10,7 +10,7 @@ module.exports = {
         let suggestionchannel = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).suggestion:undefined;
         if (!suggestionchannel) return mes.edit(`No suggestion channel set. If you are an administrator, please do \`${prefix}help setsuggestion\` to know how to set a suggestion channel.`)
       
-        let channel = message.guild.channels.cache.get(suggestionchannel);
+        let channel = message.guild.fetch(suggestionchannel);
         let botPerms = [];
         let missingPerms = [];
         this.permissions.forEach(p=>{
@@ -31,7 +31,7 @@ module.exports = {
             {name: "Status", value: `:bar_chart: Waiting for community feedback.`}
           )
         .setTimestamp();
-        channel.send(embed).then((msg)=>{
+        channel.send({embeds:[embed]}).then((msg)=>{
           msg.react("👍").then(()=>{
             msg.react("👎");
           })

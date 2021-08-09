@@ -17,14 +17,14 @@ module.exports = {
             return;
         }
 	if (!channel.permissionsFor(channel.guild.roles.everyone).has("SEND_MESSAGES")) return message.channel.send(`${channel} is already locked`);
-	channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: false });
+	channel.permissionOverwrites.edit(channel.guild.roles.everyone, { SEND_MESSAGES: false });
 	message.channel.send(`Successfully locked ${channel}`);
 	let emb = new Discord.MessageEmbed()
 	    .setColor("RED")
 	    .setTitle("Channel locked")
 	    .setDescription(`Locked this channel${args.length>0?"\nReason: "+args.join(" "):""}`)
 	    .setTimestamp();
-	channel.send(emb);
+	channel.send({embeds:[emb]});
     }
 }
 

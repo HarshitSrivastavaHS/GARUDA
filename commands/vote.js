@@ -14,6 +14,6 @@ module.exports = {
         .setThumbnail(message.author.displayAvatarURL())
         .setTimestamp()
         .setFooter("Thank You!");
-       message.channel.send(emb);
+       message.channel.send({embeds:[emb]});
     }
 }

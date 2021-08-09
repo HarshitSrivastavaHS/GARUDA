@@ -37,25 +37,26 @@ module.exports = {
       // ctx.drawImage(avatar, 50, 50, 150, 150);
       // const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');  
 
-      const image = await new Canvas.Goodbye()
+      const image = await new Canvas.Welcome()
         .setUsername(member.user.username)
         .setDiscriminator(member.user.discriminator)
-        .setMemberCount(member.guild.members.cache.filter(m=>!m.user.bot).size)
         .setGuildName(member.guild.name)
-        .setAvatar(member.user.displayAvatarURL())
+        .setAvatar(member.user.displayAvatarURL({format: "jpg"}))
+        .setText("message", "Welcome to {server}")
+        .setText("member-count", `Humans: ${member.guild.members.cache.filter(m=>!m.user.bot).size} Bots: ${member.guild.members.cache.filter(m=>m.user.bot).size}`)
         .setColor("border", "#8015EA")
         .setColor("username-box", "#8015EA")
         .setColor("discriminator-box", "#8015EA")
         .setColor("message-box", "#8015EA")
         .setColor("title", "#8015EA")
         .setColor("avatar", "#8015EA")
-        .setBackground("https://cdn.craftburg.net/stockage/img/discord/background.jpg")
+        .setBackground("util/welcome.jpg")
         .toAttachment();
-
-      const attachment = new Discord.Attachment(image.toBuffer(), "welcome-image.png");
+        
+      const attachment = new Discord.MessageAttachment(image.toBuffer(), "welcome-image.png");
 
       
-      welcomeCH.send(`Welcome to **${member.guild.name}**, <@${member.user.id}>`,attachment);
+      welcomeCH.send({content:`Welcome to **${member.guild.name}**, <@${member.user.id}>`,files:[attachment]});
     }
 }
 

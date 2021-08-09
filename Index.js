@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const Statcord = require("statcord.js");
 const keepAlive = require('./server.js');
+require('dotenv').config()
 
 const bot = new Discord.Client({ intents: new Discord.Intents([
     "GUILDS",
@@ -25,13 +26,9 @@ const statcord = new Statcord.Client({
 }); 
 
 const mongo = require(`./mongo`);
-const serverConfig = require('./Schemas/server-config');
-const giveawaySchema = require('./Schemas/giveaway-schema.js');
 const welcomeJS = require(`./util/welcome`);
-const Canvas = require("canvas");
 const afkConfig = require('./Schemas/afk');
-const freezerConfig = require('./Schemas/freezenick');
-const give = require('./functions/giveaway.js');
+require("./util/dbload")(bot);
 
 let prefix;
 
@@ -50,23 +47,7 @@ for (const file of commandFiles) {
 	bot.commands.set(command.name, command);
 }
 
-bot.serverConfig = new Map();
 
-const server = async ()=>{
-	const results = await serverConfig.find();
-        for (const result of results){
-            bot.serverConfig.set(result._id, {
-                prefix: result.prefix,
-                suggestion: result.suggestion,
-                welcome: result.welcome,
-                leave: result.leave,
-                modLog: result.modLog,
-		ghost: result.ghost,
-		autoRole: result.autoRole,
-    goal: result.goal
-            });
-        }
-}
 
 bot.on("guildMemberUpdate", async (oldMember, newMember)=>{
    if (bot.freezer.has(`${newMember.guild.id}-${newMember.user.id}`)) {
@@ -127,39 +108,15 @@ bot.on("guildDelete", function(guild){
 });
 */
 bot.on('ready', async () => {
-        statcord.autopost();
-        server();
+  statcord.autopost();
 	console.log('I am Online!');
 	bot.user.setPresence({
-        activity: { name: `Ping me for help!`, type: 'WATCHING' },
-        status: 'ONLINE'
-    });
+    activity: { name: `Ping me for help!`, type: 'WATCHING' },
+    status: 'ONLINE'
+  });
 	require("./functions/ghostping")(bot, Discord);
-  	require("./functions/modLog")(bot, Discord);
-	let allDocuments;
+  require("./functions/modLog")(bot, Discord);
 	
-	const mongo = await require(`./mongo`);
-	const giveawaySchema = require('./Schemas/giveaway-schema.js');
-	await mongo().then(async mongoose => {
-			allDocuments = await giveawaySchema.find({});
-
-	});
-	if (allDocuments.length < 1) return;
-
-	for (let x in allDocuments) {
-		give(
-			bot,
-			Discord,
-			allDocuments[x]._id,
-			allDocuments[x].endTime,
-			allDocuments[x].winners,
-			allDocuments[x].prize,
-			allDocuments[x].chID,
-			allDocuments[x].host,
-     allDocuments[x].reqs,
-     false
-		);
-	}
 });
 
 bot.snipes = new Map();
@@ -206,23 +163,9 @@ function clean(text) {
       return text;
 }
 
-bot.afk = new Map();
-const afkusers = async ()=>{
-	const results = await afkConfig.find();
-        for (const result of results){
-            bot.afk.set(result._id, {msg: result.afk, time: result.time});
-        }
-}
-afkusers();
 
-bot.freezer = new Map();
-const freezedusers = async ()=>{
-	const results = await freezerConfig.find();
-        for (const result of results){
-            bot.freezer.set(result._id, result.nick);
-        }
-}
-freezedusers();
+
+
 
 bot.fasttype = new Array();
 

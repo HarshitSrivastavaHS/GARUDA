@@ -8,11 +8,12 @@ module.exports = {
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
       if (args.length==0) return message.channel.send("Please enter the text.");
-      const banner = await figlet(args.join("\n"));
+      let banner = await figlet(args.join("\n"));
       if (banner.length>2000) {
         message.channel.send("The banner is greater than discord message limit :(")
         return;
       }
+      banner = Discord.Formatters.codeBlock("md", banner)
       message.channel.send(banner, {code : true})
     }
 }

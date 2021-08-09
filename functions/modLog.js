@@ -17,7 +17,7 @@
       .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
     if (message.attachments.first())
       ModEmbed.addField("Attachments", message.attachments.map(a=>`[${a.name}](${a.url})`).join(", "))
-    modChannel.send(ModEmbed);
+    modChannel.send({embeds:[ModEmbed]});
   })
 
   /* WHEN MESSAGE IS EDITED */
@@ -48,7 +48,7 @@
         }
       }
       
-    return modChannel.send(ModEmbed);
+    return modChannel.send({embeds:[ModEmbed]});
     
     function split(content) {
         return Discord.Util.splitMessage(content, {

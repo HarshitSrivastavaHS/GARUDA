@@ -17,7 +17,7 @@ module.exports = {
             .setTitle("Welcomer Help Menu")
             .setDescription(`**To set the welcomer**\n${prefix}welcomer set #welcome\n**To disable the welcomer**\n${prefix}welcomer unset`)
             .setTimestamp();
-            return message.channel.send(emb);
+            return message.channel.send({embeds:[emb]});
         } 
         
         if (args[0]&&args[0].toLowerCase()=="set") {
@@ -90,7 +90,7 @@ module.exports = {
             .setTitle("Welcomer Help Menu")
             .setDescription(`**To set the welcomer**\n${prefix}welcomer set #welcome\n**To disable the welcomer**\n${prefix}welcomer unset`)
             .setTimestamp();
-            message.reply("Invalid Syntax",emb)
+            message.reply({content:"Invalid Syntax",embeds:[emb]})
         }
         
     }

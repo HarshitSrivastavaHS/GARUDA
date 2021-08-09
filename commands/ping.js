@@ -14,6 +14,6 @@ module.exports = {
       .setThumbnail(`${icon}`)
       .setTitle("🏓Pong.")
       .setDescription(`Your ping is ${ping} ms\nLatency is ${bot.ws.ping} ms`)
-      message.channel.send(embed)
+      message.channel.send({embeds:[embed]})
     }
 }

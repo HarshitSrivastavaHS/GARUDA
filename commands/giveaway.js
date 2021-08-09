@@ -82,7 +82,7 @@ module.exports = {
       if (req)
         giveawayEM.addField("Requirement", req.join(", "))
 
-      let msg = await message.channel.send("**🎉Giveaway🎉**",giveawayEM);
+      let msg = await message.channel.send({content: "**🎉Giveaway🎉**",embeds:[giveawayEM]});
       msg.react("🎉");
       
       if (req) {

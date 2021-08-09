@@ -70,7 +70,7 @@ module.exports = {
                     .setDescription(`Congratulations! You have won the giveaway reroll for [${msg.embeds[0].title}](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${msg.id}) in ${message.guild.name}`)
                     .setFooter(`${message.guild.name} - #${message.channel.name}`);
                 
-                winner.send(winDM)
+                winner.send({embeds:[winDM]})
             }
             else {
                 message.channel.send(`Not enough reactions to choose a winner\nhttps://discord.com/channels/${message.guild.id}/${message.channel.id}/${msg.id}`)

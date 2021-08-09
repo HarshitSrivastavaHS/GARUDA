@@ -51,7 +51,7 @@ module.exports = {
         helpembed.addFields({name:`Other`, value: notype?notype:"No command"});
         }
         
-        message.channel.send(helpembed);
+        message.channel.send({embeds:[helpembed]});
     }
 }
  

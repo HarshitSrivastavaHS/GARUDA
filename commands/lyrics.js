@@ -10,7 +10,7 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         
     if (args.length<1) return message.channel.send("**Please enter the name of the song.**")
-    message.channel.startTyping();
+    message.channel.sendTyping();
     const song = await fetch(`https://some-random-api.ml/lyrics?title=${encodeURIComponent(args.join(" "))}`).then(r=> r.json());
     if (!song ||!song.lyrics){
       message.channel.stopTyping();
@@ -33,8 +33,7 @@ module.exports = {
         embed.setDescription(result[0])
       }
     }
-    message.channel.stopTyping();
-    return message.channel.send(embed);
+    return message.channel.send({embeds:[embed]});
     function split(content) {
       return Util.splitMessage(content, {
         maxLength : 2048

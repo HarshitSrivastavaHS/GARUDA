@@ -13,6 +13,6 @@ module.exports = {
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`);
         avataremb.setImage(`${mentionUser.user.displayAvatarURL({size: 4096, dynamic: true})}`)
         .setTitle(`${mentionUser.user.tag}'s Avatar`);
-        message.channel.send(avataremb);
+        message.channel.send({embeds:[avataremb]});
     }
 }

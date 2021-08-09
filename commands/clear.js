@@ -23,7 +23,7 @@ module.exports = {
 			case '--h':
 			case '--human': msg = msg.filter((m)=> !m.author.bot && !m.pinned); break;
 			case '--b':
-			case '--bot': msg = msg.filter((m)=>m.author.bot && !m.pinned); break;
+			case '--bot': msg = msg.filter((m)=>m.author.bot && !m.pinned); message.delete(); break;
 			default: return message.channel.send("Invalid flag");
 	        }
 	    }
@@ -32,7 +32,6 @@ module.exports = {
             .then(msg => {
                 msg.delete({ timeout: 3000 })
             })
-	    if (!message.deleted) message.delete();
         }
         else if(!(parseInt(args[0])>0)){
             message.channel.send(`${message.member}, Please enter a number greater than 0.`)

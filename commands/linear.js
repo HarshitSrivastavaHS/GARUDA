@@ -26,8 +26,8 @@ module.exports = {
           message.channel.send("Please type only linear equations in one variable."); 
           return;
         }
-
-        message.channel.send(result, {code: true, split: true})
+        result = Discord.Formatters.codeBlock("md", result);
+        message.channel.send(result)
 
     }
 }
