@@ -53,7 +53,7 @@ module.exports = {
             }, 3000)
             
             
-            const collector = new Discord.MessageCollector(message.channel, filter, {
+            const collector = new Discord.MessageCollector(message.channel, {filter,
                 max: maxWords,
                 time: 10000
             })
