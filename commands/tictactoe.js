@@ -47,8 +47,7 @@ module.exports = {
 	msg.edit(`${activeplayer}'s turn\n${gameboard.join("")}`);
 
         const filter = (reaction, user) => !user.bot && user.id == activeplayer.id && actemo.includes(reaction.emoji.name);
-        const collector = msg.createReactionCollector(filter, {time: 30000})
-
+        const collector = msg.createReactionCollector({filter, time: 30000});
         const allEqual = (arr, one, two, three, pieces) => {
 		let x = two==5?arr[two].substr(0, arr[two].length-1):arr[two]
 		if (x!=pieces.player1 && x != pieces.player2)
