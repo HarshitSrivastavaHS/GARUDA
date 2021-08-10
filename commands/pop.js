@@ -33,7 +33,7 @@ module.exports = {
             .setTimestamp();
             filter = (m)=>{return m.content == word}
             let msg = await message.channel.send({content:"**Find the hidden word. The first one to send it in the chat wins! (Case-Sensitive)**",embeds:[game]})
-                message.channel.awaitMessages(filter, {max: 1, time: 45000, errors: ["time"]})
+                message.channel.awaitMessages({filter,max: 1, time: 45000, errors: ["time"]})
                 .then((collected)=>{
                     let winner = collected.first()
                     let game = new Discord.MessageEmbed()
