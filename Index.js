@@ -246,7 +246,7 @@ bot.on('message', async message => {
         evaled = require("util").inspect(evaled, { depth: 0 });
 
 
-      return message.channel.send(clean(evaled), { code:"xl", split: true });
+      return message.channel.send({ content: clean(evaled), code:"xl", split: true });
     } catch (err) {
       return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     } 
