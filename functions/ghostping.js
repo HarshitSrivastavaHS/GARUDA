@@ -1,6 +1,7 @@
  module.exports = async (bot, Discord) => {
     bot.on("messageDelete", async (message) => {
         if (message.author.bot) return;
+	if (message.content == "") return;
         let ghost = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).ghost:undefined;
 	    if (!ghost) return; 
 		let mention = message.mentions.members.filter(m=>!m.user.bot&&m.user.id!=message.author.id).first() || message.mentions.roles.first() || message.mentions.everyone;
