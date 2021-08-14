@@ -229,7 +229,7 @@ bot.on('message', async message => {
     
     var args = message.content.slice(prefix.length).split(/ +/);
     args = args.filter(e=>e)
-    const command = args.shift().toLowerCase();
+    const command = args.shift()?.toLowerCase();
     
     if (message.content.startsWith(prefix + "eval")) {
     
