@@ -153,7 +153,6 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 
 const devIds =  {
     "451693463742840842":true,
-    "699972833094271046" :true
 };
 
 function clean(text) {
