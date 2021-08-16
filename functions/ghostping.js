@@ -31,7 +31,7 @@
 			.addField("Ghost Pinged", `${msg}`)
 		    .addField("Channel", message.channel)
 		    .addField("Message Author", message.author);
-		tarch.send(ghostEM).catch(()=>{
+		tarch.send({embeds: [ghostEM]}).catch(()=>{
                     return;
 		});
 		
