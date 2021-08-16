@@ -7,7 +7,7 @@ module.exports = {
     description: 'solves a mathematical linear equation (one variable only).',
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        
+        return message.channel.send("Command disabled due to some bugs.")
         if (args.length<1) return message.channel.send("Run the command again but this time with the expression.");
         const steps = mathsteps.solveEquation(args.join(" "));
         let result = "";
