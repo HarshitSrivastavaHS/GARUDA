@@ -29,8 +29,8 @@
 		    .setFooter("Bot By TechAllByHarshit")
 		    .setDescription(`Message:\n\n${message.content}`)
 			.addField("Ghost Pinged", `${msg}`)
-		    .addField("Channel", message.channel)
-		    .addField("Message Author", message.author);
+		    .addField("Channel", `${message.channel}`)
+		    .addField("Message Author", `${message.author}`);
 		tarch.send({embeds: [ghostEM]}).catch(()=>{
                     return;
 		});
