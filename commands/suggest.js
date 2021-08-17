@@ -10,7 +10,7 @@ module.exports = {
         let suggestionchannel = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).suggestion:undefined;
         if (!suggestionchannel) return mes.edit(`No suggestion channel set. If you are an administrator, please do \`${prefix}help setsuggestion\` to know how to set a suggestion channel.`)
       
-        let channel = await message.guild.fetch(suggestionchannel);
+        let channel = await message.guild.channels.fetch(suggestionchannel);
         if (!channel) return message.channel.send("Suggestion channel not found.");
         let botPerms = [];
         let missingPerms = [];
