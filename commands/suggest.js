@@ -14,11 +14,12 @@ module.exports = {
         if (!channel) return message.channel.send("Suggestion channel not found.");
         let botPerms = [];
         let missingPerms = [];
-        this.permissions.forEach(p=>{
+        let perms = this.permissions;
+        for (p of perms) {
             botPerms.push(message.channel.permissionsFor(bot.user).has(p));
             if (!(channel.permissionsFor(bot.user).has(p)))
                 missingPerms.push(p);
-        })
+        }
         missingPerms = missingPerms.join("\n");
         if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
         
