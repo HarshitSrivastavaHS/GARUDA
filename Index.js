@@ -43,7 +43,8 @@ fs.readdir("./commands/", (err, categories)=>{
  categories.forEach((category) =>{
       let cmd = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"));
       for (let command of cmd) {
-          command = require(`./commands/${category}/${command}`).catch(console.err)
+          if (cmd.length == 0) break;
+          command = require(`./commands/${category}/${command}`)
           bot.commands.set(command.name, {category, command, aliases: command.aliases})
       }
       console.log(`Loaded total ${cmd.size} commands in ${category}`);
