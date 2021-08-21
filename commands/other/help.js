@@ -34,6 +34,7 @@ module.exports = {
             helpembed.setDescription(`Do \`${prefix}help <command>\` for more info on that command.\nJoin the support server: https://discord.gg/sBe3jNSdqN`);
             for (let category of categories) {
                 let str = "";
+                category = require(`./commands/${category}`)
                 for (const file of category) {
                     const command = require(`./commands/${category}/${file}`);
                     str += `\`${command.name}\``;
