@@ -1,5 +1,5 @@
-const mongo = require(`../mongo`);
-const afkConfig = require('../Schemas/afk');
+const mongo = require(`../../mongo`);
+const afkConfig = require('../../Schemas/afk');
 module.exports = {
     name: 'afk',
     usage: '&{prefix}afk <msg>',
