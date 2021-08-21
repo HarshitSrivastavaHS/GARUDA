@@ -25,6 +25,7 @@ module.exports = {
         }
         else if (ctg) {
             let cat = fs.readdirSync(`./commands/${ctg}/`).filter(f=>f.endsWith(".js"));
+            let str = ""
             for (let file of cat){
                 file = require(`../../commands/${ctg}/${file}`)
                 str += `\`${file.name}\` `;
@@ -32,7 +33,7 @@ module.exports = {
             str = str.split(" ").join(", ")
             helpembed.addFields({
                 name: `Commands`,
-                value: `${str}`
+                value: `${str?str:"No commands"}`
             })
         }
         else {
