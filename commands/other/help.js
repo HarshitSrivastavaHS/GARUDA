@@ -6,12 +6,10 @@ module.exports = {
     usage: "&{prefix}help",
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        if (message.author.id!="451693463742840842")
-            return message.channel.send("Command is disabled due to some bugs")
         const PREFIX_REG = /&{prefix}/g;
         const fs = require('fs');
         const categories = fs.readdirSync(`./commands/`);
-        let cmd = bot.commands.get(args[0]?args[0].toLowerCase():"") || bot.commands.find(c=>c.aliases&&c.aliases.includes(args[0]?args[0].toLowerCase():""));
+        let cmd = bot.commands.get(args[0]?args[0].toLowerCase():"")?.command || bot.commands.find(c=>c.aliases&&c.aliases.includes(args[0]?args[0].toLowerCase():""))?.command;
         let ctg = categories.find(c=>c==args[0]?.toLowerCase())
         const helpembed = new Discord.MessageEmbed()    
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
@@ -30,7 +28,7 @@ module.exports = {
                 file = require(`../../commands/${ctg}/${file}`)
                 str += `\`${file.name}\` `;
             }
-            str = str.split(" ").join(", ")
+            str = str.split(" ").filter(c=>c).join(", ")
             helpembed.addFields({
                 name: `Commands`,
                 value: `${str?str:"No commands"}`
