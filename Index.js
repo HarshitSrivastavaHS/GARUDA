@@ -37,15 +37,18 @@ const { Collection } = require('mongoose');
 
 bot.commands = new Discord.Collection();
 
-const commandFiles = fs
-	.readdirSync('./commands/')
-	.filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-
-	bot.commands.set(command.name, command);
-}
+fs.readdir("./commands/", (err, categories)=>{
+  if (err) return console.err(err)
+ console.log(`Found total ${categories.length} categories`) 
+ categories.forEach((category) =>{
+      let cmd = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"));
+      for (let command of cmd) {
+          command = require(`./commands/${category}/${command}`)
+          bot.commands.set(command.name, {category, command, aliases: command.aliases})
+      }
+      console.log(`Loaded total ${cmd.size} commands in ${category}`);
+ })
+});
 
 
 
@@ -251,7 +254,7 @@ bot.on('message', async message => {
     } 
     
   }
-  let cmdexe = bot.commands.get(command) || bot.commands.find(c=>c.aliases&&c.aliases.includes(command));
+  let cmdexe = bot.commands.get(command)?.command || bot.commands.find(c=>c.aliases&&c.aliases.includes(command))?.command;
   if (!cmdexe) return;
   statcord.postCommand(cmdexe.name, message.author.id);
   let botPerms = [];

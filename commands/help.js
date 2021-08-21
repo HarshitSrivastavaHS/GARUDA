@@ -6,7 +6,7 @@ module.exports = {
     usage: "&{prefix}help",
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        
+        return message.channel.send("Command is disabled due to some bugs")
         const PREFIX_REG = /&{prefix}/g;
          const fs = require('fs');
          const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
