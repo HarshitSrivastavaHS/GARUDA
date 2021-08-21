@@ -1,6 +1,6 @@
-const mongo = require(`../mongo`);
+const mongo = require(`../../mongo`);
 
-const freezerConfig = require('../Schemas/freezenick');
+const freezerConfig = require('../../Schemas/freezenick');
 
 module.exports = {
 

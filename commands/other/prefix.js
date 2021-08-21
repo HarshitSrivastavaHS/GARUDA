@@ -1,5 +1,5 @@
-const mongo = require(`../mongo`);
-const serverConfig = require('../Schemas/server-config');
+const mongo = require(`../../mongo`);
+const serverConfig = require('../../Schemas/server-config');
 module.exports = {
     name: 'prefix',
     type: 'utility',
