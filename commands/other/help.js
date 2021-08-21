@@ -6,11 +6,14 @@ module.exports = {
     usage: "&{prefix}help",
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        return message.channel.send("Command is disabled due to some bugs")
+        if (message.author.id!="451693463742840842")
+            return message.channel.send("Command is disabled due to some bugs")
         const PREFIX_REG = /&{prefix}/g;
-         const fs = require('fs');
-         const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
+        const fs = require('fs');
+        const categories = fs.readdirSync(`./commands/`);
+        const commandFiles = fs.readdirSync(`./commands/`).filter(file => file.endsWith('.js'));
         let cmd = bot.commands.get(args[0]?args[0].toLowerCase():"") || bot.commands.find(c=>c.aliases&&c.aliases.includes(args[0]?args[0].toLowerCase():""));
+        let ctg = categories.find(c=>c==args[0].toLowerCase())
         const helpembed = new Discord.MessageEmbed()    
         .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
         .setColor("#D441EE")
@@ -21,34 +24,23 @@ module.exports = {
            const command = cmd; 
            helpembed.addFields({name:`Name`, value: `${command.name}`},{name:`Description`, value: `${command.description}`},{name:`Usage`, value: `${command.usage?command.usage.replace(PREFIX_REG, prefix):"not added"}`}, {name:`Aliases`, value: `${command.aliases.length>0?command.aliases.join(", "):"No Alias"}`}, {name:`Permissions Required by bot`, value: `${command.permissions?command.permissions.join(", ").toLowerCase().replace(/_/g," "):"not added"}`});
         }
+        else if (ctg) {
+            let cat = require(`./commands/${ctg}`);
+            helpembed.addFields({
+                name: `Name`,
+                value: `${cat.join(", ")}`
+            })
+        }
         else {
             helpembed.setDescription(`Do \`${prefix}help <command>\` for more info on that command.\nJoin the support server: https://discord.gg/sBe3jNSdqN`);
-            let categories = ["moderation", "game", "fun", "maths", "info", "utility", "admin"]
-            let totalFiles = commandFiles.length;
-            for (let cat in categories) {
+            for (let category of categories) {
                 let str = "";
-                for (const file of commandFiles) {
-                    const command = require(`${__dirname}/${file}`);
-                    if (command.type == categories[cat]) {
-                        if (str == "")
-                            str += `\`${command.name}\``;
-                        else
-                            str += `, \`${command.name}\``;
-                    }
+                for (const file of category) {
+                    const command = require(`./commands/${category}/${file}`);
+                    str += `\`${command.name}\``;
                 }
-                helpembed.addFields({name:`${categories[cat][0].toUpperCase()+categories[cat].substr(1, categories[cat].length)}`, value: str?str:"No command"});
+                helpembed.addFields({name:`${category[0].toUpperCase()+category.substr(1, category.length)}`, value: str?str:"No command"});
             }
-            let notype = "";
-        for (const file of commandFiles){
-            const command = require(`${__dirname}/${file}`);
-            if (command.type == undefined) {
-                if (notype == "")
-                    notype += `\`${command.name}\``;
-                else
-                    notype += `, \`${command.name}\``;
-            }
-        }
-        helpembed.addFields({name:`Other`, value: notype?notype:"No command"});
         }
         
         message.channel.send({embeds:[helpembed]});

@@ -46,7 +46,7 @@ fs.readdir("./commands/", (err, categories)=>{
           command = require(`./commands/${category}/${command}`)
           bot.commands.set(command.name, {category, command, aliases: command.aliases})
       }
-      console.log(`Loaded total ${cmd.size} commands in ${category}`);
+      console.log(`Loaded total ${cmd.length} commands in ${category}`);
  })
 });
 
