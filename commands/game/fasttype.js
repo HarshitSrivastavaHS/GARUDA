@@ -10,7 +10,7 @@ module.exports = {
         
         if (bot.fasttype.includes(message.channel.id)) return message.channel.send("**A Fasttype game is already going on in this channel.**");
         
-        let { words } = require("../util/fasttypeWords.json");
+        let { words } = require("../../util/fasttypeWords.json");
         let chosenWord = "";
         let maxWords = 10;
         
@@ -90,7 +90,7 @@ module.exports = {
                 }
                 message.channel.send("**"+leaderboard+"**");
                 bot.fasttype.splice(bot.fasttype.indexOf(message.channel.id), 1);
-                let { words } = require("../util/fasttypeWords.json");
+                let { words } = require("../../util/fasttypeWords.json");
             })
   }
 }

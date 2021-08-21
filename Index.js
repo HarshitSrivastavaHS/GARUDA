@@ -41,9 +41,14 @@ fs.readdir("./commands/", (err, categories)=>{
   if (err) return console.err(err)
  console.log(`Found total ${categories.length} categories`) 
  categories.forEach((category) =>{
-      let cmd = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"));
+      try {
+        let cmd = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"));
+      }
+      catch (err) {
+        console.log(err)
+      }
       for (let command of cmd) {
-          if (cmd.length == 0) break;
+          if (cmd.length==0) break;
           command = require(`./commands/${category}/${command}`)
           bot.commands.set(command.name, {category, command, aliases: command.aliases})
       }
