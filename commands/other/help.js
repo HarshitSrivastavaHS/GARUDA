@@ -26,8 +26,8 @@ module.exports = {
         else if (ctg) {
             let cat = fs.readdirSync(`./commands/${ctg}/`).filter(f=>f.endsWith(".js"));
             for (let file in cat){
-                file = require(`../../commands/${cat}/${file}`)
-                str += `\`\`${file.name}\`\` `;
+                file = require(`../../commands/${ctg}/${file}`)
+                str += `\`${file.name}\` `;
             }
             helpembed.addFields({
                 name: `Commands`,
@@ -41,7 +41,7 @@ module.exports = {
                 let commands = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"));
                 for (const file of commands) {
                     const command = require(`../../commands/${category}/${file}`);
-                    str += `\`${command.name}\``;
+                    str += `\`${command.name}\` `;
                 }
                 helpembed.addFields({name:`${category[0].toUpperCase()+category.substr(1, category.length)}`, value: str?str:"No command"});
             }
