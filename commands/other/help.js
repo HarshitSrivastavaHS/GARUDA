@@ -25,10 +25,11 @@ module.exports = {
         }
         else if (ctg) {
             let cat = fs.readdirSync(`./commands/${ctg}/`).filter(f=>f.endsWith(".js"));
-            for (let file in cat){
+            for (let file of cat){
                 file = require(`../../commands/${ctg}/${file}`)
                 str += `\`${file.name}\` `;
             }
+            str = str.split(" ").join(", ")
             helpembed.addFields({
                 name: `Commands`,
                 value: `${str}`
@@ -43,6 +44,7 @@ module.exports = {
                     const command = require(`../../commands/${category}/${file}`);
                     str += `\`${command.name}\` `;
                 }
+                str = str.split(" ").join(", ")
                 helpembed.addFields({name:`${category[0].toUpperCase()+category.substr(1, category.length)}`, value: str?str:"No command"});
             }
         }
