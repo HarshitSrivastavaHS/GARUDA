@@ -28,7 +28,7 @@ module.exports = {
                 file = require(`../../commands/${ctg}/${file}`)
                 str += `\`${file.name}\` `;
             }
-            str = str.split(" ").filter(c=>c).join(", ")
+            str = str.split(" ").filter(c=>c!="").join(", ")
             helpembed.addFields({
                 name: `Commands`,
                 value: `${str?str:"No commands"}`
@@ -43,7 +43,7 @@ module.exports = {
                     const command = require(`../../commands/${category}/${file}`);
                     str += `\`${command.name}\` `;
                 }
-                str = str.split(" ").join(", ")
+                str = str.split(" ").filter(s=>s!="").join(", ")
                 helpembed.addFields({name:`${category[0].toUpperCase()+category.substr(1, category.length)}`, value: str?str:"No command"});
             }
         }
