@@ -43,11 +43,11 @@ module.exports = async (bot) => {
     })();
 
     //loads all the giveaways
-    let allGiveaways;
+    let allDocuments;
 	await mongo().then(async mongoose => {
-			allGiveaways = await giveawaySchema.find({});
+			allDocuments = await giveawaySchema.find({});
 	});
-	if (allGiveaways.length >= 1) {
+	if (allDocuments.length >= 1) {
         for (let x in allDocuments) {
             give(
                 bot,
