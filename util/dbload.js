@@ -4,6 +4,7 @@ const afkConfig = require('../Schemas/afk');
 const freezerConfig = require('../Schemas/freezenick');
 const giveawaySchema = require('../Schemas/giveaway-schema.js');
 const give = require('../functions/giveaway.js');
+const Discord = require("discord.js");
 module.exports = async (bot) => {
 
     //loads per server settings
