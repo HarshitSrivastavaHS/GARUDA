@@ -10,16 +10,16 @@ module.exports = {
                 let index = categories.indexOf(args[0]);
                 let cmd;
                 if (!args[1]) {
-                    cmd = fs.readdirSync(`./commands/${categories[index]}/`).filter(f=>f.endsWith(".js"))
+                    cmd = fs.readdirSync(`./../../commands/${categories[index]}/`).filter(f=>f.endsWith(".js"))
                     for (let command of cmd) {
-                        command = require(`./commands/${categories[index]}/${command}`)
+                        command = require(`./../../commands/${categories[index]}/${command}`)
                         bot.commands.set(command.name, {categories[index], command, aliases: command.aliases})
                     }
                 }
                 else {
-                    cmd = fs.readdirSync(`./commands/${categories[index]}/`).filter(f=>f == args[1].toLowerCase());
+                    cmd = fs.readdirSync(`./../../commands/${categories[index]}/`).filter(f=>f == args[1].toLowerCase());
                     if (!cmd) return message.reply(`Command \`${args[1]}\` not found in category: \`${args[0]}\``);
-                        command = require(`./commands/${categories[index]}/${cmd}`)
+                        command = require(`./../../commands/${categories[index]}/${cmd}`)
                         bot.commands.set(command.name, {categories[index], command, aliases: command.aliases});
                 }
             });
