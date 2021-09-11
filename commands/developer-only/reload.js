@@ -17,12 +17,15 @@ module.exports = {
                 let cmd;
                 if (!args[1]) {
                     cmd = fs.readdirSync(`./commands/${categories[index]}/`).filter(f=>f.endsWith(".js"))
+                    let str = "";
                     for (let command of cmd) {
                         command = require(`./../../commands/${categories[index]}/${command}`)
                         bot.commands.delete(command.name)
                         let cat = categories[index];
                         bot.commands.set(command.name, {cat, command, aliases: command.aliases})
+                        str += `${command.name}\n`
                     }
+                    message.reply(`Category \`${args[0]}\` reloaded successfully\`\`\`js\n${str}\`\`\``);
                 }
                 else {
                     cmd = fs.readdirSync(`./commands/${categories[index]}/`).filter(f=>f == args[1].toLowerCase());
@@ -31,6 +34,7 @@ module.exports = {
                         bot.commands.delete(command.name)
                         let cat = categories[index];
                         bot.commands.set(command.name, {cat, command, aliases: command.aliases});
+                        message.reply(`Command \`${args[1]}\` reloaded successfully`);
                 }
             });
         }
