@@ -1,5 +1,9 @@
 module.exports = {
     name: "reload",
+    usage: '&{prefix}reload <category> [command]',
+    description: 'reloads a command(s)',
+    aliases: [],
+    permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         if (message.author.id != "451693463742840842") return message.reply("Not a public command.");
         if (!args) return message.reply("Which command do i have to reload?");
