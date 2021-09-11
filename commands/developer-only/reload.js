@@ -9,8 +9,8 @@ module.exports = {
         if (message.author.id != "451693463742840842") return message.reply("Not a public command.");
         if (!args) return message.reply("Which command do i have to reload?");
         if (args){
-            fs.readdir("./../../commands/", (err, categories)=>{
-                if (err) return message.reply(`Error:\n \`\`\`js\n${err}\`\`\``)
+            fs.readdir("./../", (err, categories)=>{
+                if (err) return message.reply(`Error:\`\`\`js\n${err}\`\`\``)
                 if (!categories.include(args[0].toLowerCase())) return message.reply(`Category \`${args[0]}\` not found`);
                 let index = categories.indexOf(args[0]);
                 let cmd;
