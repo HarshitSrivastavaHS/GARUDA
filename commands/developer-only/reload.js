@@ -20,7 +20,8 @@ module.exports = {
                     for (let command of cmd) {
                         command = require(`./../../commands/${categories[index]}/${command}`)
                         bot.commands.delete(command.name)
-                        bot.commands.set(command.name, {`${categories[index]}`, command, aliases: command.aliases})
+                        let cat = categories[index];
+                        bot.commands.set(command.name, {cat, command, aliases: command.aliases})
                     }
                 }
                 else {
@@ -28,7 +29,8 @@ module.exports = {
                     if (!cmd) return message.reply(`Command \`${args[1]}\` not found in category: \`${args[0]}\``);
                         command = require(`./../../commands/${categories[index]}/${cmd}`);
                         bot.commands.delete(command.name)
-                        bot.commands.set(command.name, {`${categories[index]}`, command, aliases: command.aliases});
+                        let cat = categories[index];
+                        bot.commands.set(command.name, {cat, command, aliases: command.aliases});
                 }
             });
         }
