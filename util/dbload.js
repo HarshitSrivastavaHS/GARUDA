@@ -4,6 +4,7 @@ const afkConfig = require('../Schemas/afk');
 const freezerConfig = require('../Schemas/freezenick');
 const giveawaySchema = require('../Schemas/giveaway-schema.js');
 const give = require('../functions/giveaway.js');
+const Discord = require("discord.js");
 module.exports = async (bot) => {
 
     //loads per server settings
@@ -43,11 +44,11 @@ module.exports = async (bot) => {
     })();
 
     //loads all the giveaways
-    let allGiveaways;
+    let allDocuments;
 	await mongo().then(async mongoose => {
-			allGiveaways = await giveawaySchema.find({});
+			allDocuments = await giveawaySchema.find({});
 	});
-	if (allGiveaways.length >= 1) {
+	if (allDocuments.length >= 1) {
         for (let x in allDocuments) {
             give(
                 bot,
