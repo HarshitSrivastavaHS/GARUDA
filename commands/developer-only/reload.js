@@ -9,7 +9,7 @@ module.exports = {
         if (message.author.id != "451693463742840842") return message.reply("Not a public command.");
         if (!args) return message.reply("Which command do i have to reload?");
         if (args){
-            fs.readdir("./../", (err, categories)=>{
+            fs.readdir("./commands", (err, categories)=>{
                 if (err) return message.reply(`Error:\`\`\`js\n${err}\`\`\``)
                 console.log(categories);
                 if (!args[0]) return message.reply("Please type the name of the category")
@@ -18,7 +18,7 @@ module.exports = {
                 let cmd;
                 console.log(categories);
 //                 if (!args[1]) {
-//                     cmd = fs.readdirSync(`./../../commands/${categories[index]}/`).filter(f=>f.endsWith(".js"))
+//                     cmd = fs.readdirSync(`./commands/${categories[index]}/`).filter(f=>f.endsWith(".js"))
 //                     for (let command of cmd) {
 //                         command = require(`./../../commands/${categories[index]}/${command}`)
 //                         bot.commands.delete(command.name)
@@ -26,7 +26,7 @@ module.exports = {
 //                     }
 //                 }
 //                 else {
-//                     cmd = fs.readdirSync(`./../../commands/${categories[index]}/`).filter(f=>f == args[1].toLowerCase());
+//                     cmd = fs.readdirSync(`./commands/${categories[index]}/`).filter(f=>f == args[1].toLowerCase());
 //                     if (!cmd) return message.reply(`Command \`${args[1]}\` not found in category: \`${args[0]}\``);
 //                         command = require(`./../../commands/${categories[index]}/${cmd}`);
 //                         bot.commands.delete(command.name)
