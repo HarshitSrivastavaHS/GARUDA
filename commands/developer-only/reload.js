@@ -13,10 +13,10 @@ module.exports = {
                 if (err) return message.reply(`Error:\`\`\`js\n${err}\`\`\``)
                 console.log(categories);
                 if (!args[0]) return message.reply("Please type the name of the category")
-                if (!categories.include(args[0].toLowerCase())) return message.reply(`Category \`${args[0]}\` not found`);
+                if (!categories.includes(args[0].toLowerCase())) return message.reply(`Category \`${args[0]}\` not found`);
                 let index = categories.indexOf(args[0]);
                 let cmd;
-                console.log(categories);
+                console.log(categories[index]);
 //                 if (!args[1]) {
 //                     cmd = fs.readdirSync(`./commands/${categories[index]}/`).filter(f=>f.endsWith(".js"))
 //                     for (let command of cmd) {
