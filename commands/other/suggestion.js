@@ -6,7 +6,7 @@ module.exports = {
     permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         
-        
+        if (message.author.id != "451693463742840842") return message.reply("Command disabled due to some bugs")
         if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can accept or reject suggestions.");
         const smsgid = message.reference?message.reference["messageId"]:args[0];
         if (!smsgid) return message.reply("Please reply or type the messsage id")
