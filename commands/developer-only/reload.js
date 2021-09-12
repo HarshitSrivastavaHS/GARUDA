@@ -16,7 +16,7 @@ module.exports = {
 
         try {
             delete require.cache[require.resolve(`../../commands/${category}/${command}.js`)];
-            bot.command.delete(command);
+            bot.commands.delete(command);
 
             const pull = require(`../../commands/${category}/${command}.js`);
             bot.commands.set(pull.name, {category, pull, aliases: pull.aliases});
