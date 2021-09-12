@@ -8,8 +8,8 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         if (message.author.id != "451693463742840842") return message.reply("Not a public command.");
 
-        if (!args[0]) return message.reply("You must specify the category")
-        if (!args[1]) return message.reply("You must specify the cmd")
+        if (!args[0]) return message.reply("You must specify the category.")
+        if (!args[1]) return message.reply("You must specify the command.")
 
         let category = args[0].toLowerCase();
         let command = args[1].toLowerCase();
