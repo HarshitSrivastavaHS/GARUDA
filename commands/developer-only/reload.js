@@ -19,7 +19,7 @@ module.exports = {
             bot.commands.delete(command);
 
             const pull = require(`../../commands/${category}/${command}.js`);
-            bot.commands.set(pull.name, {category, pull, aliases: pull.aliases});
+            bot.commands.set(pull.name, {category, command: pull, aliases: pull.aliases});
             return message.reply(`Command \`${command}\` from \`${category}\` reloaded successfully.`);
         } catch (error) {
             return message.reply(`Error reloading \`\`\`js\n${error}\`\`\``);
