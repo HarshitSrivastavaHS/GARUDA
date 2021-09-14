@@ -13,7 +13,7 @@ module.exports = {
             if (desc.length>=2000) break;
             desc += `\n${i}) [${ong[3]}](https://discord.com/channels/${ong[1]}/${ong[2]}/${ong[0]})`;
         }
-        emb.setDescription(disc)
+        emb.setDescription(desc)
         .setColor("GREEN")
         .setTitle("Giveaways")
         .setThumbnai(bot.user.displayAvatarURL());
