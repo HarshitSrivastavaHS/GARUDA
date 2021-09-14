@@ -3,7 +3,6 @@ const mongo = require("../../mongo.js")
 const giveawaySchema = require("../../Schemas/giveaway-schema.js")
 module.exports = {
     name: 'gend',
-    type: 'utility',
     usage: `To end any giveaway: &{prefix}gend <message id/link>\nTo reroll the giveaway started by you: &{prefix}gend\nSecond one will not work if more than 50 messages were sent in that channel after your giveaway has ended`,
     description: 'rerolls an already ended giveaway.',
     aliases: ["giveaway-end", "giveawayend"],

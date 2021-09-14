@@ -1,5 +1,5 @@
 
-module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs, end) => {
+module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs, end, guild) => {
   const mongo = require("../mongo.js")
   const giveawaySchema = require("../Schemas/giveaway-schema.js")
   let ms = time-Date.now();
@@ -13,7 +13,16 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
 
   let noMes = false;
     const giveawayChannel = await bot.channels.fetch(ch); 
-    if (!giveawayChannel) return;
+    if (!giveawayChannel) {
+        let ong = bot.giveaways.get(guild)!=undefined?bot.giveaways.get(guild):[];
+      if (ong.length==0) return bot.giveaways.delete(guild);
+      let presentInArray = ong.filter(a=>a.includes(msgid));
+      if (!presentInArray) return;
+      ong = ong.splice(ong.indexOf(presentInArray), 1);
+      if (ong.length == 0) return bot.giveaways.delete(guild);
+      bot.giveaways.set(guild, ong.push(msgid));
+      return;
+    }
     msgid = msg;   
     msg = await giveawayChannel.messages.fetch(msg).catch(async ()=>{
       await mongo().then(async (mongoose)=>{
@@ -21,20 +30,32 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
           _id: msgid
         })
       })
+
       noMes = true;
     });
-    if (noMes) return;
+    if (noMes) {
+        let ong = bot.giveaways.get(guild)!=undefined?bot.giveaways.get(guild):[];
+      if (ong.length==0) return bot.giveaways.delete(guild);
+      let presentInArray = ong.filter(a=>a.includes(msgid));
+      if (!presentInArray) return;
+      ong = ong.splice(ong.indexOf(presentInArray), 1);
+      if (ong.length == 0) return bot.giveaways.delete(guild);
+      bot.giveaways.set(guild, ong.push(msgid));
+      return;
+    }
     if (msg.content == "**🎉Giveaway Ended🎉**") {
       await mongo().then(async (mongoose)=>{
         await giveawaySchema.deleteOne({
           _id: msg.id
         })
       })
-      let ong = bot.giveaways.get(msg.guild)!=undefined?bot.giveaways.get(msg.guild):[];
-      if (ong.length==0) return bot.giveaways.delete(msg.guild);
-      if (!ong.includes(msg.id)) return;
-      ong = ong.splice(ong.indexOf(msg.id), 1);
-      bot.giveaways.set(msg.guild, ong.push(msg.id));
+      let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
+      if (ong.length==0) return bot.giveaways.delete(msg.guild.id);
+      let presentInArray = ong.filter(a=>a.includes(msg.id));
+      if (!presentInArray) return;
+      ong = ong.splice(ong.indexOf(presentInArray), 1);
+      if (ong.length == 0) return bot.giveaways.delete(msg.guild.id);
+      bot.giveaways.set(msg.guild.id, ong.push(msg.id));
       return;
     }
 
@@ -85,19 +106,23 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
           _id: msg.id
         })
       })
-      let ong = bot.giveaways.get(msg.guild)!=undefined?bot.giveaways.get(msg.guild):[];
-      if (ong.length==0) return bot.giveaways.delete(msg.guild);
-      if (!ong.includes(msg.id)) return;
-      ong = ong.splice(ong.indexOf(msg.id), 1);
-      bot.giveaways.set(msg.guild, ong.push(msg.id));
+      let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
+      if (ong.length==0) return bot.giveaways.delete(msg.guild.id);
+      let presentInArray = ong.filter(a=>a.includes(msg.id));
+      if (!presentInArray) return;
+      ong = ong.splice(ong.indexOf(presentInArray), 1);
+      if (ong.length == 0) return bot.giveaways.delete(msg.guild.id);
+      bot.giveaways.set(msg.guild.id, ong.push(msg.id));
       return;
     }
 
-    let ong = bot.giveaways.get(msg.guild)!=undefined?bot.giveaways.get(msg.guild):[];
-      if (ong.length==0) return bot.giveaways.delete(msg.guild);
-      if (!ong.includes(msg.id)) return;
-      ong = ong.splice(ong.indexOf(msg.id), 1);
-      bot.giveaways.set(msg.guild, ong.push(msg.id));
+    let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
+      if (ong.length==0) return bot.giveaways.delete(msg.guild.id);
+      let presentInArray = ong.filter(a=>a.includes(msg.id));
+      if (!presentInArray) return;
+      ong = ong.splice(ong.indexOf(presentInArray), 1);
+      if (ong.length == 0) return bot.giveaways.delete(msg.guild.id);
+      bot.giveaways.set(msg.guild.id, ong.push(msg.id));
    
     let giveawayHost = await giveawayChannel.guild.members.fetch(host);
     

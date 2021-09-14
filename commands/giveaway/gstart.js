@@ -3,7 +3,6 @@ const mongo = require("../../mongo.js")
 const giveawaySchema = require("../../Schemas/giveaway-schema.js")
 module.exports = {
     name: 'gstart',
-    type: 'utility',
     aliases: [],
     usage: '&{prefix}giveaway <time> <winners> <prize>\n&{prefix}giveaway <time> <winners> <prize> --r @role\n&{prefix}giveaway <time> <winners> <prize> --r @role1 --r @role2',
     description: 'to start a giveaway.\nFlags:\n\`--r\` to add role requirement. To add multiple role requirements, use \`--r\` multiple times. Role ID or mention can be used for role requirement.\nNOTE: USE FLAGS AT THE END ONLY.',
@@ -110,8 +109,8 @@ module.exports = {
         
       })
         if (message.deletable) message.delete();
-        let ong = bot.giveaways.get(msg.guild)!=undefined?bot.giveaways.get(msg.guild):[];
-        bot.giveaways.set(msg.guild, ong.push(msg.id));
+        let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
+        bot.giveaways.set(msg.guild.id, ong.push([msg.id, message.guild.id, message.channel.id, prize]));
         giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id, message.author.id, req, false);
     }
       

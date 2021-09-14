@@ -1,6 +1,5 @@
 module.exports = {
     name: 'greroll',
-    type: 'utility',
     usage: `To reroll any giveaway: &{prefix}greroll <message id/link>\nTo reroll the giveaway started by you: &{prefix}greroll\nSecond one will not work if more than 50 messages were sent in that channel after your giveaway has ended`,
     description: 'rerolls an already ended giveaway.',
     aliases: ["giveaway-reroll", "giveawayreroll"],

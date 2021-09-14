@@ -52,7 +52,7 @@ module.exports = async (bot) => {
 	if (allDocuments.length >= 1) {
         for (let x in allDocuments) {
             let ong = bot.giveaways.get(allDocuments[x].guild)!=undefined?bot.giveaways.get(allDocuments[x].guild):[];
-            bot.giveaways.set(allDocuments[x].guild, ong.push(allDocuments[x]._id));
+            bot.giveaways.set(allDocuments[x].guild, ong.push([allDocuments[x]._id, allDocuments[x].guild, allDocuments[x].chID, allDocuments[x].prize]));
             give(
                 bot,
                 Discord,
@@ -63,7 +63,8 @@ module.exports = async (bot) => {
                 allDocuments[x].chID,
                 allDocuments[x].host,
                 allDocuments[x].reqs,
-                false
+                false,
+                allDocuments[x].guild
             );
         }
     }
