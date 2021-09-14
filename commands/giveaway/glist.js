@@ -5,6 +5,7 @@ module.exports = {
     aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
+        if (message.author.id != "451693463742840842") return messasge.reply("in development");
         let ong = bot.giveaways.get(message.guild.id)!=undefined?bot.giveaways.get(message.guild.id):[];
         if (ong.length == 0) return message.reply("No ongoing giveaways in this server");
         let emb = new Discord.MessageEmbed();
@@ -16,7 +17,7 @@ module.exports = {
         emb.setDescription(desc)
         .setColor("GREEN")
         .setTitle("Giveaways")
-        .setThumbnai(bot.user.displayAvatarURL());
+        .setThumbnail(bot.user.displayAvatarURL());
         message.reply({embeds: [emb]});
     }
 }
