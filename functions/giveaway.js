@@ -117,13 +117,17 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     }
 
     let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
-      if (ong.length==0) return bot.giveaways.delete(msg.guild.id);
+      if (ong.length==1) 
+      {bot.giveaways.delete(msg.guild.id);}
+      else {
       let presentInArray = ong.filter(a=>a.includes(msg.id));
-      if (!presentInArray) return;
-      ong = ong.splice(ong.indexOf(presentInArray), 1);
-      if (ong.length == 0) return bot.giveaways.delete(msg.guild.id);
-      bot.giveaways.set(msg.guild.id, ong.push(msg.id));
-   
+      if (presentInArray) {
+        ong = ong.splice(ong.indexOf(presentInArray), 1);
+        if (ong.length == 1) bot.giveaways.delete(msg.guild.id);
+        else bot.giveaways.set(msg.guild.id, ong.push(msg.id));
+      }
+      }
+         
     let giveawayHost = await giveawayChannel.guild.members.fetch(host);
     
     let hostDM = new Discord.MessageEmbed()
