@@ -116,7 +116,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       return;
     }
 
-    let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
+    let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):new Array();
       if (ong.length==1) 
       {bot.giveaways.delete(msg.guild.id);}
       else {
