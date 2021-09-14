@@ -5,9 +5,7 @@ module.exports = {
     usage: '&{prefix}suggestion <suggestion id or reply to the message and exclude this> <accept/reject> <reason>',
     permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        
-        if (message.author.id != "451693463742840842") return message.reply("Command disabled due to some bugs")
-        if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can accept or reject suggestions.");
+        if (!message.member.permissions.has("MANAGE_GUILD")) return message.channel.send("You need Manage Server permission to accept or reject suggestions.");
         const smsgid = message.reference?message.reference["messageId"]:args[0];
         if (!smsgid) return message.reply("Please reply or type the messsage id")
         let sch = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).suggestion:undefined;

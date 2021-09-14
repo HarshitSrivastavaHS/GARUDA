@@ -30,6 +30,11 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
           _id: msg.id
         })
       })
+      let ong = bot.giveaways.get(msg.guild)!=undefined?bot.giveaways.get(msg.guild):[];
+      if (ong.length==0) return bot.giveaways.delete(msg.guild);
+      if (!ong.includes(msg.id)) return;
+      ong = ong.splice(ong.indexOf(msg.id), 1);
+      bot.giveaways.set(msg.guild, ong.push(msg.id));
       return;
     }
 
@@ -80,8 +85,19 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
           _id: msg.id
         })
       })
+      let ong = bot.giveaways.get(msg.guild)!=undefined?bot.giveaways.get(msg.guild):[];
+      if (ong.length==0) return bot.giveaways.delete(msg.guild);
+      if (!ong.includes(msg.id)) return;
+      ong = ong.splice(ong.indexOf(msg.id), 1);
+      bot.giveaways.set(msg.guild, ong.push(msg.id));
       return;
     }
+
+    let ong = bot.giveaways.get(msg.guild)!=undefined?bot.giveaways.get(msg.guild):[];
+      if (ong.length==0) return bot.giveaways.delete(msg.guild);
+      if (!ong.includes(msg.id)) return;
+      ong = ong.splice(ong.indexOf(msg.id), 1);
+      bot.giveaways.set(msg.guild, ong.push(msg.id));
    
     let giveawayHost = await giveawayChannel.guild.members.fetch(host);
     
