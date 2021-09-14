@@ -11,7 +11,7 @@ module.exports = {
         let desc = "Giveaways going on in this server:";
         for (let i = 1; i <= ong.length; i++) {
             if (desc.length>=2000) break;
-            desc += `\n${i)} [${ong[3]}](https://discord.com/channels/${ong[1]}/${ong[2]}/${ong[0]})`;
+            desc += `\n${i}) [${ong[3]}](https://discord.com/channels/${ong[1]}/${ong[2]}/${ong[0]})`;
         }
         message.reply({embeds: [emb]});
     }
