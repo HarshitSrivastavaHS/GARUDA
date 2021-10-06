@@ -58,7 +58,7 @@
   })
 
   bot.on("messageDeleteBulk", async (messages)=>{
-     let ml = bot.serverConfig.get(messages.first().guild.id)?bot.serverConfig.get(messages.first,().guild.id).modLog:undefined;
+     let ml = bot.serverConfig.get(messages.first().guild.id)?bot.serverConfig.get(messages.first().guild.id).modLog:undefined;
      if (!ml) return;
      let modChannel = await messages.first().channels.fetch(ml);
      if (!modChannel) return;
