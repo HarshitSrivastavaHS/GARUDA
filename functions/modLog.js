@@ -60,7 +60,7 @@
   bot.on("messageDeleteBulk", async (messages)=>{
      let ml = bot.serverConfig.get(messages.first().guild.id)?bot.serverConfig.get(messages.first().guild.id).modLog:undefined;
      if (!ml) return;
-     let modChannel = await messages.first().channels.fetch(ml);
+     let modChannel = await messages.first().guild.channels.fetch(ml);
      if (!modChannel) return;
      let msg = messages.filter(u=>!u.author.bot);
      let ModEmbed = new Discord.MessageEmbed()
