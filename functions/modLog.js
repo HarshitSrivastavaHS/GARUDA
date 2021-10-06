@@ -57,6 +57,23 @@
       }
   })
 
+  bot.on("messageDeleteBulk", async (messages)=>{
+     let ml = bot.serverConfig.get(messages.first().guild.id)?bot.serverConfig.get(messages.first,().guild.id).modLog:undefined;
+     if (!ml) return;
+     let modChannel = await messages.first().channels.fetch(ml);
+     if (!modChannel) return;
+     let msg = messages.filter(u=>!u.author.bot);
+     let ModEmbed = new Discord.MessageEmbed()
+      .setColor("BLUE")
+      .setTimestamp()
+      .setTitle(`${messages.size} Message Purged in ${messages.first().channel.name}`)
+      .setDescription(`${msg.map(m=>`${m.author.tag}: ${m.content}`).join("\n").substr(0,2000)}`)
+      .setFooter(`User ID: ${message.author.id}`)
+      .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
+    if (message.attachments.first())
+      ModEmbed.addField("Attachments", message.attachments.map(a=>`[${a.name}](${a.url})`).join(", "))
+    modChannel.send({embeds:[ModEmbed]});
+  })
   
 
 }
