@@ -68,11 +68,7 @@
       .setTimestamp()
       .setTitle(`${messages.size} Message Purged in ${messages.first().channel.name}`)
       .setDescription(`${msg.map(m=>`${m.author.tag}: ${m.content}`).join("\n").substr(0,2000)}`)
-      .setFooter(`User ID: ${message.author.id}`)
-      .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
-    if (message.attachments.first())
-      ModEmbed.addField("Attachments", message.attachments.map(a=>`[${a.name}](${a.url})`).join(", "))
-    modChannel.send({embeds:[ModEmbed]});
+     modChannel.send({embeds:[ModEmbed]});
   })
   
 
