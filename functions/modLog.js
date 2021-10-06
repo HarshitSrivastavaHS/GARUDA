@@ -66,6 +66,7 @@
      if (!modChannel) return;
      let msg = messages.filter(u=>!u.author.bot);
      if (msg.size == 0) return;
+     msg = msg.reverse()
      let ModEmbed = new Discord.MessageEmbed()
       .setColor("BLUE")
       .setTimestamp()
