@@ -109,8 +109,8 @@ module.exports = {
         
       })
         if (message.deletable) message.delete();
-        let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
-        bot.giveaways.set(msg.guild.id, ong.push([msg.id, message.guild.id, message.channel.id, prize]));
+        //let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
+        //bot.giveaways.set(msg.guild.id, ong.push([msg.id, message.guild.id, message.channel.id, prize]));
         giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id, message.author.id, req, false);
     }
       
