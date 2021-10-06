@@ -2,7 +2,7 @@ module.exports = {
     name: 'quote',
     usage: '&{prefix}quote',
     description: 'get a random quote',
-    aliases: ["thought", "quotes"]
+    aliases: ["thought", "quotes"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         
