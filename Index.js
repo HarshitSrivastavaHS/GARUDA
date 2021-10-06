@@ -115,7 +115,6 @@ bot.on('ready', async () => {
 	console.log('I am Online!');
 	bot.user.setPresence({
     activities: [{ name: `Ping me for help!`, type: 'WATCHING' }],
-    status: 'dnd'
   });
 	require("./functions/ghostping")(bot, Discord);
   require("./functions/modLog")(bot, Discord);
