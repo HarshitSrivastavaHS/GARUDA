@@ -45,7 +45,7 @@ module.exports = async (bot) => {
 
     //loads all the giveaways
     //bot.giveaways = new Map();
-    let allDocuments;
+    let allDocuments = [];
 	await mongo().then(async mongoose => {
 			allDocuments = await giveawaySchema.find({});
 	});
