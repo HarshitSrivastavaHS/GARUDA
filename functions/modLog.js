@@ -12,7 +12,7 @@
       .setTimestamp()
       .setAuthor(message.author.tag, message.author.displayAvatarURL())
       .setDescription(`${message.content}`)
-      .setTitle(`Message Deleted in ${message.channel.name}`)
+      .setTitle(`Message Deleted in #${message.channel.name}`)
       .setFooter(`User ID: ${message.author.id}`)
       .setImage(message.attachments.first()?message.attachments.first().proxyURL:null);
     if (message.attachments.first())
@@ -33,7 +33,7 @@
       .setColor("YELLOW")
       .setTimestamp()
       .setAuthor(message.author.tag, message.author.displayAvatarURL())
-      .setTitle(`Message Edited in ${message.channel.name}`)
+      .setTitle(`Message Edited in #${message.channel.name}`)
       .setFooter(`User ID: ${message.author.id}`)
 
     if(Array.isArray(desc)) {
@@ -57,16 +57,19 @@
       }
   })
 
+
+  /* WHEN MESSAGES ARE BULK DELETED */
   bot.on("messageDeleteBulk", async (messages)=>{
      let ml = bot.serverConfig.get(messages.first().guild.id)?bot.serverConfig.get(messages.first().guild.id).modLog:undefined;
      if (!ml) return;
      let modChannel = await messages.first().guild.channels.fetch(ml);
      if (!modChannel) return;
      let msg = messages.filter(u=>!u.author.bot);
+     if (msg.size == 0) return;
      let ModEmbed = new Discord.MessageEmbed()
       .setColor("BLUE")
       .setTimestamp()
-      .setTitle(`${messages.size} Message Purged in ${messages.first().channel.name}`)
+      .setTitle(`${messages.size} Message Purged in #${messages.first().channel.name}`)
       .setDescription(`${msg.map(m=>`${m.author.tag}: ${m.content}`).join("\n").substr(0,2000)}`)
      modChannel.send({embeds:[ModEmbed]});
   })
