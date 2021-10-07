@@ -220,7 +220,7 @@ bot.on('message', async message => {
         prefix = prefix.toLowerCase();
 
     if (message.content.startsWith(`<@!${bot.user.id}>`)||message.content.startsWith(`<@${bot.user.id}>`)) {
-        if (message.content.trim() == `<@!${bot.user.id}>` || messags.content.trim() == `<@${bot.user.id}>`)
+        if (message.content.trim() == `<@!${bot.user.id}>` || message.content.trim() == `<@${bot.user.id}>`)
         return message.reply(`My prefix in this server is \`${prefix}\`. You can also ping me for running a command, eg: <@${bot.user.id}>.`);
         if (message.content.startsWith(`<@!${bot.user.id}>`))
           message.content = message.content.replace(`<@!${bot.user.id}>`, prefix);
