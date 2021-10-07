@@ -11,7 +11,7 @@ module.exports = {
             
             if (!args) return message.channel.send("Please also mention the id of the person who is to be unbanned");
             
-            let bans = await message.guild.fetchBans();
+            let bans = await message.guild.bans.fetch();
 
             if (!bans) return message.channel.send("I don't have the required permission");
 
