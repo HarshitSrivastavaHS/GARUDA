@@ -71,7 +71,7 @@
       .setColor("BLUE")
       .setTimestamp()
       .setTitle(`${messages.size} Message Purged in #${messages.first().channel.name}`)
-      .setDescription(`${msg.map(m=>`${m.author.tag}: ${m.content}`).join("\n").substr(0,2000)}`)
+      .setDescription(`${msg.map(m=>`[${m.author.tag}]: ${m.content}`).join("\n").substr(0,2000)}`)
      modChannel.send({embeds:[ModEmbed]});
   })
   
