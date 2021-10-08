@@ -18,7 +18,7 @@ const bot = new Discord.Client({ intents: new Discord.Intents([
     "DIRECT_MESSAGES",
     "DIRECT_MESSAGE_REACTIONS",
     "DIRECT_MESSAGE_TYPING"
-]) });
+]), allowedMentions: { parse: ['users', 'roles'], repliedUser: true } });
 
 const statcord = new Statcord.Client({
   client: bot,
