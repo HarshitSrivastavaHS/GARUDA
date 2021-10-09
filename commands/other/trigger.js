@@ -9,7 +9,7 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         
         
-      const user = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first():false || bot.users.cache.get(args[0]) ||message.author;
+      const user = message.mentions.users.first()&&message.mentions.users.filter(m=>args[0]&&args[0].includes(m.id)).size>=1?message.mentions.users.filter(m=>args[0]&&args[0].includes(m.id)).first():false || bot.users.cache.get(args[0]) ||message.author;
       message.channel.sendTyping();
       const img = await Canvacord.Canvas.trigger(user.displayAvatarURL({dynamic: false, format: "png"}));
       const attachment = new Discord.MessageAttachment(img, "triggered.gif");
