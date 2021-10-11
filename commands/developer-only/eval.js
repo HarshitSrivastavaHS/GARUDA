@@ -21,7 +21,7 @@ module.exports = {
         evaled = require("util").inspect(evaled, { depth: 0 });
 
 evaled = Discord.Formatters.codeBlock("md", clean(evaled))
-      return message.channel.send({ content: evaled, split: true });
+      message.channel.send({ content: evaled, split: true });
     } catch (err) {
       return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     } 
