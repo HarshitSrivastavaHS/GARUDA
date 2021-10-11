@@ -153,10 +153,6 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     
 });
 
-const devIds =  {
-    "451693463742840842":true,
-};
-
 function clean(text) {
   if (typeof(text) === "string")
     return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
@@ -234,26 +230,6 @@ bot.on('message', async message => {
     args = args.filter(e=>e)
     const command = args.shift()?.toLowerCase();
     
-    if (message.content.startsWith(prefix + "eval")) {
-    
-    if(!devIds[message.author.id]) return;
-    const text = /process.env/i;
-    const isMatch = args.some(arg => arg.match(text));
-    if (isMatch) return message.channel.send("Code with process.env won't work :)")
-    try {
-         const code = args.join(" ");
-      	let evaled = eval(code);
-	if (evaled instanceof Promise || (Boolean(evaled) && typeof evaled.then === 'function' && typeof evaled.catch === 'function')) evaled = await evaled;
-      	if (typeof evaled !== "string")
-        evaled = require("util").inspect(evaled, { depth: 0 });
-
-
-      return message.channel.send({ content: clean(evaled), code:"xl", split: true });
-    } catch (err) {
-      return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-    } 
-    
-  }
   let cmdexe = bot.commands.get(command)?.command || bot.commands.find(c=>c.aliases&&c.aliases.includes(command))?.command;
   if (!cmdexe) return;
   statcord.postCommand(cmdexe.name, message.author.id);
