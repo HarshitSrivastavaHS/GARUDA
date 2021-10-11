@@ -20,8 +20,8 @@ module.exports = {
       	if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled, { depth: 0 });
 
-
-      return message.channel.send({ content: clean(evaled), code: true, split: true });
+evaled = Discord.Formatters.codeBlock("md", clean(evaled))
+      return message.channel.send({ content: evaled, split: true });
     } catch (err) {
       return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     } 
