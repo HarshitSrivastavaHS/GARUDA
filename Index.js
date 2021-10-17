@@ -146,9 +146,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 		newContent: newMessage.content,
 		author: oldMessage.author.tag,
 		avatar: oldMessage.author.displayAvatarURL(),
-		image: oldMessage.attachments.first()
-			? oldMessage.attachments.first().proxyURL
-			: null
+		time: oldMessage.editedAt
 	});
     
 });
