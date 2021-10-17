@@ -133,7 +133,7 @@ bot.on('messageDelete', async (message, channel) => {
 		image: message.attachments.first()
 			? message.attachments.first().proxyURL
 			: null,
-                time: message.deletedTimestamp
+                time: new Date.now()
 	});
 	
     
