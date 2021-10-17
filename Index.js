@@ -132,7 +132,8 @@ bot.on('messageDelete', async (message, channel) => {
 		avatar: message.author.displayAvatarURL(),
 		image: message.attachments.first()
 			? message.attachments.first().proxyURL
-			: null
+			: null,
+                time: message.deletedTimestamp
 	});
 	
     
@@ -146,7 +147,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 		newContent: newMessage.content,
 		author: oldMessage.author.tag,
 		avatar: oldMessage.author.displayAvatarURL(),
-		time: newMessage.editedAt
+		time: newMessage.editedTimestamp
 	});
     
 });
