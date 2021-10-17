@@ -14,7 +14,8 @@ module.exports = {
         .setDescription(msg.content)
         .setImage(msg.image?msg.image:null)
         .addField("Message Deleted on", `<t:${Math.floor(msg.time/1000)}:f>`)
-        .setFooter("Bot by TechAllByHarshit#1503")
+        .setFooter("Message Deleted")
+        .setTimestamp(msg.time)
         message.channel.send({embeds:[snipEMbed]});
     }
 }
