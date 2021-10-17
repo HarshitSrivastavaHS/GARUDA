@@ -13,7 +13,7 @@ module.exports = {
         .setAuthor(msg.author, msg.avatar)
         .setDescription(msg.content)
         .setImage(msg.image?msg.image:null)
-        .addField("Message Deleted on", `<t:${Math.floor(msg.time/1000)}:f>`)
+        //addField("Message Deleted on", `<t:${Math.floor(msg.time/1000)}:f>`)
         .setFooter("Message Deleted")
         .setTimestamp(msg.time)
         message.channel.send({embeds:[snipEMbed]});
