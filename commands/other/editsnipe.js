@@ -15,8 +15,9 @@ module.exports = {
         {name: "Old Message" ,value: msg.oldContent},
         {name: "New Message" ,value: msg.newContent}
         )
-        .setDescription(`Message Edited on: <t:${Math.floor(msg.time/1000)}:f>`)
-        .setFooter(`Bot by TechAllByHarshit#1503`);
+        //.setDescription(`Message Edited on: <t:${Math.floor(msg.time/1000)}:f>`)
+        .setFooter(`Message Edited`)
+        .setTimestamp(msg.time);
         message.channel.send({embeds: [editSnipEMbed]});
     }
 }
