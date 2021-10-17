@@ -9,11 +9,12 @@ module.exports = {
         let msg = bot.snipes.get(message.channel.id);
         if (!msg) return message.channel.send("There is no deleted message in this channel.");
         let snipEMbed = new Discord.MessageEmbed()
-        .setColor("RANDOM")
+        .setColor("#ff2052")
         .setAuthor(msg.author, msg.avatar)
         .setDescription(msg.content)
         .setImage(msg.image?msg.image:null)
-        .setTimestamp();
+        .addField("Message Deleted on", `<t:${Math.floor(msg.time/1000)}:f>`)
+        .setFooter("Bot by TechAllByHarshit#1503")
         message.channel.send({embeds:[snipEMbed]});
     }
 }
