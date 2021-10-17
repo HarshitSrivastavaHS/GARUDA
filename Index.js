@@ -146,7 +146,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 		newContent: newMessage.content,
 		author: oldMessage.author.tag,
 		avatar: oldMessage.author.displayAvatarURL(),
-		time: oldMessage.editedAt
+		time: newMessage.editedAt
 	});
     
 });
