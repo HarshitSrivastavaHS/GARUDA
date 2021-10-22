@@ -1,3 +1,4 @@
+console.log(process.version)
 const Discord = require('discord.js');
 const Statcord = require("statcord.js");
 const keepAlive = require('./server.js');
@@ -227,9 +228,9 @@ bot.on('message', async message => {
     
     var args = message.content.slice(prefix.length).split(/ +/);
     args = args.filter(e=>e)
-    const command = args.shift()?.toLowerCase();
+    const command = args.length > 0?args.shift().toLowerCase():undefined;
     
-  let cmdexe = bot.commands.get(command)?.command || bot.commands.find(c=>c.aliases&&c.aliases.includes(command))?.command;
+  let cmdexe = bot.commands.get(command)?bot.commands.get(command).command:undefined || bot.commands.find(c=>c.aliases&&c.aliases.includes(command))?bot.commands.find(c=>c.aliases&&c.aliases.includes(command)).command: undefined;
   if (!cmdexe) return;
   statcord.postCommand(cmdexe.name, message.author.id);
   let botPerms = [];
