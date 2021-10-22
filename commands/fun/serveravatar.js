@@ -12,7 +12,7 @@ module.exports = {
            const emb = new Discord.MessageEmbed()
            .setColor("#ffe6b3")
            .setTitle("No Server Avatar")
-           .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`);
+           .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`)
            .setDescription(`The above mentioned user, ${mentionUser}, does not have a server avatar.`)
            .setTimestamp()
            .setFooter(`Requested by ${message.author.tag}`)
