@@ -18,7 +18,7 @@ module.exports = {
                     args[0] = args[0].substr(args[0].lastIndexOf("/")+1,args[0].length)
                 
                 msg = await message.channel.messages.fetch(args[0]);
-                if (msg.author.id!="777840690515279872"||!msg.embeds.length>0||msg.content!="**🎉Giveaway🎉**")
+                if (!msg.embeds.length>0||msg.content!="**🎉Giveaway🎉**")
                     throw new Error(':/');
             }
             catch {
@@ -27,7 +27,7 @@ module.exports = {
         }
         else {
             let msgs = await message.channel.messages.fetch(50);
-            msgs = msgs.filter(m=>m.author.id=="777840690515279872"&&m.embeds.length>0&&m.content=="**🎉Giveaway🎉**"&&m.embeds[0].description.substr(m.embeds[0].description.lastIndexOf("by")+2,m.embeds[0].description.length).includes(message.author.id));
+            msgs = msgs.filter((m)=>m.embeds.length>0&&m.content=="**🎉Giveaway🎉**"&&m.embeds[0].description.substr(m.embeds[0].description.lastIndexOf("by")+2,m.embeds[0].description.length).includes(message.author.id));
             if (msgs.size<1) return message.channel.send("Could not find a giveaway started by you.")
             msgs = msgs.sort(function(a, b) {
                 return parseFloat(b.createdTimestamp) - parseFloat(a.createdTimestamp);

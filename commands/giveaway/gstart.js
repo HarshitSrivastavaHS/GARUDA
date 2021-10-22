@@ -108,9 +108,10 @@ module.exports = {
           })
         
       })
-        if (message.deletable) message.delete();
-        //let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
-        //bot.giveaways.set(msg.guild.id, ong.push([msg.id, message.guild.id, message.channel.id, prize]));
+        if (message.deletable&&!message.deleted) message.delete();
+        let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
+      ong[ong.length] = [msg.id, message.guild.id, message.channel.id, prize]           
+        bot.giveaways.set(msg.guild.id, ong);
         giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id, message.author.id, req, false);
     }
       

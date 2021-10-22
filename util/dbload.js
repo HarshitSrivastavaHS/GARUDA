@@ -44,15 +44,16 @@ module.exports = async (bot) => {
     })();
 
     //loads all the giveaways
-    //bot.giveaways = new Map();
+    bot.giveaways = new Map();
     let allDocuments = [];
 	await mongo().then(async mongoose => {
 			allDocuments = await giveawaySchema.find({});
 	});
 	if (allDocuments.length >= 1) {
         for (let x in allDocuments) {
-            /*let ong = bot.giveaways.get(allDocuments[x].guild)!=undefined?bot.giveaways.get(allDocuments[x].guild):[];
-            bot.giveaways.set(allDocuments[x].guild, ong.push([allDocuments[x]._id, allDocuments[x].guild, allDocuments[x].chID, allDocuments[x].prize]));*/
+            let ong = bot.giveaways.get(allDocuments[x].guild)!=undefined?bot.giveaways.get(allDocuments[x].guild):[];
+ong[ong.length] = [allDocuments[x]._id, allDocuments[x].guild, allDocuments[x].chID, allDocuments[x].prize]
+          bot.giveaways.set(allDocuments[x].guild, ong)
             give(
                 bot,
                 Discord,
