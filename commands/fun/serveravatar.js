@@ -11,10 +11,10 @@ module.exports = {
         const fetch = require("node-fetch");
         let res = await fetch(`https://discord.com/api/guilds/${message.guild.id}/members/${mentionUser.user.id}`, {
            headers: {
-              Authorization: bot.token
+              Authorization: `Bot ${bot.token}`
            }
         })
-        if (!res.avatar) {
+        if (!res.data.avatar) {
            const emb = new Discord.MessageEmbed()
            .setColor("#ffe6b3")
            .setTitle("No Server Avatar")
@@ -27,7 +27,7 @@ module.exports = {
         const avataremb = new Discord.MessageEmbed()
         .setColor("#ffe6b3")
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`)
-        .setImage(`${res.avatarURL({size: 4096, dynamic: true})}`)
+        .setImage(`https://cdn.discordapp.com/guilds/${message.guild.id}/users/${mentionUser.user.id}/avatars/${res.data.avatar}.webp?size=4096`)
         .setTitle(`${mentionUser.user.tag}'s Server Avatar`)
         .setTimestamp()
         .setFooter(`Requested by ${message.author.tag}`);
