@@ -158,7 +158,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       let nowin = new Discord.MessageEmbed()
       .setColor("RED")
       .setTitle(prize)
-      .setDescription(`Could not determine winner(s).\nHosted by: ${giveawayHost}`)
+      .setDescription(`» Could not determine winner(s).\n» Hosted by: ${giveawayHost}`)
       .setFooter(`Winners: ${winners} | Ended at`)
       .setTimestamp();
       if (reqs)
@@ -177,7 +177,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     let winem = new Discord.MessageEmbed()
     .setColor("GREEN")
     .setTitle(prize)
-    .setDescription (`${winners>1?"Winners:":"Winner"}\n${winners>1?giveawayWinners.join("\n"):giveawayWinners}\nHosted by: ${giveawayHost}`)
+    .setDescription (`» ${winners>1?"Winners:":"Winner"}\n${winners>1?giveawayWinners.join("\n"):giveawayWinners}\n» Hosted by: ${giveawayHost}`)
     .setFooter(`Winners: ${winners} | Ended at`)
     .setTimestamp()
     if (reqs)
