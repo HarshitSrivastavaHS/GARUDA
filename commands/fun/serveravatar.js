@@ -8,7 +8,13 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         await message.guild.members.fetch();
         const mentionUser = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first():false|| message.guild.members.cache.get(args[0])|| message.guild.members.cache.find(m => m.user.username.toLowerCase().includes(args.length>0?args.join(" ").toLowerCase():null))||message.member;
-        if (!mentionUser.avatar) {
+        const fetch = require("node-fetch");
+        let res = await fetch(`https://discord.com/api/guilds/${message.guild.id}/members/${mentionUser.user.id}`, {
+           headers: {
+              Authorization: bot.token
+           }
+        })
+        if (!res.avatar) {
            const emb = new Discord.MessageEmbed()
            .setColor("#ffe6b3")
            .setTitle("No Server Avatar")
@@ -21,7 +27,7 @@ module.exports = {
         const avataremb = new Discord.MessageEmbed()
         .setColor("#ffe6b3")
         .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL({dynamic: true})}`)
-        .setImage(`${mentionUser.avatarURL({size: 4096, dynamic: true})}`)
+        .setImage(`${res.avatarURL({size: 4096, dynamic: true})}`)
         .setTitle(`${mentionUser.user.tag}'s Server Avatar`)
         .setTimestamp()
         .setFooter(`Requested by ${message.author.tag}`);
