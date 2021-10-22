@@ -2,7 +2,7 @@ module.exports = {
     name: 'glist',
     usage: `To end any giveaway: &{prefix}gend <message id/link>\nTo reroll the giveaway started by you: &{prefix}gend\nSecond one will not work if more than 50 messages were sent in that channel after your giveaway has ended`,
     description: 'rerolls an already ended giveaway.',
-    aliases: [],
+    aliases: ["ongoing-givesways", "giveawaylist", "listgiveaway"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         if (message.author.id != "451693463742840842") return messasge.reply("in development");

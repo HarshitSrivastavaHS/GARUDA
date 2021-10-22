@@ -5,7 +5,7 @@ module.exports = {
     aliases: ["giveaway-reroll", "giveawayreroll"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        
+        if (!message.member.permissions.has("MANAGE_GUILD")) return message.reply("You're missing Manage Server permission.")
         
         let msg;
             if (args.length>0) {

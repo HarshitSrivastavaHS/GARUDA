@@ -8,6 +8,7 @@ module.exports = {
     description: 'to start a giveaway.\nFlags:\n\`--r\` to add role requirement. To add multiple role requirements, use \`--r\` multiple times. Role ID or mention can be used for role requirement.\nNOTE: USE FLAGS AT THE END ONLY.',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
+     if (!message.member.permissions.has("MANAGE_GUILD")) return message.reply("You're missing Manage Server permission.")
      if (!args[0]||!args[1]||!args[2]) return message.channel.send(`Missing one of the arguements, time/winner/prize. Try \`${prefix}help giveaway\` to know the syntax.`)
       let time = args[0];
       let winners = args[1];

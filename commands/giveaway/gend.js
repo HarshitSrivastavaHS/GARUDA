@@ -10,7 +10,7 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         //if (message.author.id != "451693463742840842") return message.channel.send("Command turned off by the developer.")
         
-        
+        if (!message.member.permissions.has("MANAGE_GUILD")) return message.reply("You're missing Manage Server permission.")
         let msg;
         if (args.length>0) {
             try {
