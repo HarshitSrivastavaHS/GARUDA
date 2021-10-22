@@ -20,7 +20,6 @@ module.exports = {
             }).then ((data)=>{
                 if (data.name===undefined){
                     message.reply("Could not find that pokemon. 💔");
-                    message.channel.stopTyping();
                     return;
                 }
                 let stats = "";
