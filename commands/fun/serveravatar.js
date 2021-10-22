@@ -14,6 +14,7 @@ module.exports = {
               Authorization: `Bot ${bot.token}`
            }
         })
+console.log(res)
         if (!res.data.avatar) {
            const emb = new Discord.MessageEmbed()
            .setColor("#ffe6b3")
