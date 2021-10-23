@@ -4,7 +4,7 @@ module.exports = {
     usage: '&{prefix}userinfo <optional @user>',
     description: 'shows information about that server',
     aliases: ["ui", "whois"],
-    permissions: ['SEND_MESSAGES'],
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
         let badges = user.user.flags.toArray();

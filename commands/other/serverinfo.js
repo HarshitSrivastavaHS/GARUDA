@@ -4,7 +4,7 @@ module.exports = {
     usage: '&{prefix}serverinfo',
     description: 'shows information about that server',
     aliases: ["si"],
-    permissions: ['SEND_MESSAGES'],
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         await message.guild.members.fetch();
         let veri = message.guild.verificationLevel;
