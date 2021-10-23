@@ -15,7 +15,7 @@ module.exports = {
       ];
       const partnershipEmbed = new Discord.MessageEmbed()
       .setColor("#e52165")
-      .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL()}`)
+      .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL({dynamic: true})}`)
       .setTitle("Our Partners")
       .setFooter("Bot by TechAllByHarshit#1503")
       .setTimestamp();
