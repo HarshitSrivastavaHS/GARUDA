@@ -16,7 +16,8 @@ module.exports = {
 ✹ Verified Server: ${message.guild.verified?"Yes":"No"}\n\
 ✹ Verification Level: ${veri[0].toUpperCase()+veri.substr(1).toLowerCase().replace("_"," ")}`)
         .addField("Categories & Channels", `✹ Categories: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_CATEGORY").size}\n\
-✹ Text: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_TEXT").size}\n\
+✹ Text Channels: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_TEXT").size}\n\
+✹ Thread Channels: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_PUBLIC_THREAD").size}\n\
 ✹ Voice Channels: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_VOICE").size}\n\
 ✹ Stage Channels: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_STAGE_VOICE").size}\n\
 ✹ Announcement Channels: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_NEWS").size}`)
