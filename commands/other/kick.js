@@ -11,7 +11,7 @@ module.exports = {
             message.channel.send("You don't have the required permissions.");
             return;
         }
-        cemberentionMessage = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first(): undefined|| args[0];
+        const mentionMember = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first(): undefined|| args[0];
 
         if (args.length === 0 || mentionMember === undefined) {
             message.reply(`Invalid Syntax! \`\`\`%kick @mention\`\`\``)
