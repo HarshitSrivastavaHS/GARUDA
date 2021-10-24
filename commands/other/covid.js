@@ -17,10 +17,10 @@ module.exports = {
                     .setTitle('COVID-19 Stats')
                     .setAuthor(`${message.author.username}`,`${message.author.displayAvatarURL()}`)
                     .addFields(
-                        { name: "Total Cases", value: data.cases, inline: true},
-                        { name: "Active Cases", value: data.active, inline: true},
-                        { name: "No. of Deaths", value: data.deaths, inline: true},
-                        { name: "No. of People Recovered", value: data.recovered, inline: true}
+                        { name: "Total Cases", value: `${data.cases}`, inline: true},
+                        { name: "Active Cases", value: `${data.active}`, inline: true},
+                        { name: "No. of Deaths", value: `${data.deaths}`, inline: true},
+                        { name: "No. of People Recovered", value: `${data.recovered}`, inline: true}
                         )
                     .setTimestamp()
                     .setFooter('via disease.sh')

@@ -18,6 +18,7 @@ module.exports = {
         .addField("Categories & Channels", `✹ Categories: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_CATEGORY").size}\n\
 ✹ Text: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_TEXT").size}\n\
 ✹ Voice Channels: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_VOICE").size}\n\
+✹ Stage Channels: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_STAGE_VOICE").size}\n\
 ✹ Announcement Channels: ${message.guild.channels.cache.filter(c=>c.type=="GUILD_NEWS").size}`)
         .addField("Others", `✹ Total Members: ${message.guild.memberCount}\n\
 ✹ Humans: ${message.guild.members.cache.filter(m=>!m.user.bot).size}\n\

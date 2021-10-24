@@ -13,7 +13,7 @@ module.exports = {
     message.channel.sendTyping();
     const song = await fetch(`https://some-random-api.ml/lyrics?title=${encodeURIComponent(args.join(" "))}`).then(r=> r.json());
     if (!song ||!song.lyrics){
-      message.channel.stopTyping();
+      
       return message.channel.send("**Sorry, couldn't find anything**")
     }
     let embed = new MessageEmbed()

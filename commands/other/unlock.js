@@ -12,6 +12,8 @@ module.exports = {
 	        channel = message.mentions.channels.first();
 	        args = args.slice(1);
 	    }
+
+      if (channel.type=="GUILD_PUBLIC_THREAD"||message.channel.type=="GUILD_PRIVATE_THREAD") return message.reply("Cannot unlock a thread.")
             if(!channel.permissionsFor(message.member).has("MANAGE_CHANNEL")) {
                 message.channel.send("You don't have the required permissions.");
                 return;
