@@ -11,7 +11,7 @@ module.exports = {
             message.channel.send("You don't have the required permissions.");
             return;
         }
-        const mentionMember = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first(): undefined|| message.guild.members.cache.find(m=>m.user.username.includes(args[0].toLowerCase())) || message.guild.members.cache.get(args[0]);
+        const mentionMember = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first(): undefined|| args[0]?message.guild.members.cache.find(m=>m.user.username.includes(args[0].toLowerCase())): undefined || message.guild.members.cache.get(args[0]);
 
         if (args.length === 0 || mentionMember === undefined) {
             message.reply(`Invalid Syntax! \`\`\`%kick <user>\`\`\``)
