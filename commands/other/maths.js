@@ -1,4 +1,4 @@
-const Maths = require("mathjs"); 
+const Maths = require("exact-math"); 
 module.exports = {
     name: 'maths',
     type: 'maths',
@@ -12,7 +12,7 @@ module.exports = {
         let exp = args.join(" ");
         let sol;
         try {
-          sol = await Maths.evaluate(exp);
+          sol = Maths.formula(exp);
         }
         catch {
           return message.channel.send("Something went wrong. Was that really an expression?")
