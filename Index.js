@@ -165,10 +165,11 @@ function clean(text) {
 
 
 bot.fasttype = new Array();
-
+bot.allowedBots = new Array();
+bot.allowedCommands = new Array();
 bot.on('message', async message => {
 
-	if (message.author.bot) return;
+	if (message.author.bot&&!bot.allowedBots.includes(message.author.id)) return;
 
 	if (message.channel.type === 'dm') {
 		return;
@@ -232,6 +233,7 @@ bot.on('message', async message => {
     
   let cmdexe = bot.commands.get(command)?bot.commands.get(command).command:undefined || bot.commands.find(c=>c.aliases&&c.aliases.includes(command))?bot.commands.find(c=>c.aliases&&c.aliases.includes(command)).command: undefined;
   if (!cmdexe) return;
+  if (message.author.bot&&!bot.allowedCommands.includes(cmdexe.name)) return;
   statcord.postCommand(cmdexe.name, message.author.id);
   let botPerms = [];
   let missingPerms = [];
