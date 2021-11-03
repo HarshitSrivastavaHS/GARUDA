@@ -41,11 +41,15 @@ bot.commands = new Discord.Collection();
 fs.readdir("./commands/", (err, categories)=>{
   if (err) return console.err(err)
  console.log(`Found total ${categories.length} categories`) 
+  let allowedCategory = ["fun", "game"];
  categories.forEach((category) =>{
       let cmd = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"))
       for (let command of cmd) {
           command = require(`./commands/${category}/${command}`)
           bot.commands.set(command.name, {category, command, aliases: command.aliases})
+          if (allowedCategory.includes(category)) {
+             bot.allowedCommands.push(command.name);
+          }
       }
       console.log(`Loaded total ${cmd.length} commands in ${category}`);
  })
@@ -165,7 +169,7 @@ function clean(text) {
 
 
 bot.fasttype = new Array();
-bot.allowedBots = new Array();
+bot.allowedBots = ["870239976690970625"];
 bot.allowedCommands = new Array();
 bot.on('message', async message => {
 
