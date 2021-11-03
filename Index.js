@@ -37,7 +37,7 @@ const fs = require('fs');
 const { Collection } = require('mongoose');
 
 bot.commands = new Discord.Collection();
-
+bot.allowedCommands = ["help"]
 fs.readdir("./commands/", (err, categories)=>{
   if (err) return console.err(err)
  console.log(`Found total ${categories.length} categories`) 
@@ -170,7 +170,6 @@ function clean(text) {
 
 bot.fasttype = new Array();
 bot.allowedBots = ["870239976690970625"];
-bot.allowedCommands = new Array();
 bot.on('message', async message => {
 
 	if (message.author.bot&&!bot.allowedBots.includes(message.author.id)) return;
