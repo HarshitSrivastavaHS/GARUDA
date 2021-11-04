@@ -3,7 +3,7 @@ module.exports = {
     type: 'fun',
     usage: `&{prefix}avatar <user's mention (optional)>`,
     description: 'shows the user\'s avatar',
-    aliases: ["a"],
+    aliases: ["a", "av"],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         await message.guild.members.fetch();
