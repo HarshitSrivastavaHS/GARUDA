@@ -10,8 +10,9 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         //if (message.author.id != "451693463742840842") return message.channel.send("Command turned off by the developer.")
         
-        if (!message.member.permissions.has("MANAGE_GUILD")) return message.reply("You're missing Manage Server permission.")
-        let msg;
+        let managerRoles = bot.serverConfig.get(message.guild.id)&&bot.serverConfig.get(message.guild.id).giveaway?bot.serverConfig.get(message.guild.id).giveaway: [];
+     if (!message.member.permissions.has("MANAGE_GUILD")&&message.member.roles.cache.filter(r=>managerRoles.includes(r)).size==0) return message.reply("You don't have Manage Server permission and you don't have any of the giveaway manager role either.")
+     let msg;
         if (args.length>0) {
             try {
                 if (args[0].startsWith("https://discord.com/channels/"))

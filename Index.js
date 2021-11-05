@@ -213,7 +213,8 @@ bot.on('message', async message => {
                 modLog: result?result.modLog:undefined,
 		ghost: result?result.ghost:undefined,
                 autoRole: result?result.autoRole:undefined,
-                goal: result?result.goal:undefined
+                goal: result?result.goal:undefined,
+                giveaway: result?result.giveaway:undefined
         });
         prefix = "%";
 	}

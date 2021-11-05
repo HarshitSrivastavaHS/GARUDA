@@ -51,7 +51,8 @@ module.exports = {
                     modLog: result.modLog,
                     ghost: result.ghost,
                     autoRole: result.autoRole,
-                    goal: result.goal
+                    goal: result.goal,
+                    giveaway: result.giveawayManagers
                 })    
             }
             else {
@@ -81,7 +82,8 @@ module.exports = {
                 modLog: result.modLog,
                 ghost: result.ghost,
                 autoRole: result.autoRole,
-                goal: result.goal
+                goal: result.goal,
+                giveaway: result.giveawayManagers
             })    
         }
         else {

@@ -19,7 +19,8 @@ const ServerConfig = mongoose.Schema({
   modLog: string,
   ghost: string,
   autoRole: string,
-  goal: string
+  goal: string,
+  giveawayManagers: [string]
 })
 
 module.exports = mongoose.model("Server Config", ServerConfig)

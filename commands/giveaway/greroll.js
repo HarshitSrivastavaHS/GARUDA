@@ -5,7 +5,9 @@ module.exports = {
     aliases: ["giveaway-reroll", "giveawayreroll"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        if (!message.member.permissions.has("MANAGE_GUILD")) return message.reply("You're missing Manage Server permission.")
+        let managerRoles = bot.serverConfig.get(message.guild.id)&&bot.serverConfig.get(message.guild.id).giveaway?bot.serverConfig.get(message.guild.id).giveaway: [];
+     if (!message.member.permissions.has("MANAGE_GUILD")&&message.member.roles.cache.filter(r=>managerRoles.includes(r)).size==0) return message.reply("You don't have Manage Server permission and you don't have any of the giveaway manager role either.")
+     
         
         let msg;
             if (args.length>0) {
@@ -23,7 +25,7 @@ module.exports = {
             }
             else {
                 let msgs = await message.channel.messages.fetch(50);
-                msgs = msgs.filter(m=>m.author.id=="777840690515279872"&&m.embeds.length>0&&m.content=="**🎉Giveaway Ended🎉**"&&m.embeds[0].description.substr(m.embeds[0].description.lastIndexOf(":")+2,m.embeds[0].description.length).includes(message.author.id));
+                msgs = msgs.filter(m=>m.author.id==bot.user.id&&m.embeds.length>0&&m.content=="**🎉Giveaway Ended🎉**"&&m.embeds[0].description.substr(m.embeds[0].description.lastIndexOf(":")+2,m.embeds[0].description.length).includes(message.author.id));
                 if (msgs.size<1) return message.channel.send("Could not find a giveaway started by you.")
                 msgs = msgs.sort(function(a, b) {
                     return parseFloat(b.createdTimestamp) - parseFloat(a.createdTimestamp);

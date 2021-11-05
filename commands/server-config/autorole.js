@@ -36,7 +36,8 @@ module.exports = {
             modLog: result.modLog,
             ghost: result.ghost,
             autoRole: role.id,
-            goal: result.goal
+            goal: result.goal,
+            giveaway: result.giveawayManagers
           });
             
       })
@@ -65,7 +66,8 @@ module.exports = {
             modLog: result.modLog,
             ghost: result.ghost,
             autoRole: undefined,
-            goal: result.goal
+            goal: result.goal,
+            giveaway: result.giveawayManagers
           });
       })}
     }

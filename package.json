@@ -42,6 +42,6 @@
   },
   "homepage": "https://github.com/TechAllByHarshit/GARUDA#readme",
   "devDependencies": {
-    "node": "^16.6.2"
+    "node": "^16.13.0"
   }
 }
