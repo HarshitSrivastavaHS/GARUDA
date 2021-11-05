@@ -16,6 +16,9 @@ module.exports = {
         channel = message.mentions.channels.first();
         args.splice(0,1);
         if (channel.guild.id != message.guild.id) return message.reply(`Invalid channel: \`${channel}\``)
+        if (!message.member.permissionsIn(channel).toArray().includes("SEND_MESSAGES")||!message.member.permissionsIn(channel).toArray().includes("EMBED_LINKS")) return message.channel.send("You do not have permission to send message/embed links in that channel.")    
+        if (!channel.permissionsFor(bot.user).toArray().includes("SEND_MESSAGES")||!channel.permissionsFor(bot.user).toArray().includes("EMBED_LINKS")) return message.channel.send("I do not have permission to send message/embed links in that channel.")    
+        
      }
       let time = args[0];
       let winners = args[1];
