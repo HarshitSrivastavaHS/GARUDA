@@ -4,7 +4,7 @@ module.exports = {
     usage: `&{prefix}drop <prize>`,
     description: 'first person to react within 30 seconds wins.',
     aliases: [],
-    permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
         
         if (args.length<1) return message.channel.send("Re-run the command but this time actually mention the prize.");
@@ -15,7 +15,7 @@ module.exports = {
         .setDescription(`The first one to react with 🎉 wins!\nMaximum Time: 30 seconds.\nHosted By ${message.member}.`)
         .setFooter("Drop");
         let msg = await message.channel.send({content: "**🎉 PRIZE DROP 🎉**",embeds:[embed]});
-        message.delete();
+        if (message.deletable) message.delete();
         let winner;
         msg.react("🎉");
         msg.awaitReactions({filter: (reaction, user) => user.id != bot.user.id && user.id != message.author.id &&reaction.emoji.name == '🎉',
