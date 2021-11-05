@@ -5,7 +5,7 @@ module.exports = {
     name: 'gstart',
     aliases: [],
     usage: '&{prefix}giveaway <time> <winners> <prize>\n&{prefix}giveaway [channel] <time> <winners> <prize> --r @role\n&{prefix}giveaway <time> <winners> <prize> --r @role1 --r @role2',
-    description: 'to start a giveaway.\nFlags:\n\`--r\` to add role requirement. To add multiple role requirements, use \`--r\` multiple times. Role ID or mention can be used for role requirement.\nNOTE: USE FLAGS AT THE END ONLY.',
+    description: 'to start a giveaway.\nFlags:\n\`--r\` to add role requirement. To add multiple role requirements, use \`--r\` multiple times. Role ID or mention can be used for role requirement.\n\`--t\` to add custom text embed. Use this flag only once.\nNOTE: USE FLAGS AT THE END ONLY.',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
       let managerRoles = bot.serverConfig.get(message.guild.id)&&bot.serverConfig.get(message.guild.id).giveaway?bot.serverConfig.get(message.guild.id).giveaway: [];
@@ -54,19 +54,29 @@ module.exports = {
       
 
       let req = undefined;
+      let text = undefined;
       if (flags) {
           for (let flag of flags) {
               let val = flag.split(/ +/).slice(1).join(" ").trim();
               flag = flag[0];
                 switch (flag){
                     case "r": 
-                        if (!val) return message.channel.send(`Please specify the role after \`--${flag}\``);
+                        if (!val) return message.reply(`Please specify the role after \`--${flag}\``);
                         if (!req) 
                             req = [val];
                         else
                             req.push(val);
                         break;
-                    default: return message.channel.send("Invalid flag");
+                    case "t":
+                        if (text) return message.reply("Cannot have multiple text embeds"); 
+                        if (!val) return message.reply("Please enter the message.")
+                        text = new Discord.MessageEmbed()
+                          .setTitle("**Giveaway Message**")
+                          .setDescription(val.substr(0,2000))
+                          .setColor("PURPLE")
+                          .setTimestamp();
+                          break;
+                    default: return message.reply("Invalid flag");
                 }
         }
       }
@@ -90,7 +100,7 @@ module.exports = {
 
       let msg = await channel.send({content: "**🎉Giveaway🎉**",embeds:[giveawayEM]});
       msg.react("🎉");
-      
+      if (text) channel.send({embeds:[text]});
       if (req) {
 
       for (let i in req) {
