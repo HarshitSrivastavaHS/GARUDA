@@ -4,7 +4,7 @@ module.exports = {
     usage: `&{prefix}tictactoe <user's @>`,
     description: 'play tictactoe with someone',
     aliases: ["ttt"],
-    permissions: ['SEND_MESSAGES', 'ADD_REACTIONS', 'MANAGE_MESSAGES'],
+    permissions: ['SEND_MESSAGES', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
     let mention = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first(): undefined;
     if (!mention) return message.reply("You forgot to tag your opponent :/");
