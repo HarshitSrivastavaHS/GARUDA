@@ -4,7 +4,7 @@ module.exports = {
     usage: `&{prefix}embed <optional channel> --flags\n&{prefix}embed #test --t This is the title --d This is the description --c #FF0000`,
     description: 'Sends an embed.\nFlags are:\n--f To set the footer\n--c to set the colour (use hex)\n--t to set the title\n--d to set the description',
     aliases: ["emb"],
-    permissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES', 'EMBED_LINKS'],
+    permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
         
         
@@ -77,7 +77,7 @@ module.exports = {
         }
         else {
             message.channel.send({embeds: [embed]});
-            message.delete();
+            if (message.deletable) message.delete();
         }
     }
 }
