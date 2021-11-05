@@ -4,7 +4,7 @@ module.exports = {
     usage: '&{prefix}unlock',
     description: 'sets AFK.',
     aliases: [],
-    permissions: ['SEND_MESSAGES'],
+    permissions: ['SEND_MESSAGES', 'MANAGE_GUILD'],
     async execute(message, args, bot, Discord, prefix) {
 	    let channel = message.channel;
 	    if (args[0]&&message.mentions.channels.first()&&args[0].includes(message.mentions.channels.first().id))
