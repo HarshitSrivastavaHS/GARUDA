@@ -112,7 +112,7 @@ module.exports = {
       let embed = new Discord.MessageEmbed()
         .setColor("#F67280")
         .setTitle("Giveaway Manager roles")
-        .setDescription(`The following roles (except the people who have manager guild) can start/end/reroll giveaways in this server: \n${roles2.join("\n")}`)
+        .setDescription(`The following roles (except the people who have manage guild permission) can start/end/reroll giveaways in this server: \n${roles2.join("\n")}`)
         .setTimestamp()
         .setFooter(`Requested by ${message.author.tag}`);
       message.reply({embeds: [embed]});
