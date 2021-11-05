@@ -4,18 +4,23 @@ const giveawaySchema = require("../../Schemas/giveaway-schema.js")
 module.exports = {
     name: 'gstart',
     aliases: [],
-    usage: '&{prefix}giveaway <time> <winners> <prize>\n&{prefix}giveaway <time> <winners> <prize> --r @role\n&{prefix}giveaway <time> <winners> <prize> --r @role1 --r @role2',
+    usage: '&{prefix}giveaway <time> <winners> <prize>\n&{prefix}giveaway [channel] <time> <winners> <prize> --r @role\n&{prefix}giveaway <time> <winners> <prize> --r @role1 --r @role2',
     description: 'to start a giveaway.\nFlags:\n\`--r\` to add role requirement. To add multiple role requirements, use \`--r\` multiple times. Role ID or mention can be used for role requirement.\nNOTE: USE FLAGS AT THE END ONLY.',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
      if (!message.member.permissions.has("MANAGE_GUILD")) return message.reply("You're missing Manage Server permission.")
      if (!args[0]||!args[1]||!args[2]) return message.channel.send(`Missing one of the arguements, time/winner/prize. Try \`${prefix}help giveaway\` to know the syntax.`)
+      let channel = message.channel;
+      if (args[0]==`${message.mentions.channels.first()}`) { 
+        channel = message.mentions.channels.first();
+        args.splice(0,1);
+        if (channel.guild.id != message.guild.id) return message.reply(`Invalid channel: \`${channel}\``)
+     }
       let time = args[0];
       let winners = args[1];
       let rem = args.slice(2).join(" ").split("--");
       let prize = rem[0];
       let flags = rem.slice(1);
-      
       if (!time.endsWith("d")&&!time.endsWith("h")&&!time.endsWith("m")&&!time.endsWith("s")) return message.channel.send("Please specify the time with a postfix of s/m/h/d for seconds, minutes, hours or days respectively.");
       time = time.substr(0, time.length-1);
       if (isNaN(time)) return message.channel.send("Please specify the time");
@@ -82,7 +87,7 @@ module.exports = {
       if (req)
         giveawayEM.addField("Requirement", req.join(", "))
 
-      let msg = await message.channel.send({content: "**🎉Giveaway🎉**",embeds:[giveawayEM]});
+      let msg = await channel.send({content: "**🎉Giveaway🎉**",embeds:[giveawayEM]});
       msg.react("🎉");
       
       if (req) {
@@ -100,7 +105,7 @@ module.exports = {
             prize: prize,
             endTime: tme,
             winners: winners,
-            chID: message.channel.id,
+            chID: channel.id,
             host: message.author.id,
             reqs: req,
             guild: message.guild.id
@@ -109,11 +114,16 @@ module.exports = {
           })
         
       })
+      if (channel.id == message.channel.id) {
         if (message.deletable&&!message.deleted) message.delete();
+      } else {
+        message.channel.send(`Giveaway Started in ${channel}`);
+      }
+        
         let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
-      ong[ong.length] = [msg.id, message.guild.id, message.channel.id, prize]           
+      ong[ong.length] = [msg.id, message.guild.id, channel.id, prize]           
         bot.giveaways.set(msg.guild.id, ong);
-        giveaway(bot, Discord, msg.id, tme, winners, prize, message.channel.id, message.author.id, req, false);
+        giveaway(bot, Discord, msg.id, tme, winners, prize, channel.id, message.author.id, req, false);
     }
       
 }
