@@ -1,3 +1,5 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const replies = ["It is certain.", "It is decidedly so.", "Without a doubt.", "Yes – definitely.", "You may rely on it.", "As I see it, yes.", "Most likely.", "Outlook good.", "Yes.", "Signs point to yes.", "Reply hazy, try again.", "Ask again later.", "Better not tell you now.", "Cannot predict now.", "Concentrate and ask again.", "Don't count on it.", "My reply is no.", "My sources say no.", "Outlook not so good.", "Very doubtful."];
 module.exports = {
     name: '8ball',
     type: 'fun',
@@ -6,7 +8,6 @@ module.exports = {
     aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-        const replies = ["It is certain.", "It is decidedly so.", "Without a doubt.", "Yes – definitely.", "You may rely on it.", "As I see it, yes.", "Most likely.", "Outlook good.", "Yes.", "Signs point to yes.", "Reply hazy, try again.", "Ask again later.", "Better not tell you now.", "Cannot predict now.", "Concentrate and ask again.", "Don't count on it.", "My reply is no.", "My sources say no.", "Outlook not so good.", "Very doubtful."];
         if (args.length < 2) return message.channel.send({content: "Please ask a full question"});
         const opt = Math.floor(Math.random()*replies.length);
         let question = args.join(" ");
@@ -27,5 +28,16 @@ module.exports = {
            embed.setColor("RED");
         }
         message.channel.send({ content: "**:magic_wand: Magic 8 Ball :magic_wand:**", embeds: [embed] });
+    },
+    slash: new SlashCommandBuilder()
+	    .setName('8ball')
+	    .setDescription('Ask questions from the magic 8ball!')
+      .addStringOption(option =>
+	    	option.setName('question')
+			    .setDescription('The user who\'s avatar is to be shown')
+          .setRequired(true)),
+    async slashExecute(interaction) {
+      let question = interaction.options.getString('question');
+      interaction.reply({content: `Question: ${question}\nMagic 8ball's reply: ${replies[Math.floor(Math.random()*replies.length)]}`});
     }
 }

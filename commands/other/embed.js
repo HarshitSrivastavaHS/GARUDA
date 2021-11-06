@@ -1,3 +1,4 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
     name: 'embed',
     type: 'utility',
@@ -79,5 +80,43 @@ module.exports = {
             message.channel.send({embeds: [embed]});
             if (message.deletable) message.delete();
         }
+    },
+    slash: new SlashCommandBuilder()
+	    .setName('embed')
+	    .setDescription('Send a custom embed in that channel!')
+      .addStringOption(option =>
+	    	option.setName('description')
+			    .setDescription('The description of the embed')
+          .setRequired(true))
+      .addStringOption(option =>
+	    	option.setName('title')
+			    .setDescription('The title of the embed'))
+      .addStringOption(option =>
+	    	option.setName('footer')
+			    .setDescription('The foooter of the embed'))
+      .addStringOption(option =>
+	    	option.setName('color')
+			    .setDescription('The color of the embed. Use hex')),
+    async slashExecute(interaction) {
+      await interaction.deferReply({ephemeral: true})
+      let Discord = require("discord.js")
+      let title = interaction.options.getString("title");
+      let description = interaction.options.getString("description");
+      let footer = interaction.options.getString("footer");
+      let color = interaction.options.getString("color");
+      if (color&&!/^#([A-Fa-f0-9]{6})$/.test(color))
+        return interaction.editReply({content: `Invalid hex value: \`${color}\``, ephemeral: true});
+      let emb = new Discord.MessageEmbed()
+      .setDescription(description)
+      .setAuthor(`${interaction.user.tag}`, `${interaction.user.displayAvatarURL({dynamic: true})}`)
+      .setColor(color||"GREEN");
+      if (title)
+        emb.setTitle(title);
+      if (footer)
+        emb.setFooter(footer);
+      interaction.channel.send({embeds:[emb]}).catch(()=>{
+        return interaction.editReply({content:"Error sending the embed", ephemeral: true});
+      });
+      interaction.editReply({content: "Embed Created successfully", ephemeral: true});
     }
 }

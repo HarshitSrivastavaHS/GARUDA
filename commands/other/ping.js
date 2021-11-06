@@ -18,6 +18,9 @@ module.exports = {
       .setDescription(`Your ping is ${ping} ms\nLatency is ${bot.ws.ping} ms`)
       message.channel.send({embeds:[embed]})
     },
+    slash: new SlashCommandBuilder()
+	    .setName('ping')
+	    .setDescription('Pong!!'),
     async slashExecute(interaction) {
       const cnt = new Date().getTime();
       const ping = cnt - interaction.createdAt;
