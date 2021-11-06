@@ -24,6 +24,12 @@ module.exports = {
     async slashExecute(interaction) {
       const cnt = new Date().getTime();
       const ping = cnt - interaction.createdAt;
-      interaction.reply(`Your Ping: ${ping} ms\nMy Latency: ${interaction.client.ws.ping} ms`);
+      var icon = interaction.client.user.displayAvatarURL(); 
+      const embed = new Discord.MessageEmbed()
+      .setColor("#FFC0CB")
+      .setThumbnail(`${icon}`)
+      .setTitle("🏓Pong.")
+      .setDescription(`Your ping is ${ping} ms\nLatency is ${interaction.client.ws.ping} ms`)
+      interaction.reply({embeds: [embed]});
     }
 }
