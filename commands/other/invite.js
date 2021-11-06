@@ -10,7 +10,7 @@ module.exports = {
       .setTitle("Want to add me to your server? Use the link below!")
       .setColor("BLUE")
       .addFields({
-        name: "Invite me", value: "https://www.bit.ly/GARUDA-BOT"
+        name: "Invite me", value: "https://discord.com/api/oauth2/authorize?client_id=777840690515279872&permissions=8&scope=applications.commands%20bot"
       },
       { 
         name: "Join the support Server" , value: "https://discord.gg/sBe3jNSdqN"

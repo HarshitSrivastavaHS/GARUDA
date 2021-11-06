@@ -68,7 +68,7 @@ bot.allowedBots = ["870239976690970625"];
 
 setTimeout(()=>{
   const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
-  rest.put(Routes.applicationGuildCommands(bot.user.id, "834689119426314270"), { body: bot.slashCommands })
+  rest.put(Routes.applicationGuildCommands(bot.user.id), { body: bot.slashCommands })
 	  .then(() => console.log('Successfully registered application commands.'))
 	  .catch((error)=>console.log(error));
 
