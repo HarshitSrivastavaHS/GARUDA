@@ -41,7 +41,7 @@ bot.allowedCommands = ["help"]
 fs.readdir("./commands/", (err, categories)=>{
   if (err) return console.err(err)
  console.log(`Found total ${categories.length} categories`) 
-  let allowedCategory = ["fun", "game"];
+  let allowedCategory = ["fun", "game", "image"];
  categories.forEach((category) =>{
       let cmd = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"))
       for (let command of cmd) {
