@@ -1,4 +1,6 @@
 const Discord = require('discord.js')
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
     name: 'ping',
     description: 'This is the ping command',
@@ -15,5 +17,10 @@ module.exports = {
       .setTitle("🏓Pong.")
       .setDescription(`Your ping is ${ping} ms\nLatency is ${bot.ws.ping} ms`)
       message.channel.send({embeds:[embed]})
+    },
+    async slashExecute(interaction) {
+      const cnt = new Date().getTime();
+      const ping = cnt - interaction.createdAt;
+      interaction.reply(`Your Ping: ${ping} ms\nMy Latency: ${interaction.client.ws.ping} ms`);
     }
 }

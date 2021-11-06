@@ -1,3 +1,5 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
     name: 'avatar',
     type: 'fun',
@@ -14,5 +16,15 @@ module.exports = {
         avataremb.setImage(`${mentionUser.user.displayAvatarURL({size: 4096, dynamic: true})}`)
         .setTitle(`${mentionUser.user.tag}'s Avatar`);
         message.channel.send({embeds:[avataremb]});
+    },
+    slash: new SlashCommandBuilder()
+	    .setName('avatar')
+	    .setDescription('Returns the profile picture!')
+      .addUserOption(option =>
+	    	option.setName('user')
+			    .setDescription('The user who\'s avatar is to be shown')),
+    async slashExecute(interaction) {
+      let member = interaction.options.getMember('user')||interaction.member;
+      interaction.reply(member.user.displayAvatarURL({size: 4096, dynamic: true}));
     }
 }
