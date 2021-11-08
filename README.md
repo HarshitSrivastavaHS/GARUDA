@@ -72,5 +72,5 @@
     
 #### For more info on the command, one can try `%help <command>`
 #### More commands are added every week!
-#### <a href="https://bit.ly/GARUDA-BOT" target="_blank">Invite The Bot Now!</a>
+#### <a href="https://discord.com/api/oauth2/authorize?client_id=777840690515279872&permissions=8&scope=applications.commands%20bot" target="_blank">Invite The Bot Now!</a>
 #### <a href="https://discord.gg/sBe3jNSdqN" target="_blank">Join The Support Server!</a>
