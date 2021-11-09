@@ -12,6 +12,11 @@ module.exports = {
           linkName: "Bot Invite (Admin)",
           link: "https://discord.com/oauth2/authorize?client_id=776079305675374642&permissions=8&scope=bot"
         },
+        {
+          name: "Dumbot",
+          linkName: "Bot Invite",
+          link: "https://discord.com/oauth2/authorize?client_id=870239976690970625&permissions=0&scope=bot"
+        }
       ];
       const partnershipEmbed = new Discord.MessageEmbed()
       .setColor("#e52165")
