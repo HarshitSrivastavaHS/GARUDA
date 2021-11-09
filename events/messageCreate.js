@@ -1,4 +1,5 @@
 const afkConfig = require('../Schemas/afk');
+const mongo = require(`../mongo`);
 const Discord = require("discord.js")
 module.exports = {
 	name: 'messageCreate',
