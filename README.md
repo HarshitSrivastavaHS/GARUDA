@@ -5,9 +5,13 @@
 
 ### Why GARUDA?
     • More than 60 commands
+    
     • 24/7 active
+    
     • Fun, Giveaways, Moderation, Ghost ping detection, etc.
+    
     • Serving 10,000+ members right now.
+    
     • And last, but not least; It's  Amazing!!
 
 ### What's the prefix of the bot?
