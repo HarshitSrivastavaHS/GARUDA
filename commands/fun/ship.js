@@ -38,6 +38,6 @@ module.exports = {
       .setTitle("**💗 MATCHMAKING 💗**")
       .setDescription(`${user1} 💞 ${shipPercentage} 💞 ${user2}`)
       .setFooter("Invite Garuda to your server! (/invite)");
-      interaction.editReply({embed: [embed]});
+      interaction.editReply({embeds: [embed]});
     }
 }
