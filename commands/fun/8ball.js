@@ -35,7 +35,7 @@ module.exports = {
 	    .setDescription('Ask questions from the magic 8ball!')
       .addStringOption(option =>
 	    	option.setName('question')
-			    .setDescription('The user who\'s avatar is to be shown')
+			    .setDescription('Your Question')
           .setRequired(true))
       .addBooleanOption(option =>
 	    	option.setName('private')
