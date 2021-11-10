@@ -3,18 +3,18 @@
 ## GARUDA is a multipurpose discord bot created by TechAllByHarshit#1503.
 ### The bot has commands ranging from moderation to fun.
 
-###Why GARUDA?
+### Why GARUDA?
     • More than 60 commands
     • 24/7 active
     • Fun, Giveaways, Moderation, Ghost ping detection, etc.
     • Serving 10,000+ members right now.
     • And last, but not least; It's  Amazing!!
 
-###What's the prefix of the bot?
+### What's the prefix of the bot?
 %. The bot still responds to @mention.
 e.g. %help, % help, @GARUDA#0804 help
 
-###📧 Feel free to join the support server & dm TechAllByHarshit#1503
+### 📧 Feel free to join the support server & dm TechAllByHarshit#1503
     
 #### For more info on the command, one can try `%help <command>`
 #### More commands are added every week!
