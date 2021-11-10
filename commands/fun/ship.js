@@ -7,8 +7,8 @@ module.exports = {
     aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     async execute(message, args, bot, Discord, prefix) {
-      let user1 = args[0]?message.mentions.members.filter(m=>args[0]==m):undefined;
-      let user2 = args[1]?message.mentions.members.filter(m=>args[1]==m):message.member;
+      let user1 = args[0]?message.mentions.members.filter(m=>args[0]==m)[0]:undefined;
+      let user2 = args[1]?message.mentions.members.filter(m=>args[1]==m)[0]:message.member;
       if (!user1) return message.reply(".-.");
       let shipPercentage = Math.random()*100;
       let embed = new Discord.MessageEmbed()
