@@ -9,7 +9,7 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
       let user1 = args[0]?message.mentions.members.filter(m=>args[0].includes(m.user.id)).map(m=>m)[0]:undefined;
       let user2 = args[1]?message.mentions.members.filter(m=>args[1].includes(m.user.id)).map(m=>m)[0]:message.member;
-      if (!user1) return message.reply(".-.");
+      if (!user1) return message.reply("Please re-run the command with the users you want to ship.");
       let shipPercentage = Math.random()*100;
       let embed = new Discord.MessageEmbed()
       .setColor("#FFC0CB")
