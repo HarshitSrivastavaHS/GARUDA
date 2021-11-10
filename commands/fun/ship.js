@@ -9,9 +9,10 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
       let user1 = args[0]?message.mentions.members.filter(m=>args[0]==m):undefined;
       let user2 = args[1]?message.mentions.members.filter(m=>args[1]==m):message.member;
+      if (!user1) return message.reply(".-.");
       let shipPercentage = Math.random()*100;
       let embed = new Discord.MessageEmbed()
-      .setColor("PINK")
+      .setColor("#FFC0CB")
       .setTitle("**💗 MATCHMAKING 💗**")
       .setDescription(`${user1.user.tag} 💞 ${shipPercentage} 💞 ${user2.user.tag}`)
       .setFooter("Invite Garuda to your server! (/invite)");
@@ -33,7 +34,7 @@ module.exports = {
       let user2 = interaction.options.getUser("user2")||interaction.member;
       let shipPercentage = Math.random()*100;
       let embed = new Discord.MessageEmbed()
-      .setColor("PINK")
+      .setColor("#FFC0CB")
       .setTitle("**💗 MATCHMAKING 💗**")
       .setDescription(`${user1.user.tag} 💞 ${shipPercentage} 💞 ${user2.user.tag}`)
       .setFooter("Invite Garuda to your server! (/invite)");
