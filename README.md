@@ -2,73 +2,20 @@
 <img alt="Discord" src="https://img.shields.io/discord/790982401407844384?style=for-the-badge"> <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/TechAllByHarshit/GARUDA?style=for-the-badge"> <img alt="GitHub" src="https://img.shields.io/github/license/TechAllByHarshit/GARUDA?color=blueviolet&style=for-the-badge">
 ## GARUDA is a multipurpose discord bot created by TechAllByHarshit#1503.
 ### The bot has commands ranging from moderation to fun.
-### Giveaway command with no time-limit on the giveaway. Poll command with yes/no or multiple choices. Moderation commands. And so much more!
+GARUDA, a multi-purpose discord bot that does more than any other discord bot.
 
-## Commands:
+Why GARUDA?
+    • More than 60 commands
+    • 24/7 active
+    • Fun, Giveaways, Moderation, Ghost ping detection, etc.
+    • Serving 10,000+ members right now.
+    • And last, but not least; It's  Amazing!!
 
-- <b> Moderation </b> 
-	- `Kick`
-    - `Ban`  
-&nbsp;
-- <b> Games </b>
-	- `Fasttype`
-    - `TicTacToe`
-&nbsp;
-- <b> Fun </b> 
-	- `8Ball`
-    - `Avatar`
-    - `Banner`
-    - `Cat`
-    - `Dog`
-    - `Fox`
-    - `Flip`
-    - `Fuse`
-    - `Trigger`
-&nbsp;
-- <b> Maths </b>
-	- `Maths`
-    - `Linear`
-&nbsp;
-- <b> Info </b> 
-	- `Country`
-    - `Covid`
-    - `Pokemon`
-&nbsp;
-- <b> Utility </b>
-	- `Clear`
-    - `Editsnipe`
-    - `Giveaway`
-    - `Drop`
-    - `Lyrics`
-    - `Poll`
-    	- `Simple Poll`
-        - `Multiple option Poll`
-    - `Snipe`
-&nbsp;
-- <b> Admin </b>
-	- <b> Join message </b>
-    	- `Setwelcome`
-        - `Disablewelcome`
-        - `Simjoin`
-    - <b> Leave message </b>
-    	- `Setleave`
-        - `Disableleave`
-        - `Simleave`
-    - <b> Suggestion Channel </b>
-    	- `Setsuggestion`
-        - `Disablesuggestion`
-        - `suggestion`
-&nbsp;
-- <b> Other </b>
-	- `Afk`
-    - `Help`
-    - `Info`
-    - `Invite`
-    - `Ping`
-    - `Repeat`
-    - `Suggest`
-&nbsp;
-&nbsp;
+What's the prefix of the bot?
+%. The bot still responds to @mention.
+e.g. %help, % help, @GARUDA#0804 help
+
+📧 Feel free to join the support server & dm TechAllByHarshit#1503
     
 #### For more info on the command, one can try `%help <command>`
 #### More commands are added every week!
