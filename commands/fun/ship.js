@@ -14,7 +14,7 @@ module.exports = {
       let embed = new Discord.MessageEmbed()
       .setColor("#FFC0CB")
       .setTitle("**💗 MATCHMAKING 💗**")
-      .setDescription(`${user1} 💞 ${shipPercentage} 💞 ${user2}`)
+      .setDescription(`${user1} 💞 ${shipPercentage}% 💞 ${user2}`)
       .setFooter("Invite Garuda to your server! (/invite)");
       message.reply({embeds: [embed]});
     },
@@ -36,7 +36,7 @@ module.exports = {
       let embed = new Discord.MessageEmbed()
       .setColor("#FFC0CB")
       .setTitle("**💗 MATCHMAKING 💗**")
-      .setDescription(`${user1} 💞 ${shipPercentage} 💞 ${user2}`)
+      .setDescription(`${user1} 💞 ${shipPercentage}% 💞 ${user2}`)
       .setFooter("Invite Garuda to your server! (/invite)");
       interaction.editReply({embeds: [embed]});
     }
