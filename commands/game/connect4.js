@@ -296,8 +296,8 @@ module.exports = {
             yes.setDisabled(true);
             no.setDisabled(true);
             choice = new Discord.MessageActionRow().addComponents(yes, no);
-            if (reason == "idle") return choicemsg.reply("Timed out after 30 seconds of inactivity.");
             choicemsg.edit({content: choicemsg.content, components: [choice]});
+            if (reason == "idle") return choicemsg.reply("Timed out after 30 seconds of inactivity.");
         })
         
 
