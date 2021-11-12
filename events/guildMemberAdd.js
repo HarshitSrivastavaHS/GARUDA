@@ -24,7 +24,9 @@ module.exports = {
   	  let autorole = member.guild.roles.cache.get(ar);
 	    if (autorole) {
 		    if (!member.user.bot){
-			    member.roles.add(autorole);
+			    member.roles.add(autorole).catch(()=>{
+			    	console.log("Missing permission: GuildMemberAdd: Auto Role")
+			    });
 		    }
 	    }
     }
