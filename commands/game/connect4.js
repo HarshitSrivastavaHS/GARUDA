@@ -39,11 +39,14 @@ module.exports = {
         "player1Win": "💛",
         "player2Win": "💚"
         }
+        let count = 0;
+        let movesCount = 0;
         let gameboard = [];
         for (let r = 1; r<=6; r++) {
         let row = [];
         for (let c = 1; c<=7; c++) {
         row.push(pieces.empty);
+        count++;
         }
         gameboard.push(row);
         }
@@ -249,14 +252,8 @@ module.exports = {
             }
             
             if (!win) {
-                
-                let gb = [];
-                for (let row of gameboard){
-                    for (let col of row) {
-                        gb.push(col);
-                    }
-                }
-                if (gb.filter(e=>e==pieces.empty).size>0) {
+                movesCount++;
+                if (movesCount < count) {
                 row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
                 row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
                 activeplayer = activeplayer==player1?player2:player1;
@@ -265,7 +262,7 @@ module.exports = {
                 }
                 else {
                     msg.edit({content: `The game between ${player1} and ${player2} ended in a draw.`,components: [row1, row2]});
-                    collector.stop();
+                    collector.stop("draw");
                 }
             }
         })
@@ -283,7 +280,7 @@ module.exports = {
             if (reason=="idle"){
                 msg.edit({content: `The game between ${player1} and ${player2} ended due to inactivity.\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]}); 
             }
-            else {
+            else if (reason != "draw"){
                 msg.edit({content: `${activeplayer} has won!\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]}); 
             }
         })
