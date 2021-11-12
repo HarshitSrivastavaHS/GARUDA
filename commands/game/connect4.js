@@ -252,7 +252,7 @@ module.exports = {
                 
                 let gb = [];
                 for (let row of gameboard){
-                    for (let col or row) {
+                    for (let col of row) {
                         gb.push(col);
                     }
                 }
