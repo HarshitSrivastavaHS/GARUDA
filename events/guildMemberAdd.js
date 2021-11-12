@@ -11,7 +11,7 @@ module.exports = {
     }
     let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
     if (wc) {
-	    const welcomeCH = await bot.channels.fetch(wc).catch((err)=>{console.log("guildMembersAdd.js wc error")})
+	    const welcomeCH = await bot.channels.fetch(wc).catch((err)=>{console.log("guildMemberAdd.js wc error")})
 	    if (member.user.bot) {
 		    welcomeCH.send(`${member} was just invited to the server.`);
 	    }
