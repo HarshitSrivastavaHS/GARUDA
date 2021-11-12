@@ -250,7 +250,7 @@ module.exports = {
             if (!win) {
                 row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
                 row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
-                activeplayer = activeplayer==player1?player1:player2;
+                activeplayer = activeplayer==player1?player2:player1;
                 msg.edit({content: `${activeplayer}'s turn\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]}); 
                 interaction.reply({content: "You played your turn", ephemeral: true});
             }
