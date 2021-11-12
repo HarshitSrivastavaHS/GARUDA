@@ -30,6 +30,7 @@
     "node-dev": "^6.7.0",
     "node-fetch": "^2.6.5",
     "node-superfetch": "^0.1.11",
+    "nodemon": "^2.0.15",
     "random-puppy": "^1.1.0",
     "reconlx": "^1.4.511",
     "urlencode": "^1.1.0"
