@@ -5,7 +5,7 @@
     if (message.author.bot) return;
     let ml = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).modLog:undefined;
 	  if (!ml) return; 
-		let modChannel = await bot.channels.fetch(ml);
+		let modChannel = await bot.channels.fetch(ml).catch((err)=>{console.log("modlog.js messagedelete error")});
 		if (!modChannel) return;
 		let ModEmbed = new Discord.MessageEmbed()
       .setColor("RED")
@@ -26,7 +26,7 @@
     if (oldMessage.content == message.content) return;
     let ml = bot.serverConfig.get(message.guild.id)?bot.serverConfig.get(message.guild.id).modLog:undefined;
 	  if (!ml) return; 
-		let modChannel = await bot.channels.fetch(ml);
+		let modChannel = await bot.channels.fetch(ml).catch((err)=>{console.log("modlog.js messageupdate error")});
 		if (!modChannel) return;
     let desc = split(`Old Message: ${oldMessage.content}\n+New Message: ${message.content}`);
 		let ModEmbed = new Discord.MessageEmbed()
@@ -62,7 +62,7 @@
   bot.on("messageDeleteBulk", async (messages)=>{
      let ml = bot.serverConfig.get(messages.first().guild.id)?bot.serverConfig.get(messages.first().guild.id).modLog:undefined;
      if (!ml) return;
-     let modChannel = await messages.first().guild.channels.fetch(ml);
+     let modChannel = await messages.first().guild.channels.fetch(ml).catch((err)=>{console.log("modlog.js messageBulkDelete error")});
      if (!modChannel) return;
      let msg = messages.filter(u=>!u.author.bot);
      if (msg.size == 0) return;
