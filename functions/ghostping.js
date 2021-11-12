@@ -20,7 +20,7 @@
 		if (message.mentions.everyone)
 			msg = `${msg} ${message.guild.roles.everyone}`
 		if (!msg) return;
-		let tarch = await bot.channels.fetch(ghost);
+		let tarch = await bot.channels.fetch(ghost).catch((err)=>{console.log("ghostping.js tarch error")});
 		if (!tarch) return;
         if (Date.now()>message.createdTimestamp+15000||Date.now()<message.createdTimestamp+1000) return;
 		let ghostEM = new Discord.MessageEmbed()
