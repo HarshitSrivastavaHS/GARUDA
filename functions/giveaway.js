@@ -16,11 +16,13 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
 
 
   let noMes = false;
-    const giveawayChannel = await bot.channels.fetch(ch); 
+    const giveawayChannel = await bot.channels.fetch(ch).catch((err)=>{
     if (!giveawayChannel) {
         Gend(msg, bot);
       return;
     }
+    console.log("giveaway.js giveawayChannel error")}); 
+    
     msgid = msg;   
     msg = await giveawayChannel.messages.fetch(msg).catch(async ()=>{
       await mongo().then(async (mongoose)=>{
