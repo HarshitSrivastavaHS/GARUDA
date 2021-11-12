@@ -7,8 +7,8 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         let mention = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first(): undefined;
         if (!mention) return message.reply("You forgot to tag your opponent :/");
-        if (mention.id == message.author.id) return message.reply("You cannot play with yourself :/");
-        if (mention.bot) return message.reply(`You cannot play with a bot.`);
+        if (mention.user.id == message.author.id) return message.reply("You cannot play with yourself :/");
+        if (mention.user.bot) return message.reply(`You cannot play with a bot.`);
         let yes = new Discord.MessageButton()
             .setCustomId("accept")
             .setLabel("Accept")
