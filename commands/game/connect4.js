@@ -114,7 +114,7 @@ module.exports = {
             }
             if (winningCells.length >= 4) {
                 for (cell of winningCells) {
-                    gameboard[cell[0]][cell[1]] = activeplayer==player1?pieces.player1Win:player2Win;
+                    gameboard[cell[0]][cell[1]] = activeplayer==player1?pieces.player1Win:pieces.player2Win;
                 }
                 return activeplayer;
             }
@@ -146,7 +146,7 @@ module.exports = {
             }
             if (winningCells.length >= 4) {
                 for (cell of winningCells) {
-                    gameboard[cell[0]][cell[1]] = activeplayer==player1?pieces.player1Win:player2Win;
+                    gameboard[cell[0]][cell[1]] = activeplayer==player1?pieces.player1Win:pieces.player2Win;
                 }
                 return activeplayer;
             }
@@ -181,7 +181,7 @@ module.exports = {
             }
             if (winningCells.length >= 4) {
                 for (cell of winningCells) {
-                    gameboard[cell[0]][cell[1]] = activeplayer==player1?pieces.player1Win:player2Win;
+                    gameboard[cell[0]][cell[1]] = activeplayer==player1?pieces.player1Win:pieces.player2Win;
                 }
                 return activeplayer;
             }
@@ -216,7 +216,7 @@ module.exports = {
             }
             if (winningCells.length >= 4) {
                 for (cell of winningCells) {
-                    gameboard[cell[0]][cell[1]] = activeplayer==player1?pieces.player1Win:player2Win;
+                    gameboard[cell[0]][cell[1]] = activeplayer==player1?pieces.player1Win:pieces.player2Win;
                 }
                 return activeplayer;
             }
@@ -247,12 +247,26 @@ module.exports = {
                     break;
                 }
             }
+            
             if (!win) {
+                
+                let gb = [];
+                for (let row of gameboard){
+                    for (let col or row) {
+                        gb.push(col);
+                    }
+                }
+                if (gb.filter(e=>e==pieces.empty).size>0) {
                 row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
                 row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
                 activeplayer = activeplayer==player1?player2:player1;
                 msg.edit({content: `${activeplayer}'s turn\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]}); 
                 interaction.reply({content: "You played your turn", ephemeral: true});
+                }
+                else {
+                    msg.edit({content: `The game between ${player1} and ${player2} ended in a draw.`,components: [row1, row2]});
+                    collector.stop();
+                }
             }
         })
 
