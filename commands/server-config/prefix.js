@@ -9,7 +9,7 @@ module.exports = {
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
         
-        if (!message.member.permissions.has("ADMINISTRATOR")) return message.channel.send("Only an administrator can run this.")
+        if (!message.member.permissions.has("MANAGE_GUILD")) return message.channel.send("You do not have the required permission (Manage Server)")
         if (args.length<1) return message.channel.send("Invalid syntax. Do `%help prefix` for more info.");
         
         await mongo().then(async mongoose =>{
