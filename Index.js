@@ -65,6 +65,7 @@ bot.snipes = new Map();
 bot.editSnipes = new Map();
 bot.fasttype = new Array();
 bot.allowedBots = ["870239976690970625"];
+bot.autoroleMissingPermissions = [];
 
 setTimeout(()=>{
   const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
