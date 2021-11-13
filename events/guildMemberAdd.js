@@ -1,5 +1,6 @@
 const welcomeJS = require(`../util/welcome`);
-const Discord = require("discord.js")
+const Discord = require("discord.js");
+const messageCreate = require("./messageCreate");
 module.exports = {
 	name: 'guildMemberAdd',
   async execute(member) {
@@ -11,9 +12,11 @@ module.exports = {
     }
     let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
     if (wc) {
-	    const welcomeCH = await bot.channels.fetch(wc).catch((err)=>{console.log("guildMemberAdd.js wc error")})
+	    const welcomeCH = await bot.channels.fetch(wc).catch((err)=>{
+			console.log("guildMemberAdd.js wc error")
+		})
 	    if (member.user.bot) {
-		    welcomeCH.send(`${member} was just invited to the server.`);
+		    welcomeCH.send(`${member} was just invited to the server.`).catch(e=>{});
 	    }
   	  else {
   		  welcomeJS.execute(member, welcomeCH, Discord);
@@ -24,9 +27,31 @@ module.exports = {
   	  let autorole = member.guild.roles.cache.get(ar);
 	    if (autorole) {
 		    if (!member.user.bot){
-			    member.roles.add(autorole).catch(()=>{
-			    	console.log("Missing permission: GuildMemberAdd: Auto Role")
-			    });
+				if (member.guild.me.permissions.has("MANAGE_GUILD")) {
+					
+					member.roles.add(autorole).catch(()=>{
+						
+					});
+				}
+				else {
+					if(!bot.autoroleMissingPermissions.includes(member.guild.id)) {
+						(member.guild.systemChannelId
+							&&
+						await member.guild.fetch(member.guild.systemChannelId)
+							&&
+						member.guild.systemChannel.permissionsFor(bot.user).has("VIEW_CHANNEL")
+							&&
+						member.guild.systemChannel.permissionsFor(bot.user).has("SEND_MESSAGES")
+							&&
+						member.guild.systemChannel.send("I cannot give role automatically to new members joining since i don't have permission. I need ManageServer permission for this."))
+							||
+						await member.guild.fetchOwner().then(o=>{
+							o.send(`**I don't have permission in your server (${member.guild.name}) to give roles automatically to new members joining. Please give me Manage Server permission so that I can give roles automatically.**`).catch(e=>{});
+						});
+						bot.autoroleMissingPermissions.push(member.guild.id);
+					}
+				}
+			    
 		    }
 	    }
     }
