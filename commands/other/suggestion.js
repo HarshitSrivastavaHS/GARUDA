@@ -21,7 +21,7 @@ module.exports = {
         }
         if (!msg.editable) return message.reply("I am not able to edit that message.");
         if (!msg.embeds) return message.reply("That's not the message id of a suggestion message.")
-        if (msg.embeds[0].title!="Suggestion") return message.reply("That suggestion is either already accepted/rejected or its not a suggestion.")
+        if (msg.embeds[0].title!="Suggestion"&&msg.embeds[0].title!="Suggestion Accepted"&&msg.embeds[0].title!="Suggestion Declined") return message.reply("That suggestion is either already accepted/rejected or its not a suggestion.")
 
         if (message.reference){
           if (message.reference["messageID"]==args[0])
