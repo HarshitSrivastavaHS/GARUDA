@@ -32,8 +32,8 @@ module.exports = {
         if (!args.length>0) return message.reply("Whether to accept or reject?")
         if (!(args[0].toLowerCase() == "accept") && !(args[0].toLowerCase() == "reject")) return message.reply("kindly tell whether to accept or reject the suggestion.")
         let embed = new Discord.MessageEmbed()
-        .setDescription(msg.embeds[0].description)
-        .setAuthor(msg.embeds[0].author["name"], msg.embeds[0].author["iconURL"])
+        .setDescription(msg.embeds[0].description).catch(()=>{})
+        .setAuthor(msg.embeds[0].author["name"], msg.embeds[0].author["iconURL"]).catch(()=>{})
         .setTimestamp();
 
         if (args[0].toLowerCase() == "accept") {
