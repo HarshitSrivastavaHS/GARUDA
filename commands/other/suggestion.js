@@ -32,8 +32,8 @@ module.exports = {
         if (!args.length>0) return message.reply("Whether to accept or reject?")
         if (!(args[0].toLowerCase() == "accept") && !(args[0].toLowerCase() == "reject")) return message.reply("kindly tell whether to accept or reject the suggestion.")
         let embed = new Discord.MessageEmbed()
-        .setDescription(msg.embeds[0].description).catch(()=>{})
-        .setAuthor(msg.embeds[0].author["name"], msg.embeds[0].author["iconURL"]).catch(()=>{})
+        .setDescription(msg.embeds[0].description)
+        .setAuthor(msg.embeds[0].author["name"], msg.embeds[0].author["iconURL"])
         .setTimestamp();
 
         if (args[0].toLowerCase() == "accept") {
@@ -54,7 +54,7 @@ module.exports = {
             {name: "Status", value: `:x: Declined ${args.length>0?"| "+args.join(" "):""}`}
           );
         }
-        message.channel.send("Done!").then((ms) =>{
+        message.channel.send("Done!").catch(()=>{return message.reply("That's not a suggestion")}).then((ms) =>{
           setTimeout(()=>{message.delete(); ms.delete();}, 2000)
         })
         msg.edit({embeds:[embed]});
