@@ -32,8 +32,8 @@ module.exports = {
         if (!args.length>0) return message.reply("Whether to accept or reject?")
         if (!(args[0].toLowerCase() == "accept") && !(args[0].toLowerCase() == "reject")) return message.reply("kindly tell whether to accept or reject the suggestion.")
         let embed = new Discord.MessageEmbed()
-        .setDescription(msg.embeds[0].description)
-        .setAuthor(msg.embeds[0].author["name"], msg.embeds[0].author["iconURL"])
+        .setDescription(msg.embeds[0].description?msg.embeds[0].description:"This isn't a suggestion message")
+        .setAuthor(msg.embeds[0].author["name"]?msg.embeds[0].author["name"]:"-_-", msg.embeds[0].author["iconURL"]?msg.embeds[0].author["iconURL"]:bot.user.displayAvatarURL())
         .setTimestamp();
 
         if (args[0].toLowerCase() == "accept") {
@@ -54,9 +54,9 @@ module.exports = {
             {name: "Status", value: `:x: Declined ${args.length>0?"| "+args.join(" "):""}`}
           );
         }
-        message.channel.send("Done!").catch(()=>{return message.reply("That's not a suggestion")}).then((ms) =>{
+        message.channel.send("Done!").catch(()=>{}).then((ms) =>{
           setTimeout(()=>{message.delete(); ms.delete();}, 2000)
         })
-        msg.edit({embeds:[embed]});
+        msg.edit({embeds:[embed]}).catch(()=>{});
     }
 }
