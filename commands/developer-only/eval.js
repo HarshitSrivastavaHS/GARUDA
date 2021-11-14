@@ -14,17 +14,18 @@ module.exports = {
       return text;
 }
     
+         try {
          const code = args.join(" ");
-      	let evaled = await eval(code).catch((err)=>{
-      return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-    }) ;
+      	let evaled = eval(code);
 	if (evaled instanceof Promise || (Boolean(evaled) && typeof evaled.then === 'function' && typeof evaled.catch === 'function')) evaled = await evaled;
       	if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled, { depth: 0 });
 
 evaled = Discord.Formatters.codeBlock("md", clean(evaled))
       message.channel.send({ content: evaled, split: true }).catch(err=>{console.log(evaled); message.channel.send("Results were logged in the console.");})
-    
+    } catch (err) {
+      return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    } 
     
     }
 }
