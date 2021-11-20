@@ -1,6 +1,6 @@
 const welcomeJS = require(`../util/welcome`);
 const Discord = require("discord.js");
-const mongo = require(`../../mongo`);
+const mongo = require(`../mongo`);
 const freezerConfig = require('../../Schemas/freezenick');
 const messageCreate = require("./messageCreate");
 module.exports = {
