@@ -22,7 +22,7 @@ module.exports = {
     },
     slash: new SlashCommandBuilder()
 	    .setName('vote')
-	    .setDescription('Vote for the bot!');
+	    .setDescription('Vote for the bot!'),
     async slashExecute(interaction) {
       await interaction.deferReply()
       const emb = new Discord.MessageEmbed()
