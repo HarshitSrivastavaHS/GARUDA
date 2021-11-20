@@ -1,5 +1,7 @@
 const welcomeJS = require(`../util/welcome`);
 const Discord = require("discord.js");
+const mongo = require(`../../mongo`);
+const freezerConfig = require('../../Schemas/freezenick');
 const messageCreate = require("./messageCreate");
 module.exports = {
 	name: 'guildMemberAdd',
@@ -7,7 +9,12 @@ module.exports = {
     let bot = member.client;
 		if (bot.freezer.has(`${member.guild.id}-${member.user.id}`)) {
       member.setNickname(bot.freezer.get(`${member.guild.id}-${member.user.id}`)).catch((err)=>{
-        console.log(err);
+        bot.freezer.delete(`${member.guild.id}-${member.user.id}`);
+        await mongo().then(async (mongoose)=>{
+            await freezerConfig.findOneAndRemove({
+                    _id: `${message.guild.id}-${message.mentions.users.first().id}`
+                })
+             })
       });
     }
     let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
