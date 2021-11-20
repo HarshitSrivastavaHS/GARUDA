@@ -258,7 +258,7 @@ module.exports = {
                 row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
                 activeplayer = activeplayer==player1?player2:player1;
                 msg.edit({content: `${activeplayer}'s turn\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]}); 
-                interaction.reply({content: "You played your turn", ephemeral: true});
+                interaction.deleteReply();
                 }
                 else {
                     msg.edit({content: `The game between ${player1} and ${player2} ended in a draw.`,components: [row1, row2]});
