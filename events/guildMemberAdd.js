@@ -8,7 +8,7 @@ module.exports = {
   async execute(member) {
     let bot = member.client;
 		if (bot.freezer.has(`${member.guild.id}-${member.user.id}`)) {
-      member.setNickname(bot.freezer.get(`${member.guild.id}-${member.user.id}`)).catch((err)=>{
+      member.setNickname(bot.freezer.get(`${member.guild.id}-${member.user.id}`)).catch(async (err)=>{
         bot.freezer.delete(`${member.guild.id}-${member.user.id}`);
         await mongo().then(async (mongoose)=>{
             await freezerConfig.findOneAndRemove({
