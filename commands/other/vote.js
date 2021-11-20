@@ -31,7 +31,7 @@ module.exports = {
         .setDescription("Thank you for using this command. You can vote for Garuda on Top.gg and Discord Bot List.\nYou can vote for the bot every 12 hours!.")
         .addField(`**Top.gg**`, `**[Vote Now!](https://top.gg/bot/777840690515279872/vote)**`)
         .addField(`**Discord Bot List**`, `**[Vote Now!](https://discordbotlist.com/bots/garuda/upvote)**`)
-        .setThumbnail(message.author.displayAvatarURL())
+        .setThumbnail(interaction.user.displayAvatarURL())
         .setTimestamp()
         .setFooter("Thank You!");
       interaction.editReply({embeds:[emb]});
