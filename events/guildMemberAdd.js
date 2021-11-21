@@ -12,7 +12,7 @@ module.exports = {
         bot.freezer.delete(`${member.guild.id}-${member.user.id}`);
         await mongo().then(async (mongoose)=>{
             await freezerConfig.findOneAndRemove({
-                    _id: `${message.guild.id}-${message.mentions.users.first().id}`
+                    _id: `${member.guild.id}-${member.user.id}`
                 })
              })
       });
