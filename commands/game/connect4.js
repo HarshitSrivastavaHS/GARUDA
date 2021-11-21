@@ -170,7 +170,7 @@ module.exports = {
             }
             colToCheck = column+1;
             rowToCheck = row-1;
-            while (rowToCheck < 6) {
+            while (rowToCheck < 6&&colToCheck>=0) {
                 const cellToCheck = gameboard[rowToCheck][colToCheck];
                 
                 if (cellToCheck == cell) {
@@ -192,7 +192,7 @@ module.exports = {
             winningCells = [[row, column]];
             rowToCheck = row-1;
             colToCheck = column-1;
-            while (colToCheck >=0 && rowToCheck < 6) {
+            while (colToCheck >=0 && rowToCheck >= 0) {
                 const cellToCheck = gameboard[rowToCheck][colToCheck];
                 if (cellToCheck == cell) {
                     winningCells.push([rowToCheck, colToCheck]);
@@ -205,7 +205,7 @@ module.exports = {
             }
             colToCheck = column+1;
             rowToCheck = row+1;
-            while (rowToCheck < 6) {
+            while (rowToCheck < 6 && colToCheck < 7) {
                 const cellToCheck = gameboard[rowToCheck][colToCheck];
                 
                 if (cellToCheck == cell) {
