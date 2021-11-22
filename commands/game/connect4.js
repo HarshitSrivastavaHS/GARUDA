@@ -82,8 +82,8 @@ module.exports = {
                 .setStyle("PRIMARY")
         let row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
         let row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
-        let columns = "1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣";
-        let msg = await message.channel.send({content: `${activeplayer}'s turn\n${columns}\n${gameboard.map(r=>r.join("")).join("\n")}`, components: [row1, row2]}); 
+        let columns = "1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣";
+        let msg = await message.channel.send({content: `${activeplayer}'s turn\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`, components: [row1, row2]}); 
         const collector = new Discord.InteractionCollector(bot, {message: msg, type: "MESSAGE_COMPONENT", idle: 30000});
         
         let checkWin = ((row, column)=>{
@@ -258,11 +258,11 @@ module.exports = {
                 row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
                 row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
                 activeplayer = activeplayer==player1?player2:player1;
-                msg.edit({content: `${activeplayer}'s turn\n${columns}\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]}); 
+                msg.edit({content: `${activeplayer}'s turn\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
                 interaction.deleteReply().catch(()=>{});
                 }
                 else {
-                    msg.edit({content: `The game between ${player1} and ${player2} ended in a draw.\n${columns}\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]});
+                    msg.edit({content: `The game between ${player1} and ${player2} ended in a draw.\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]});
                     collector.stop("draw");
                 }
             }
@@ -279,10 +279,10 @@ module.exports = {
             row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
             row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
             if (reason=="idle"){
-                msg.edit({content: `The game between ${player1} and ${player2} ended due to inactivity.\n${columns}\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]}); 
+                msg.edit({content: `The game between ${player1} and ${player2} ended due to inactivity.\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
             }
             else if (reason != "draw"){
-                msg.edit({content: `${activeplayer} has won!\n${columns}\n${gameboard.map(r=>r.join("")).join("\n")}`,components: [row1, row2]}); 
+                msg.edit({content: `${activeplayer} has won!\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
             }
         })
             }
