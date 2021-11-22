@@ -171,7 +171,7 @@ module.exports = {
             }
             colToCheck = column+1;
             rowToCheck = row-1;
-            while (rowToCheck < 6&&colToCheck>=0) {
+            while (rowToCheck >= 0 && colToCheck < 7) {
                 const cellToCheck = gameboard[rowToCheck][colToCheck];
                 
                 if (cellToCheck == cell) {
@@ -180,8 +180,8 @@ module.exports = {
                 else {
                     break;
                 }
-                rowToCheck++;
-                colToCheck--;
+                rowToCheck--;
+                colToCheck++;
             }
             if (winningCells.length >= 4) {
                 for (cell of winningCells) {
