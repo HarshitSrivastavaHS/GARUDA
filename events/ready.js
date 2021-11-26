@@ -6,7 +6,7 @@ module.exports = {
 		//statcord.autopost();
 	  console.log(`Ready! Logged in as ${bot.user.tag}`);
 	  bot.user.setPresence({
-      activities: [{ name: `Ping me for help!`, type: 'WATCHING' }],
+      activities: [{ name: `Ping for help on ${bot.guilds.cache.size} servers!`, type: 'WATCHING' }],
     });
 	  require("../functions/ghostping")(bot, Discord);
     require("../functions/modLog")(bot, Discord);
