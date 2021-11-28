@@ -53,7 +53,7 @@ module.exports = {
 
       let nick = args.slice(2).join(" ");
 
-      if (nick > 32) return message.reply("Nickname cannot be longer than 32 characters.");
+      if (nick.length > 32) return message.reply("Nickname cannot be longer than 32 characters.");
       
       if (!message.mentions.members.first().manageable) return message.reply("I don't have permissions to manage that member.");
 
