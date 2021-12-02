@@ -1,5 +1,5 @@
-function Gend(msg, bot) {
-  let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];       if (ong.length==1)        {bot.giveaways.delete(msg.guild.id);}       else {       let presentInArray = ong.find(a=>a.includes(msg.id));       if (presentInArray) {         ong.splice(ong.indexOf(presentInArray), 1);                if (ong.length == 0) bot.giveaways.delete(msg.guild.id);         else bot.giveaways.set(msg.guild.id, ong);       }       }
+function Gend(msg, guild, bot, id) {
+  let ong = bot.giveaways.get(guild.id)!=undefined?bot.giveaways.get(guild.id):[];       if (ong.length==1)        {bot.giveaways.delete(guild.id);}       else {       let presentInArray = ong.find(a=>a.includes(id));       if (presentInArray) {         ong.splice(ong.indexOf(presentInArray), 1);                if (ong.length == 0) bot.giveaways.delete(guild.id);         else bot.giveaways.set(guild.id, ong);       }       }
 }
 
 
@@ -34,7 +34,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       noMes = true;
     });
     if (noMes) {
-        Gend(msg, bot);
+        Gend(msg, giveawayChannel.guild, bot, msgid);
       return;
     }
     if (msg.content == "**🎉Giveaway Ended🎉**") {
@@ -43,7 +43,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
           _id: msg.id
         })
       })
-      Gend(msg, bot);
+      Gend(msg,msg.guild, bot, msg.id);
       return;
     }
 
@@ -94,11 +94,11 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
           _id: msg.id
         })
       })
-      Gend(msg, bot);
+      Gend(msg,msg.guild, bot,msg.id);
       return;
     }
 
-    Gend(msg, bot);
+    Gend(msg, msg.guild, bot, msg.id);
          
     let giveawayHost = await giveawayChannel.guild.members.fetch(host);
     
