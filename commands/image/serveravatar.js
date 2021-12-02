@@ -8,7 +8,7 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         //return message.channel.send("in development")
         await message.guild.members.fetch();
-        const mentionUser = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first():false|| message.guild.members.cache.get(args[0])|| message.guild.members.cache.find(m => m.user.username.toLowerCase().includes(args.length>0?args.join(" ").toLowerCase():null))||message.member;
+        const mentionUser = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first():false|| message.guild.members.cache.get(args[0])|| args.length > 0 ? message.guild.members.cache.find(m => m.user.username.toLowerCase().includes(args.join(" ").toLowerCase())):false||message.member;
         const fetch = require("node-fetch");
         let res = await fetch(`https://discord.com/api/guilds/${message.guild.id}/members/${mentionUser.user.id}`, {
            headers: {
