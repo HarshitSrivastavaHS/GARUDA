@@ -18,7 +18,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
   let noMes = false;
     const giveawayChannel = await bot.channels.fetch(ch).catch((err)=>{
     if (!giveawayChannel) {
-        Gend(msg, bot);
+     // Gend(msg, bot);
       return;
     }
     console.log("giveaway.js giveawayChannel error")}); 
