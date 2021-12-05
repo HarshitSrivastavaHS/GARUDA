@@ -34,8 +34,8 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       noMes = true;
     });
     if (noMes) {
-        Gend(msg, giveawayChannel.guild, bot, msgid);
-      return;
+       return Gend(msg, giveawayChannel.guild, bot, msgid);
+      
     }
     if (msg.content == "**🎉Giveaway Ended🎉**") {
       await mongo().then(async (mongoose)=>{
