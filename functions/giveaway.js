@@ -88,6 +88,10 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
 
   setTimeout(async ()=>{
 
+   if (!msg) {
+      return Gend(msg, giveawayChannel.guild, bot, msgid);
+   }
+
     if (msg.content == "**🎉Giveaway Ended🎉**") {
       await mongo().then(async (mongoose)=>{
         await giveawaySchema.deleteOne({
