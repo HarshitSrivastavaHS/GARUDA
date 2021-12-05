@@ -88,8 +88,8 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
 
   setTimeout(async ()=>{
 
-   if (!msg) {
-      return Gend(msg, giveawayChannel.guild, bot, msgid);
+   if (msg.deleted) {
+      return Gend(msg, msg.guild, bot, msgid);
    }
 
     if (msg.content == "**🎉Giveaway Ended🎉**") {
@@ -111,7 +111,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     .setTitle("Your giveaway has ended!")
     .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     
-    await msg.reactions.cache.get("🎉").users.fetch()
+    await msg.reactions.cache.get("🎉").users.fetch({limit: 2500})
     let giveawayWinners = msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
       if (b.bot) return false;
       if (!reqs) return true;
