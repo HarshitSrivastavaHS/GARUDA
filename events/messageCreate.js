@@ -92,7 +92,7 @@ module.exports = {
               link: "https://discord.com/oauth2/authorize?client_id=870239976690970625&permissions=0&scope=bot"
           }
       ];
-      if (Math.random() * 50 == 2) {
+      if (Math.floor(Math.random() * 50) == 2) {
           const partnershipEmbed = new Discord.MessageEmbed()
               .setColor("#e52165")
               .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL({ dynamic: true })}`)
