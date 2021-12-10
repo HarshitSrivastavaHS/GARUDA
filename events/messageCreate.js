@@ -87,7 +87,7 @@ module.exports = {
      
       
       if (Math.floor(Math.random() * 50) == 2) {
-          bot.commands.get("partners").execute(message, [], bot, Discord, prefix).catch((err)=>{console.log(err)});
+          bot.commands.get("partners").command.execute(message, [], bot, Discord, prefix);
       }
   },
 };
