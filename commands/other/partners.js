@@ -14,7 +14,7 @@ module.exports = {
         },
         {
           name: "Dumbot",
-          linkName: "Bot Invite",
+          linkName: "Bot Invite (Admin)",
           link: "https://discord.com/api/oauth2/authorize?client_id=919244474029334548&permissions=8&scope=applications.commands%20bot"
         }
       ];
