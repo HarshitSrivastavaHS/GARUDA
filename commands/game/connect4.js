@@ -263,7 +263,6 @@ module.exports = {
                 interaction.deleteReply().catch(()=>{});
                 }
                 else {
-                    msg.edit({content: `The game ended in a draw.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]});
                     collector.stop("draw");
                 }
             }
@@ -282,7 +281,10 @@ module.exports = {
             if (reason=="idle"){
                 msg.edit({content: `The game ended due to inactivity.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
             }
-            else if (reason != "draw"){
+            else if (reason == "draw") {
+                msg.edit({content: `The game ended in a draw.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]});
+            }
+            else {
                 msg.edit({content: `${activeplayer} has won!\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
             }
         })
