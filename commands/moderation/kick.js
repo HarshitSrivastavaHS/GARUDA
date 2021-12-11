@@ -20,8 +20,8 @@ module.exports = {
         const srole = message.member.roles.highest.position;
         const rrole = mentionMember.roles.highest.position;
         const brole = message.guild.me.roles.highest.position;
-        
-        if (srole>rrole) {
+        let owner = await message.guild.fetchOwner();
+        if (srole>rrole || owner.id == message.author.id) {
             if (brole>rrole) {
                 mentionMember.kick();
                 message.channel.send(`${mentionMember} was kicked by ${message.member}.`);
