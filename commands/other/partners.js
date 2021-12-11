@@ -15,7 +15,7 @@ module.exports = {
         {
           name: "Dumbot",
           linkName: "Bot Invite",
-          link: "https://discord.com/oauth2/authorize?client_id=870239976690970625&permissions=0&scope=bot"
+          link: "https://discord.com/api/oauth2/authorize?client_id=919244474029334548&permissions=8&scope=applications.commands%20bot"
         }
       ];
       const partnershipEmbed = new Discord.MessageEmbed()
