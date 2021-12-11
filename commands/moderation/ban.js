@@ -19,7 +19,8 @@ module.exports = {
         const srole = message.member.roles.highest.position;
         const rrole = await message.guild.members.fetch(mentionMember).then(m=>m.roles.highest.position).catch(e=>-1);
         let banReason = args.slice(1).join(" ");
-        if (srole>rrole || message.guild.owner.id == message.author.id) {
+        let owner = await message.guild.fetchOwner();
+        if (srole>rrole || owner.id == message.author.id) {
             message.guild.members.ban(mentionMember, {reason: banReason?banReason:"Not provided"}).then(user=>{
                 message.channel.send(`Successfully banned \`${user.username || user.id || user}\` from \`${message.guild.name}\`${banReason?`\nReason: \`${banReason}\``:""}`);
             }).catch(err=>{
