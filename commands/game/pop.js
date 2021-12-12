@@ -19,7 +19,7 @@ module.exports = {
             for (let i = 1; i<=row; i++) {
                 for (let j = 1; j<=col; j++) {
                     if (i == rp && j == cp)
-                        str += `||\`${word}\`|| `
+                        str += `||**\`${word}\`**|| `
                     else
                         str+="||`pop`|| "
                 }
