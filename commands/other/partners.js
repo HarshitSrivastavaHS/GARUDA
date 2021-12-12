@@ -8,11 +8,6 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
       const partners = [
         {
-          name: "Luminous",
-          linkName: "Bot Invite (Admin)",
-          link: "https://discord.com/oauth2/authorize?client_id=776079305675374642&permissions=8&scope=bot"
-        },
-        {
           name: "Dumbot",
           linkName: "Bot Invite (Admin)",
           link: "https://discord.com/api/oauth2/authorize?client_id=919244474029334548&permissions=8&scope=applications.commands%20bot"
