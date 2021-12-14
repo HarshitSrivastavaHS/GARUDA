@@ -1,12 +1,13 @@
 module.exports = {
     name: 'drop',
-    type: 'utility',
     usage: `&{prefix}drop <prize>`,
     description: 'first person to react within 30 seconds wins.',
     aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'ADD_REACTIONS'],
     async execute(message, args, bot, Discord, prefix) {
-        
+        let managerRoles = bot.serverConfig.get(message.guild.id)&&bot.serverConfig.get(message.guild.id).giveaway?bot.serverConfig.get(message.guild.id).giveaway: [];
+     if (!message.member.permissions.has("MANAGE_GUILD")&&message.member.roles.cache.filter(r=>managerRoles.includes(r)).size==0) return message.reply("You don't have Manage Server permission and you don't have any of the giveaway manager role either.")
+     
         if (args.length<1) return message.channel.send("Re-run the command but this time actually mention the prize.");
         const prize = args.join(" ");
         let embed = new Discord.MessageEmbed()
