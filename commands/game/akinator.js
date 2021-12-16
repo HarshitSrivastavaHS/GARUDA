@@ -134,6 +134,7 @@ module.exports = {
     async execute(message, args, bot, Discord, prefix) {
         if (bot.aki.includes(message.author.id)) return message.reply("A game started by you is already running.");
         bot.aki.push(message.author.id);
+        message.channel.sendTyping();
         const aki = new Aki({region: "en", childMode: true, proxy: undefined});
         await aki.start();
         askQuestion(message, aki);
