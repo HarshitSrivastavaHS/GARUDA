@@ -15,6 +15,7 @@
   "dependencies": {
     "@discordjs/builders": "^0.8.2",
     "@discordjs/rest": "0.1.0-canary.0",
+    "aki-api": "^6.0.8",
     "canvacord": "^5.2.3",
     "canvas": "^2.8.0",
     "clashofclans.js": "^1.5.4",
