@@ -4,7 +4,7 @@ const { Message } = require("discord.js");
 module.exports = {
     async execute(member, welcomeCH, Discord) {
       await member.guild.members.fetch();
-      let random = Math.floor(Math.random()*6+1);
+      let random = Math.floor(Math.random()*5+1);
       const image = await new Canvas.Welcome()
         .setUsername(member.user.username)
         .setDiscriminator(member.user.discriminator)
@@ -22,13 +22,8 @@ module.exports = {
         .toAttachment();
         
       const attachment = new Discord.MessageAttachment(image.toBuffer(), "welcome-image.png");
-
-      let emb = new Discord.MessageEmbed()
-      .setColor("YELLOW")
-      .setTitle("Welcome")
-      .setImage(attachment);
       
-      welcomeCH.send({content:`Welcome to **${member.guild.name}**, <@${member.user.id}>`,embeds: [emb], files:[attachment]}).catch(e=>{});
+      welcomeCH.send({content:`Welcome to **${member.guild.name}**, <@${member.user.id}>`,embeds: [emb], files:[attachment]}).catch(e=>{console.log(e)});
     }
 }
 
