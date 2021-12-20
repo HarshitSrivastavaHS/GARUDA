@@ -1,9 +1,8 @@
 const Canvas = require("discord-canvas");
-const { Message } = require("discord.js");
-
 module.exports = {
     async execute(member, welcomeCH, Discord) {
       await member.guild.members.fetch();
+      let colors = ["#8a2be2", "#8015EA", "#FF4040", "#003366", "#FFFFFF"];
       let random = Math.floor(Math.random()*5+1);
       const image = await new Canvas.Welcome()
         .setUsername(member.user.username)
@@ -12,12 +11,12 @@ module.exports = {
         .setAvatar(member.user.displayAvatarURL({format: "jpg", size: 4096}))
         .setText("message", "Welcome to {server}")
         .setText("member-count", `Humans: ${member.guild.members.cache.filter(m=>!m.user.bot).size} Bots: ${member.guild.members.cache.filter(m=>m.user.bot).size}`)
-        .setColor("border", "#8015EA")
-        .setColor("username-box", "#8015EA")
-        .setColor("discriminator-box", "#8015EA")
-        .setColor("message-box", "#8015EA")
-        .setColor("title", "#8015EA")
-        .setColor("avatar", "#8015EA")
+        .setColor("border", colors[random-1])
+        .setColor("username-box", colors[random-1])
+        .setColor("discriminator-box", colors[random-1])
+        .setColor("message-box", colors[random-1])
+        .setColor("title", colors[random-1])
+        .setColor("avatar", colors[random-1])
         .setBackground(`util/welcome${random}.jpg`)
         .toAttachment();
         
