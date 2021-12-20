@@ -23,7 +23,7 @@ module.exports = {
         
       const attachment = new Discord.MessageAttachment(image.toBuffer(), "welcome-image.png");
       
-      welcomeCH.send({content:`Welcome to **${member.guild.name}**, <@${member.user.id}>`,embeds: [emb], files:[attachment]}).catch(e=>{console.log(e)});
+      welcomeCH.send({content:`Welcome to **${member.guild.name}**, <@${member.user.id}>`, files:[attachment]}).catch(e=>{console.log(e)});
     }
 }
 
