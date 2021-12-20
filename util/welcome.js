@@ -1,4 +1,5 @@
-const Canvas = require("discord-canvas")
+const Canvas = require("discord-canvas");
+const { Message } = require("discord.js");
 
 module.exports = {
     async execute(member, welcomeCH, Discord) {
@@ -22,8 +23,12 @@ module.exports = {
         
       const attachment = new Discord.MessageAttachment(image.toBuffer(), "welcome-image.png");
 
+      let emb = new Discord.MessageEmbed()
+      .setColor("YELLOW")
+      .setTitle("Welcome")
+      .setImage(attachment);
       
-      welcomeCH.send({content:`Welcome to **${member.guild.name}**, <@${member.user.id}>`,files:[attachment]}).catch(e=>{});
+      welcomeCH.send({content:`Welcome to **${member.guild.name}**, <@${member.user.id}>`,embeds: [emb], files:[attachment]}).catch(e=>{});
     }
 }
 
