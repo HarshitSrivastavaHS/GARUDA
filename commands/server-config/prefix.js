@@ -1,5 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
+const serverConfigurator = require('../../functions/serverConfig');
 module.exports = {
     name: 'prefix',
     type: 'utility',
@@ -24,18 +25,8 @@ module.exports = {
                 })
             
         })
-        let result = bot.serverConfig.get(message.guild.id);
-        bot.serverConfig.set(message.guild.id, {
-            prefix: args[0],
-            suggestion: result.suggestion,
-            welcome: result.welcome,
-            leave: result.leave,
-            modLog: result.modLog,
-            ghost: result.ghost,
-            autoRole: result.autoRole,
-            goal: result.goal,
-            giveaway: result.giveawayManagers
-        });
+        
+        await serverConfigurator(bot, message.guild.id);
         message.channel.send(`Successfully changed the prefix to \`${args[0]}\``); 
     }
 }

@@ -1,5 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
+const serverConfigurator = require('../../functions/serverConfig');
 
 module.exports = {
     name: 'suggestionchannel',
@@ -42,19 +43,7 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully set the ${channel} as the suggestion channel.`);
-                let result = bot.serverConfig.get(message.guild.id);
-                    bot.serverConfig.set(message.guild.id, {
-                    prefix: result.prefix,
-                    suggestion: channel.id,
-                    welcome: result.welcome,
-                    leave: result.leave,
-                    modLog: result.modLog,
-                    ghost: result.ghost,
-                    autoRole: result.autoRole,
-                    goal: result.goal,
-                    giveaway: result.giveawayManagers
-                    
-                })    
+                await serverConfigurator(bot, message.guild.id);
             }
             else {
                 message.reply("Please mention the suggestion channel.")
@@ -74,18 +63,7 @@ module.exports = {
                     })
             });
             msg.edit(`Successfully disabled the suggestion channel`);
-            let result = bot.serverConfig.get(message.guild.id);
-                bot.serverConfig.set(message.guild.id, {
-                prefix: result.prefix,
-                suggestion: undefined,
-                welcome: result.welcome,
-                leave: result.leave,
-                modLog: result.modLog,
-                ghost: result.ghost,
-                autoRole: result.autoRole,
-                goal: result.goal,
-                giveaway: result.giveawayManagers
-            })    
+            await serverConfigurator(bot, message.guild.id);
         }
         else {
             let emb = new Discord.MessageEmbed()

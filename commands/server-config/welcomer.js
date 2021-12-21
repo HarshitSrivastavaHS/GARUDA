@@ -1,5 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
+const serverConfigurator = require('../../functions/serverConfig');
 const Discord = require("discord.js");
 
 function help(message, prefix){
@@ -14,12 +15,12 @@ function help(message, prefix){
 module.exports = {
     name: 'welcomer',
     type: 'admin',
-    description: 'sets or unsets the welcome channel.',
-    usage: '&{prefix}welcomer set/unset <#channel>',
+    description: 'configure the welcomer.',
+    usage: '&{prefix}welcomer channel set/unset <#channel>\n&{prefix}welcomer msg view\n&{prefix}welcomer',
     aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        return message.reply("Command is in development :D");
+        //return message.reply("Command is in development :D");
         if (!message.member.permissions.has("MANAGE_GUILD")) return message.channel.send("You need manage server pemission to use this command.");
         if (args.length==0) {
             return help(message, prefix);
@@ -47,18 +48,7 @@ module.exports = {
                             })
                     });
                     msg.edit(`Successfully set the ${channel} as the welcome channel.`);
-                    let result = bot.serverConfig.get(message.guild.id);
-                        bot.serverConfig.set(message.guild.id, {
-                        prefix: result.prefix,
-                        suggestion: result.suggestion,
-                        welcome: channel.id,
-                        leave: result.leave,
-                        modLog: result.modLog,
-                        ghost: result.ghost,
-                        autoRole: result.autoRole,
-                        goal: result.goal,
-                        giveaway: result.giveawayManagers
-                    })    
+                    await serverConfigurator(bot, message.guild.id);
                 }
                 else {
                     message.reply("Please mention the welcome channel.")
@@ -78,18 +68,7 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully disabled the welcomer`);
-                let result = bot.serverConfig.get(message.guild.id);
-                    bot.serverConfig.set(message.guild.id, {
-                    prefix: result.prefix,
-                    suggestion: result.suggestion,
-                    welcome: undefined,
-                    leave: result.leave,
-                    modLog: result.modLog,
-                    ghost: result.ghost,
-                    autoRole: result.autoRole,
-                    goal: result.goal,
-                    giveaway: result.giveawayManagers
-                })    
+                await serverConfigurator(bot, message.guild.id);
             }
             else {
                 help(message, prefix)
@@ -118,18 +97,7 @@ module.exports = {
                             })
                     });
                     msg.edit(`Successfully set the ${channel} as the welcome channel.`);
-                    let result = bot.serverConfig.get(message.guild.id);
-                        bot.serverConfig.set(message.guild.id, {
-                        prefix: result.prefix,
-                        suggestion: result.suggestion,
-                        welcome: channel.id,
-                        leave: result.leave,
-                        modLog: result.modLog,
-                        ghost: result.ghost,
-                        autoRole: result.autoRole,
-                        goal: result.goal,
-                        giveaway: result.giveawayManagers
-                    })    
+                    await serverConfigurator(bot, message.guild.id);
                 }
                 else {
                     message.reply("Please mention the welcome channel.")
@@ -149,18 +117,7 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully disabled the welcomer`);
-                let result = bot.serverConfig.get(message.guild.id);
-                    bot.serverConfig.set(message.guild.id, {
-                    prefix: result.prefix,
-                    suggestion: result.suggestion,
-                    welcome: undefined,
-                    leave: result.leave,
-                    modLog: result.modLog,
-                    ghost: result.ghost,
-                    autoRole: result.autoRole,
-                    goal: result.goal,
-                    giveaway: result.giveawayManagers
-                })    
+                await serverConfigurator(bot, message.guild.id);
             }
             else {
                 help(message, prefix)

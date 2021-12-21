@@ -1,5 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
+const serverConfigurator = require('../../functions/serverConfig');
 
 module.exports = {
     name: 'modlog',
@@ -41,18 +42,7 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully set the ${channel} as the mod log channel.`);
-                let result = bot.serverConfig.get(message.guild.id);
-                    bot.serverConfig.set(message.guild.id, {
-                    prefix: result.prefix,
-                    suggestion: result.suggestion,
-                    welcome: result.welcome,
-                    leave: result.leave,
-                    modLog: channnel.id,
-                    ghost: result.ghost,
-                    autoRole: result.autoRole,
-                    goal: result.goal,
-                    giveaway: result.giveawayManagers
-                })
+                await serverConfigurator(bot, message.guild.id);
             }
             else {
                 message.reply("Please mention the mod log channel.")
@@ -72,18 +62,7 @@ module.exports = {
                     })
             });
             msg.edit(`Successfully disabled the mod log`);
-            let result = bot.serverConfig.get(message.guild.id);
-                bot.serverConfig.set(message.guild.id, {
-                prefix: result.prefix,
-                suggestion: result.suggestion,
-                welcome: result.welcome,
-                leave: result.leave,
-                modLog: undefined,
-                ghost: result.ghost,
-                autoRole: result.autoRole,
-                goal: result.goal,
-                giveaway: result.giveawayManagers
-            })
+            await serverConfigurator(bot, message.guild.id);
         }
         else {
             let emb = new Discord.MessageEmbed()

@@ -1,5 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
+const serverConfigurator = require('../../functions/serverConfig');
 
 module.exports = {
     name: 'leave',
@@ -42,18 +43,8 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully set the ${channel} as the leave channel.`);
-                let result = bot.serverConfig.get(message.guild.id);
-                    bot.serverConfig.set(message.guild.id, {
-                    prefix: result.prefix,
-                    suggestion: result.suggestion,
-                    welcome: result.welcome,
-                    leave: channel.id,
-                    modLog: result.modLog,
-                    ghost: result.ghost,
-                    autoRole: result.autoRole,
-                    goal: result.goal,
-                    giveaway: result.giveawayManagers
-                })    
+                
+                await serverConfigurator(bot, message.guild.id);
             }
             else {
                 message.reply("Please mention the leave channel.")
@@ -73,18 +64,7 @@ module.exports = {
                     })
             });
             msg.edit(`Successfully disabled the leave`);
-            let result = bot.serverConfig.get(message.guild.id);
-                bot.serverConfig.set(message.guild.id, {
-                prefix: result.prefix,
-                suggestion: result.suggestion,
-                welcome: result.welcome,
-                leave: undefined,
-                modLog: result.modLog,
-                ghost: result.ghost,
-                autoRole: result.autoRole,
-                goal: result.goal,
-                giveaway: result.giveawayManagers
-            })    
+            await serverConfigurator(bot, message.guild.id);
         }
         else {
             let emb = new Discord.MessageEmbed()

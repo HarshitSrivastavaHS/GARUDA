@@ -1,5 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
+const serverConfigurator = require('../../functions/serverConfig');
 module.exports = {
     name: 'autorole',
     usage: `&{prefix}autorole <set/remove> <@role or id>`,
@@ -29,18 +30,7 @@ module.exports = {
                     upsert: true
                 })
           msg.edit(`AutoRole set successfully. New users would be given the role upon their joining. (Bots won't get the role)`)
-          let result = bot.serverConfig.get(message.guild.id);
-          bot.serverConfig.set(message.guild.id, {
-            prefix: result.prefix,
-            suggestion: result.suggestion,
-            welcome: result.welcome,
-            leave: result.leave,
-            modLog: result.modLog,
-            ghost: result.ghost,
-            autoRole: role.id,
-            goal: result.goal,
-            giveaway: result.giveawayManagers
-          });
+          await serverConfigurator(bot, message.guild.id);
             
       })
         }
@@ -59,18 +49,7 @@ module.exports = {
                     upsert: true
                 })
           msg2.edit(`AutoRole disabled successfully.`)
-          let result = bot.serverConfig.get(message.guild.id);
-          bot.serverConfig.set(message.guild.id, {
-            prefix: result.prefix,
-            suggestion: result.suggestion,
-            welcome: result.welcome,
-            leave: result.leave,
-            modLog: result.modLog,
-            ghost: result.ghost,
-            autoRole: undefined,
-            goal: result.goal,
-            giveaway: result.giveawayManagers
-          });
+          await serverConfigurator(bot, message.guild.id);
       })}
     }
 }
