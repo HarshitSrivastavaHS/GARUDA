@@ -36,7 +36,7 @@ module.exports = {
     }
 
 	  prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
-    
+    if (!prefix) prefix = "%";
     prefix = prefix.toLowerCase();
 
     if (message.content.startsWith(`<@!${bot.user.id}>`)||message.content.startsWith(`<@${bot.user.id}>`)) {
