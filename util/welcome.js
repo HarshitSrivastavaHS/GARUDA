@@ -1,6 +1,7 @@
 const Canvas = require("discord-canvas");
+const Discord = require("discord.js");
 module.exports = {
-    async execute(member, welcomeCH, Discord) {
+    async execute(member, welcomeCH, greeting) {
       await member.guild.members.fetch();
       let colors = ["#8a2be2", "#8015EA", "#FF4040", "#003366", "#FFFFFF"];
       let random = Math.floor(Math.random()*5+1);
@@ -22,7 +23,7 @@ module.exports = {
         
       const attachment = new Discord.MessageAttachment(image.toBuffer(), "welcome-image.png");
       
-      welcomeCH.send({content:`Welcome to **${member.guild.name}**, <@${member.user.id}>`, files:[attachment]}).catch(e=>{console.log(e)});
+      welcomeCH.send({content:greeting?greeting:`Welcome to **${member.guild.name}**, <@${member.user.id}>`, files:[attachment]}).catch(e=>{console.log(e)});
     }
 }
 

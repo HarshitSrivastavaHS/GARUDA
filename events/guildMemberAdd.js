@@ -17,7 +17,7 @@ module.exports = {
              })
       });
     }
-    let wc = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).welcome:undefined;
+    let wc = bot.serverConfig.get(member.guild.id)&&bot.serverConfig.get(member.guild.id).welcomer?bot.serverConfig.get(member.guild.id).welcomer.channel:undefined;
     if (wc) {
 	    const welcomeCH = await bot.channels.fetch(wc).catch((err)=>{
 			console.log("guildMemberAdd.js wc error")
@@ -26,7 +26,7 @@ module.exports = {
 		    welcomeCH.send(`${member} was just invited to the server.`).catch(e=>{});
 	    }
   	  else {
-  		  welcomeJS.execute(member, welcomeCH, Discord);
+  		  welcomeJS.execute(member, welcomeCH, bot.serverConfig.get(member.guild.id).welcomer.message);
 	    }
     }
     let ar = bot.serverConfig.get(member.guild.id)!=undefined?bot.serverConfig.get(member.guild.id).autoRole:undefined;

@@ -20,11 +20,12 @@ module.exports = {
     aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        return message.reply("Command is in development :D");
+        //return message.reply("Command is in development :D");
         if (!message.member.permissions.has("MANAGE_GUILD")) return message.channel.send("You need manage server pemission to use this command.");
         if (args.length==0) {
             return help(message, prefix);
         } 
+        let welcomer = bot.serverConfig.get(message.guild.id).welcomer;
         if (args[0].toLowerCase()=="channel") {
             if (args[1]&&args[1].toLowerCase()=="set") {
                 if (args[2]&&args[2].includes(message.mentions.channels.first())) {
@@ -42,7 +43,10 @@ module.exports = {
                             _id: message.guild.id
                             },{
                                 _id: message.guild.id,
-                                welcome: channel.id,
+                                welcomer: {
+                                    channel: channel.id,
+                                    message: welcomer?welcomer.message:undefined
+                                },
                             },{
                                 upsert: true
                             })
@@ -62,7 +66,10 @@ module.exports = {
                             _id: message.guild.id
                         },{
                             _id: message.guild.id,
-                            welcome: undefined,
+                            welcomer: {
+                                channel: undefined,
+                                message: welcomer?welcomer.message:undefined
+                            },
                         },{
                             upsert: true
                         })
@@ -76,27 +83,24 @@ module.exports = {
         }
         else if (args[0].toLowerCase()=="msg") {
             if (args[1]&&args[1].toLowerCase()=="set") {
-                if (args[2]&&args[2].includes(message.mentions.channels.first())) {
-                    let channel = message.mentions.channels.first();
-                    const msg = await message.channel.send(`Setting ${channel} as the welcome channel.`);
-                    try {
-                        await channel.send("Successfully set this channel for the welcomer.");
-                    }
-                    catch (err) {
-                        return msg.edit("Missing permissions in that channel");
-                    }
+                if (args[2]) {
+                    let greeting = args.slice(2,args.length).join(" ");
+                    const msg = await message.channel.send(`Setting \`${greeting}\` as the welcome message.`);
                     await mongo().then(async (mongoose)=>{
                 
                         await serverConfig.findOneAndUpdate({
                             _id: message.guild.id
                             },{
                                 _id: message.guild.id,
-                                welcome: channel.id,
+                                welcomer: {
+                                    channel: welcomer?welcomer.channel:undefined,
+                                    message: greeting
+                                },
                             },{
                                 upsert: true
                             })
                     });
-                    msg.edit(`Successfully set the ${channel} as the welcome channel.`);
+                    msg.edit(`Successfully set the \`${greeting}\` as the welcome message.`);
                     await serverConfigurator(bot, message.guild.id);
                 }
                 else {
@@ -104,19 +108,22 @@ module.exports = {
                 }
             }
             else if (args[1]&&args[1].toLowerCase() == "unset") {
-                const msg = await message.channel.send(`Disabling the welcomer`);
+                const msg = await message.channel.send(`Removing custom welcome message`);
                 await mongo().then(async (mongoose)=>{
                 
                     await serverConfig.findOneAndUpdate({
                             _id: message.guild.id
                         },{
                             _id: message.guild.id,
-                            welcome: undefined,
+                            welcomer: {
+                                channel: welcomer?welcomer.channel:undefined,
+                                message: undefined
+                            },
                         },{
                             upsert: true
                         })
                 });
-                msg.edit(`Successfully disabled the welcomer`);
+                msg.edit(`Successfully reset the custom welcome message`);
                 await serverConfigurator(bot, message.guild.id);
             }
             else {

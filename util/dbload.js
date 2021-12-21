@@ -4,6 +4,7 @@ const afkConfig = require('../Schemas/afk');
 const freezerConfig = require('../Schemas/freezenick');
 const giveawaySchema = require('../Schemas/giveaway-schema.js');
 const give = require('../functions/giveaway.js');
+const serverConfigurator = require('../functions/serverConfig');
 const Discord = require("discord.js");
 module.exports = async (bot) => {
 
@@ -12,17 +13,7 @@ module.exports = async (bot) => {
     const server = (async ()=>{
         const results = await serverConfig.find();
         for (const result of results){
-            bot.serverConfig.set(result._id, {
-                prefix: result.prefix,
-                suggestion: result.suggestion,
-                welcome: result.welcome,
-                leave: result.leave,
-                modLog: result.modLog,
-                ghost: result.ghost,
-                autoRole: result.autoRole,
-                goal: result.goal,
-                giveaway: result.giveawayManagers
-            });
+            serverConfigurator(bot, result._id);
         }
     })();
 

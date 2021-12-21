@@ -6,8 +6,10 @@ module.exports = (async (bot, guild)=>{
     bot.serverConfig.set(result._id, {
         prefix: result.prefix,
         suggestion: result.suggestion,
-        welcome: result.welcome,
-        welcomer: result.welcomer,
+        welcomer: {
+            channel: result.welcomer?.channel, 
+            message: result.welcomer?.message
+        },
         leave: result.leave,
         modLog: result.modLog,
         ghost: result.ghost,
