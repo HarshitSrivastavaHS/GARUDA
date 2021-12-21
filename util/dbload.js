@@ -23,19 +23,6 @@ module.exports = async (bot) => {
                 goal: result.goal,
                 giveaway: result.giveawayManagers
             });
-            await mongo().then(async (mongoose)=>{
-                
-                await serverConfig.findOneAndUpdate({
-                    _id: result._id
-                    },{
-                        _id: result._id,
-                        welcomer: {
-                            channel: result.welcome, 
-                        },
-                    },{
-                        upsert: true
-                    })
-            });
         }
     })();
 
