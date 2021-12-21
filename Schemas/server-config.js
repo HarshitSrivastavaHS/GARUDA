@@ -15,7 +15,7 @@ const ServerConfig = mongoose.Schema({
   prefix: string,
   suggestion: string,
   welcome: string,
-  welcomer: string,
+  welcomer: {channel: string, message: string},
   leave: string,
   modLog: string,
   ghost: string,

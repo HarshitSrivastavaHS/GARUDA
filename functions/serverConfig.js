@@ -7,6 +7,7 @@ module.exports = (async (bot, guild)=>{
         prefix: result.prefix,
         suggestion: result.suggestion,
         welcome: result.welcome,
+        welcomer: result.welcomer,
         leave: result.leave,
         modLog: result.modLog,
         ghost: result.ghost,
