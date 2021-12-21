@@ -3,13 +3,62 @@ const serverConfig = require('../../Schemas/server-config');
 const serverConfigurator = require('../../functions/serverConfig');
 const Discord = require("discord.js");
 
-function help(message, prefix){
-    let emb = new Discord.MessageEmbed()
+async function help(message, prefix){
+    let Main = new Discord.MessageEmbed()
+        .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({size:4096}))
         .setColor("GREEN")
         .setTitle("Welcomer Help Menu")
-        .setDescription(`**To set the welcomer**\n${prefix}welcomer channel set #welcome\n\n**To disable the welcomer**\n${prefix}welcomer channel unset\n\n**To set/change welcome message**\n${prefix}welcomer msg set\n\n**To view welcome message**\n${prefix}welcomer msg view`)
+        .setDescription(`**Welcomer Configurations**\n**Channel:** To configure the welcome channel\n**Welcome Message:** To configure the welcome message.`)
         .setTimestamp();
-    return message.channel.send({embeds:[emb]});
+    let Channel = new Discord.MessageEmbed()
+        .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({size:4096}))
+        .setColor("GREEN")
+        .setTitle("Welcomer Help Menu")
+        .setDescription(`**To set the welcome channel**\n${prefix}welcomer channel set #welcome\n\n**To remove the welcome channel**\n${prefix}welcomer channel unset`)
+        .setTimestamp();
+    let Message = new Discord.MessageEmbed()
+        .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({size:4096}))
+        .setColor("GREEN")
+        .setTitle("Welcomer Help Menu")
+        .setDescription(`**To set/change welcome message**\n${prefix}welcomer msg set\n\n**To reset the welcome message**\n${prefix}welcomer msg reset\n\n**To view welcome message**\n${prefix}welcomer msg view\
+\n\nNOTE: Use the following keywords for things like username, guild name, etc. (Case Sensitive)\n\`{user}\` To mention the user\n\`{guild}\` To include the server name\n\`{memberCount}\` To get the server total member count\n\`{humanCount}\` To get the total human count`)
+        .setTimestamp();
+    let embeds = {
+        Main, Channel, Message
+    }
+    let btn1 = new Discord.MessageButton()
+            .setCustomId(`0`)
+            .setLabel("Main")
+            .setStyle("SECONDARY")
+            .setDisabled(true)
+        let btn2 = new Discord.MessageButton()
+            .setCustomId(`01`)
+            .setLabel("Channel")
+            .setStyle("SECONDARY")
+        let btn3 = new Discord.MessageButton()
+            .setCustomId(`2`)
+            .setLabel("Message")
+            .setStyle("SECONDARY")
+        let btns = [btn1, btn2, btn3];
+        let row = new Discord.MessageActionRow().addComponents(btn1,btn2,btn3);
+        let msg = await message.channel.send({embeds: [Main], components: [row]});
+        const collector = new Discord.InteractionCollector(message.client, {message: msg, type: "MESSAGE_COMPONENT", idle: 45000});
+        collector.on("collect", (interaction)=>{
+            interaction.deleteReply().catch(()=>{});
+            if (interaction.user.id != message.author.id) return; 
+            let label;
+            for (btn of btns){
+                if (btn.customId == interaction.customId){
+                    btn.setDisabled(true);
+                    label = btn.label;
+                    continue;
+                }
+                btn.setDisabled(false);
+            }
+            row = new Discord.MessageActionRow().addComponents(btn1,btn2,btn3);
+            msg.edit({embeds:[embeds[label]], components: [row]})
+            
+        })
 }
 
 module.exports = {
@@ -107,7 +156,7 @@ module.exports = {
                     message.reply("Please mention the welcome channel.")
                 }
             }
-            else if (args[1]&&args[1].toLowerCase() == "unset") {
+            else if (args[1]&&args[1].toLowerCase() == "reset") {
                 const msg = await message.channel.send(`Removing custom welcome message`);
                 await mongo().then(async (mongoose)=>{
                 
@@ -126,9 +175,23 @@ module.exports = {
                 msg.edit(`Successfully reset the custom welcome message`);
                 await serverConfigurator(bot, message.guild.id);
             }
+            else if (args[1]&&args[1].toLowerCase() == "view") {
+                let greeting = bot.serverConfig.get(message.guild.id)&&bot.serverConfig.get(message.guild.id).welcomer?bot.serverConfig.get(message.guild.id).welcomer.message:undefined;
+                if (!greeting) return message.reply("This server has not set any custom greeting message.");
+                let emb = new Discord.MessageEmbed()
+                .setColor("YELLOW")
+                .setTitle("Welcomer greeting message")
+                .setDescription(greeting)
+                .setFooter(`Requested by ${message.author.tag}`)
+                .setTimestamp();
+                message.reply({embeds:[emb]});
+            }
             else {
                 help(message, prefix)
             }
+        }
+        else {
+            help(message, prefix)
         }
     }
 }

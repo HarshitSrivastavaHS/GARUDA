@@ -22,7 +22,7 @@ module.exports = {
 	    const welcomeCH = await bot.channels.fetch(wc).catch((err)=>{
 			console.log("guildMemberAdd.js wc error")
 		})
-		if (!welcomeCH) {
+		if (welcomeCH) {
 			if (member.user.bot) {
 				welcomeCH.send(`${member} was just invited to the server.`).catch(e=>{});
 			}
