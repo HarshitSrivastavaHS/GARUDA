@@ -4,7 +4,7 @@ const serverConfig = require('../Schemas/server-config');
 module.exports = (async (bot, guild)=>{
     let result = await serverConfig.findOne(guild.id);
     bot.serverConfig.set(result._id, {
-        prefix: result.prefix,
+        prefix: result.prefix?result.prefix: "%",
         suggestion: result.suggestion,
         welcomer: {
             channel: result.welcomer?.channel, 

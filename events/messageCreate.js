@@ -36,21 +36,6 @@ module.exports = {
     }
 
 	  prefix = bot.serverConfig.get(message.guild.id)!=undefined?bot.serverConfig.get(message.guild.id).prefix:undefined;
-	  if (!prefix) {
-      let result = bot.serverConfig.get(message.guild.id);
-      bot.serverConfig.set(message.guild.id, {
-        prefix: "%",
-        suggestion: result?result.suggestion:undefined,
-        welcome: result?result.welcome:undefined,
-        leave: result?result.leave:undefined,
-        modLog: result?result.modLog:undefined,
-		    ghost: result?result.ghost:undefined,
-        autoRole: result?result.autoRole:undefined,
-        goal: result?result.goal:undefined,
-        giveaway: result?result.giveaway:undefined
-      });
-      prefix = "%";
-	  }
     
     prefix = prefix.toLowerCase();
 
