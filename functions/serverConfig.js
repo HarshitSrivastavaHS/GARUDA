@@ -1,10 +1,8 @@
 const mongo = require(`../mongo`);
 const serverConfig = require('../Schemas/server-config');
 
-module.exports = (async (bot, guild, guildID)=>{
-    let result = await serverConfig.findOne({
-        _id: guild?guild.id:guildID
-    });
+module.exports = (async (bot, guildID)=>{
+    let result = await serverConfig.findOne(guildID);
     bot.serverConfig.set(result._id, {
         prefix: result.prefix?result.prefix: "%",
         suggestion: result.suggestion,
