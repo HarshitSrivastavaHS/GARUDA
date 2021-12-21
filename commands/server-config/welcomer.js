@@ -20,7 +20,7 @@ module.exports = {
     aliases: [],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        //return message.reply("Command is in development :D");
+        return message.reply("Command is in development :D");
         if (!message.member.permissions.has("MANAGE_GUILD")) return message.channel.send("You need manage server pemission to use this command.");
         if (args.length==0) {
             return help(message, prefix);
