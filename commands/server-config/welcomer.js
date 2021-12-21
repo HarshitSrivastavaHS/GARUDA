@@ -8,7 +8,7 @@ async function help(message, prefix){
         .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({size:4096}))
         .setColor("GREEN")
         .setTitle("Welcomer Help Menu")
-        .setDescription(`**Welcomer Configurations**\n**Channel:** To configure the welcome channel\n**Welcome Message:** To configure the welcome message.`)
+        .setDescription(`**Welcomer Configurations**\n\n**Channel:** To configure the welcome channel\n\n**Welcome Message:** To configure the welcome message.`)
         .setTimestamp();
     let Channel = new Discord.MessageEmbed()
         .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({size:4096}))
@@ -29,22 +29,21 @@ async function help(message, prefix){
     let btn1 = new Discord.MessageButton()
             .setCustomId(`0`)
             .setLabel("Main")
-            .setStyle("SECONDARY")
+            .setStyle("PRIMARY")
             .setDisabled(true)
         let btn2 = new Discord.MessageButton()
             .setCustomId(`01`)
             .setLabel("Channel")
-            .setStyle("SECONDARY")
+            .setStyle("PRIMARY")
         let btn3 = new Discord.MessageButton()
             .setCustomId(`2`)
             .setLabel("Message")
-            .setStyle("SECONDARY")
+            .setStyle("PRIMARY")
         let btns = [btn1, btn2, btn3];
         let row = new Discord.MessageActionRow().addComponents(btn1,btn2,btn3);
         let msg = await message.channel.send({embeds: [Main], components: [row]});
         const collector = new Discord.InteractionCollector(message.client, {message: msg, type: "MESSAGE_COMPONENT", idle: 45000});
         collector.on("collect", (interaction)=>{
-            interaction.deleteReply().catch(()=>{});
             if (interaction.user.id != message.author.id) return; 
             let label;
             for (btn of btns){
@@ -56,8 +55,15 @@ async function help(message, prefix){
                 btn.setDisabled(false);
             }
             row = new Discord.MessageActionRow().addComponents(btn1,btn2,btn3);
-            msg.edit({embeds:[embeds[label]], components: [row]})
+            interaction.update({embeds:[embeds[label]], components: [row]})
             
+        })
+        collector.on("end", (collected) => {
+            for (btn of btns){
+                btn.setDisabled(true);
+            }
+            row = new Discord.MessageActionRow().addComponents(btn1,btn2,btn3);
+            msg.edit({embeds: [msg.embeds[0]], components: [row]})
         })
 }
 
