@@ -13,7 +13,7 @@ module.exports = async (bot) => {
     const server = (async ()=>{
         const results = await serverConfig.find();
         for (const result of results){
-            serverConfigurator(bot, undefined, result._id);
+            serverConfigurator(bot, result._id);
         }
     })();
 
