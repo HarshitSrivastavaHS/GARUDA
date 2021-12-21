@@ -3,10 +3,11 @@ const Discord = require("discord.js");
 module.exports = {
     async execute(member, welcomeCH, greeting) {
       await member.guild.members.fetch();
+        if (greeting){
       let str = {user: member, guild: member.guild.name, memberCount: member.guild.members.cache.size, humanCount: member.guild.members.cache.filter(m=>!m.user.bot).size};
       for (let [key, value] of Object.entries(str)) {
         greeting = greeting.replaceAll(`{${key}}`, value)
-      }
+      }}
       let colors = ["#8a2be2", "#8015EA", "#FF4040", "#003366", "#FFFFFF"];
       let random = Math.floor(Math.random()*5+1);
       const image = await new Canvas.Welcome()
