@@ -44,7 +44,7 @@ async function help(message, prefix){
         let msg = await message.channel.send({embeds: [Main], components: [row]});
         const collector = new Discord.InteractionCollector(message.client, {message: msg, type: "MESSAGE_COMPONENT", idle: 45000});
         collector.on("collect", (interaction)=>{
-            if (interaction.user.id != message.author.id) return; 
+            if (interaction.user.id != message.author.id) return interaction.reply({content: "You cannot use this menu.", ephemeral: true}); 
             let label;
             for (btn of btns){
                 if (btn.customId == interaction.customId){
