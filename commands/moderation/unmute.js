@@ -14,7 +14,7 @@ module.exports = {
         if (!mentionMember) return message.reply("Please mention the member to be muted.");
         if (mentionMember.user.id == message.author.id) return message.reply("You are not muted.");
         if (mentionMember.user.id == bot.user.id) return message.reply("I am not muted");
-        if (mentionMember.communicationDisabledUntilTimestamp==null) return message.reply("The person is not muted.");
+        if (mentionMember.communicationDisabledUntilTimestamp < message.createdTimestamp) return message.reply("The person is not muted.");
 
         const srole = message.member.roles.highest.position;
         const rrole = mentionMember.roles.highest.position;

@@ -14,7 +14,7 @@ module.exports = {
         if (!mentionMember) return message.reply("Please mention the member to be muted.");
         if (mentionMember.user.id == message.author.id) return message.reply("You cannot mute yourself.");
         if (mentionMember.user.id == bot.user.id) return message.reply("I cannot mute myself");
-        if (mentionMember.communicationDisabledUntilTimestamp != null) return message.reply("The person is already muted.");
+        if (mentionMember.communicationDisabledUntilTimestamp > message.createdTimestamp) return message.reply("The person is already muted.");
 
         let time = undefined;
         if (args[1]) 
