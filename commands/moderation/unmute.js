@@ -2,12 +2,12 @@ const Discord = require("discord.js");
 const ms = require("ms");
 module.exports = {
     name: 'unmute',
-    description: 'mute a member.',
+    description: 'unmute a member.',
     usage: '&{prefix}unmute <@user>',
     aliases: ["timeout-remove"],
     permissions: ['SEND_MESSAGES', "READ_MESSAGE_HISTORY","MODERATE_MEMBERS" ],
     async execute(message, args, bot, Discord, prefix) {
-        if (message.author.id != "451693463742840842") return message.reply("In development");
+        //if (message.author.id != "451693463742840842") return message.reply("In development");
         if (!message.member.permissions.has("MODERATE_MEMBERS")) return message.reply("You don't have the permission to mute others.")
     
         const mentionMember = message.mentions.members.first()&&message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).size>=1?message.mentions.members.filter(m=>args[0]&&args[0].includes(m.user.id)).first(): undefined;
