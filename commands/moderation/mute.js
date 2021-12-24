@@ -20,7 +20,7 @@ module.exports = {
         if (args[1]) 
             time = ms(args[1])
         if (!time) return message.reply("Please mention the duration of the mute.");
-
+        if (time >= ms("4w")) return message.reply(`Maximum mute limit: 27 days\nProvided time: ${ms(time, {long: true})}`);
         args.splice(0,2);
         let reason = args.join(" ");
 
