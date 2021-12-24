@@ -38,7 +38,7 @@ module.exports = {
             }
         }
         else {
-            message.reply("You cannot mute someone who has the same highest role as you.");
+            message.reply("You cannot mute someone who has a higher role than you.");
         }
 
     }
