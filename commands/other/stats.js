@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 const ms = require("ms");
 module.exports = {
     name: 'stats',
-    description: 'mute a member.',
-    usage: '&{prefix}mute <@user> <time> (reason)',
+    description: 'shows basic bot statistics.',
+    usage: '&{prefix}statistics',
     aliases: ["statistics"],
     permissions: ['SEND_MESSAGES', "READ_MESSAGE_HISTORY","EMBED_LINKS" ],
     async execute(message, args, bot, Discord, prefix) {
