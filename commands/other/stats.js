@@ -12,8 +12,8 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
         .setTitle(`${bot.user.username}'s Statistics`)
         .setColor("RED")
-        .setDescription(`📊 General Stats\n\`• Servers: ${bot.guilds.cache.size}\n• Members: ${members}\n• Discord.js: ${Discord.version}\n• Nodejs: ${process.version}\n• Platform: ${process.platform}\
-\n• Uptime: ${ms(bot.uptime)}\``)
+        .setDescription(`📊 General Stats\n\`• Servers: ${bot.guilds.cache.size}\`\n\`• Members: ${members}\`\n\`• Discord.js: ${Discord.version}\`\n\`• Nodejs: ${process.version}\`\n\`• Platform: ${process.platform}\`\
+\n\`• Uptime: ${ms(bot.uptime)}\``)
         .setTimestamp()
         .setFooter(`Requested by ${message.author.tag}`);
         message.channel.send({embeds:[embed]});
