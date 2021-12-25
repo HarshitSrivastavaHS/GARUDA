@@ -1,6 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
-const serverConfigurator = require('../../functions/serverConfig');
+
 const Discord = require("discord.js");
 
 async function help(message, prefix){
@@ -107,7 +107,7 @@ module.exports = {
                             })
                     });
                     msg.edit(`Successfully set the ${channel} as the welcome channel.`);
-                    await serverConfigurator(bot, message.guild.id);
+                    
                 }
                 else {
                     message.reply("Please mention the welcome channel.")
@@ -130,7 +130,7 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully disabled the welcomer`);
-                await serverConfigurator(bot, message.guild.id);
+                
             }
             else {
                 help(message, prefix)
@@ -156,7 +156,7 @@ module.exports = {
                             })
                     });
                     msg.edit(`Successfully set the \`${greeting}\` as the welcome message.`);
-                    await serverConfigurator(bot, message.guild.id);
+                    
                 }
                 else {
                     message.reply("Please mention the welcome channel.")
@@ -179,7 +179,7 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully reset the custom welcome message`);
-                await serverConfigurator(bot, message.guild.id);
+                
             }
             else if (args[1]&&args[1].toLowerCase() == "view") {
                 let greeting = bot.serverConfig.get(message.guild.id)&&bot.serverConfig.get(message.guild.id).welcomer?bot.serverConfig.get(message.guild.id).welcomer.message:undefined;

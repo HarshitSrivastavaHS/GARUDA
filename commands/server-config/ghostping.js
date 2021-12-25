@@ -1,6 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
-const serverConfigurator = require('../../functions/serverConfig');
+
 module.exports = {
     name: 'ghostping',
     type: 'admin',
@@ -42,7 +42,7 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully set the ${channel} as the ghost ping detection channel.`);
-                await serverConfigurator(bot, message.guild.id);
+                
             }
             else {
                 message.reply("Please mention the ghost ping detection channel.")
@@ -62,7 +62,7 @@ module.exports = {
                     })
             });
             msg.edit(`Successfully disabled the ghostping detector`);
-            await serverConfigurator(bot, message.guild.id);
+            
         }
         else {
             let emb = new Discord.MessageEmbed()

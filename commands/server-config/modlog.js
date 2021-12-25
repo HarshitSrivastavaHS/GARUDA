@@ -1,6 +1,6 @@
 const mongo = require(`../../mongo`);
 const serverConfig = require('../../Schemas/server-config');
-const serverConfigurator = require('../../functions/serverConfig');
+
 
 module.exports = {
     name: 'modlog',
@@ -42,7 +42,7 @@ module.exports = {
                         })
                 });
                 msg.edit(`Successfully set the ${channel} as the mod log channel.`);
-                await serverConfigurator(bot, message.guild.id);
+                
             }
             else {
                 message.reply("Please mention the mod log channel.")
@@ -62,7 +62,7 @@ module.exports = {
                     })
             });
             msg.edit(`Successfully disabled the mod log`);
-            await serverConfigurator(bot, message.guild.id);
+            
         }
         else {
             let emb = new Discord.MessageEmbed()

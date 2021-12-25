@@ -8,7 +8,8 @@ module.exports = {
 	  bot.user.setPresence({
       activities: [{ name: `Ping for help on ${bot.guilds.cache.size} servers!`, type: 'WATCHING' }],
     });
-	  require("../functions/ghostping")(bot, Discord);
+	require("../functions/ghostping")(bot, Discord);
     require("../functions/modLog")(bot, Discord);
+	require("../util/dbchange.js")(bot);
 	},
 };

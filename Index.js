@@ -75,7 +75,6 @@ setTimeout(()=>{
 	  .catch((error)=>console.log(error));
 
 },10000)
-
 keepAlive();
 console.log("logged in");
 bot.login(process.env.TOKEN); 
