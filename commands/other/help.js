@@ -9,11 +9,22 @@ module.exports = {
         const PREFIX_REG = /&{prefix}/g;
         const fs = require('fs');
         const categories = fs.readdirSync(`./commands/`);
+        let emojis = {
+            "developer-only": ":computer:",
+            "fun": ":confetti_ball:",
+            "game": ":video_game:",
+            "giveaway": ":tada:",
+            "image": ":page_facing_up:",
+            "info": ":information_source:",
+            "moderation": ":robot:",
+            "other": ":dolls:",
+            "server-config": ":tools:"
+        }
         let cmd = bot.commands.get(args[0]?args[0].toLowerCase():"")?.command || bot.commands.find(c=>c.aliases&&c.aliases.includes(args[0]?args[0].toLowerCase():""))?.command;
         let ctg = categories.find(c=>c==args[0]?.toLowerCase())
         const helpembed = new Discord.MessageEmbed()    
-        .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
-        .setColor("#D441EE")
+        .setThumbnail(message.author.displayAvatarURL({dynamic: true, size: 4096}))
+        .setColor("YELLOW")
         .setTitle('Help Menu')
         .setFooter(`Requested by ${message.author.username}`)
         .setTimestamp();
@@ -28,14 +39,17 @@ module.exports = {
                 file = require(`../../commands/${ctg}/${file}`)
                 str += `\`${file.name}\` `;
             }
-            str = str.split(" ").filter(c=>c!="").join(", ")
+            str = str.split(" ").filter(c=>c!="").join(" ")
             helpembed.addFields({
-                name: `Commands`,
+                name: `${emojis[ctg]} | ${ctg[0]+ctg.substr(1, ctg.length)} Commands`,
                 value: `${str?str:"No commands"}`
             })
         }
+        else if (args[0]) {
+            helpembed.setDescription(`**:x: No command/Category found named \`${args[0]}\`.**`);
+        }
         else {
-            helpembed.setDescription(`Do \`${prefix}help <command>\` for more info on that command.\nJoin the support server: https://discord.gg/sBe3jNSdqN`);
+            helpembed.setDescription(`**Do \`${prefix}help <command>\` for more info on that command.\nJoin the support server: https://discord.gg/sBe3jNSdqN**`);
             for (let category of categories) {
                 let str = "";
                 let commands = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"));
@@ -43,11 +57,10 @@ module.exports = {
                     const command = require(`../../commands/${category}/${file}`);
                     str += `\`${command.name}\` `;
                 }
-                str = str.split(" ").filter(s=>s!="").join(", ")
-                helpembed.addFields({name:`${category[0].toUpperCase()+category.substr(1, category.length)}`, value: str?str:"No command"});
+                str = str.split(" ").filter(s=>s!="").join(" ")
+                helpembed.addFields({name:`${emojis[category]} | ${category[0].toUpperCase()+category.substr(1, category.length)}`, value: str?str:"No command"});
             }
         }
-        
         message.channel.send({embeds:[helpembed]});
     }
 }
