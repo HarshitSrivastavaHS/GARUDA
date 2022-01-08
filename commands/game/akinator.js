@@ -35,7 +35,7 @@ async function askQuestion(message, aki) {
         row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
         let emb = new Discord.MessageEmbed()
             .setTitle(`Question ${aki.currentStep + 1}`)
-            .setDescription(`**Progress: ${Math.floor(aki.progress*10)/10}**\n**Q) ${aki.question}**`)
+            .setDescription(`**Progress: ${Math.floor(aki.progress*10)/10}%**\n**Q) ${aki.question}**`)
             .setColor("#00FFFF")
         let msg = await message.channel.send({embeds: [emb], components: [row, row2]});
         const collector = new Discord.InteractionCollector(bot, {message: msg, type: "MESSAGE_COMPONENT", time: 60000});
@@ -87,7 +87,7 @@ async function askQuestion(message, aki) {
 }
 async function checkGuess(message, aki, answer) {
     await aki.step(answer);
-    if (aki.progress >= 95 || aki.currentStep >= 50) {
+    if (aki.progress >= 95) {
         return win(message, aki);
     }
     message.channel.sendTyping();
