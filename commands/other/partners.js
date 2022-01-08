@@ -15,13 +15,13 @@ module.exports = {
       ];
       const partnershipEmbed = new Discord.MessageEmbed()
       .setColor("#e52165")
-      .setAuthor(`${message.author.tag}`, `${message.author.displayAvatarURL({dynamic: true})}`)
+      .setThumbnail(bot.user.displayAvatarURL({dynamic: true, size: 4096})
+      .setAuthor({name: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true, size: 4096})})
       .setTitle("Our Partners")
-      .setFooter("Bot by TechAllByHarshit#1503")
       .setTimestamp();
       for (let partner of partners) {
         partnershipEmbed.addField(`${partner.name}`, `[${partner.linkName}](${partner.link})`);
       }
-      message.reply({embeds:[partnershipEmbed]});
+      message.channel.send({embeds:[partnershipEmbed]});
     }
 }
