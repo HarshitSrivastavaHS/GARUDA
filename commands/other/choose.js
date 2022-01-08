@@ -8,7 +8,7 @@ module.exports = {
         if (args.length == 0) return message.reply("You're missing the two mandatory options that are required for the bot to choose from.");
         let options = args.join(" ").split(",")
         if (options.length < 2) {
-           options = options.split(" ");
+           options = args.join(" ").split(" ");
            if (options.length < 2) return message.reply("You're missing the two mandatory options that are required for the bot to choode from.");
         }
         let choice = options[Math.floor(Math.random()*options.length)];
