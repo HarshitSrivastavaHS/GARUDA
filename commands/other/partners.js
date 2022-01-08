@@ -15,7 +15,7 @@ module.exports = {
       ];
       const partnershipEmbed = new Discord.MessageEmbed()
       .setColor("#e52165")
-      .setThumbnail(bot.user.displayAvatarURL({dynamic: true, size: 4096})
+      .setThumbnail(bot.user.displayAvatarURL({dynamic: true, size: 4096}))
       .setAuthor({name: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true, size: 4096})})
       .setTitle("Our Partners")
       .setTimestamp();
