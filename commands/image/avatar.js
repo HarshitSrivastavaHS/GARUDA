@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 let Discord = require("discord.js")
 module.exports = {
     name: 'avatar',
-    type: 'fun',
+    
     usage: `&{prefix}avatar <user's mention (optional)>`,
     description: 'shows the user\'s avatar',
     aliases: ["a", "av"],

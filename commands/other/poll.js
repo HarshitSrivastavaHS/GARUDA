@@ -1,6 +1,6 @@
 module.exports = {
     name: 'poll',
-    type: 'utility',
+    
     description: 'starts a poll',
     aliases: [],
     usage:'&{prefix}poll <question> \nor\n&{prefix}poll "question" "option1" "option2" ... "option9" ',

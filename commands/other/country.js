@@ -1,6 +1,6 @@
 module.exports = {
     name: 'country',
-    type: 'info',
+    
     usage: '&{prefix}country <country code>',
     description: 'tells some details of a country.',
     aliases: [],

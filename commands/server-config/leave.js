@@ -4,7 +4,7 @@ const serverConfig = require('../../Schemas/server-config');
 
 module.exports = {
     name: 'leave',
-    type: 'admin',
+    
     description: 'sets or unsets the leave channel.',
     usage: '&{prefix}leave set/unset <#channel>',
     aliases: [],

@@ -1,6 +1,6 @@
 module.exports = {
     name: 'server-avatar',
-    type: 'fun',
+    
     usage: `&{prefix}server-avatar <user's mention (optional)>`,
     description: 'shows the user\'s avatar',
     aliases: ["sa", "serveravatar", "guildavatar"],

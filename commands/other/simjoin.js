@@ -1,6 +1,6 @@
 module.exports = {
     name: 'simjoin',
-    type: 'admin',
+    
     description: 'simulates join for testing',
     usage: "&{prefix}simjoin", 
     aliases: [],

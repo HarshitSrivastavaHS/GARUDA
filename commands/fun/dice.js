@@ -1,6 +1,6 @@
 module.exports = {
     name: 'roll',
-    type: 'fun',
+    
     usage: `&{prefix}dice `,
     description: 'gives a random number between 1 and 6 (or 1 and the number provided)',
     aliases: ["dice"],

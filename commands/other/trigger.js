@@ -1,7 +1,7 @@
 const Canvacord = require("canvacord");
 module.exports = {
     name: 'trigger',
-    type: 'fun',
+    
     usage: '&{prefix}trigger <@mention>',
     description: 'triggers that person',
     aliases: [],

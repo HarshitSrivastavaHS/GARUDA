@@ -3,7 +3,7 @@ const serverConfig = require('../../Schemas/server-config');
 
 module.exports = {
     name: 'prefix',
-    type: 'utility',
+    
     usage: '&{prefix}prefix <new prefix>',
     aliases: ["setprefix"],
     description: 'changes the prefix of the bot',

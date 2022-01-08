@@ -1,6 +1,6 @@
 module.exports = {
     name: 'pop',
-    type: 'game',
+    
     usage: `&{prefix}pop`,
     aliases: [],
     description: 'Starts a pop game. The first one to find and send the hidden word wins!',

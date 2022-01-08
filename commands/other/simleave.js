@@ -1,6 +1,6 @@
 module.exports = {
     name: 'simleave',
-    type: 'admin',
+    
     description: 'simulates leave for testing',
     usage: "&{prefix}simleave", 
     aliases: [],

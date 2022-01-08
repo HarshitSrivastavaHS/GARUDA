@@ -1,6 +1,6 @@
 module.exports = {
     name: "unlock",
-    type: 'moderation',
+    
     usage: '&{prefix}unlock',
     description: 'sets AFK.',
     aliases: [],

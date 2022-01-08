@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const { Util, MessageEmbed } = require ('discord.js');
 module.exports = {
     name: 'lyrics', 
-    type: 'utility',
+    
     usage: '&{prefix}lyrics <Song name>', 
     aliases: [],
     description:'Retrieves the lyrics of the given song name',

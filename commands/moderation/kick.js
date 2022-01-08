@@ -1,6 +1,6 @@
 module.exports = {
     name: 'kick',
-    type: 'moderation',
+    
     description: 'Kicks a user out of the server',
     aliases: [],
     usage:"&{prefix}kick @user",

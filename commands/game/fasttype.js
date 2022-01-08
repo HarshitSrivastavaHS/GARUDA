@@ -1,6 +1,6 @@
 module.exports = {
     name: 'fasttype',
-    type: 'game',
+    
     usage: '&{prefix}fasttype <optional number of words>',
     aliases: ["ft"],
     description: 'starts a typing game! You can define the number of words. Default: 10',

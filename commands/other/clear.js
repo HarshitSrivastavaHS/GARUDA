@@ -1,6 +1,6 @@
 module.exports = {
     name: 'clear',
-    type: 'utility',
+    
     usage: '&{prefix}clear <Number of messages to be deleted>',
     description: 'deletes the given number of messages. Some flags that can be used are:\n\`--human\` |\`--h\`: To Delete messages sent by humans only.\n\`--bot\` | \`--b\`: to delete messages sent by bots only.',
     aliases: ["purge", "nuke"],

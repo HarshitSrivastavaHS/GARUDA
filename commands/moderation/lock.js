@@ -1,6 +1,6 @@
 module.exports = {
     name: 'lock',
-    type: 'moderation',
+    
     usage: '&{prefix}lock <channel>',
     description: 'locks that channel',
     aliases: [],

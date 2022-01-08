@@ -1,6 +1,6 @@
 module.exports = {
     name: 'flip',
-    type: 'fun',
+    
     usage: '&{prefix}flip',
     description: 'flips a coin',
     aliases: [],

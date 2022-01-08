@@ -1,6 +1,6 @@
 module.exports = {
     name: 'snipe',
-    type: 'utility',
+    
     description: 'shows last deleted message in that channel',
     aliases: [],
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],

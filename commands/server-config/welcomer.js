@@ -69,7 +69,7 @@ async function help(message, prefix){
 
 module.exports = {
     name: 'welcomer',
-    type: 'admin',
+    
     description: 'configure the welcomer.',
     usage: '&{prefix}welcomer channel set/unset <#channel>\n&{prefix}welcomer msg view\n&{prefix}welcomer',
     aliases: [],

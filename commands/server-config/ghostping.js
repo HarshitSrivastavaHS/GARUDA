@@ -3,7 +3,7 @@ const serverConfig = require('../../Schemas/server-config');
 
 module.exports = {
     name: 'ghostping',
-    type: 'admin',
+    
     description: 'sets or unsets the ghostping detection channel.',
     usage: '&{prefix}ghostping set/unset <#channel>',
     aliases: [],

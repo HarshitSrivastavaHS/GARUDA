@@ -1,6 +1,6 @@
 module.exports = {
     name: 'userinfo',
-    type: 'info',
+    
     usage: '&{prefix}userinfo <optional @user>',
     description: 'shows information about that server',
     aliases: ["ui", "whois"],

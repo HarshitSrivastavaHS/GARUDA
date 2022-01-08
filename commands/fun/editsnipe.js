@@ -1,6 +1,6 @@
 module.exports = {
     name: 'editsnipe',
-    type: 'utility',
+    
     usage: '&{prefix}editsnipe',
     description: 'shows last edited message in that channel',
     aliases: [],

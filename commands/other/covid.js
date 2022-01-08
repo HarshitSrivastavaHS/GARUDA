@@ -1,6 +1,6 @@
 module.exports = {
     name: 'covid',
-    type: 'info',
+    
     usage: '&{prefix}covid',
     description: 'shows covid 19 stats',
     aliases: [],

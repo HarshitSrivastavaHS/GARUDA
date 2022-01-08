@@ -1,6 +1,6 @@
 module.exports = {
     name: 'tictactoe',
-    type: 'game',
+    
     usage: `&{prefix}tictactoe <user's @>`,
     description: 'play tictactoe with someone',
     aliases: ["ttt"],

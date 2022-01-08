@@ -1,7 +1,7 @@
 const Maths = require("exact-math"); 
 module.exports = {
     name: 'maths',
-    type: 'maths',
+    
     usage: '&{prefix}mahts <expression>',
     description: 'solves a maths expression',
     aliases: [],

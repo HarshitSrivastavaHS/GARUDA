@@ -1,6 +1,6 @@
 module.exports = {
     name: 'pokemon',
-    type: 'info',
+    
     usage: '&{prefix}pokemon <name>',
     description: 'get details of a pokemon.',
     permissions: ['SEND_MESSAGES', 'EMBED_LINKS'],

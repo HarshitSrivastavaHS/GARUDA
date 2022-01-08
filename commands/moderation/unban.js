@@ -1,6 +1,6 @@
 module.exports = {
     name: 'unban',
-    type: 'moderation',
+    
     usage: '&{prefix}unban <user id>',
     description: 'unbans a banned person',
     aliases: [],

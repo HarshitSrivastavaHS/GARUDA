@@ -1,7 +1,7 @@
 const figlet = require("util").promisify(require("figlet"));
 module.exports = {
     name: 'ascii',
-    type: 'fun',
+    
     usage: '&{prefix}banner <text>',
     description: 'types that text in banner form',
     aliases: [],

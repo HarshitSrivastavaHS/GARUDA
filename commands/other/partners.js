@@ -1,6 +1,6 @@
 module.exports = {
     name: 'partners',
-    type: 'info',
+    
     usage: '&{prefix}partners',
     description: 'Shows all the partners.',
     aliases: ["partner", "partnership"],

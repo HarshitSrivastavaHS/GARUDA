@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
     name: 'embed',
-    type: 'utility',
+    
     usage: `&{prefix}embed <optional channel> --flags\n&{prefix}embed #test --t This is the title --d This is the description --c #FF0000`,
     description: 'Sends an embed.\nFlags are:\n--f To set the footer\n--c to set the colour (use hex)\n--t to set the title\n--d to set the description',
     aliases: ["emb"],

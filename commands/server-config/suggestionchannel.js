@@ -4,7 +4,7 @@ const serverConfig = require('../../Schemas/server-config');
 
 module.exports = {
     name: 'suggestionchannel',
-    type: 'admin',
+    
     description: 'sets or unsets the suggestion channel.',
     usage: '&{prefix}suggestionchannel set/unset <#channel>',
     aliases: [],

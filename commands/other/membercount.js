@@ -3,7 +3,7 @@ const serverConfig = require('../../Schemas/server-config');
 
 module.exports = {
     name: 'membercount',
-    type: 'info',
+    
     usage: '&{prefix}membercount',
     description: 'shows the total member of people in the server with member goals',
     aliases: ["members", "goal"],
