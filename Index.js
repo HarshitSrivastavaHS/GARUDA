@@ -75,6 +75,23 @@ setTimeout(()=>{
 	  .catch((error)=>console.log(error));
 
 },10000)
+
+process.on("uncaughtException", async (err)=>{
+  let guild = await bot.guilds.fetch("834689119426314270");
+  let channel = await guild.channels.fetch("834689119426314273");
+  if (!channel) return;
+  let emb = new Array();
+  for (let i = 0; i<err.stack.toString().length; i+=2000) {
+    let embed = new Discord.MessageEmbed()
+    .setTitle("UncaughtException")
+    .setTimestamp()
+    .setColor("RED")
+    .setDescription(`${err.stack.toString().substr(0, 2000)}`);
+    emb.push(embed);
+  }
+  channel.send({embeds: emb})
+}) 
+
 keepAlive();
 console.log("logged in");
 bot.login(process.env.TOKEN); 
