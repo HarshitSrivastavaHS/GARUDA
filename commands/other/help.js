@@ -28,6 +28,7 @@ module.exports = {
         .setTitle('Help Menu')
         .setFooter(`Requested by ${message.author.username}`)
         .setTimestamp();
+        let btn;
         if (cmd) {
            const command = cmd; 
            helpembed.addFields({name:`Name`, value: `${command.name}`},{name:`Description`, value: `${command.description}`},{name:`Usage`, value: `${command.usage?command.usage.replace(PREFIX_REG, prefix):"not added"}`}, {name:`Aliases`, value: `${command.aliases.length>0?command.aliases.join(", "):"No Alias"}`}, {name:`Permissions Required by bot`, value: `${command.permissions?command.permissions.join(", ").toLowerCase().replace(/_/g," "):"not added"}`});
@@ -49,7 +50,7 @@ module.exports = {
             helpembed.setDescription(`**:x: No command/Category found named \`${args[0]}\`.**`);
         }
         else {
-            helpembed.setDescription(`**Do \`${prefix}help <command>\` for more info on that command.\nJoin the support server: https://discord.gg/sBe3jNSdqN**`);
+            helpembed.setDescription(`**Do \`${prefix}help <command>\` for more info on that command.**`);
             for (let category of categories) {
                 let str = "";
                 let commands = fs.readdirSync(`./commands/${category}/`).filter(f=>f.endsWith(".js"));
@@ -60,8 +61,22 @@ module.exports = {
                 str = str.split(" ").filter(s=>s!="").join(" ")
                 helpembed.addFields({name:`${emojis[category]} | ${category[0].toUpperCase()+category.substr(1, category.length)}`, value: str?str:"No command"});
             }
+            btn = [new Discord.MessageActionRow().addComponents(
+                new Discord.MessageButton()
+                .setLabel("Invite")
+                .setURL("https://discord.com/api/oauth2/authorize?client_id=777840690515279872&permissions=8&scope=applications.commands%20bot")
+                .setStyle("LINK"), 
+                new Discord.MessageButton()
+                .setLabel("Support Server")
+                .setURL("https://discord.gg/sBe3jNSdqN")
+                .setStyle("LINK"),
+                new Discord.MessageButton()
+                .setLabel("Vote")
+                .setURL("https://top.gg/bot/777840690515279872/vote")
+                .setStyle("LINK")
+                )];
         }
-        message.channel.send({embeds:[helpembed]});
+        message.channel.send({embeds:[helpembed], components: btn});
     }
 }
  
