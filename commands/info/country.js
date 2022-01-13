@@ -40,7 +40,7 @@ module.exports = {
                     .setFooter("via restcountries.eu")
                     .setImage(data.flags.png);
                 message.channel.send({embeds:[country]});
-            })
+            }).catch((err)=>{message.reply(`**:x: Error :x:**\n\`\`\`md\n${err}\`\`\``);})
         }
         catch (err){
                 message.channel.send(":broken-heart: Something went wrong");
