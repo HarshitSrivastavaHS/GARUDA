@@ -77,8 +77,8 @@ setTimeout(()=>{
 },10000)
 
 process.on("uncaughtException", async (err)=>{
-  let guild = await bot.guilds.fetch("834689119426314270");
-  let channel = await guild.channels.fetch("834689119426314273");
+  let guild = await bot.guilds.fetch("790982401407844384");
+  let channel = await guild.channels.fetch("931211131597496421");
   if (!channel) return;
   let emb = new Array();
   for (let i = 0; i<err.stack.toString().length; i+=2000) {
