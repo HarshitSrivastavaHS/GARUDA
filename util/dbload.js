@@ -56,6 +56,7 @@ ong[ong.length] = [allDocuments[x]._id, allDocuments[x].guild, allDocuments[x].c
                 allDocuments[x].chID,
                 allDocuments[x].host,
                 allDocuments[x].reqs,
+                allDocuments[x].bypass,
                 false,
                 allDocuments[x].guild
             );

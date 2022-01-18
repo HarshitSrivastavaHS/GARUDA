@@ -3,7 +3,7 @@ function Gend(msg, guild, bot, id) {
 }
 
 
-module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs, end, guild) => {
+module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs, bypass, end, guild) => {
   const mongo = require("../mongo.js")
   const giveawaySchema = require("../Schemas/giveaway-schema.js")
   let ms = time-Date.now();
@@ -59,6 +59,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     const collector = msg.createReactionCollector(filter, { time: ms });
     collector.on('collect', (r, u) => 
     {   
+        if (u.bot) return;
         let member = msg.guild.members.cache.get(u.id);
         
         if (msg.content == "**🎉Giveaway Ended🎉**") return collector.stop();
@@ -111,8 +112,8 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     .setTitle("Your giveaway has ended!")
     .setFooter(`${giveawayChannel.guild.name} - #${giveawayChannel.name}`);
     
-    await msg.reactions.cache.get("🎉").users.fetch()
-    let giveawayWinners = msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
+    await msg.reactions.cache.get("🎉")&&msg.reactions.cache.get("🎉").users.fetch()
+    let giveawayWinners = msg.reactions.cache.get("🎉")!=null?msg.reactions.cache.get("🎉").users.cache.filter((b)=>{
       if (b.bot) return false;
       if (!reqs) return true;
       let pass = true;
@@ -124,7 +125,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
         }
       }
       return pass;
-    }).random(winners);
+    }).random(winners):[];
 
     giveawayWinners = giveawayWinners.filter(function( element ) {
       return element != undefined;
@@ -146,7 +147,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
           _id: msg.id
         })
       })
-      giveawayChannel.send(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
+      msg.reply(`Could not determine a winner.\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`);
       hostDM.setDescription(`Your giveaway for [${prize}](https://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}) in ${giveawayChannel.guild.name} has ended.\nCould not determine ${winners>1?"":"a "}winner${winners>1?"s":""}.`)
       return giveawayHost.send({embeds:[hostDM]});
     }
@@ -157,7 +158,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     .setFooter(`Winners: ${winners} | Ended at`)
     .setTimestamp()
     if (reqs)
-    winem.addField("Requirement", reqs.join(", "))
+    winem.addField("Role Requirements", reqs.join(", "))
 
     msg.edit({content:"**🎉Giveaway Ended🎉**", embeds:[winem]});
     let winDM = new Discord.MessageEmbed()
@@ -168,7 +169,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
     giveawayWinners.forEach((item,index)=>{
       item.send({embeds:[winDM]});
     })
-    giveawayChannel.send(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You ${winners>1?"all ":""}have won the **${prize}** giveaway!\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
+    msg.reply(`Congratulations ${winners>1?giveawayWinners.join(", "):giveawayWinners}! You ${winners>1?"all ":""}have won the **${prize}** giveaway!\nhttps://discord.com/channels/${giveawayChannel.guild.id}/${giveawayChannel.id}/${msg.id}`)
     let giveawayWinnersTag = "";
     giveawayWinners.forEach((item,index)=>{
       if (index == 0)

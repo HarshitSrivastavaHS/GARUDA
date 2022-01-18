@@ -99,7 +99,7 @@ module.exports = {
       .setDescription(`» React with :tada: to enter!\n» Time: **${time}** ${sym} (Ends <t:${Math.ceil(tme/1000)}:R>)\n» Hosted by ${message.author}`)
       .setTimestamp(tme);
       if (req)
-        giveawayEM.addField("Requirement", req.join(", "))
+        giveawayEM.addField("Role Requirements", req.join(", "))
 
       let msg = await channel.send({content: "**🎉Giveaway🎉**",embeds:[giveawayEM]});
       msg.react("🎉");
@@ -137,7 +137,7 @@ module.exports = {
         let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
       ong[ong.length] = [msg.id, message.guild.id, channel.id, prize]           
         bot.giveaways.set(msg.guild.id, ong);
-        giveaway(bot, Discord, msg.id, tme, winners, prize, channel.id, message.author.id, req, false);
+        giveaway(bot, Discord, msg.id, tme, winners, prize, channel.id, message.author.id, req, bypass, false);
     }
       
 }

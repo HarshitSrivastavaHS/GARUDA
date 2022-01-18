@@ -20,6 +20,7 @@ const giveawaySchema = mongoose.Schema({
   chID: reqString,
   host: reqString,
   reqs: opString,
+  bypass: opString,
   guild: reqString,
 })
 
