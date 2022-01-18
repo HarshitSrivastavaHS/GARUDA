@@ -137,7 +137,7 @@ module.exports = {
         let ong = bot.giveaways.get(msg.guild.id)!=undefined?bot.giveaways.get(msg.guild.id):[];
       ong[ong.length] = [msg.id, message.guild.id, channel.id, prize]           
         bot.giveaways.set(msg.guild.id, ong);
-        giveaway(bot, Discord, msg.id, tme, winners, prize, channel.id, message.author.id, req, bypass, false);
+        giveaway(bot, Discord, msg.id, tme, winners, prize, channel.id, message.author.id, req, undefined, false);
     }
       
 }
