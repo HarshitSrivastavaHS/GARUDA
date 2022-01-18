@@ -22,7 +22,7 @@ module.exports = async (bot, Discord, msg, time, winners, prize, ch, host, reqs,
       return;
     }
     console.log("giveaway.js giveawayChannel error")}); 
-    
+    await giveawayChannel.fetch();
     msgid = msg;   
     msg = await giveawayChannel.messages.fetch(msg).catch(async ()=>{
       await mongo().then(async (mongoose)=>{
