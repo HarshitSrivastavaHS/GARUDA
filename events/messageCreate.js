@@ -67,7 +67,13 @@ module.exports = {
     })
     missingPerms = missingPerms.join("\n");
     if (botPerms.includes(false)) return message.channel.send(`The Following permissions which are missing are needed by the bot for this command:\n\n\`\`\`\n${missingPerms.replace("_"," ")}\`\`\``).catch(err=>console.log(`Missing send message permission in a server.`));
-    cmdexe.execute(message, args, bot, Discord, prefix);
+    try {
+      await cmdexe.execute(message, args, bot, Discord, prefix)
+    }
+    catch (error) {
+      message.reply({ content: 'There was an error while executing this command! \n ***ERROR***:\n'+error});
+      process.emit("uncaughtException", error)
+    };
 
      
       
