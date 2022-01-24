@@ -11,6 +11,7 @@ module.exports = {
         if (bot.fasttype.includes(message.channel.id)) return message.channel.send("**A Fasttype game is already going on in this channel.**");
         
         let { words } = require("../../util/fasttypeWords.json");
+        words = [...words];
         let chosenWord = "";
         let maxWords = 10;
         
