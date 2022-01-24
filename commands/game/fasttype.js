@@ -41,7 +41,7 @@ module.exports = {
             }
             
             const filter = m =>{
-                return m.content.toLowerCase() == word.toLowerCase() && (!m.author.bot||(m.author.bot&&bot.allowedBots.includes(m.author.id)));
+                return m.content!=undefined &&m.content.toLowerCase() == word.toLowerCase() && (!m.author.bot||(m.author.bot&&bot.allowedBots.includes(m.author.id)));
             }
             
             selectWord()
