@@ -259,8 +259,8 @@ module.exports = {
                 row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
                 row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
                 activeplayer = activeplayer==player1?player2:player1;
-                msg.edit({content: `${activeplayer}'s turn\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
-                interaction.deleteReply().catch(()=>{});
+                interaction.update({content: `${activeplayer}'s turn\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
+                
                 }
                 else {
                     collector.stop("draw");
@@ -279,13 +279,13 @@ module.exports = {
             row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
             row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
             if (reason=="idle"){
-                msg.edit({content: `The game ended due to inactivity.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
+                interaction.update({content: `The game ended due to inactivity.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
             }
             else if (reason == "draw") {
-                msg.edit({content: `The game ended in a draw.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]});
+                interaction.update({content: `The game ended in a draw.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]});
             }
             else {
-                msg.edit({content: `${activeplayer} has won!\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
+                interaction.update({content: `${activeplayer} has won!\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
             }
         })
             }
