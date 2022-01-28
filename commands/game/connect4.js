@@ -246,7 +246,7 @@ module.exports = {
                     } 
                     win = checkWin(i, column);
                     if (win) {
-                        interaction.reply({content: "You've won!", ephemeral: true});
+                        //interaction.reply({content: "You've won!", ephemeral: true});
                         collector.stop("Win")
                     }
                     break;
