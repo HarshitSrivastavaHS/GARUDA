@@ -279,13 +279,13 @@ module.exports = {
             row1 = new Discord.MessageActionRow().addComponents(btn1, btn2, btn3, btn4, btn5);
             row2 = new Discord.MessageActionRow().addComponents(btn6, btn7);
             if (reason=="idle"){
-                interaction.update({content: `The game ended due to inactivity.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
+                msg.edit({content: `The game ended due to inactivity.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
             }
             else if (reason == "draw") {
-                interaction.update({content: `The game ended in a draw.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]});
+                msg.edit({content: `The game ended in a draw.\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]});
             }
             else {
-                interaction.update({content: `${activeplayer} has won!\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
+                msg.edit({content: `${activeplayer} has won!\n${playerDetail}\n${columns}\n${gameboard.map(r=>r.join(" ")).join("\n")}\n${columns}`,components: [row1, row2]}); 
             }
         })
             }
