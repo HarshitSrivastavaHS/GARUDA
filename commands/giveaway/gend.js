@@ -8,46 +8,29 @@ module.exports = {
     aliases: ["giveaway-end", "giveawayend"],
     permissions: ['SEND_MESSAGES'],
     async execute(message, args, bot, Discord, prefix) {
-        //if (message.author.id != "451693463742840842") return message.channel.send("Command turned off by the developer.")
-        
         let managerRoles = bot.serverConfig.get(message.guild.id)&&bot.serverConfig.get(message.guild.id).giveaway?bot.serverConfig.get(message.guild.id).giveaway: [];
-     if (!message.member.permissions.has("MANAGE_GUILD")&&message.member.roles.cache.filter(r=>managerRoles.includes(r)).size==0) return message.reply("You don't have Manage Server permission and you don't have any of the giveaway manager role either.")
-     let msg;
-        if (args.length>0) {
-            try {
-                if (args[0].startsWith("https://discord.com/channels/"))
-                    args[0] = args[0].substr(args[0].lastIndexOf("/")+1,args[0].length)
-                
-                msg = await message.channel.messages.fetch(args[0]);
-                if (!msg.embeds.length>0||msg.content!="**🎉Giveaway🎉**")
-                    throw new Error(':/');
-            }
-            catch {
-                return message.channel.send("Provided message is not a valid ongoing giveaway message id.")
-            }
+        if (!message.member.permissions.has("MANAGE_GUILD")&&message.member.roles.cache.filter(r=>managerRoles.includes(r)).size==0) return message.reply("You don't have Manage Server permission and you don't have any of the giveaway manager role either.")
+        let msg; 
+        if (args[0]){
+            msg = args[0].substring(args[0].lastIndexOf("/"));
         }
         else {
-            let msgs = await message.channel.messages.fetch(50);
-            msgs = msgs.filter((m)=>m.embeds.length>0&&m.content=="**🎉Giveaway🎉**"&&m.embeds[0].description.substr(m.embeds[0].description.lastIndexOf("by")+2,m.embeds[0].description.length).includes(message.author.id));
-            if (msgs.size<1) return message.channel.send("Could not find a giveaway started by you.")
-            msgs = msgs.sort(function(a, b) {
-                return parseFloat(b.createdTimestamp) - parseFloat(a.createdTimestamp);
-            });
-            let msgid; 
-            msgs.map(i=>{
-                if (!msgid){
-                    msgid = i.id;
-                }
-            })
-            msg = msgs.get(msgid);
+            if (message.reference)
+                msg = message.reference.messageId; 
         }
-        message.channel.send("Ending the giveaway in less than 15 seconds");
+        if (!msg) return message.reply("Please reply to the giveaway message or use its link with the command.");
         let result;
         await mongo().then(async (mongoose)=>{
             result = await giveawaySchema.findOne({
-              _id: msg.id
+              _id: msg
             })
         })
-        giveaway(bot, Discord, result._id, message.createdTimestamp+10000, result.winners, result.prize, result.chID, result.host, result.reqs, true);
+        if (!result)
+            return message.reply("That is not a valid giveaway message id");
+        msg = await message.channel.messages.fetch(msg);
+        if (!msg) return message.reply("The mentioned giveaway message was not found.")
+        message.channel.send("Ending the giveaway in less than 15 seconds");
+
+        giveaway(bot, msg.id, result.reqs, result.bypass, result.blacklist, Date.now()+15000, msg.channel.id, result.winners, result.host, true)
     }
 }

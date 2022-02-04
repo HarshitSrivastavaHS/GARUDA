@@ -67,6 +67,7 @@ bot.fasttype = new Array();
 bot.aki = new Array();
 bot.allowedBots = ["870239976690970625"];
 bot.autoroleMissingPermissions = [];
+bot.giveaways2 = new Map();
 
 setTimeout(()=>{
   const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);

@@ -19,8 +19,10 @@ const giveawaySchema = mongoose.Schema({
   winners: reqString,
   chID: reqString,
   host: reqString,
-  reqs: opString,
-  bypass: opString,
+  reqs: [opString],
+  bypass: [opString],
+  blacklist: [opString],
+  donor: [opString],
   guild: reqString,
 })
 

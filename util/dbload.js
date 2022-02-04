@@ -42,23 +42,21 @@ module.exports = async (bot) => {
 			allDocuments = await giveawaySchema.find({});
 	});
 	if (allDocuments.length >= 1) {
-        for (let x in allDocuments) {
-            let ong = bot.giveaways.get(allDocuments[x].guild)!=undefined?bot.giveaways.get(allDocuments[x].guild):[];
-ong[ong.length] = [allDocuments[x]._id, allDocuments[x].guild, allDocuments[x].chID, allDocuments[x].prize]
-          bot.giveaways.set(allDocuments[x].guild, ong)
+        for (let x of allDocuments) {
+            let ong = bot.giveaways.get(x.guild)!=undefined?bot.giveaways.get(x.guild):[];
+ong[ong.length] = [x._id, x.guild, x.chID, x.prize]
+          bot.giveaways.set(x.guild, ong)
             give(
                 bot,
-                Discord,
-                allDocuments[x]._id,
-                allDocuments[x].endTime,
-                allDocuments[x].winners,
-                allDocuments[x].prize,
-                allDocuments[x].chID,
-                allDocuments[x].host,
-                allDocuments[x].reqs,
-                allDocuments[x].bypass,
+                x._id,
+                x.reqs,
+                x.bypass,
+                x.blacklist,
+                x.endTime,
+                x.chID,
+                x.winners,
+                x.host,
                 false,
-                allDocuments[x].guild
             );
         }
     }
