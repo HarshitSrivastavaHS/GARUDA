@@ -14,7 +14,7 @@ module.exports = {
 	}
 
       if (channel.type=="GUILD_PUBLIC_THREAD"||message.channel.type=="GUILD_PRIVATE_THREAD") return message.reply("Cannot lock a thread.")
-        if(!channel.permissionsFor(message.member).has("MANAGE_CHANNEL")) {
+        if(!channel.permissionsFor(message.member).has("MANAGE_CHANNELS")) {
             message.channel.send("You don't have the required permissions.");
             return;
         }
