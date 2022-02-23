@@ -269,9 +269,10 @@ module.exports = {
                 gameRow1 = new Discord.MessageActionRow().addComponents(a1, a2, a3)
                 gameRow2 = new Discord.MessageActionRow().addComponents(b1, b2, b3)
                 gameRow3 = new Discord.MessageActionRow().addComponents(c1, c2, c3)
-                interaction.update({content: `**${player1.username} vs ${player2.username}**\n\n${activeplayer.username}'s turn (${symbol[actp]})`, components: [gameRow1, gameRow2, gameRow3]})
                 activeplayer = activeplayer==player1?player2:player1;
                 c++;
+                interaction.update({content: `**${player1.username} vs ${player2.username}**\n\n${activeplayer.username}'s turn (${symbol[actp]})`, components: [gameRow1, gameRow2, gameRow3]})
+                
             })
             gameCollector.on("end", (collected, reason)=>{
                 a1.setDisabled(true);
