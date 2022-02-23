@@ -75,10 +75,5 @@ module.exports = {
       process.emit("uncaughtException", error)
     };
 
-     
-      
-      if (Math.floor(Math.random() * 50) == 2) {
-          bot.commands.get("partners").command.execute(message, [], bot, Discord, prefix);
-      }
   },
 };
