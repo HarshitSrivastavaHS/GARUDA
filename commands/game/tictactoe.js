@@ -222,6 +222,7 @@ module.exports = {
                 let btn = interaction.customId;
                 let btnNo = btn.substring(1,2);
                 let actp = activeplayer == player1 ? "player1" : "player2";
+                c++;
                 switch(btn.substring(0,1)) {
                     case "a":
                         if (btnNo == 1)
@@ -271,7 +272,6 @@ module.exports = {
                 gameRow3 = new Discord.MessageActionRow().addComponents(c1, c2, c3)
                 activeplayer = activeplayer==player1?player2:player1;
                 actp = activeplayer == player1 ? "player1" : "player2";
-                c++;
                 interaction.update({content: `**${player1.username} vs ${player2.username}**\n\n${activeplayer.username}'s turn (${symbol[actp]})`, components: [gameRow1, gameRow2, gameRow3]})
                 
             })
