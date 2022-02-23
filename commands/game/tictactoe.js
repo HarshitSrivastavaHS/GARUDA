@@ -270,6 +270,7 @@ module.exports = {
                 gameRow2 = new Discord.MessageActionRow().addComponents(b1, b2, b3)
                 gameRow3 = new Discord.MessageActionRow().addComponents(c1, c2, c3)
                 activeplayer = activeplayer==player1?player2:player1;
+                activeplayer == player1 ? "player1" : "player2";
                 c++;
                 interaction.update({content: `**${player1.username} vs ${player2.username}**\n\n${activeplayer.username}'s turn (${symbol[actp]})`, components: [gameRow1, gameRow2, gameRow3]})
                 
