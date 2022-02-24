@@ -250,7 +250,7 @@ module.exports = {
                             
                         break;
                 }
-                btn.setEmoji(`${symbol[actp]}`).setDisabled(true).setStyle(activeplayer==player1?"PRIMARY":"DANGER");
+                btn.setEmoji(`${symbol[actp]}`).setLabel("").setDisabled(true).setStyle(activeplayer==player1?"PRIMARY":"DANGER");
                 gamePieces = [
                     [a1.emoji, a2.emoji, a3.emoji], 
                     [b1.emoji, b2.emoji, b3.emoji], 
