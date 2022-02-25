@@ -205,8 +205,8 @@ module.exports = {
                 .setStyle("SECONDARY");
             let gameRow3 = new Discord.MessageActionRow().addComponents(c1, c2, c3)
             let symbol = {
-                player1: "<:cross:946708149937778700>",
-                player2: '<:nought:946708235111526402>'
+                player1: "<:cross:946715159458627615>",
+                player2: '<:nought:946715205868605440>'
             }
             let gamePieces = [
                 [a1.emoji, a2.emoji, a3.emoji], 
