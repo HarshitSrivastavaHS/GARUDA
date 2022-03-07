@@ -65,7 +65,7 @@ bot.snipes = new Map();
 bot.editSnipes = new Map();
 bot.fasttype = new Array();
 bot.aki = new Array();
-bot.allowedBots = ["870239976690970625"];
+bot.allowedBots = ["870239976690970625", "929974858899685426"];
 bot.autoroleMissingPermissions = [];
 bot.giveaways2 = new Map();
 
