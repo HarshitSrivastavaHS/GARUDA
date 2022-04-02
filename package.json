@@ -21,7 +21,7 @@
     "clashofclans.js": "^1.5.4",
     "discord-api-types": "^0.24.0",
     "discord-canvas": "^1.4.1",
-    "discord.js": "^13.4.0",
+    "discord.js": "^13.6.0",
     "dotenv": "^10.0.0",
     "exact-math": "^2.2.3",
     "express": "^4.17.1",
