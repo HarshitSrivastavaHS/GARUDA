@@ -1,3 +1,4 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
 const {Aki} = require("aki-api");
 const Discord = require("discord.js")
 async function askQuestion(message, aki) {
@@ -142,5 +143,23 @@ module.exports = {
         const aki = new Aki({region: "en", childMode: true, proxy: undefined});
         await aki.start();
         askQuestion(message, aki, msg);
+    },
+    slash: new SlashCommandBuilder()
+        .setName("akinator")
+        .setDescription("I know what character you're thinking of!"),
+    async slashExecute(interaction) {
+        if (interaction.client.aki.includes(interaction.user.id)) return interaction.reply("A game started by you is already running.");
+        interaction.client.aki.push(interaction.user.id);
+        interaction.reply("**Starting game**")
+        let channel = await interaction.client.guilds.fetch(interaction.guildId).then(async(guild)=>await guild.channels.fetch(interaction.channelId))
+        let msg = {
+            client: interaction.client,
+            channel: channel,
+            author: interaction.user
+        };
+        msg.channel.sendTyping();
+        const aki = new Aki({region: "en", childMode: true, proxy: undefined});
+        await aki.start();
+        askQuestion(msg, aki);
     }
 }
