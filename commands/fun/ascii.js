@@ -2,6 +2,8 @@ const figlet = require("util").promisify(require("figlet"));
 const Discord = require("discord.js")
 const { SlashCommandBuilder } = require('@discordjs/builders');
 async function main(text) {
+  text = text.split(" ");
+  text = text.join("\n");
   let banner = (await figlet(text)).substring(0,1900);
   banner = Discord.Formatters.codeBlock("md", banner);
   return banner;
