@@ -5,7 +5,7 @@ async function main() {
     let coin = new Discord.MessageEmbed()
         .setColor("RANDOM")
         .setTitle("Flip a coin");
-    let face = faces[Math.floor(Math.random()*2)];
+    let face = faces[Math.round(Math.random())];
     coin.setDescription(`The coin was flipped. It is ${face}.`)
     switch(face) {
         case 'Head': coin.setThumbnail("https://www.pngitem.com/pimgs/m/123-1232373_coin-png-pic-heads-and-tails-indian-coin.png"); break;
